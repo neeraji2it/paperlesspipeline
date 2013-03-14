@@ -6,6 +6,10 @@ Paperlesspipeline::Application.routes.draw do
     member do
       get :add_name1
     end
+    collection do
+      get :password_details
+      put :change_password
+    end
   end
   devise_for :users
 
