@@ -3,18 +3,7 @@ class DashboardController < ApplicationController
   end
   def show
   end
-
   
-  def add_name1
-    @add_name = IntakeForm.find(params[:id])
-    if params[:name].blank?
-    else
-      @user = User.find(params[:name])
-      CaseIntakeform.create(:name =>@user.name,:user_id => @user.id)
-    end
-    render
-  end
-
   def password_details
     
   end
@@ -27,7 +16,7 @@ class DashboardController < ApplicationController
     else
       flash.now[:alert] = 'Password changing failed.'
     end
-    render :action => "password_details"
+    render :action => "show"
   end
   
 end

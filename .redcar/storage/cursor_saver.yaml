@@ -35,9 +35,6 @@ cursor_positions:
   - :path: config/initializers/devise.rb
     :cursor_offset: 9456
     :timestamp: 2013-03-13 08:46:58 +05:30
-  - :path: app/views/layouts/application.html.erb
-    :cursor_offset: 1166
-    :timestamp: 2013-03-13 11:40:25 +05:30
   - :path: config/initializers/rails.rb
     :cursor_offset: 421
     :timestamp: 2013-03-12 14:31:54 +05:30
@@ -79,13 +76,16 @@ cursor_positions:
     :timestamp: 2013-03-13 13:20:17 +05:30
     :selection_offset: 212
     :block_selection_mode: false
-  - :path: app/views/dashboard/show.html.erb
-    :cursor_offset: 229
-    :timestamp: 2013-03-14 15:17:11 +05:30
   - :path: app/views/dashboard/update_info.html.erb
     :cursor_offset: 11
     :timestamp: 2013-03-14 14:55:32 +05:30
   - :path: config/routes.rb
     :cursor_offset: 50
     :timestamp: 2013-03-14 15:18:53 +05:30
+  - :path: app/views/dashboard/show.html.erb
+    :cursor_offset: 386
+    :timestamp: 2013-03-14 16:12:56 +05:30
+  - :path: app/views/layouts/application.html.erb
+    :cursor_offset: 1882
+    :timestamp: 2013-03-13 11:40:25 +05:30
 files_to_retain: 0
