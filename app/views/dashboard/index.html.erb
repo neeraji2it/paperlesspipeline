@@ -1,0 +1,12 @@
+<h2>QuickBook</h2>
+
+<script type="text/javascript" src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere.js"></script>
+
+<!-- configure the Intuit object: 'grantUrl' is a URL in your application which kicks off the flow, see below -->
+<script>
+intuit.ipp.anywhere.setup({menuProxy: '/path/to/blue-dot', grantUrl: '/path/to/your-flow-start'});
+</script>
+
+<ipp:connectToIntuit></ipp:connectToIntuit>
+
+<%= link_to 'Add Name',add_name1_dashboard_path(@add_name),:remote => true %>

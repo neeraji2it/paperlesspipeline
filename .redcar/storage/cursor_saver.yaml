@@ -1,0 +1,80 @@
+--- 
+cursor_positions: 
+  - :path: db/migrate/20130312090224_devise_create_users.rb
+    :cursor_offset: 773
+    :timestamp: 2013-03-12 15:31:26 +05:30
+  - :path: app/assets/stylesheets/bootstrap.css
+    :cursor_offset: 0
+    :timestamp: 2013-02-08 11:44:21 +05:30
+  - :path: app/views/devise/sessions/new.html.erb
+    :cursor_offset: 4
+    :timestamp: 2013-03-12 15:16:17 +05:30
+    :selection_offset: 28
+    :block_selection_mode: false
+  - :path: app/views/devise/registrations/edit.html.erb
+    :cursor_offset: 28
+    :timestamp: 2013-03-12 15:18:59 +05:30
+  - :path: app/views/devise/registrations/new.html.erb
+    :cursor_offset: 28
+    :timestamp: 2013-03-12 15:19:10 +05:30
+  - :path: app/views/devise/passwords/new.html.erb
+    :cursor_offset: 28
+    :timestamp: 2013-03-12 15:19:18 +05:30
+  - :path: app/views/devise/passwords/edit.html.erb
+    :cursor_offset: 28
+    :timestamp: 2013-03-12 15:19:37 +05:30
+  - :path: app/views/devise/confirmations/new.html.erb
+    :cursor_offset: 28
+    :timestamp: 2013-03-12 15:19:28 +05:30
+  - :path: config/environments/development.rb
+    :cursor_offset: 1454
+    :timestamp: 2013-03-12 15:22:31 +05:30
+  - :path: app/assets/stylesheets/bootstrap.min.css
+    :cursor_offset: 3522
+    :timestamp: 2013-03-12 15:34:57 +05:30
+  - :path: config/initializers/devise.rb
+    :cursor_offset: 9456
+    :timestamp: 2013-03-13 08:46:58 +05:30
+  - :path: app/views/layouts/application.html.erb
+    :cursor_offset: 1166
+    :timestamp: 2013-03-13 11:40:25 +05:30
+  - :path: config/initializers/rails.rb
+    :cursor_offset: 421
+    :timestamp: 2013-03-12 14:31:54 +05:30
+  - :path: app/views/welcome/index.html.erb
+    :cursor_offset: 16
+    :timestamp: 2013-03-13 21:24:56 +05:30
+  - :path: app/controllers/welcome_controller.rb
+    :cursor_offset: 672
+    :timestamp: 2013-03-12 12:00:14 +05:30
+  - :path: Gemfile
+    :cursor_offset: 155
+    :timestamp: 2013-03-14 11:09:40 +05:30
+  - :path: app/controllers/application_controller.rb
+    :cursor_offset: 179
+    :timestamp: 2013-03-14 13:31:34 +05:30
+  - :path: app/models/user.rb
+    :cursor_offset: 495
+    :timestamp: 2013-03-12 15:26:46 +05:30
+  - :path: app/controllers/dashboard_controller.rb
+    :cursor_offset: 104
+    :timestamp: 2013-03-14 14:47:47 +05:30
+  - :path: app/views/dashboard/_add_name.html.erb
+    :cursor_offset: 39
+    :timestamp: 2013-03-14 14:47:54 +05:30
+  - :path: config/routes.rb
+    :cursor_offset: 107
+    :timestamp: 2013-03-14 14:48:10 +05:30
+  - :path: app/views/dashboard/add_name.js.erb
+    :cursor_offset: 24
+    :timestamp: 2013-03-14 14:49:04 +05:30
+  - :path: app/views/dashboard/index.html.erb
+    :cursor_offset: 441
+    :timestamp: 2013-03-14 14:48:24 +05:30
+  - :path: app/views/dashboard/show.html.erb
+    :cursor_offset: 78
+    :timestamp: 2013-03-14 14:48:32 +05:30
+  - :path: app/controllers/users_controller.rb
+    :cursor_offset: 50
+    :timestamp: 2013-03-14 15:17:42 +05:30
+files_to_retain: 0

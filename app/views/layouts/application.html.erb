@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Paperlesspipeline</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <style>
+      body { background-color: #d4d4d4; height: 90%; padding-top: 20px; }
+      .container { background: white; }
+     
+    </style>
+  </head>
+  
+  <body>
+    <div class="navbar navbar-fixed-top" style='height:100px;'>
+      <div class="navbar-inner">
+         <div class="container">
+              <a href="/" class="brand">PaperLessPipeLine</a>
+              <ul class="nav">
+                  <li><a href="">Home</a></li>
+                  <li class="divider-vertical"></li> 
+                  <li><a href="">Products</a></li>
+                  <li class="divider-vertical"></li>
+                  <li><a href="">FAQ</a></li>
+              </ul>
+              
+              <ul class="nav pull-right">
+                <% if !current_user%>
+                  <li><%= link_to "Signup", new_user_registration_path %></li>
+                  <li><%= link_to "Login", new_user_session_path %></li>
+                  <% else%>
+                  <li><%= link_to "Logout", destroy_user_session_path,:method => 'DELETE' %></li>
+                  <%end%>
+              </ul>
+              
+         </div>
+      </div>
+    </div>
+ 
+    <div class="container" style="margin-top:45px;height:590px; min-width:100px; position: relative;clear:both;background: none repeat scroll 0 0 #d4d4d4;">
+      <%= yield %>
+    </div>  
+    
+    <footer class="footer" style="background-color:#c5c5c5; clear:both;">
+      <div class="container" style="margin:0 auto;">
+          <div class="row" style="background-color:#c5c5c5">
+            <div style='float:right;'>
+              <b> (c)2013 All Rights Reserved.</b>
+            </div>
+          </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+

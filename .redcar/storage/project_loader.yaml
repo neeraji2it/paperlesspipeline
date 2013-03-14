@@ -1,0 +1,6 @@
+--- 
+open_files: 
+  - config/initializers/rails.rb
+  - app/views/welcome/index.html.erb
+  - app/controllers/welcome_controller.rb
+  - Gemfile

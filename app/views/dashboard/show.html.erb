@@ -1,0 +1,8 @@
+<h2>Dashboard</h2>
+
+<%= link_to "Profile" %>
+
+<%= link_to 'Add Name',add_name1_dashboard_path(current_user),:remote => true %>
+<br /><br /><br /><br />
+<%= link_to 'Update Info', update_info_user_path(current_user) %><br /><br />
+<%= link_to 'Profile', profile_user_path(current_user) %>
