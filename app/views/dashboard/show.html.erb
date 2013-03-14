@@ -6,17 +6,9 @@
 <h2>Dashboard</h2>
 </div>
 
-<%= link_to "Profile" %>
+<%= link_to "Profile", password_details_dashboard_index_path(current_user) %>
 
 <%= link_to 'Add Name',add_name1_dashboard_path(current_user),:remote => true %>
 <br /><br /><br /><br />
-<%= link_to 'Update Info', update_info_user_path(current_user) %><br /><br />
-<%= link_to 'Profile', profile_user_path(current_user) %>
 
-
-<style>
-  #dashboard-header {
-    border: 1px solid red;
-    height: 120px;
-  }
-</style>
+<%= link_to 'Update Info', "" %><br /><br />
