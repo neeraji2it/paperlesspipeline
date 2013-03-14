@@ -1,4 +1,10 @@
+<div class="navbar navbar-fixed-top" style='height:100px;'>
+      <%= current_user.email %>
+</div>
+
+<div id="dashboard-header">
 <h2>Dashboard</h2>
+</div>
 
 <%= link_to "Profile" %>
 
@@ -6,3 +12,11 @@
 <br /><br /><br /><br />
 <%= link_to 'Update Info', update_info_user_path(current_user) %><br /><br />
 <%= link_to 'Profile', profile_user_path(current_user) %>
+
+
+<style>
+  #dashboard-header {
+    border: 1px solid red;
+    height: 120px;
+  }
+</style>
