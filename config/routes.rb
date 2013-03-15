@@ -2,11 +2,7 @@ Paperlesspipeline::Application.routes.draw do
   
  
   
-  resources :dashboard do 
-    member do
-      get :add_name1
-    end
-  end
+  resources :dashboard 
   devise_for :users
 
   # The priority is based upon order of creation:

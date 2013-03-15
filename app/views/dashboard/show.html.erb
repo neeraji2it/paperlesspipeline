@@ -1,12 +1,36 @@
-
-
-<div id="dashboard-header">
-<h2>Dashboard</h2>
+<div style="float:left;height:560px;background-color:#d4d4d4;width:15%;>
+  
+  <div id="content" style="border:2px solid red;float:left;background-color:#c5c5c5;">
+    <%= link_to "New Transaction" %><br /><br />
+    <%= link_to "Upload Docs" %><br /><br />
+    <%= link_to "Profile", edit_user_registration_path(current_user) %><br /><br />
+    <%= link_to "Upgrade/Downgrade" %><br /><br />
+    <%= link_to "Monthly Backup" %><br /><br />
+    <%= link_to "Help" %><br />
+  </div>
+  <div style="float:left;position:absolute;margin-top:250px;"
+    <h3><b> Your Info </b></h3><br />
+    <%= current_user.email %>
+  </div>
+  
+  <div style="float:left;position:absolute;margin-top:320px;"
+    <h3><b> Statistics </b></h3><br />
+    Transactions <br />
+    Documents <br />
+    Working Docs <br />
+    Office Docs <br />
+    Users <br />
+    Locations <br />
+    Checklists 
+  </div>
+  
+  <div style="float:left;position:absolute;margin-top:500px;"
+    <h3><b> Current Plan </b></h3><br />
+  </div>
+  
+  <div style="float:left;position:absolute;margin-top:550px;"
+    <h3><b> Your Permissions </b></h3><br />
+  </div>
+  
 </div>
 
-<%= link_to "Profile", edit_user_registration_path(current_user) %>
-
-<%= link_to 'Add Name',add_name1_dashboard_path(current_user),:remote => true %>
-<br /><br /><br /><br />
-
-<%= link_to 'Update Info', "" %><br /><br />
