@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312090224) do
+ActiveRecord::Schema.define(:version => 20130315091657) do
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "transaction_name"
+    t.string   "transaction_number"
+    t.string   "status"
+    t.date     "close_date"
+    t.text     "more_info"
+    t.date     "automatic_expire_date"
+    t.string   "buyer_name"
+    t.string   "seller_name"
+    t.string   "list_price"
+    t.string   "sale_price"
+    t.string   "total_commission"
+    t.string   "commission_summary"
+    t.string   "listing"
+    t.string   "selling"
+    t.string   "outside_listing_agent_name"
+    t.string   "outside_selling_agent_name"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

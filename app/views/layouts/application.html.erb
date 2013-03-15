@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Paperlesspipeline</title>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "application", "/assets/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <style>
@@ -25,7 +25,7 @@
 
 
 
-    <div class="container" style="margin-top:45px;height:590px;width:100%; position: relative;clear:both;background: none repeat scroll 0 0 #d4d4d4;">
+    <div class="container" style="margin-top:45px;height:auto;min-height: 500px;width:100%; position: relative;clear:both;background: none repeat scroll 0 0 #d4d4d4;">
       <% if current_user%>
         <div style="color: black;left: 450px;position: relative;top: -16px;width: 35%;">
           <%= link_to "Dashboard", root_path, :id => "links"%>
@@ -34,7 +34,7 @@
           <%= link_to "Working", "", :id => "links" %>
           <%= link_to "Unreviewed", "", :id => "links" %>
           <%= link_to "Office", "", :id => "links" %>
-          <%= link_to "+Transaction", "", :id => "links" %>
+          <%= link_to "+Transaction", new_transaction_path, :id => "links" %>
         </div>
       <% end %>
       <div id="small-container">
