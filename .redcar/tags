@@ -1,4 +1,4 @@
-1363254533
+1363257940
 Application	/home/mohan/projects/paperlesspipeline/config/application.rb	  class Application 
 ApplicationController	/home/mohan/projects/paperlesspipeline/app/controllers/application_controller.rb	class ApplicationController 
 ApplicationHelper	/home/mohan/projects/paperlesspipeline/app/helpers/application_helper.rb	module ApplicationHelper
@@ -22,8 +22,11 @@ add_name1	/home/mohan/projects/paperlesspipeline/app/controllers/dashboard_contr
 after_sign_in_path_for	/home/mohan/projects/paperlesspipeline/app/controllers/application_controller.rb	  def after_sign_in_path_for(resource_or_scope)
 authenticate	/home/mohan/projects/paperlesspipeline/app/controllers/welcome_controller.rb	  def authenticate
 change	/home/mohan/projects/paperlesspipeline/db/migrate/20130312090224_devise_create_users.rb	  def change
+change_password	/home/mohan/projects/paperlesspipeline/app/controllers/dashboard_controller.rb	  def change_password
 index	/home/mohan/projects/paperlesspipeline/app/controllers/welcome_controller.rb	  def index
 index	/home/mohan/projects/paperlesspipeline/app/controllers/dashboard_controller.rb	  def index
 oauth_callback	/home/mohan/projects/paperlesspipeline/app/controllers/welcome_controller.rb	  def oauth_callback
+password_details	/home/mohan/projects/paperlesspipeline/app/controllers/dashboard_controller.rb	  def password_details
 show	/home/mohan/projects/paperlesspipeline/app/controllers/dashboard_controller.rb	  def show
 test_homepage	/home/mohan/projects/paperlesspipeline/test/performance/browsing_test.rb	  def test_homepage
+validation_error	/home/mohan/projects/paperlesspipeline/app/helpers/application_helper.rb	  def validation_error(message)
