@@ -10,4 +10,24 @@
  *
  *= require_self
  *= require_tree .
- */
+*/
+
+#user_register{
+    color: white;
+    display: block;
+    left: -40px;
+    position: relative;
+}
+
+#links{
+    color: black;
+    background: white;
+    border: 2px;
+}
+
+#small-container{
+    width: 75%;
+    background: white;
+    left: 295px;
+    position: relative;
+}
