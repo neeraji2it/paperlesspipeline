@@ -1,0 +1,100 @@
+<h2>New Transaction</h2>
+<%= form_for @transaction do |f| %>
+  <table>
+    <tr>
+      <td>Transaction Name or Address</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :transaction_name %></td>
+      <td><%= validation_error(@transaction.errors["transaction_name"]) %></td>
+    </tr>
+    <tr>
+      <td>MLS or Transaction Number</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :transaction_number %></td>
+      <td><%= validation_error(@transaction.errors["transaction_number"]) %></td>
+    </tr>
+    <tr>
+      <td>Status</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :status %></td>
+      <td><%= validation_error(@transaction.errors["status"]) %></td>
+    </tr>
+    <tr>
+      <td>Close Date</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%m/%d/%Y") : "") %></td>
+      <td><%= validation_error(@transaction.errors["close_date"]) %></td>
+    </tr>
+    <tr>
+      <td>More Info</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :more_info %></td>
+      <td><%= validation_error(@transaction.errors["more_info"]) %></td>
+    </tr>
+    <tr>
+      <td>Automatic Expiration Date</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :automatic_expire_date, :readOnly => true %></td>
+    </tr>
+    <tr>
+      <td>Buyer Name</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :buyer_name %></td>
+      <td><%= validation_error(@transaction.errors["buyer_name"]) %></td>
+    </tr>
+    <tr>
+      <td>Seller Name</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :seller_name %></td>
+      <td><%= validation_error(@transaction.errors["seller_name"]) %></td>
+    </tr>
+    <tr>
+      <td>List Price</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :list_price %></td>
+      <td><%= validation_error(@transaction.errors["list_price"]) %></td>
+    </tr>
+    <tr>
+      <td>Sale Price</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :sale_price %></td>
+      <td><%= validation_error(@transaction.errors["sale_price"]) %></td>
+    </tr>
+    <tr>
+      <td>Total Commission</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :total_commission %></td>
+      <td><%= validation_error(@transaction.errors["total_commission"]) %></td>
+    </tr>
+    <tr>
+      <td>Commission Summary</td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :commission_summary %></td>
+      <td><%= validation_error(@transaction.errors["commission_summary"]) %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit "Save" %>&nbsp;&nbsp;&nbsp;
+        <%= link_to "Cancel", dashboard_index_path %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+<script>
+  $('#transaction_close_date').datetimepicker({
+    showTimepicker: false,
+    dateFormat: 'yy-mm-dd',
+    minDate: 0
+  });
+</script>
