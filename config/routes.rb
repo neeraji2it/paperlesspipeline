@@ -1,7 +1,11 @@
 Paperlesspipeline::Application.routes.draw do
   
  
-  
+  resources :users do
+    member do
+    get :admin
+    end
+  end 
   resources :dashboard 
   devise_for :users
 

@@ -25,10 +25,23 @@
     border: 2px;
 }
 
+.buttons:hover{
+    background-color:yellow;
+    width: 15%;
+}
+
+
 #small-container{
     width: 75%;
     height: 95%;
     background: white;
     left: 295px;
     position: relative;
+}
+
+.dashboard-content {
+  border: 2px solid red;
+  border-radius: 11px;
+  position: relative;
+  height: 520px
 }

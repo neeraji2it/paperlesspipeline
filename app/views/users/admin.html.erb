@@ -1,0 +1,28 @@
+<div class="dashboard-content">
+  <h2>Admin</h2>
+  <hr></hr>
+  <div style="background-color:#d4d4d4;margin-left:20px;float:left;">
+    <b>Gloable Settings</b>
+  </div><br /><br /><br /><br />
+ 
+  <%= form_for @user, :url => user_path(current_user), :method => 'PUT' do |f| %>
+    
+      <table>
+        <tr>
+          <td><%= f.label "Name:" %>
+          <%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.submit "Update" %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+    </table>
+  <% end %>
+   <div style="background-color:#d4d4d4;margin-left:20px;float:left;">
+    <b>Apperance</b>
+  </div><br /><br /><br /><br />
+</div>

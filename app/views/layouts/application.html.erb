@@ -6,7 +6,7 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <style>
-      body { background-color: #566477; height: 90%; padding-top: 20px; }
+      body { background-color: #566477; height: 95%; padding-top: 20px; }
     </style>
   </head>
 
@@ -28,14 +28,14 @@
     <div class="container" style="margin-top:45px;height:590px;width:100%; position: relative;clear:both;background: none repeat scroll 0 0 #d4d4d4;">
       <% if current_user%>
         <div style="color: black;left: 450px;position: relative;top: -16px;width: 35%;">
-          <%= link_to "Dashboard", dashboard_path(current_user), :id => "links"%>
-          <%= link_to "Transactions", "", :id => "links" %>
-          <%= link_to "Tasks", "", :id => "links" %>
-          <%= link_to "Working", "", :id => "links" %>
-          <%= link_to "Unreviewed", "", :id => "links" %>
-          <%= link_to "Office", "", :id => "links" %>
-          <%= link_to "+Transaction", "", :id => "links" %>
+          <%= link_to "Dashboard", dashboard_path(current_user), :class => "btn" %>
+          <%= link_to "Transactions", "", :class => "btn" %>
+          <%= link_to "Tasks", "", :class => "btn" %>
+          <%= link_to "Working", "", :class => "btn" %>
+          <%= link_to "Unreviewed", "", :class => "btn" %>
+          <%= link_to "Office", "", :class => "btn" %>
         </div>
+        <%= render :partial => 'layouts/dashboard_side_menu' %>
       <% end %>
       <div id="small-container">
         <%= yield %>
