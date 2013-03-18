@@ -1,33 +1,33 @@
-   <div style="float:left;position:absolute;margin-top:10px;margin-left:145px;>
-    <%= link_to "New Transaction" %><br /><br />
-    <%= link_to "Upload Docs" %><br /><br />
-    <%= link_to "Profile", edit_user_registration_path(current_user) %><br /><br />
-    <%= link_to "admin", admin_user_path %><br /><br />
-    <%= link_to "Upgrade/Downgrade" %><br /><br />
-    <%= link_to "Monthly Backup" %><br /><br />
-    <%= link_to "Help" %><br />
-  </div>
-  <div style="float:left;position:absolute;margin-top:275px;margin-left:145px;"
-    <h3><b> Your Info </b></h3><br />
-    <%= current_user.email %>
-  </div>
-  
-  <div style="float:left;position:absolute;margin-top:340px;margin-left:145px;"
-    <h3><b> Statistics </b></h3><br />
-    Transactions <br />
-    Documents <br />
-    Working Docs <br />
-    Office Docs <br />
-    Users <br />
-    Locations <br />
-    Checklists 
-  </div>
-  
-  <div style="float:left;position:absolute;margin-top:520px;margin-left:145px;"
-    <h3><b> Current Plan </b></h3><br />
-  </div>
-  
-  <div style="float:left;position:absolute;margin-top:560px;margin-left:145px;"
-    <h3><b> Your Permissions </b></h3><br />
-  </div>
+<div style="float:left;position:absolute;margin-top:10px;margin-left:145px;">
+  <%= link_to "New Transaction", new_transaction_path %><br /><br />
+  <%= link_to "Upload Docs" %><br /><br />
+  <%= link_to "Profile", edit_user_registration_path(current_user) %><br /><br />
+  <%= link_to "admin", admin_user_path(current_user) %><br /><br />
+  <%= link_to "Upgrade/Downgrade" %><br /><br />
+  <%= link_to "Monthly Backup" %><br /><br />
+  <%= link_to "Help" %><br />
+</div>
+<div style="float:left;position:absolute;margin-top:275px;margin-left:145px;"
+     <h3><b> Your Info </b></h3><br />
+       <%= current_user.email %>
+</div>
+
+<div style="float:left;position:absolute;margin-top:340px;margin-left:145px;"
+     <h3><b> Statistics </b></h3><br />
+  Transactions <br />
+  Documents <br />
+  Working Docs <br />
+  Office Docs <br />
+  Users <br />
+  Locations <br />
+  Checklists
+</div>
+
+<div style="float:left;position:absolute;margin-top:520px;margin-left:145px;"
+     <h3><b> Current Plan </b></h3><br />
+</div>
+
+<div style="float:left;position:absolute;margin-top:560px;margin-left:145px;"
+     <h3><b> Your Permissions </b></h3><br />
+</div>
 
