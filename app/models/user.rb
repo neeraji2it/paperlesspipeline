@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmable,:current_password
@@ -15,4 +16,5 @@ class User < ActiveRecord::Base
     :length => { :minimum => 6, :maximum => 15,:message => 'should be  a minimum of 6 characters and a maximum of 15 characters.' },
     :confirmation =>true, :unless => lambda {|u| u.password.nil? },:on => :update
   has_many :transactions, :dependent => :destroy
+  has_many :docuemts, :dependent => :destroy
 end

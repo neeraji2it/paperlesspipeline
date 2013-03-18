@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315091657) do
+ActiveRecord::Schema.define(:version => 20130318062632) do
+
+  create_table "documents", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "transactions", :force => true do |t|
     t.integer  "user_id"
@@ -34,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20130315091657) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
->>>>>>> 7fb3991bc1026a0566747a558c41e7e3367857e3
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -11,6 +11,7 @@ gem 'json'
 gem 'devise'
 gem 'mysql2'
 gem 'quiet_assets'
+gem "paperclip", "~> 2.3"
 
 # Gems used only for assets and not required
 # in production environments by default.

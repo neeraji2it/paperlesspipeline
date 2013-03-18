@@ -7,7 +7,9 @@ Paperlesspipeline::Application.routes.draw do
       get :admin
     end
   end 
-  resources :dashboard 
+  resources :dashboard
+
+  resources :documents
   
 
   resources :transactions
