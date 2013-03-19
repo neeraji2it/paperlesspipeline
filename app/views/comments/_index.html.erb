@@ -1,0 +1,9 @@
+<% for comment in @comments %>
+  <table style="background-color: gray;">
+    <tr>
+      <td><%= comment.comment %></td>
+      <td><%= "Edit" %></td>
+      <td><%= link_to "Delete", "" %></td>
+    </tr>
+  </table>
+<% end %>

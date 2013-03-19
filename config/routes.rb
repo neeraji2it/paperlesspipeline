@@ -9,7 +9,9 @@ Paperlesspipeline::Application.routes.draw do
   end 
   resources :dashboard
 
-  resources :documents
+  resources :documents do
+    resources :comments
+  end
   
 
   resources :transactions

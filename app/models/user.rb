@@ -17,4 +17,5 @@ class User < ActiveRecord::Base
     :confirmation =>true, :unless => lambda {|u| u.password.nil? },:on => :update
   has_many :transactions, :dependent => :destroy
   has_many :docuemts, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 end
