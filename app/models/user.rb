@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmable,:current_password
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmable,:current_password,:name,
+  :duplicate_document_uploads, :email_transaction_reminders, :allow_pdf, :entered_docs_feature,:location
   # attr_accessible :title, :body
   validates :password, :presence =>true,
     :length => { :minimum => 6, :maximum => 15,:message => 'should be  a minimum of 6 characters and a maximum of 15 characters.' },

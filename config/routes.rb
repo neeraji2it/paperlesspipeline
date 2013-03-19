@@ -5,6 +5,9 @@ Paperlesspipeline::Application.routes.draw do
   resources :users do
     member do
       get :admin
+      get :manage_locations
+      get :manage_users
+      get :add_user
     end
   end 
   resources :dashboard 
