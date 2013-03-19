@@ -1,0 +1,51 @@
+<h4>
+  <span id="plus" style="display: none;">+</span>
+  <span id="minus">-</span>
+  Recent Doc to Assign
+</h4>
+<table border="1" width="100%" id="docs">
+  <% if @documents.present? %>
+    <tr style="font-weight: bold;">
+      <td>Info</td>
+      <td>Working Docs</td>
+      <td>Added By</td>
+      <td>Added On</td>
+      <td>Actions</td>
+    </tr>
+    <% for document in @documents %>
+      <tr>
+        <td><%= image_tag(document.document.url) %></td>
+        <td><%= image_tag(document.document.url) %></td>
+        <td><%= document.user.email %></td>
+        <td><%= time_ago_in_words(document.created_at) %></td>
+        <td id="aaa_<%= document.id %>"><%= "Actions" %></td>
+      </tr>
+      <div id="dddd_<%= document.id %>" style="display: none;">
+        <%= link_to "Delete", document_path(document), :method => :delete, :remote => true, :confirm => "are you sure" %>
+      </div>
+      <script>
+        $("#aaa_<%= document.id %>").click(function(){
+          $("#dddd_<%= document.id %>").show();
+        })
+      </script>
+    <% end %>
+  <% else %>
+    <tr><td>No Documents</td></tr>
+  <% end %>
+</table>
+
+<script>
+  $("#minus").click(function(){
+    $("#docs").hide();
+    $("#minus").hide();
+    $("#plus").show();
+  })
+
+  $("#plus").click(function(){
+    $("#docs").show();
+    $("#minus").show();
+    $("#plus").hide();
+  })
+</script>
+
+

@@ -10,7 +10,9 @@ Paperlesspipeline::Application.routes.draw do
       get :add_user
     end
   end 
-  resources :dashboard 
+  resources :dashboard
+
+  resources :documents
   
 
   resources :transactions

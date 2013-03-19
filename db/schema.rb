@@ -13,6 +13,16 @@
 
 ActiveRecord::Schema.define(:version => 20130319061034) do
 
+  create_table "documents", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+>>>>>>> af71f0ea14f73fb638cd41003cad6a5fa7cb78ae
+
   create_table "transactions", :force => true do |t|
     t.integer  "user_id"
     t.string   "transaction_name"
