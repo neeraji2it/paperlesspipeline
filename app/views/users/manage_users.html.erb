@@ -1,0 +1,27 @@
+<h2><b>Manage Users</b></h2>
+<hr></hr>
+<br /><br />
+<%= link_to "Add user", add_user_user_path, :class => "btn" %>
+
+
+<br /><br /><br />
+<table border=2px, id="content" style="min-height:25px; height:25px; width:100%;">
+  <tr style="background-color:#F2F2F2;height:50px;">
+    <th>User</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Location</th>
+    <th>Active</th>
+    <th>Actions</th>
+  </tr>
+  <tr>
+    <td align="center"><%= current_user.name%></td>
+    <td align="center"> <%= link_to current_user.email %> </td>
+    <td align="center"> <%= "admin" %> </td>
+    <td align="center"> 0 </td>
+    <td align="center"> <%= button_to "Action", :class => "btn" %> </td>
+    <td align="center">  </td>
+  </tr>
+</table>
+
+<br /><br /><br />

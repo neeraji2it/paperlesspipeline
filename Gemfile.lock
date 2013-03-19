@@ -72,7 +72,7 @@ GEM
       mime-types
     polyglot (0.3.3)
     quiet_assets (1.0.2)
-      railties (< 5.0, >= 3.1)
+      railties (>= 3.1, < 5.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
