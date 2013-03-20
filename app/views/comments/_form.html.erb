@@ -1,12 +1,10 @@
-<%= form_for @comment, :url => document_comments_path(@document), :remote => true do |f| %>
-  <table style="background-color: gray;">
-    <tr>
-      <td><%= f.text_field :comment %></td>
-      <td><%= f.submit "Save" %></td>
-      <td><%= link_to_function "Cancel", "", :id => "cancel_#{@document.id}" %></td>
-    </tr>
-  </table>
-<% end %>
+<table style="background-color: gray;">
+  <tr>
+    <td><%= f.text_field :comment, :placeholder => "Comment" %></td>
+    <td><%= f.submit "Save" %></td>
+    <td><%= link_to_function "Cancel", "", :id => "cancel_#{@document.id}" %></td>
+  </tr>
+</table>
 <style>
   #comment_comment{
     width: 500px;

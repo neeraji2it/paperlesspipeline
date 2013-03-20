@@ -1,9 +1,10 @@
-<% for comment in @comments %>
-  <table style="background-color: gray;">
-    <tr>
-      <td><%= comment.comment %></td>
-      <td><%= "Edit" %></td>
-      <td><%= link_to "Delete", "" %></td>
-    </tr>
-  </table>
-<% end %>
+<div style="width: 640px;">
+  <% for comment in @comments %>
+    <table style="background-color: gray;width: 640px;">
+      <tr>
+        <td><%= comment.comment %></td>
+        <td style="float: right;"><%= link_to "Edit",edit_document_comment_path(@document,comment), :remote => true %>&nbsp;&nbsp;<%= link_to "Delete", document_comment_path(@document,comment), :method => :delete, :confirm => "Are you Sure", :remote => true %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>

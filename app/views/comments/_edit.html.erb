@@ -1,0 +1,3 @@
+<%= form_for @comment, :url => document_comment_path(@document,@comment), :method => "PUT", :remote => true do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>

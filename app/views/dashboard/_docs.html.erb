@@ -24,7 +24,7 @@
         <% else %>
           <td><%= link_to "Comments", new_document_comment_path(document), :remote => true %></td>
         <% end %>
-        <td id="aaa_<%= document.id %>"><%= "Actions" %></td>
+        <td id="aaa_<%= document.id %>" class="btn"><%= "Actions" %></td>
       </tr>
       <tr>
         <td><div id="comment_<%= document.id %>" style="width: 300px;"></div></td>
