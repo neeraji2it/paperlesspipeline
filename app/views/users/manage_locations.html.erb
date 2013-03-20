@@ -1,42 +1,30 @@
 <h2><b>Manage Locations</b></h2>
 <hr></hr>
-<br /><br />
-<%= button_to "Add Location", :class => "btn" %>
 <br />
+<div class="add-location-button">
+  <%= button_tag "Add Location", :class => "btn btn-success" %>
+</div>
+<br /><br />
 
 <div id="location" style="border:solid black 1px;background-color:#F2F2F2;height:50px">
-   <%= form_for :user, :url => user_path(current_user), :method => 'PUT', :remote => true do |f| %>
+   <%= form_for :location, :url => location_path(current_user), :method => 'PUT', :remote => true do |f| %>
+      <b>Location Name</b><br /> 
       <%= f.text_field :location %> 
-      <%= f.submit "Add Locationn", :calss => "btn" %>
+      <%= f.submit "Add Location", :class => "btn btn-success" %>
    <% end %>
 </div>
-<br /><br /><br />
-<% @user = User.all %>
-<% @transaction = Transaction.all %>
-<table border=2px, id="content" style="min-height:25px; height:25px; width:100%;">
-  <tr style="background-color:#F2F2F2;height:50px">
-    <th>Location</th>
-    <th>Users</th>
-    <th>Transactions</th>
-    <th>Working Docs</th>
-    <th>Action</th>
-  </tr>
-  <tr>
-    <td align="center"> <%= current_user.location %> </td>
-    <td align="center"> <%= @user.count %> </td>
-    <td align="center"> <%= @transaction.count %> </td>
-    <td align="center"> 0 </td>
-    <td align="center"> <%= button_to "Action", :class => "btn" %> </td>
-  </tr>
-</table>
+<br /><br />
+<div id='manage_locations'>
+<%= render :partial => 'manage_locations' %>
+</div>
 
-<br /><br /><br />
 
 <script>
   $(document).ready(function(){
-    $(#content).hide();
-    $(.btn).click(function(){
-     $(#content).show();
+    $("#location").hide();
+    $(".add-location-button").click(function(){
+      $("#location").toggle(800);
+      $("#location").css("background-color","#F2F2F2");
     });
-  }); 
+  });
 </script>

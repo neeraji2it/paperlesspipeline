@@ -1,0 +1,22 @@
+<% @user = User.all %>
+<% @transaction = Transaction.all %>
+<% @locations = Location.all %>
+
+<table id="content" style="min-height:25px; height:25px; width:100%;">
+  <tr style="border:solid 1px black;background-color:#F2F2F2;height:50px;height:25px;">
+    <th>Location</th>
+    <th>Users</th>
+    <th>Transactions</th>
+    <th>Working Docs</th>
+    <th>Action</th>
+  </tr>
+  <% @locations.each do |l| %>
+    <tr>
+      <td align="center"> <%= l.location %> </td>
+      <td align="center"> <%= @user.count %> </td>
+      <td align="center"> <%= @transaction.count %> </td>
+      <td align="center"> 0 </td>
+      <td align="center"> <%= button_to "Action", :class => "btn" %> </td>
+    </tr>
+  <% end %>
+</table>

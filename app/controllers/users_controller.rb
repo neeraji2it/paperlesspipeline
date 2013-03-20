@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
   
   def manage_users
+  
   end
   
   def add_user

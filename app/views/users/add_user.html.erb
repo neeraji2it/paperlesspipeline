@@ -1,8 +1,14 @@
-<h2><b>Add Users </b></h2>
-<hr></hr>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
 
-<%= form_for :location, :url => user_path(current_user), :method => 'PUT' do |f| %>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
 
-  
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
 
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Sign up" %></div>
 <% end %>
