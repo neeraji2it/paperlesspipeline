@@ -17,6 +17,6 @@ class User < ActiveRecord::Base
     :length => { :minimum => 6, :maximum => 15,:message => 'should be  a minimum of 6 characters and a maximum of 15 characters.' },
     :confirmation =>true, :unless => lambda {|u| u.password.nil? },:on => :update
   has_many :transactions, :dependent => :destroy
-  has_many :docuemts, :dependent => :destroy
+  has_many :documents, :dependent => :destroy
   has_many :comments, :dependent => :destroy
 end

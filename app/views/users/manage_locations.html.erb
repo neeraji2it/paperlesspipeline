@@ -25,7 +25,7 @@
     <td align="center"> <%= current_user.location %> </td>
     <td align="center"> <%= @user.count %> </td>
     <td align="center"> <%= @transaction.count %> </td>
-    <td align="center"> 0 </td>
+    <td align="center"> <%= current_user.documents.count %></td>
     <td align="center"> <%= button_to "Action", :class => "btn" %> </td>
   </tr>
 </table>

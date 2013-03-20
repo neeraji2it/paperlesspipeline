@@ -1,1 +1,2 @@
+$('#comment_<%= @document.id %>').show();
 $('#comment_<%= @document.id %>').html('<%= escape_javascript render :partial => '/comments/edit'%>');
