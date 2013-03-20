@@ -1,8 +1,16 @@
-<h2><b>Add Users </b></h2>
-<hr></hr>
+<h2>Sign up</h2>
 
-<%= form_for :location, :url => user_path(current_user), :method => 'PUT' do |f| %>
+<%= form_for(@user, :url => user_create_users_path(@user),:html => {:id => "commentForm", :method => "POST"}) do |f| %>
 
-  
+  <div><%= f.label :email %><br />
+    <%= f.email_field :email, :autofocus => true %></div>
 
+  <div><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Sign up" %></div>
 <% end %>
+

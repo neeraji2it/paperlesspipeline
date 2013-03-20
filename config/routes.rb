@@ -7,6 +7,10 @@ Paperlesspipeline::Application.routes.draw do
       get :admin
       get :manage_locations
       get :manage_users
+      post :user_create
+    end
+    collection do
+      post :user_create
       get :add_user
     end
   end 

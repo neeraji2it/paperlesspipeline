@@ -14,14 +14,16 @@
     <th>Active</th>
     <th>Actions</th>
   </tr>
-  <tr>
-    <td align="center"><%= current_user.name%></td>
-    <td align="center"> <%= link_to current_user.email %> </td>
-    <td align="center"> <%= "admin" %> </td>
-    <td align="center"> 0 </td>
-    <td align="center"> <%= button_to "Action", :class => "btn" %> </td>
-    <td align="center">  </td>
-  </tr>
+  <% for user in @users %>
+    <tr>
+      <td align="center"><%= user.name%></td>
+      <td align="center"> <%= link_to user.email %> </td>
+      <td align="center"> <%= "admin" %> </td>
+      <td align="center"> <%= user.location %> </td>
+      <td align="center"> <%= "Active" %> </td>
+      <td align="center"> <%= button_to "Action", :class => "btn" %> </td>
+    </tr>
+  <% end %>
 </table>
 
 <br /><br /><br />
