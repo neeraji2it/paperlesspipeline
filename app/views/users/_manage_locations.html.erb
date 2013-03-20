@@ -16,7 +16,12 @@
       <td align="center"> <%= @user.count %> </td>
       <td align="center"> <%= @transaction.count %> </td>
       <td align="center"> 0 </td>
-      <td align="center"> <%= button_to "Action", :class => "btn" %> </td>
+      <td align="center"> <select class="selectpicker">
+                            <option>Action</option>
+                            <option><%= link_to "Edit Location" %></option>
+                            <option><%= link_to "Delete" %></option>
+                          </select> 
+    </td>
     </tr>
   <% end %>
 </table>

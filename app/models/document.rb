@@ -2,6 +2,7 @@ class Document < ActiveRecord::Base
   belongs_to :user
   attr_accessible :user_id, :document
   has_attached_file :document, :styles => {:medium => "300x300>", :thumb => "100x100>"}
+  has_many :comments, :dependent => :destroy
 
   before_post_process :resize_images
 

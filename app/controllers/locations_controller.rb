@@ -12,4 +12,9 @@ class LocationsController < ApplicationController
       end
     end
   end
+  
+  def destroy
+    raise params.inspect
+  end
+  
 end

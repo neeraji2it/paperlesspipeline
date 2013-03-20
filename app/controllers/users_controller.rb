@@ -17,10 +17,20 @@ class UsersController < ApplicationController
   end
   
   def manage_users
-  
+    @users = User.all
   end
   
   def add_user
-    
+    @user = User.new
+  end
+
+  def user_create
+    @user = User.new(params[:user])
+    if @user.save
+      flash[:notice] = 'OK!  Please check your email to complete your registration.'
+      redirect_to dashboard_index_path
+    else
+      render :action => 'add_user'
+    end
   end
 end

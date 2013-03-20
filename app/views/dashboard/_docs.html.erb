@@ -3,13 +3,14 @@
   <span id="minus">-</span>
   Recent Doc to Assign
 </h4>
-<table border="1" width="100%" id="docs">
+<table width="100%" cellpadding="5" id="docs">
   <% if @documents.present? %>
-    <tr style="font-weight: bold;">
+    <tr style="font-weight: bold;border: 1px solid grey;">
       <td>Info</td>
       <td>Working Docs</td>
       <td>Added By</td>
       <td>Added On</td>
+      <td>Comments</td>
       <td>Actions</td>
     </tr>
     <% for document in @documents %>
@@ -18,7 +19,15 @@
         <td><%= image_tag(document.document.url) %></td>
         <td><%= document.user.email %></td>
         <td><%= time_ago_in_words(document.created_at) %></td>
-        <td id="aaa_<%= document.id %>"><%= "Actions" %></td>
+        <% if document.comments.present? %>
+          <td><%= link_to "Comments", document_comments_path(document), :remote => true %></td>
+        <% else %>
+          <td><%= link_to "Comments", new_document_comment_path(document), :remote => true %></td>
+        <% end %>
+        <td id="aaa_<%= document.id %>" class="btn"><%= "Actions" %></td>
+      </tr>
+      <tr>
+        <td><div id="comment_<%= document.id %>" style="width: 300px;"></div></td>
       </tr>
       <div id="dddd_<%= document.id %>" style="display: none;">
         <%= link_to "Delete", document_path(document), :method => :delete, :remote => true, :confirm => "are you sure" %>

@@ -1,0 +1,17 @@
+<table style="background-color: gray;">
+  <tr>
+    <td><%= f.text_field :comment, :placeholder => "Comment" %></td>
+    <td><%= f.submit "Save" %></td>
+    <td><%= link_to_function "Cancel", "", :id => "cancel_#{@document.id}" %></td>
+  </tr>
+</table>
+<style>
+  #comment_comment{
+    width: 500px;
+  }
+</style>
+<script>
+  $("#cancel_<%= @document.id %>").click(function(){
+    $("#comment_<%= @document.id %>").hide();
+  })
+</script>

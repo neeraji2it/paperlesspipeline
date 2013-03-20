@@ -19,4 +19,6 @@ class User < ActiveRecord::Base
   has_many :transactions, :dependent => :destroy
   has_many :docuemts, :dependent => :destroy
   has_many :locations, :dependent => :destroy
+  has_many :documents, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 end

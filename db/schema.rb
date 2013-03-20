@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(:version => 20130319061034) do
 
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "document_id"
+    t.text     "comment"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "documents", :force => true do |t|
     t.integer  "user_id"
     t.string   "document_file_name"
@@ -21,7 +29,6 @@ ActiveRecord::Schema.define(:version => 20130319061034) do
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end
->>>>>>> af71f0ea14f73fb638cd41003cad6a5fa7cb78ae
 
   create_table "transactions", :force => true do |t|
     t.integer  "user_id"
