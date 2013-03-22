@@ -16,12 +16,13 @@
       <td align="center"> <%= @user.count %> </td>
       <td align="center"> <%= @transaction.count %> </td>
       <td align="center"> 0 </td>
-      <td align="center"> <select class="selectpicker">
+      <td align="center"> <select>
                             <option>Action</option>
                             <option><%= link_to "Edit Location" %></option>
-                            <option><%= link_to "Delete" %></option>
+                            <option><%= link_to "Deletee", location_path(current_user), :method => "DELETE", :remote => true %></option>
                           </select> 
     </td>
+    
     </tr>
   <% end %>
 </table>

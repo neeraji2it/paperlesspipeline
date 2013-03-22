@@ -1,0 +1,31 @@
+<%= form_for(@checklist) do |f| %>
+  <% if @checklist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@checklist.errors.count, "error") %> prohibited this checklist from being saved:</h2>
+
+      <ul>
+      <% @checklist.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :created_by, :value => current_user.id %>
+  <div class="field">
+    <%= f.select :location_id, options_from_collection_for_select(@locations, 'id', 'location') %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  
+  <%= f.fields_for :tasks do |builder| %>
+    <%= builder.text_field :name  %>
+  <%end%>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

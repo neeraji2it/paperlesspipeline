@@ -14,7 +14,8 @@ class LocationsController < ApplicationController
   end
   
   def destroy
-    raise params.inspect
+    @location = Location.find(params[:id])
+    @location.destroy
   end
   
 end

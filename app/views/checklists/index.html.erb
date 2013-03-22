@@ -1,0 +1,33 @@
+<h1>Checklist Templates</h1>
+<hr></hr>
+<%= link_to 'New Checklist', new_checklist_path, :class => "btn btn-success" %><br /><br /><br />
+<table id="content" style="min-height:25px; height:25px; width:100%;">
+  <tr style="border:solid 1px black;background-color:#F2F2F2;height:50px;height:25px;">
+    <th>Checklist</th>
+    <th>Location</th>
+    <th>Created by</th>
+    <th>Actions</th>
+  </tr>
+
+<% @checklists.each do |checklist| %>
+  <tr>
+    <td align="center"><%= checklist.name %></td>
+    <% @location = Location.find_by_id(checklist.location_id) %>
+    <% @user = User.find_by_id(checklist.created_by) %>
+    <% if @location.present? %>
+    <td align="center"><%= @location.location %></td>
+    <% else %>
+      <td align="center"><%=  %></td>
+    <% end %>
+   <% if @user.present? %>
+    <td align="center"><%= @user.id %></td>
+    <% else %>
+      <td align="center"><%=  %></td>
+    <% end %>
+    <td align="center"><%=  %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

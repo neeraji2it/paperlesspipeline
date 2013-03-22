@@ -5,7 +5,7 @@
     <b>Gloable Settings</b>
   </div><br /><br />
  
-  <%= form_for @user, :url => user_path(current_user), :method => 'PUT' do |f| %>
+  <%= form_for @user, :url => user_path(current_user), :method => 'PUT', :html => { :multipart => true } do |f| %>
     
       <table>
         <tr>
@@ -33,6 +33,11 @@
          <td>Prevent duplicate document uploads</td>
         </tr>
         
+       <tr>
+          <td><%= f.label "Photo" %></td>
+          <td><%= f.file_field :photo %></td>
+       </tr>
+        
     </table>
     <br />
     
@@ -40,7 +45,7 @@
       <b>Apperance</b>
     </div><br /><br /><br /><br />
     
-    <%= f.submit "Update", :class => "btn" %>
+    <%= f.submit "Save Settings", :class => "btn btn-success" %>
     <%= link_to "Cancel" %>
     
   <% end %>
