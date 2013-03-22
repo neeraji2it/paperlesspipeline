@@ -1,5 +1,9 @@
 class DocumentsController < ApplicationController
 
+  def index
+    @documents = Document.where("user_id = #{current_user.id}")
+  end
+
   def new
     @user = current_user
     @document = Document.new
