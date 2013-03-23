@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmable,:current_password,:name,
-  :duplicate_document_uploads, :email_transaction_reminders, :allow_pdf, :entered_docs_feature,:location,:photo
+  :duplicate_document_uploads, :email_transaction_reminders, :allow_pdf, :entered_docs_feature,:location,:photo,:active,:confirmation_token,:confirmed_at
   # attr_accessible :title, :body
   
   #validations======================================================================================================================================
