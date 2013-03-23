@@ -1,6 +1,7 @@
 <h4>
-  Working Docs
+  Working Docs<%= link_to "Filter", search_documents_path, :remote => true, :style => 'float: right;' %>
 </h4>
+<div id="search"></div>
 <table width="100%" cellpadding="5" id="docs" border="1">
   <tr style="font-weight: bold;">
     <td>Info</td>

@@ -24,7 +24,7 @@ class ChecklistsController < ApplicationController
   def new
     @checklist = Checklist.new
     @locations = Location.all
-    4.times { @checklist.tasks.build }
+    1.times { @checklist.tasks.build }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,7 +41,7 @@ class ChecklistsController < ApplicationController
   def create
     @checklist = Checklist.new(params[:checklist])
     if @checklist.tasks.blank?
-      4.times { @checklist.tasks.build }
+      1.times { @checklist.tasks.build }
     end
     respond_to do |format|
       if @checklist.save

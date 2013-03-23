@@ -27,4 +27,20 @@ class DocumentsController < ApplicationController
       end
     end
   end
+
+  def search
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def location_search
+    if params[:location].present?
+      @documents = Document.where("location_id = #{params[:location]} and user_id = #{current_user.id}")
+      render :action => 'index'
+    else
+      @documents = Document.where("user_id = #{current_user.id}")
+      render :action => 'index'
+    end
+  end
 end
