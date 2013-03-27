@@ -33,7 +33,13 @@ Paperlesspipeline::Application.routes.draw do
   end
   
 
-  resources :transactions
+  resources :transactions do
+    collection do
+      get :location_search
+      get :search
+      get :export_transactions
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
