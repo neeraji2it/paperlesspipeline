@@ -1,0 +1,9 @@
+<%= form_tag location_search_documents_path, :method => 'get' do %>
+  Filter:
+  <table width="30%">
+    <tr>
+      <td><%= select_tag :location, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.location, c.id]}, params[:locations]) %></td>
+      <td><%= submit_tag "Filter", :style => "width: 75px;border-radius: 20px;" %></td>
+    </tr>
+  </table>
+<% end %>

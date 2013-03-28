@@ -20,8 +20,8 @@
       <td align="center"> <%= link_to user.email %> </td>
       <td align="center"> <%= "admin" %> </td>
       <td align="center"> </td>
-      <td align="center"> <%= "Active" %> </td>
-      <td align="center"> <%= button_to "Action", :class => "btn" %> </td>
+      <td align="center"> <%= user.active %> </td>
+      <td align="center"> <%= link_to "Action",activate_user_path(user, :active => user.active),:method => 'PUT', :class => "btn" %> </td>
     </tr>
   <% end %>
 </table>

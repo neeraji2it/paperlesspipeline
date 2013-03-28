@@ -33,4 +33,22 @@ class UsersController < ApplicationController
       render :action => 'add_user'
     end
   end
+
+  def activate
+    @user = User.find(params[:id])
+    if params[:active] == 'Active'
+      @user.update_attributes({
+          :confirmation_token => "M5ysQarV6KCK5nxz67xu",
+          :confirmed_at => "",
+          :active => "Deactive"
+        })
+    elsif params[:active] == 'Deactive'
+      @user.update_attributes({
+          :confirmation_token => nil,
+          :confirmed_at => Time.now,
+          :active => "Active"
+        })
+    end
+    redirect_to manage_users_user_path(current_user)
+  end
 end

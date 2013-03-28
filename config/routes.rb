@@ -1,4 +1,6 @@
 Paperlesspipeline::Application.routes.draw do
+  devise_for :users
+
   resources :tasks
 
 
@@ -7,16 +9,13 @@ Paperlesspipeline::Application.routes.draw do
 
   resources :locations
 
-
-  devise_for :users
-  
- 
   resources :users do
     member do
       get :admin
       get :manage_locations
       get :manage_users
       post :user_create
+      put :activate
     end
     collection do
       post :user_create
@@ -26,11 +25,21 @@ Paperlesspipeline::Application.routes.draw do
   resources :dashboard
 
   resources :documents do
+    collection do
+      get :location_search
+      get :search
+    end
     resources :comments
   end
   
 
-  resources :transactions
+  resources :transactions do
+    collection do
+      get :location_search
+      get :search
+      get :export_transactions
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,12 @@
+<%= form_tag location_search_transactions_path, :method => 'get' do %>
+  Filter:
+  <table width="30%">
+    <tr>
+      <td><%= select_tag :location, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.location, c.id]}, params[:locations]) %></td>
+      <td><%= select_tag :status, options_for_select([["Any Status ->", ""]]+Transaction.all.collect{|c| [c.status, c.status]}, params[:transactions]) %></td>
+      <td><%= select_tag :checklist, options_for_select([["Any Checklists ->", ""],["Incomplete", 'incomplete'],["Complete",'complete'],["No checklist",'no_checklist']]) %></td>
+      <td><%= select_tag :doc, options_for_select([["Any Doc ->", ""],["Incomplete", 'incomplete'],["Working",'working'],["Complete",'complete'],["Fell Through",'fell_through']]) %></td>
+      <td><%= submit_tag "Filter", :style => "width: 75px;border-radius: 20px;" %></td>
+    </tr>
+  </table>
+<% end %>
