@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmable,:current_password,:name,
-  :duplicate_document_uploads, :email_transaction_reminders, :allow_pdf, :entered_docs_feature,:location,:photo
+  :duplicate_document_uploads, :email_transaction_reminders, :allow_pdf, :entered_docs_feature,:location,:avatar,:_destroy
   # attr_accessible :title, :body
   
   #validations======================================================================================================================================
@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_many :locations, :dependent => :destroy
   has_many :documents, :dependent => :destroy
   has_many :comments, :dependent => :destroy
-  has_attached_file :photo, :styles => { :thumb=> "100x100#", :small  => "400x400>" }
-  #=================================================================================================================================================
+  has_attached_file :avatar, :styles => { :thumb=> "100x100#", :small  => "400x400>" }
+   #=================================================================================================================================================
+   
 end

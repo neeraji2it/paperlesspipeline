@@ -35,7 +35,7 @@
         
        <tr>
           <td><%= f.label "Photo" %></td>
-          <td><%= f.file_field :photo %></td>
+          <td><%= f.file_field :avatar %></td>
        </tr>
         
     </table>
@@ -43,8 +43,9 @@
     
     <div style="background-color:#d4d4d4;margin-left:20px;float:left;">
       <b>Apperance</b>
-    </div><br /><br /><br /><br />
-    
+    </div><br /><br />
+    <b>Company Logo</b><br /><br />
+    <%= link_to image_tag(current_user.avatar.url(:original)) %><br /><br /><br />
     <%= f.submit "Save Settings", :class => "btn btn-success" %>
     <%= link_to "Cancel" %>
     

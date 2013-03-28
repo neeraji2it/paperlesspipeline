@@ -13,6 +13,9 @@
   <body>
     <div style='height:0px;'>
       <a style="color: white;left: 40px;position: relative;top: -15px;">PaperLessPipeLine</a>
+      <% if signed_in? %>
+        <%= link_to image_tag(current_user.avatar.url(:original)) %><br />
+      <% end %>
       <ul class="nav pull-right">
         <% if !current_user%>
           <li><%= link_to "Signup", new_user_registration_path, :id => "user_register" %></li>
@@ -48,14 +51,29 @@
       </div>
     </div>  
 
-  <footer class="footer" style="background-color:#c5c5c5; clear:both;">
-    <div class="row" style="background-color:#c5c5c5">
-      <div style='float:right;'>
-        <b> (c)2013 All Rights Reserved.</b>
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
       </div>
     </div>
-  </footer>
 </body>
 </html>
 
+<style>
+    #footer {
+        height: 90px;
+      }
+      #footer {
+        background-color:#4D4D4D;
+      }
 
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+</style>

@@ -1,4 +1,12 @@
 <h1>Checklist Templates</h1>
+ <%= form_tag checklists_path, :method => :get do  %>
+   <p>
+     <%= text_field_tag :search  %>                              
+   </p>
+   <p class="button">
+   <%= submit_tag "Search" %>
+   </p>
+ <% end %>
 <hr></hr>
 <%= link_to 'New Checklist', new_checklist_path, :class => "btn btn-success" %><br /><br /><br />
 <table id="content" style="min-height:25px; height:25px; width:100%;">

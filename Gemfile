@@ -6,12 +6,14 @@ gem 'rails', '3.2.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'bootstrap-sass'
 gem 'json'
 gem 'devise'
 gem 'mysql2'
 gem 'quiet_assets'
 gem "paperclip", "~> 2.3"
+
+gem 'thinking-sphinx', '2.0.10'
 
 # Gems used only for assets and not required
 # in production environments by default.
