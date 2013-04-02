@@ -1,0 +1,11 @@
+<%= form_for :location, :url => location_path(current_user), :method => 'PUT', :remote => true do |f| %>
+
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

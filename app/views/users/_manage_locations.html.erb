@@ -16,13 +16,27 @@
       <td align="center"> <%= @user.count %> </td>
       <td align="center"> <%= @transaction.count %> </td>
       <td align="center"> 0 </td>
-      <td align="center"> <select>
-                            <option>Action</option>
-                            <option><%= link_to "Edit Location" %></option>
-                            <option><%= link_to "Deletee", location_path(current_user), :method => "DELETE", :remote => true %></option>
-                          </select> 
-    </td>
+      <td class="actions">Actions
+       <ul class="nav nav-pills nav-stacked">  
+          <li class="active">  
+          <a href="#">Home</a></li>     
+          <li><%= link_to "Edit", edit_location_path(l) %></li>   
+          <li><%= link_to "Delete", location_path(l), :method => "DELETE" %></li>   
+        </ul>
+  	  </td>
     
     </tr>
+    <%= link_to "Delete", location_path(l), :method => "DELETE", :remote => true %>
   <% end %>
+  
 </table>
+
+<script>
+  $(document).ready(function(){
+    $(".nav-stacked").hide();
+    $(".actions").click(function(){
+      $(".nav-stacked").show();
+      $("#nav-stacked").css("position","absolute");
+    });
+  });
+</script>

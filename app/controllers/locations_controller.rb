@@ -16,6 +16,7 @@ class LocationsController < ApplicationController
   def destroy
     @location = Location.find(params[:id])
     @location.destroy
+    redirect_to manage_locations_user_path
   end
   
 end

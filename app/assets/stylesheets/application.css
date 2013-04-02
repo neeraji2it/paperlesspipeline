@@ -32,18 +32,19 @@
 
 
 #small-container{
-    width: 75%;
+    width: 100%;
     height: auto;
     background: #D4D4D4;
-    left: 325px;
+    left: -30px;
     position: relative;
     min-height: 100px;
+    margin-top:33px;
 }
 
 .dashboard-content {
-    border-radius: 11px;
-    position: relative;
-    height: 520px
+    border-radius: 11px 11px 11px 11px;
+    margin-top: 313px;
+    position: relative;  
 }
 
 #ttttt, #doces{

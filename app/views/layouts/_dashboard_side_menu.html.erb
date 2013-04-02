@@ -1,4 +1,4 @@
-<div style="float:left;position:absolute;margin-top:10px;margin-left:145px;">
+<div style="margin-left:145px;">
   <%= link_to "New Transaction", new_transaction_path %><br /><br />
   <%= link_to "Upload Docs", new_document_path %><br /><br />
   <%= link_to "Profile", edit_user_registration_path(current_user) %><br /><br />
@@ -8,9 +8,23 @@
   <%= link_to "Help" %><br />
   <%= current_user.photo_file_name %>
 </div>
-<div style="float:left;position:absolute;margin-top:275px;margin-left:145px;"
-     <h3><b> Your Info </b></h3><br />
+<div style="margin-left:145px;">
+     <h3><b> Admin & Tech Support </b></h3><br />
        <%= current_user.email %>
 </div>
 
+<div style="margin-left:145px;">
+     <h3><b> Your Info  </b></h3><br />
+       <%= current_user.email %>
+</div>
 
+<div style="margin-left:145px;">
+     <h3><b> Statistics  </b></h3><br />
+       Transactions<br />
+       Documents<br />
+       Working Docs<br />
+       Office Docs<br />
+       Users<br />
+       Locations<br />
+       <br />
+</div>
