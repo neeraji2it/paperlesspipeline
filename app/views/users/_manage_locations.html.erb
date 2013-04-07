@@ -16,17 +16,10 @@
       <td align="center"> <%= @user.count %> </td>
       <td align="center"> <%= @transaction.count %> </td>
       <td align="center"> 0 </td>
-      <td class="actions">Actions
-       <ul class="nav nav-pills nav-stacked">  
-          <li class="active">  
-          <a href="#">Home</a></li>     
-          <li><%= link_to "Edit", edit_location_path(l) %></li>   
-          <li><%= link_to "Delete", location_path(l), :method => "DELETE" %></li>   
-        </ul>
-  	  </td>
+      <td class="actions"><%= link_to "Delete", location_path(l), :method => "DELETE" %></td>
     
     </tr>
-    <%= link_to "Delete", location_path(l), :method => "DELETE", :remote => true %>
+    
   <% end %>
   
 </table>

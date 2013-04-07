@@ -47,8 +47,8 @@
     position: relative;  
 }
 
-#ttttt, #doces{
-    background-color: white;height: auto;min-height: 80px;border-radius: 2px;text-shadow: 3px;
+#ttttt, #doces, #upcomingdocs, #transactions-closing-dates{
+    background-color: white;height: auto;min-height: 80px;border-radius: 2px;text-shadow: 3px;margin-right:28px;
 }
 
 #swfupload-control p{ margin:10px 5px; font-size:0.9em; }

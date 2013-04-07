@@ -2,7 +2,9 @@ require 'csv'
 class TransactionsController < ApplicationController
 
   def index
-    @transactions = Transaction.where("user_id = #{current_user.id}")
+    #@transactions = Transaction.where("user_id = #{current_user.id}")
+    @transactions = Transaction.search "*#{params[:search]}*"
+    #raise @transactions.inspect
   end
 
   def export_transactions
