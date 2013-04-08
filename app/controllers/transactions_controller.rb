@@ -1,6 +1,8 @@
 require 'csv'
 class TransactionsController < ApplicationController
 
+  before_filter :is_valid_account?, :except => ['index']
+
   def index
     #@transactions = Transaction.where("user_id = #{current_user.id}")
     @transactions = Transaction.search "*#{params[:search]}*"

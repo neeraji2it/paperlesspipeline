@@ -6,7 +6,6 @@
   <tr style="font-weight: bold;">
     <td>Info</td>
     <td>Working Docs</td>
-    <td>Location</td>
     <td>Added By</td>
     <td>Added On</td>
     <td>Comments</td>
@@ -16,7 +15,6 @@
     <tr>
       <td style="width: 100px;"><%= document.document_file_name %></td>
       <td><%= document.document_file_name %></td>
-      <td><%= document.location.location %></td>
       <td><%= document.user.email %></td>
       <td><%= time_ago_in_words(document.created_at) %></td>
       <% if document.comments.present? %>
