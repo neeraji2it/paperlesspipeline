@@ -5,8 +5,9 @@
     <%= stylesheet_link_tag    "application", "/assets/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <%= notice %>
-    <%= alert %>
+    <div id="flash">
+    <%= render :partial => 'layouts/flash', :object => flash %>
+  </div>
     <style>
       body { background-color: #566477; height: 95%; padding-top: 20px; }
     </style>
@@ -27,7 +28,17 @@
         <%end%>
       </ul>
     </div>
-
+  
+    <div style="float:left;margin-left:516px;margin-top:13px;position: absolute;">
+       <%= form_tag transactions_path, :method => :get do  %>
+   <p>
+     <%= text_field_tag :search  %>                              
+   </p>
+   <p class="button">
+   <%= submit_tag "Search" %>
+   </p>
+ <% end %>
+    </div>
 
 
     <div class="container" style="margin-top:45px;padding-left:-1px;height:auto;min-height: 500px;width:100%; position: relative;clear:both;background: none repeat scroll 0 0 #d4d4d4;">

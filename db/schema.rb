@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319061034) do
+ActiveRecord::Schema.define(:version => 20130403104315) do
+
+  create_table "checklists", :force => true do |t|
+    t.integer  "location_id"
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "created_by"
+  end
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -28,6 +36,21 @@ ActiveRecord::Schema.define(:version => 20130319061034) do
     t.integer  "document_file_size"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.integer  "location_id"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "location"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.integer  "checklist_id"
+    t.string   "name"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "transactions", :force => true do |t|
@@ -50,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20130319061034) do
     t.string   "outside_selling_agent_name"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+    t.integer  "location_id"
   end
 
   create_table "users", :force => true do |t|
@@ -78,6 +102,15 @@ ActiveRecord::Schema.define(:version => 20130319061034) do
     t.boolean  "duplicate_document_uploads"
     t.boolean  "is_admin"
     t.string   "location"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "active"
+    t.string   "role"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

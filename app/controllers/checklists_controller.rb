@@ -45,7 +45,9 @@ class ChecklistsController < ApplicationController
     end
     respond_to do |format|
       if @checklist.save
-        format.html { redirect_to @checklist, :notice => 'Checklist was successfully created.' }
+        #format.html { redirect_to @checklist, :notice => 'Checklist was successfully created.' }
+        redirect_to checklists_path
+        flash[:notice] = "Checklist created"
       else
         format.html { render :action => "new" }
       end

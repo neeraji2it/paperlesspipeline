@@ -27,8 +27,8 @@ class UsersController < ApplicationController
   def user_create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = 'OK!  Please check your email to complete your registration.'
       redirect_to dashboard_index_path
+      flash[:notice] = 'OK!  Please check your email to complete your registration.'
     else
       render :action => 'add_user'
     end

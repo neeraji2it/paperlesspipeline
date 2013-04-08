@@ -1,3 +1,14 @@
+<h1>Checklist Templates</h1>
+ <%= form_tag transactions_path, :method => :get do  %>
+   <p>
+     <%= text_field_tag :search  %>                              
+   </p>
+   <p class="button">
+   <%= submit_tag "Search" %>
+   </p>
+ <% end %>
+<hr></hr>
+
 <h4>
   Working Docs<%= link_to "Filter", search_transactions_path, :remote => true, :style => 'float: right;' %>
 </h4>
@@ -12,7 +23,7 @@
     <td>Close Date</td>
     <td>Actions</td>
   </tr>
-  <% for transaction in @transactions %>
+  <% @transactions.each do |transaction| %>
     <tr>
       <td style="width: 100px;"><%= transaction.user.email %></td>
       <td><%= transaction.status %></td>
