@@ -10,10 +10,10 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = Document.new(:document => params[:uploadfile])
-    @document.user_id = params[:user_id]
+    @document = Document.new(params[:document])
+    @document.user_id = current_user.id
+    @document.location_id = params[:document][:location_id]
     if @document.save
-
       redirect_to dashboard_index_path
     end
   end
