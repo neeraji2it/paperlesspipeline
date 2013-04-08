@@ -4,6 +4,8 @@ class UsersController < ApplicationController
     @user = current_user
   end
   
+  
+  
   def update
     @user = User.find_by_id(current_user.id)
     if @user.update_attributes(params[:user])
