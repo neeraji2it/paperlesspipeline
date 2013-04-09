@@ -57,7 +57,7 @@ Paperlesspipeline::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = false
-  #config.serve_static_assets = false
+  config.serve_static_assets = false
 
   # Enable threaded mode
   # config.threadsafe!
@@ -72,13 +72,13 @@ Paperlesspipeline::Application.configure do
    
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    #:domain               => 'baci.lindsaar.net',
-    :user_name            => 'smartquotez@gmail.com',
-    :password             => 'dinemedia!@#',
-    :authentication       => 'plain',
-    :enable_starttls_auto => true
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => 'gmail.com',
+  :user_name            => 'rails.dev.app@gmail.com',
+  :password             => 'pa55w0rd!@#',
+  :authentication       => 'plain',
+  :enable_starttls_auto => true  
   }
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)

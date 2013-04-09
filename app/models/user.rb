@@ -30,4 +30,8 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :thumb=> "100x100#", :small  => "400x400>" }
    #=================================================================================================================================================
    
+   
+  def confirmation_required?
+    !confirmed?
+  end
 end
