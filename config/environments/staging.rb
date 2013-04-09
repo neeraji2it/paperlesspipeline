@@ -7,13 +7,6 @@ Paperlesspipeline::Application.configure do
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
-  
-  # Don't care if the mailer can't send
-  #config.action_mailer.raise_delivery_errors = false
-
-  # Print deprecation notices to the Rails logger
-  config.active_support.deprecation = :log
-
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
@@ -27,7 +20,7 @@ Paperlesspipeline::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  # Defaults to nil and saved in location specified by config.assets.prefix
+  # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
   # Specifies the header that your server uses for sending files
@@ -56,8 +49,7 @@ Paperlesspipeline::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  config.action_mailer.raise_delivery_errors = false
-  config.serve_static_assets = false
+  # config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
   # config.threadsafe!
@@ -68,6 +60,10 @@ Paperlesspipeline::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Log the query plan for queries taking more than this (works
+  # with SQLite, MySQL, and PostgreSQL)
+  # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.action_mailer.default_url_options = { :host => 'ec2-54-245-14-77.us-west-2.compute.amazonaws.com' }
    
   config.action_mailer.delivery_method = :smtp
