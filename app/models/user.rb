@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
   
-  devise :authenticatable, :timeoutable, :validatable, :timeout_in => 2.minutes
+  devise :authenticatable, :timeoutable, :validatable, :timeout_in => 5.minutes
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmable,:current_password,:name,
@@ -27,7 +27,18 @@ class User < ActiveRecord::Base
   has_many :locations, :dependent => :destroy
   has_many :documents, :dependent => :destroy
   has_many :comments, :dependent => :destroy
-  has_attached_file :avatar, :styles => { :thumb=> "100x100#", :small  => "400x400>" }
+  has_attached_file :avatar, :styles => { :thumb=> "100x100#", :small  => "400x400>" } if (Rails.env == 'development')
+  
+  has_attached_file :avatar,
+    :whiny => false,
+    :storage => :s3,
+    :s3_credentials => "#{Rails.root}/config/s3.yml",
+    :path => "uploaded_files/profile/:id/:style/:basename.:extension",
+    :bucket => "PaperlessPipeline",
+    :styles => {
+    :original => "900x900>",
+    :default => "280x190>",
+    :other => "96x96>" } if (Rails.env == 'staging')
    #=================================================================================================================================================
    
    

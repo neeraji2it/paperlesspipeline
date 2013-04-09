@@ -12,6 +12,7 @@ gem 'devise'
 gem 'mysql2'
 gem 'quiet_assets'
 gem "paperclip", "~> 2.3"
+gem 'aws-sdk'
 
 gem 'thinking-sphinx', '2.0.10'
 
