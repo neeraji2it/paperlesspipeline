@@ -12,6 +12,7 @@ desc "Symlinks database.yml, mailer.yml file from shared directory into the late
 task :symlink_shared, :roles => [:app, :db] do
   run "ln -s #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
   run "ln -s #{shared_path}/db/sphinx #{latest_release}/db/sphinx"
+  run "ln -s #{shared_path}/config/#{rails_env}.sphinx.conf #{latest_release}/config/#{rails_env}.sphinx.conf"
   run "ln -s #{shared_path}/system #{latest_release}/system"
 end
 
