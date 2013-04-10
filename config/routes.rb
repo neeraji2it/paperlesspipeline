@@ -1,11 +1,12 @@
 Paperlesspipeline::Application.routes.draw do
+
   devise_for :users
 
   resources :tasks
 
 
   resources :checklists
-
+  resources :search
 
   resources :locations
 

@@ -29,13 +29,11 @@
       </ul>
     </div>
   
-    <div style="float:left;margin-left:516px;margin-top:13px;position: absolute;">
-       <%= form_tag transactions_path, :method => :get do  %>
+    <div style="float:left;margin-left:516px;margin-top:6px;position: absolute;">
+       <%= form_tag search_index_path, :method => :get do  %>
    <p>
      <%= text_field_tag :search  %>                              
-   </p>
-   <p class="button">
-   <%= submit_tag "Search" %>
+     <%= submit_tag "Search" %>
    </p>
  <% end %>
     </div>

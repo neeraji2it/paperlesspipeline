@@ -6,6 +6,10 @@ class Document < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
 
   before_post_process :resize_images
+  
+  define_index do
+    indexes document_type
+  end
 
   # Helper method to determine whether or not an attachment is an image.
   def image?

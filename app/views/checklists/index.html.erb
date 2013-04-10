@@ -32,7 +32,7 @@
     <% else %>
       <td align="center"><%=  %></td>
     <% end %>
-    <td align="center"><%=  %></td>
+    <td align="center"><%= link_to "Delete", checklist_path(checklist), :method => 'DELETE' %></td>
   </tr>
 <% end %>
 </table>

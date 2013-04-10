@@ -2,7 +2,11 @@ class ChecklistsController < ApplicationController
   # GET /checklists
   # GET /checklists.json
   def index
-    @checklists = Checklist.search "*#{params[:search]}*"
+    if params[:search].present?
+      @checklists = Checklist.search "*#{params[:search]}*"
+    else
+      @checklists = Checklist.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

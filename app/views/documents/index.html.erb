@@ -38,5 +38,37 @@
   <% end %>
 </table>
 
+<table width="100%" cellpadding="5" id="docs" border="1">
+  <tr>
+    <td>Transaction</td>
+    <td>Status</td>
+    <td>Complete</td>
+    <td>Agents</td>
+    <td>Location</td>
+    <td>Close Date</td>
+    <td>Actions</td>
+  </tr>
+  <% @transactions.each do |transaction| %>
+    <tr>
+      <td style="width: 100px;"><%= transaction.user.email %></td>
+      <td><%= transaction.status %></td>
+      <td></td>
+      <td></td>
+      <td><%= transaction.location.location %></td>
+      <td><%= transaction.close_date %></td>
+      <td id="aaa_<%= transaction.id %>" class="btn"><%= "Actions" %></td>
+    </tr>
+    <div id="dddd_<%= transaction.id %>" style="display: none;">
+      <%= link_to "Delete", transaction_path(transaction), :method => :delete, :remote => true, :confirm => "are you sure" %>
+    </div>
+    <script>
+      $("#aaa_<%= transaction.id %>").click(function(){
+        $("#dddd_<%= transaction.id %>").show();
+      })
+    </script>
+  <% end %>
+</table>
+
+
 
 
