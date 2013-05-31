@@ -1,0 +1,83 @@
+<div style="border-top: 10px;">
+  <h3>Office Docs</h3><br />
+
+<table>
+  <tr>
+    <th>
+      <div class="search-button" style="border-left: 40px;" >
+        <%= button_tag "Quick search", :class => "btn btn-success" %>
+      </div>
+    </th>
+  </tr>
+</table>
+
+<br /><br />
+<% @locations = Location.all %>
+<% @documents = Document.all %>
+<% @checklists = Checklist.all %>
+
+<div id="search-bordy" style="border:solid black 1px;background-color:#F2F2F2;height:50px">
+   <%= form_tag transaction_search_transactions_path, :method => :get, :remote => true do  %>
+      <%= text_field_tag :search  %>
+      <%= submit_tag "Search Transactions", :class => "btn btn-success" %>
+   <% end %>
+</div>
+
+<div id="advanced-search-bordy" style="border:solid black 1px;background-color:#F2F2F2;height:140px">
+   Showing Purchase - Buyer Agreement transactions from dine-media with Incomplete checklists. View all active transactions → <br /><br />
+   <%= form_tag transaction_search_transactions_path, :method => :get, :remote => true do %>
+      <%= text_field_tag :search, 'Address, agent or MLS.' %>
+      <%= text_field_tag :search  %>
+      <%= text_field_tag :search  %><br />
+      <%= select_tag "listings", options_from_collection_for_select(@documents, "id","document_type") %>
+      <%= text_field_tag :search  %>
+      <%= text_field_tag :search  %>
+      <%= submit_tag "Search Transactions", :class => "btn btn-success" %>
+   <% end %>
+</div>
+
+<div id="filter" style="border:solid black 1px;background-color:#F2F2F2;height:50px">
+   <%= form_tag transaction_search_transactions_path, :method => :get, :remote => true do  %>
+      <%= select_tag "locations", options_from_collection_for_select(@locations, "id", "location") %>
+      <%= select_tag "listings", options_from_collection_for_select(@documents, "id", "document_type") %>
+      <%= select_tag "listings", options_from_collection_for_select(@checklists, "id", "name") %>
+      <%= submit_tag "Search Transactions", :class => "btn btn-success" %>
+   <% end %>
+</div>
+
+<div id="transaction_search"></div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $("#search-bordy").hide();
+    $(".search-button").click(function(){
+      $("#advanced-search-bordy").hide();
+      $("#filter").hide();
+      $("#search-bordy").toggle(800);
+      $("#search-bordy").css("background-color","#F2F2F2");
+    });
+  });
+
+  $(document).ready(function(){
+    $("#advanced-search-bordy").hide();
+    $(".advanced-search-button").click(function(){
+      $("#search-bordy").hide();
+      $("#filter").hide();
+      $("#advanced-search-bordy").toggle(800);
+      $("#advanced-search-bordy").css("background-color","#F2F2F2");
+    });
+  });
+
+  $(document).ready(function(){
+    $("#filter").hide();
+    $(".filter").click(function(){
+      $("#search-bordy").hide();
+      $("#advanced-search-bordy").hide();
+      $("#filter").toggle(800);
+      $("#filter").css("background-color","#F2F2F2");
+    });
+  });
+
+</script>
+ 

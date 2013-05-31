@@ -1,8 +1,8 @@
-<%= form_for @document do |f| %>
+<%= form_for @document, :html => {:id => 'fileupload'} do |f| %>
   <table>
     <tr>
       <td>Location:</td>
-      <td><%= f.select :location_id, options_for_select(Location.all.collect{|c| [c.location, c.id]}) %></td>
+      <td><%= f.select :location_id, options_for_select(Location.all.collect{|c| [c.name, c.id]}) %></td>
     </tr>
     <tr>
       <td>Document Type:</td>
@@ -10,11 +10,50 @@
     </tr>
     <tr>
       <td>Document:</td>
-      <td><%= f.file_field :document %></td>
+      <td style="position: relative;" id="drag-and-drop-for-files">
+        <div style="position: absolute;font-size: 20px;">Drag & Drop or click here to add files</div>
+        <%= f.file_field :document %>
+      </td>
     </tr>
     <tr>
       <td></td>
-      <td><%= f.submit "Document" %></td>
+      <td><%= f.submit "Document", :class => 'start-upload' %></td>
     </tr>
   </table>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+      $('#fileupload').submit(function(e){
+        e.preventDefault();
+      });
+      
+      // Initialize the jQuery File Upload widget:
+      $('#fileupload').fileupload({
+        dropZone: '#drag-and-drop-for-files',
+        fileInput: $('#drag-and-drop-for-files input'),
+        paramName: $('#drag-and-drop-for-files input').attr('name'),
+        autoUpload: false,
+        formData: function(form) {
+          return form.serializeArray();
+        },
+        add: function(e, data) {
+          $(".start-upload").on('click', function () {
+            data.submit();
+          });
+        },
+        drop: function (e, data) {
+        }
+      });
+  });
+</script>
+
+<style>
+  #drag-and-drop-for-files {
+    border: 3px dashed gray;
+  }
+
+  #drag-and-drop-for-files input{
+    opacity: 0;
+  }
+</style>

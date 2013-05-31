@@ -1,48 +1,90 @@
-<h1>Checklist Templates</h1>
- <%= form_tag transactions_path, :method => :get do  %>
-   <p>
-     <%= text_field_tag :search  %>                              
-   </p>
-   <p class="button">
-   <%= submit_tag "Search" %>
-   </p>
- <% end %>
-<hr></hr>
-
-<h4>
-  Working Docs<%= link_to "Filter", search_transactions_path, :remote => true, :style => 'float: right;' %>
-</h4>
-<div id="search"></div>
-<table width="100%" cellpadding="5" id="docs" border="1">
+<table>
   <tr>
-    <td>Transaction</td>
-    <td>Status</td>
-    <td>Complete</td>
-    <td>Agents</td>
-    <td>Location</td>
-    <td>Close Date</td>
-    <td>Actions</td>
+    <th>
+      <div class="search-button" style="border-left: 40px;" >
+        <%= button_tag "Quick search", :class => "btn btn-success" %>
+      </div>
+    </th>
+    <th>
+      <div class="advanced-search-button" style="border-left: 40px;">
+        <%= button_tag "Advanced search", :class => "btn btn-success" %>
+      </div>
+    </th>
+    <th>
+      <div class="filter" style="border-right: 30px;">
+        <%= button_tag "Filter", :class => "btn btn-success" %>
+      </div>
+    </th>
   </tr>
-  <% @transactions.each do |transaction| %>
-    <tr>
-      <td style="width: 100px;"><%= transaction.user.email %></td>
-      <td><%= transaction.status %></td>
-      <td></td>
-      <td></td>
-      <td><%= transaction.location.location %></td>
-      <td><%= transaction.close_date %></td>
-      <td id="aaa_<%= transaction.id %>" class="btn"><%= "Actions" %></td>
-    </tr>
-    <div id="dddd_<%= transaction.id %>" style="display: none;">
-      <%= link_to "Delete", transaction_path(transaction), :method => :delete, :remote => true, :confirm => "are you sure" %>
-    </div>
-    <script>
-      $("#aaa_<%= transaction.id %>").click(function(){
-        $("#dddd_<%= transaction.id %>").show();
-      })
-    </script>
-  <% end %>
 </table>
 
+<br /><br />
+<% @locations = Location.all %>
+<% @documents = Document.all %>
+<% @checklists = Checklist.all %>
+
+<div id="search-bordy" style="border:solid black 1px;background-color:#F2F2F2;height:50px">
+   <%= form_tag transaction_search_transactions_path, :method => :get, :remote => true do  %>
+      <%= text_field_tag :search  %>
+      <%= submit_tag "Search Transactions", :class => "btn btn-success" %>
+   <% end %>
+</div>
+
+<div id="advanced-search-bordy" style="border:solid black 1px;background-color:#F2F2F2;height:140px">
+   Showing Purchase - Buyer Agreement transactions from dine-media with Incomplete checklists. View all active transactions → <br /><br />
+   <%= form_tag transaction_search_transactions_path, :method => :get, :remote => true do %>
+      <%= text_field_tag :search, 'Address, agent or MLS.' %>
+      <%= text_field_tag :search  %>
+      <%= text_field_tag :search  %><br />
+      <%= select_tag "listings", options_from_collection_for_select(@documents, "id","document_type") %>
+      <%= text_field_tag :search  %>
+      <%= text_field_tag :search  %>
+      <%= submit_tag "Search Transactions", :class => "btn btn-success" %>
+   <% end %>
+</div>
+
+<div id="filter" style="border:solid black 1px;background-color:#F2F2F2;height:50px">
+   <%= form_tag transaction_search_transactions_path, :method => :get, :remote => true do  %>
+      <%= select_tag "locations", options_from_collection_for_select(@locations, "id", "name") %>
+      <%= select_tag "listings", options_from_collection_for_select(@documents, "id", "document_type") %>
+      <%= select_tag "listings", options_from_collection_for_select(@checklists, "id", "name") %>
+      <%= submit_tag "Search Transactions", :class => "btn btn-success" %>
+   <% end %>
+</div>
+
+<div id="transaction_search"></div>
 
 
+<script>
+  $(document).ready(function(){
+    $("#search-bordy").hide();
+    $(".search-button").click(function(){
+      $("#advanced-search-bordy").hide();
+      $("#filter").hide();
+      $("#search-bordy").toggle(800);
+      $("#search-bordy").css("background-color","#F2F2F2");
+    });
+  });
+
+  $(document).ready(function(){
+    $("#advanced-search-bordy").hide();
+    $(".advanced-search-button").click(function(){
+      $("#search-bordy").hide();
+      $("#filter").hide();
+      $("#advanced-search-bordy").toggle(800);
+      $("#advanced-search-bordy").css("background-color","#F2F2F2");
+    });
+  });
+
+  $(document).ready(function(){
+    $("#filter").hide();
+    $(".filter").click(function(){
+      $("#search-bordy").hide();
+      $("#advanced-search-bordy").hide();
+      $("#filter").toggle(800);
+      $("#filter").css("background-color","#F2F2F2");
+    });
+  });
+
+</script>
+ 

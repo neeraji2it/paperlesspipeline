@@ -5,8 +5,16 @@ class TransactionsController < ApplicationController
 
   def index
     #@transactions = Transaction.where("user_id = #{current_user.id}")
-    @transactions = Transaction.search "*#{params[:search]}*"
+    @transactions = Transaction.all
     #raise @transactions.inspect
+  end
+
+  def transaction_search
+    @transactions = Transaction.search "*#{params[:search]}*"
+       
+    respond_to do |format|
+      format.js
+    end
   end
 
   def export_transactions

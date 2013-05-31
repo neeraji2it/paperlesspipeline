@@ -21,6 +21,11 @@ class UsersController < ApplicationController
   def manage_users
     @users = User.all
   end
+
+  def show
+    sign_out :user
+    redirect_to root_path
+  end
   
   def add_user
     @user = User.new

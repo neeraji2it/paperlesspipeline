@@ -5,7 +5,7 @@
       <td>Location</td>
     </tr>
     <tr>
-      <td><%= f.select :location_id, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.location, c.id]}, params[:locations]) %></td>
+      <td><%= f.select :location_id, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.name, c.id]}, params[:locations]) %></td>
     </tr>
     <tr>
       <td>Transaction Name or Address</td>

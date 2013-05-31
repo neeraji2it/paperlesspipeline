@@ -1,0 +1,78 @@
+<div class="search" style="margin-left:30px; margin-top: 30px;">
+    <%= button_tag "Search", :class => "btn btn-su<%ccess" %>
+</div>
+<div class="filter" style="margin-left:30px; margin-top: 30px;">
+    <%= button_tag "Filter", :class => "btn btn-su<%ccess" %>
+</div>
+
+<% @locations = Location.all %>
+<div id="filter" style="border:solid black 1px;background-color:#F2F2F2;height:50px">
+   <%= form_tag working_filter_documents_path, :method => :get do  %>
+      <%= select_tag "locations", options_from_collection_for_select(@locations, "id", "location") %>
+      <td><%= submit_tag "Filter Results", :style => "width: 100px;border-radius: 20px;" %></td>
+   <% end %>
+</div>
+
+<div id="search" style="border:solid black 1px;background-color:#F2F2F2;height:50px">
+   <%= form_tag search_index_path, :method => :get do  %>
+     <p>
+       <%= text_field_tag :search  %>
+       <%= submit_tag "Search" %>
+     </p>
+    <% end %>
+</div>
+
+
+
+<div id="working-docs" >
+</div>
+
+<div id="documents-list" style="margin-top: 30px;">
+  <table width="100%" cellpadding="5" id="docs" border="1">
+    <tr style="font-weight: bold;">
+      <td>Info</td>
+      <td>Working Docs</td>
+      <td>Email Subject</td>
+      <td>Location</td>
+      <td>Added By</td>
+      <td>Added On</td>
+      <td>Comments</td>
+      <td>Actions</td>
+    </tr>
+    <% for document in @documents %>
+      <tr>
+        <td style="width: 100px;"><%= document.document_file_name %></td>
+        <td><%= document.document_file_name %></td>
+        <td><%= document.user.email %></td>
+        <td><%= document.location.location %></td>
+        <td><%= document.user.name %></td>
+        <td><%= time_ago_in_words(document.created_at) %></td>
+
+        <% if document.comments.present? %>
+          <td><%= link_to "Comments", document_comments_path(document), :remote => true %></td>
+        <% else %>
+          <td><%= link_to "Comments", new_document_comment_path(document), :remote => true %></td>
+        <% end %>
+        <td><%= link_to "Delete", document_path(document), :method => :delete, :remote => true, :confirm => "are you sure" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+  <script>
+    $(document).ready(function(){
+      $("#filter").hide();
+      $("#search").hide();
+      $(".filter").click(function(){
+          $("#filter").toggle(800);
+          $("#filter").css("background-color","#F2F2F2");
+      });
+      $(".search").click(function(){
+        $("#search").toggle(800);
+        $("#search").css("background-color", "#F2F2F2")
+      });
+    });
+  </script>
+
+
+

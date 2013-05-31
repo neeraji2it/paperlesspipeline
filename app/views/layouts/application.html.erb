@@ -5,93 +5,93 @@
     <%= stylesheet_link_tag    "application", "/assets/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <div id="flash">
+  <div id="flash">
     <%= render :partial => 'layouts/flash', :object => flash %>
   </div>
-    <style>
-      body { background-color: #566477; height: 95%; padding-top: 20px; }
-    </style>
-  </head>
+  <style>
+    body { background-color: #566477; height: 95%; padding-top: 20px; }
+  </style>
+</head>
 
-  <body>
-    <div style='height:0px;'>
-      <a style="color: white;left: 40px;position: relative;top: -15px;">PaperLessPipeLine</a>
-      <% if signed_in? %>
-        <%= link_to image_tag(current_user.avatar.url(:original), :width => '80px', :height => '80px') %><br />
-      <% end %>
-      <ul class="nav pull-right">
-        <% if !current_user%>
-          <li><%= link_to "Signup", new_user_registration_path, :id => "user_register" %></li>
-          <li><%= link_to "Login", new_user_session_path, :id => "user_register" %></li>
-        <% else%>
-          <li><%= link_to "Logout", destroy_user_session_path,:method => 'DELETE', :id => "user_register" %></li>
-        <%end%>
-      </ul>
-    </div>
-  
-    <div style="float:left;margin-left:516px;margin-top:6px;position: absolute;">
-       <%= form_tag search_index_path, :method => :get do  %>
-   <p>
-     <%= text_field_tag :search  %>                              
-     <%= submit_tag "Search" %>
-   </p>
- <% end %>
-    </div>
+<body>
+  <div style='height:0px;'>
+    <a style="color: white;left: 40px;position: relative;top: -15px;">PaperLessPipeLine</a>
+    <% if signed_in? %>
+      <%= link_to image_tag(current_user.avatar.url(:original), :width => '80px', :height => '80px') %><br />
+    <% end %>
+    <ul class="nav pull-right">
+      <% if !current_user%>
+        <li><%= link_to "Signup", new_user_registration_path, :id => "user_register" %></li>
+        <li><%= link_to "Login", new_user_session_path, :id => "user_register" %></li>
+      <% else%>
+        <li><%= link_to "Logout", destroy_user_session_path,:method => 'DELETE', :id => "user_register" %></li>
+      <%end%>
+    </ul>
+  </div>
+
+  <div style="float:left;margin-left:516px;margin-top:6px;position: absolute;">
+    <%= form_tag search_index_path, :method => :get do  %>
+      <p>
+        <%= text_field_tag :search  %>
+        <%= submit_tag "Search" %>
+      </p>
+    <% end %>
+  </div>
 
 
-    <div class="container" style="margin-top:45px;padding-left:-1px;height:auto;min-height: 500px;width:100%; position: relative;clear:both;background: none repeat scroll 0 0 #d4d4d4;">
-      <% if current_user %>
-        <div style="color: black;left: 325px;position: relative;top: -16px;width: 50%;">
-        
-          <%= link_to "Dashboard", dashboard_index_path, :class => "btn" %>
-          <%= link_to "Transactions", transactions_path, :class => "btn" %>
-          <%= link_to "Tasks", "", :class => "btn" %>
-          <%= link_to "Working", documents_path, :class => "btn" %>
-          <%= link_to "Unreviewed", "", :class => "btn" %>
-          <%= link_to "Office", "", :class => "btn" %>
-        </div>
-        <table width="100%">
-          <tr>
-            <td width="30%">
-            <% if params[:controller] == 'dashboard' and (params[:action] == 'show' or params[:action] == 'index')%>
-            <%= render :partial => 'layouts/dashboard_side_menu' %>
-            <% else %>
-            <%= render :partial => 'layouts/admin_page_side_bar' %>
-            <%end%>
-            <% end %>
-            </td>
-            <td>
-                <%= yield %>
-            </td>
-          </tr>
-        </table>
-        
-      
-      
-      
-    </div>  
+  <div class="container" style="margin-top:45px;padding-left:-1px;height:auto;min-height: 500px;width:100%; position: relative;clear:both;background: none repeat scroll 0 0 #d4d4d4;">
+    <% if current_user %>
+      <div style="color: black;left: 325px;position: relative;top: -16px;width: 50%;">
 
-    <div id="footer">
-      <div class="container">
-        <p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+        <%= link_to "Dashboard", dashboard_index_path, :class => "btn" %>
+        <%= link_to "Transactions", transactions_path, :class => "btn" %>
+        <%= link_to "Tasks", "", :class => "btn" %>
+        <%= link_to "Working", documents_path, :class => "btn" %>
+        <%= link_to "Unreviewed", "", :class => "btn" %>
+        <%= link_to "Office", "", :class => "btn" %>
       </div>
+      <table width="100%">
+        <tr>
+          <td width="30%">
+            <% if params[:controller] == 'dashboard' and (params[:action] == 'show' or params[:action] == 'index')%>
+              <%= render :partial => 'layouts/dashboard_side_menu' %>
+            <% else %>
+              <%= render :partial => 'layouts/admin_page_side_bar' %>
+            <%end%>
+          <% end %>
+        </td>
+        <td>
+          <%= yield %>
+        </td>
+      </tr>
+    </table>
+
+
+
+
+  </div>
+
+  <div id="footer">
+    <div class="container">
+      <p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
     </div>
+  </div>
 </body>
 </html>
 
 <style>
-    #footer {
-        height: 90px;
-        background-color:#566477;
-      }
+  #footer {
+    height: 90px;
+    background-color:#566477;
+  }
 
-      /* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        #footer {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
+  /* Lastly, apply responsive CSS fixes as necessary */
+  @media (max-width: 767px) {
+    #footer {
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
 </style>

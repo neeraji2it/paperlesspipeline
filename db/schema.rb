@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404101206) do
+ActiveRecord::Schema.define(:version => 20130529095844) do
 
   create_table "checklists", :force => true do |t|
     t.integer  "location_id"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20130404101206) do
   end
 
   create_table "locations", :force => true do |t|
-    t.string   "location"
+    t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20130404101206) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
     t.integer  "location_id"
+    t.date     "expiration_date"
   end
 
   create_table "users", :force => true do |t|
@@ -112,6 +113,10 @@ ActiveRecord::Schema.define(:version => 20130404101206) do
     t.datetime "avatar_updated_at"
     t.string   "active"
     t.string   "role"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "company_name"
+    t.integer  "phone_number"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

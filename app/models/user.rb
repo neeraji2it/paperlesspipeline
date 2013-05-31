@@ -5,11 +5,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
   
-  devise :authenticatable, :timeoutable, :validatable, :timeout_in => 8.minutes
+  devise :authenticatable, :timeoutable, :validatable, :timeout_in => 15.minutes
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmable,:current_password,:name,
-  :duplicate_document_uploads, :email_transaction_reminders, :allow_pdf, :entered_docs_feature,:location,:photo,:avatar,:active,:confirmation_token,:confirmed_at
+  :duplicate_document_uploads, :email_transaction_reminders, :allow_pdf, :entered_docs_feature,:location,:photo,:avatar,:active,:confirmation_token,:confirmed_at,
+  :first_name, :last_name, :company_name, :phone_number
   # attr_accessible :title, :body
   
   #validations======================================================================================================================================
@@ -40,7 +41,10 @@ class User < ActiveRecord::Base
     :default => "280x190>",
     :other => "96x96>" } if (Rails.env == 'staging')
    #=================================================================================================================================================
-   
+
+  define_index do
+    indexes role
+  end
    
   def confirmation_required?
     !confirmed?

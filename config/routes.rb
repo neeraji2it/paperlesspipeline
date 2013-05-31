@@ -29,6 +29,9 @@ Paperlesspipeline::Application.routes.draw do
     collection do
       get :location_search
       get :search
+      get :working
+      get :working_filter
+      get :office
     end
     resources :comments
   end
@@ -38,6 +41,7 @@ Paperlesspipeline::Application.routes.draw do
     collection do
       get :location_search
       get :search
+      get :transaction_search
       get :export_transactions
     end
   end

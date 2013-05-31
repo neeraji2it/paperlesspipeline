@@ -28,6 +28,16 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def working
+    #raise params.inspect
+    @documents = Document.all
+  end
+
+  def working_filter
+    @documents = Document.where("location_id = '#{params[:locations]}'")
+    render :action => 'index'
+  end
+
   def search
     respond_to do |format|
       format.js
@@ -43,4 +53,12 @@ class DocumentsController < ApplicationController
       render :action => 'index'
     end
   end
+
+  def office
+    @checklists = Checklist.search "*#{params[:search]}*"
+    #@users = User.search "*#{params[:search]}*"
+    @documents = Document.search "*#{params[:search]}*"
+    @transactions = Transaction.search "*#{params[:search]}*"
+  end
+
 end

@@ -1,0 +1,27 @@
+
+<% if @transactions.present? %>
+  <table id="content" style="min-height:25px; height:25px; width:100%;">
+    <tr style="border:solid 1px black;background-color:#F2F2F2;height:50px;height:25px;">
+      <th>Transaction</th>
+      <th>Status</th>
+      <th>Complete</th>
+      <th>Agent</th>
+      <th>Locations</th>
+      <th>Close Date</th>
+      <th>Actions</th>
+    </tr>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td align="center"><%= transaction.transaction_name %></td>
+        <td align="center"><%= transaction.status %></td>
+        <td align="center"><%=  %></td>
+        <td align="center"><%=  %></td>
+        <td align="center"><%= transaction.location.name %></td>
+        <td align="center"><%= transaction.close_date %></td>
+        <td align="center"><%=  %></td>
+      </tr>
+    <% end %>
+  </table>
+<%  else %>
+  No transactions match your search or filter criteria. View all active transactions or create a new one.
+<% end %>

@@ -22,4 +22,8 @@ class Document < ActiveRecord::Base
     return false unless image?
   end
 
+  define_index do
+    indexes document_file_name
+  end
+
 end
