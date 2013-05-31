@@ -58,7 +58,7 @@ Paperlesspipeline::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = false
   config.serve_static_assets = false
-
+  config.active_support.deprecation = :silence
   # Enable threaded mode
   # config.threadsafe!
 
