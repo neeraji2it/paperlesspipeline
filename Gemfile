@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem "papertrail", :require => "papertrail/connection"
 gem 'rails', '3.2.12'
 gem 'thin' 
 gem 'sqlite3'
