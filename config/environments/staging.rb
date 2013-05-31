@@ -58,7 +58,7 @@ Paperlesspipeline::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = false
   config.serve_static_assets = false
-  config.active_support.deprecation = :silence
+
   # Enable threaded mode
   # config.threadsafe!
 
@@ -75,8 +75,8 @@ Paperlesspipeline::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     #:domain               => 'baci.lindsaar.net',
-    :user_name            => 'smartquotez@gmail.com',
-    :password             => 'dinemedia!@#',
+    :user_name            => 'cloud9ppp@gmail.com',
+    :password             => 'cloud9123',
     :authentication       => 'plain',
     :enable_starttls_auto => true
   }
