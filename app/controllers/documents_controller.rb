@@ -1,7 +1,11 @@
 class DocumentsController < ApplicationController
 
   def index
-    @documents = Document.where("user_id = #{current_user.id}")
+    #    @documents = Document.where("user_id = #{current_user.id}")
+    @documents = Document.search "*#{params[:query]}*"
+    respond_to do |format|
+      format.js
+    end
   end
 
   def new
@@ -10,7 +14,7 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = Document.new(params[:document])
+    @document = Document.new(:document =>params[:document])
     @document.user_id = current_user.id
     @document.location_id = params[:document][:location_id]
     if @document.save
@@ -22,23 +26,26 @@ class DocumentsController < ApplicationController
     @documents = Document.where("user_id = #{current_user.id}")
     @document = Document.find(params[:id])
     if @document.destroy
+        redirect_to office_documents_path(current_user), :notice => 'Document deleted successfully deleted.' 
+    end
+  end
+
+  def working
+#    @documents = Document.search "*#{params[:query]}*"
+    @documents = Document.where("user_id = '#{current_user.id}'")
+    if request.xhr?
       respond_to do |format|
         format.js
       end
     end
   end
 
-  def working
-    #raise params.inspect
-    @documents = Document.all
-  end
-
   def working_filter
-    @documents = Document.where("location_id = '#{params[:locations]}'")
-    render :action => 'index'
+    
   end
 
   def search
+    @documents = Document.where("document_file_name = '#{params[:query]}'")
     respond_to do |format|
       format.js
     end
@@ -57,8 +64,19 @@ class DocumentsController < ApplicationController
   def office
     @checklists = Checklist.search "*#{params[:search]}*"
     #@users = User.search "*#{params[:search]}*"
-    @documents = Document.search "*#{params[:search]}*"
+    #    @documents = Document.search "*#{params[:search]}*"
     @transactions = Transaction.search "*#{params[:search]}*"
+    @docs = Document.where("user_id = '#{current_user.id}'")
+    @documents = Document.search "*#{params[:query]}*"
+    if request.xhr?
+      respond_to do |format|
+        format.js
+      end
+    end
+    
+  end
+
+  def unreviewed
   end
 
 end

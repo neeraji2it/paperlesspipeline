@@ -1,0 +1,35 @@
+<div id="rightColumn">
+  <div style="height:800px;">
+
+    <b><h2>Edit Transaction</h2></b>
+    <%= form_for(@transaction) do |f| %>
+      <table>
+        <tr>
+          <td><%= f.label "Transaction Name", :size =>"1" %></td>
+          <td><%= f.text_field :transaction_name %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "Status" %></td>
+          <td><%= f.text_field :status %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "Close Date" %></td>
+          <td><%= f.text_field :close_date %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "List Price" %></td>
+          <td><%= f.text_field :list_price %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "Sale Price" %></td>
+          <td><%= f.text_field :sale_price %></td>
+        </tr>
+
+        <tr>
+          <td><%= f.submit %></td>
+          <td></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>

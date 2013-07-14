@@ -1,12 +1,19 @@
 Paperlesspipeline::Application.routes.draw do
 
+  match 'apis/quickbooks/:action', :controller => 'qbwc', :as => 'quickbooks'
+
   devise_for :users
 
   resources :tasks
 
 
   resources :checklists
-  resources :search
+
+  resources :search do
+    collection do
+      get :advance_search
+    end
+  end
 
   resources :locations
 
@@ -17,6 +24,7 @@ Paperlesspipeline::Application.routes.draw do
       get :manage_users
       post :user_create
       put :activate
+      get :profile
     end
     collection do
       post :user_create
@@ -32,6 +40,7 @@ Paperlesspipeline::Application.routes.draw do
       get :working
       get :working_filter
       get :office
+      get :unreviewed
     end
     resources :comments
   end
@@ -41,6 +50,8 @@ Paperlesspipeline::Application.routes.draw do
     collection do
       get :location_search
       get :search
+      get :advance_search
+      get :filter
       get :transaction_search
       get :export_transactions
     end

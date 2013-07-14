@@ -1,41 +1,35 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <table>
-    <tr>
-      <td><%= f.label :email, "Email:" %></td>
-    </tr>
-    <tr>
-      <td><%= f.email_field :email, :autofocus => true %></td>
-      <td><%= validation_error(resource.errors["email"]) %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :current_password, "Old Password:" %></td>
-    </tr>
-    <tr>
-      <td><%= f.password_field :current_password %></td>
-      <td><%= validation_error(resource.errors["current_password"]) %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :password, "New Password" %></td>
-    </tr>
-    <tr>
-      <td><%= f.password_field :password %></td>
-      <td><%= validation_error(resource.errors["password"]) %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :password_confirmation, "New Password Confirmation" %></td>
-    </tr>
-    <tr>
-      <td><%= f.password_field :password_confirmation %></td>
-      <td><%= validation_error(resource.errors["password_confirmation"]) %></td>
-    </tr>
-    <tr>
-      <td></td>
-    </tr>
-    <tr>
-      <td><%= f.submit "Save Settings" %></td>
-      <td></td>
-    </tr>
-  </table>
-<% end %>
+<div id="rightColumn">
+  <div class="contentbox">
+    <h1>Profile</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <div class="page-transaction">
+                  <h3>Your Login Information</h3>
+                  <p>Your Email Address</p>
+                  <p><input title="Your Email Address" type="text" /></p>
+                  <p>Old Password</p>
+                  <p><input title="Old Password" type="text" /></p>
+                  <p>New Password</p>
+                  <p><input title="New Password" type="text" /></p>
+                  <p>New Password Confirmation</p>
+                  <p><input title="New Password Confirmation" type="text" /></p>
+                  <p>Your Settings</p>
+                  <p><img title="Send me new document notifications" alt="Send me new document notifications" src="images/icon-checkbox-unselected.png" /> Send me new document notifications</p>
+                  <p><img title="Show customer support widget" alt="Show customer support widget" src="images/icon-checkbox-selected.png" /> Show customer support widget</p>
+                  <input class="btn-saveSettings" title="Save Settings" value="Save Settings" type="submit" />
+                  <input class="btn-cancel" title="Cancel" value="Cancel" type="submit" />
+                  <div class="clearFix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearFix"></div>

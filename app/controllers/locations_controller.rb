@@ -1,10 +1,10 @@
 class LocationsController < ApplicationController
  def update
-    @location = Location.new(:location => params[:location][:location],:user_id => current_user.id)
+    @location = Location.new(:name => params[:location][:name],:user_id => current_user.id)
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to @location, :notice => 'Location was successfully updated.' }
+        format.html { redirect_to manage_locations_user_path(current_user), :notice => 'Location was successfully updated.' }
         format.js
       else
         format.html { render :action => "edit" }

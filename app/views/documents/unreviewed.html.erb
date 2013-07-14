@@ -1,0 +1,45 @@
+
+<div id="rightColumn">
+  <div class="contentbox">
+    <h1>Unreviewed Docs</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <h3>Review and verify the following documents in accordance with your company's policies.</h3>
+                <div class="unreviewedBox page-transactionsN">
+                  <div class="unreviewedBoxContent">
+                    <input class="btn-filter unreviewed active" title="Filter" value="Filter" type="submit" />
+                    <p><strong>Showing all unreviewed documents</strong></p>
+                    <p>
+                      <select title="Any Docs"><option>Any Docs</option></select>
+                      <input class="btn-filterResults" title="Filter Results" value="Filter Results" type="submit" />
+                    </p>
+                  </div>
+                </div>
+                <p>There are no docs to review.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+</div>
+<div class="clearFix"></div>
+</div>
+
+<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+<script type="text/javascript" language="javascript">
+  jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+  });
+</script>

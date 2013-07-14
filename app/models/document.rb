@@ -7,13 +7,13 @@ class Document < ActiveRecord::Base
 
   before_post_process :resize_images
   
-  define_index do
-    indexes document_type
-  end
-
   # Helper method to determine whether or not an attachment is an image.
   def image?
     document_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
+  end
+
+  define_index do
+    indexes document_file_name
   end
 
   private
@@ -22,8 +22,6 @@ class Document < ActiveRecord::Base
     return false unless image?
   end
 
-  define_index do
-    indexes document_file_name
-  end
+  
 
 end

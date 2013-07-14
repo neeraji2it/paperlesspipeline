@@ -9,4 +9,8 @@ class SearchController < ApplicationController
     @transactions = Transaction.search "*#{params[:search]}*"
   end
 
+  def advance_search
+    
+  end
+
 end

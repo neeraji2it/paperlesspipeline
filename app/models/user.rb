@@ -5,12 +5,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
   
-  devise :authenticatable, :timeoutable, :validatable, :timeout_in => 15.minutes
+  devise :authenticatable, :timeoutable, :validatable#, :timeout_in => 15.minutes
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmable,:current_password,:name,
   :duplicate_document_uploads, :email_transaction_reminders, :allow_pdf, :entered_docs_feature,:location,:photo,:avatar,:active,:confirmation_token,:confirmed_at,
-  :first_name, :last_name, :company_name, :phone_number
+  :first_name, :last_name, :company_name, :phone_number,:role,:create_id
   # attr_accessible :title, :body
   
   #validations======================================================================================================================================
@@ -49,4 +49,13 @@ class User < ActiveRecord::Base
   def confirmation_required?
     !confirmed?
   end
+
+  def total_commissioned
+    total_commission1 = 0
+    self.transactions.each do |i|
+      total_commission1 += i.total_commission.to_i
+    end
+    return total_commission1
+  end
+
 end

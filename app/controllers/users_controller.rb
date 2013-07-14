@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   def admin
     @user = current_user
   end
+
+  def profile
+    @user = current_user
+  end
   
   
   
@@ -16,10 +20,11 @@ class UsersController < ApplicationController
   end
   
   def manage_locations
+    @locations = Location.all
   end
   
   def manage_users
-    @users = User.all
+    @users = User.where("create_id = #{current_user.id}")
   end
 
   def show

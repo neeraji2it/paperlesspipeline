@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
       dashboard_index_path
     end
   end
+
+  def logged_in_user
+    unless current_user
+      redirect_to root_path
+    end
+  end
   
   def is_valid_account?
     if current_user and current_user.documents.present? and (["sale", "private", "listing"]-current_user.documents.map{|a| a.document_type}.uniq).blank? == false
@@ -27,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
   
   def is_signed_in?
-    if !current_user.present?
+    unless current_user
       flash[:notice] = "Please Relogin to Continue"
       redirect_to root_path
     end

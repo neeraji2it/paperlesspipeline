@@ -1,71 +1,53 @@
-<% if @checklists.present? or @documents.present? %>
-  <% if @checklists.present? %>
-    <table id="content" style="min-height:25px; height:25px; width:100%;">
-      <tr style="border:solid 1px black;background-color:#F2F2F2;height:50px;height:25px;">
-        <th>Checklist</th>
-        <th>Location</th>
-        <th>Created by</th>
-        <th>Actions</th>
-      </tr>
 
-    <% @checklists.each do |checklist| %>
-      <tr>
-        <td align="center"><%= checklist.name %></td>
-        <% @location = Location.find_by_id(checklist.location_id) %>
-        <% @user = User.find_by_id(checklist.created_by) %>
-        <% if @location.present? %>
-        <td align="center"><%= @location.location %></td>
-        <% else %>
-          <td align="center"><%=  %></td>
-        <% end %>
-       <% if @user.present? %>
-        <td align="center"><%= @user.id %></td>
-        <% else %>
-          <td align="center"><%=  %></td>
-        <% end %>
-        <td align="center"><%= link_to "Delete", checklist_path(checklist), :method => 'DELETE' %></td>
-      </tr>
-    <% end %>
-    </table>
-  <%  end %>
-
-  <% if @documents.present? %>
-    <table width="100%" cellpadding="5" id="docs" border="1">
-      <tr style="font-weight: bold;">
-        <td>Info</td>
-        <td>Working Docs</td>
-        <td>Added By</td>
-        <td>Added On</td>
-        <td>Comments</td>
-        <td>Actions</td>
-      </tr>
-      <% for document in @documents %>
-        <tr>
-          <td style="width: 100px;"><%= document.document_file_name %></td>
-          <td><%= document.document_file_name %></td>
-          <td><%= document.user.email %></td>
-          <td><%= time_ago_in_words(document.created_at) %></td>
-          <% if document.comments.present? %>
-            <td><%= link_to "Comments", document_comments_path(document), :remote => true %></td>
-          <% else %>
-            <td><%= link_to "Comments", new_document_comment_path(document), :remote => true %></td>
-          <% end %>
-          <td id="aaa_<%= document.id %>" class="btn"><%= "Actions" %></td>
-        </tr>
-        <tr>
-          <td><div id="comment_<%= document.id %>" style="width: 300px;"></div></td>
-        </tr>
-        <div id="dddd_<%= document.id %>" style="display: none;">
-          <%= link_to "Delete", document_path(document), :method => :delete, :remote => true, :confirm => "are you sure" %>
+<h1>
+  <div class="column w30">Transaction</div>
+  <div class="column">Status</div>
+  <div class="column w11">Complete</div>
+  <div class="column w9">Agents</div>
+  <div class="column w20">Location</div>
+  <div class="column">Close Date</div>
+  <div class="column last">Actions</div>
+</h1>
+<div class="box">
+  <% @transactions.each do |transaction| %>
+    <div class="tableTransaction">
+      <div class="transactionrow">
+        <div class="column w30"><%= transaction.transaction_name %></div>
+        <div class="column"><%= transaction.status %></div>
+        <div class="column w11">
+          <div class="completebox"><%= transaction.transaction_name %></div>
+          <img alt="" title="" src="/assets/spacer.png" />
         </div>
-        <script>
-          $("#aaa_<%= document.id %>").click(function(){
-            $("#dddd_<%= document.id %>").show();
-          })
-        </script>
-      <% end %>
-    </table>
-  <% end  %>
-<%  else %>
-  No transactions match your search or filter criteria. View all active transactions or create a new one.
-<% end %>
+        <div class="column w9"><div class="icon-agent"></div></div>
+        <div class="column w20"><%= transaction.location.name %></div>
+        <div class="column"><%= transaction.close_date %></div>
+        <div class="column last">
+          <span class="btn-action">
+            <em class="tooltip-container"><span>Action</span>
+              <strong class="tooltip">
+                <ul class="list-tooltip">
+                  <li class="icon-zoomin"><a title="View Transaction" href="#">View Transaction</a></li>
+                  <li class="icon-edit"><a title="Edit Transaction" href="#">Edit Transaction</a></li>
+                </ul>
+                <i class="top-arrow"></i>
+              </strong>
+            </em>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  <% end %>
+</div>
+
+<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+<script type="text/javascript" language="javascript">
+  jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+  });
+</script>

@@ -1,27 +1,172 @@
+<% if params[:controller] == 'transactions' and (params[:action] == 'index')%>
+<div id="rightColumn">
+  <div class="contentbox">
+    <div id="search"></div>
+    <h1>Transactions <span>(Showing all 17 transactions)</span></h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <h3>Email docs to your Working Docs page: <strong>2946-32647-x@docs.paperlesspipeline.com  Download</strong></h3>
+                <div class="unreviewedBox page-transactionsN">
+                  <div class="unreviewedBoxContent">
+                    <input class="btn-quickSearch active" title="Quick Search" value="Quick Search" type="submit" />
+                    <input class="btn-advanceSearch" title="Advance search" value="Advance search" type="submit" />
+                    <%= link_to "Quick search", advance_search_transactions_path, :class => "btn-advanceSearch", :title => "Advance search", :value => "Advance search", :type => "submit" %>
+                    <input class="btn-filter" title="Filter" value="Filter" type="submit" />
+                    <% if @transactions.present? %>
+                      <p>
+                        <%= form_tag transactions_path, :method => :get do %>
+                        <p>
+                          <%= text_field :search, :class => "input-searchTransactions", :title => "Search By address, agents or MLS", :placeholder => "Search By address, agents or MLS", :type => "text"  %>
+                        </p>
+                        <p>
+                          <%= submit_tag "Search", :class => "btn-searchTransactions"%>
+                        </p>
+                      <% end %>
+                      </p>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="officerow">Only active transactions are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></div>
+                <div class="contentbox">
+                  <h1>
+                    <div class="column w30">Transaction</div>
+                    <div class="column">Status</div>
+                    <div class="column w11">Complete</div>
+                    <div class="column w9">Agents</div>
+                    <div class="column w20">Location</div>
+                    <div class="column">Close Date</div>
+                    <div class="column last">Actions</div>
+                  </h1>
+                  <div class="box">
+                    <div class="tableTransaction">
+                      <div class="transactionrow">
+                        <div class="column w30">6421 Borasco Dr. #3208</div>
+                        <div class="column">Active</div>
+                        <div class="column w11">
+                          <div class="completebox">7/8</div>
+                          <img alt="" title="" src="images/spacer.png" />
+                        </div>
+                        <div class="column w9"><div class="icon-agent"></div></div>
+                        <div class="column w20">Elite Real Estate</div>
+                        <div class="column">Dec 14, 12</div>
+                        <div class="column last">
+                          <span class="btn-action">
+                            <em class="tooltip-container"><span>Action</span>
+                              <strong class="tooltip">
+                                <ul class="list-tooltip">
+                                  <li class="icon-zoomin"><a title="View Transaction" href="#">View Transaction</a></li>
+                                  <li class="icon-edit"><a title="Edit Transaction" href="#">Edit Transaction</a></li>
+                                </ul>
+                                <i class="top-arrow"></i>
+                              </strong>
+                            </em>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="transactionrow active">
+                        <div class="column w30">6421 Borasco Dr. #3208</div>
+                        <div class="column">Active</div>
+                        <div class="column w11">
+                          <div class="completebox">7/8</div>
+                          <img alt="" title="" src="images/spacer.png" />
+                        </div>
+                        <div class="column w9"><div class="icon-agent"></div></div>
+                        <div class="column w20">Elite Real Estate</div>
+                        <div class="column">Dec 14, 12</div>
+                        <div class="column last">
+                          <span class="btn-action">
+                            <em class="tooltip-container"><span>Action</span>
+                              <strong class="tooltip">
+                                <ul class="list-tooltip">
+                                  <li class="icon-zoomin"><a title="View Transaction" href="#">View Transaction</a></li>
+                                  <li class="icon-edit"><a title="Edit Transaction" href="#">Edit Transaction</a></li>
+                                </ul>
+                                <i class="top-arrow"></i>
+                              </strong>
+                            </em>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="transactionrow">
+                        <div class="column w30">6421 Borasco Dr. #3208</div>
+                        <div class="column">Active</div>
+                        <div class="column w11">
+                          <div class="completebox">7/8</div>
+                          <img alt="" title="" src="images/spacer.png" />
+                        </div>
+                        <div class="column w9"><div class="icon-agent"></div></div>
+                        <div class="column w20">Elite Real Estate</div>
+                        <div class="column">Dec 14, 12</div>
+                        <div class="column last">
+                          <span class="btn-action">
+                            <em class="tooltip-container"><span>Action</span>
+                              <strong class="tooltip">
+                                <ul class="list-tooltip">
+                                  <li class="icon-zoomin"><a title="View Transaction" href="#">View Transaction</a></li>
+                                  <li class="icon-edit"><a title="Edit Transaction" href="#">Edit Transaction</a></li>
+                                </ul>
+                                <i class="top-arrow"></i>
+                              </strong>
+                            </em>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="transactionrow">
+                        <div class="column w30">6421 Borasco Dr. #3208</div>
+                        <div class="column">Active</div>
+                        <div class="column w11">
+                          <div class="completebox">7/8</div>
+                          <img alt="" title="" src="images/spacer.png" />
+                        </div>
+                        <div class="column w9"><div class="icon-agent"></div></div>
+                        <div class="column w20">Elite Real Estate</div>
+                        <div class="column">Dec 14, 12</div>
+                        <div class="column last">
+                          <span class="btn-action">
+                            <em class="tooltip-container"><span>Action</span>
+                              <strong class="tooltip">
+                                <ul class="list-tooltip">
+                                  <li class="icon-zoomin"><a title="View Transaction" href="#">View Transaction</a></li>
+                                  <li class="icon-edit"><a title="Edit Transaction" href="#">Edit Transaction</a></li>
+                                </ul>
+                                <i class="top-arrow"></i>
+                              </strong>
+                            </em>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearFix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+</div>
+<div class="clearFix"></div>
+</div>
 
-<% if @transactions.present? %>
-  <table id="content" style="min-height:25px; height:25px; width:100%;">
-    <tr style="border:solid 1px black;background-color:#F2F2F2;height:50px;height:25px;">
-      <th>Transaction</th>
-      <th>Status</th>
-      <th>Complete</th>
-      <th>Agent</th>
-      <th>Locations</th>
-      <th>Close Date</th>
-      <th>Actions</th>
-    </tr>
-    <% @transactions.each do |transaction| %>
-      <tr>
-        <td align="center"><%= transaction.transaction_name %></td>
-        <td align="center"><%= transaction.status %></td>
-        <td align="center"><%=  %></td>
-        <td align="center"><%=  %></td>
-        <td align="center"><%= transaction.location.name %></td>
-        <td align="center"><%= transaction.close_date %></td>
-        <td align="center"><%=  %></td>
-      </tr>
-    <% end %>
-  </table>
-<%  else %>
-  No transactions match your search or filter criteria. View all active transactions or create a new one.
+<% else %>
+fsdf
 <% end %>
+
+<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+<script type="text/javascript" language="javascript">
+  jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+  });
+</script>

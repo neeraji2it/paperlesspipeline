@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require best_in_place
 //= require_tree .
+
 
 function remove_fields(link) {
     $(link).prev("input[type=hidden]").val("1");
@@ -27,5 +29,10 @@ function add_fields(link, association, content) {
 
 
 setTimeout("$('#flash').fadeOut(5000);", 1000);
+
+$(document).ready(function() {
+    /* Activating Best In Place */
+    jQuery(".best_in_place").best_in_place();
+});
 
 

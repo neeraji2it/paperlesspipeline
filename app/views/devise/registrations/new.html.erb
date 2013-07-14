@@ -1,20 +1,89 @@
-<div style="margin-left:145px;">
-  <h2>Sign up</h2>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link type="text/css" href="/assets/default.css" rel="stylesheet" media="all" />
+      <title>Sign Up</title>
+      <%= stylesheet_link_tag    "application", :media => "all" %>
+      <%= stylesheet_link_tag "default.css" %>
+      <%= javascript_include_tag "application" %>
+      <%= csrf_meta_tags %>
+      <%= notice %>
+      <%= alert %>
+  </head>
 
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
+  <body class="page-signup">
+    <div id="maindiv">
+      <div id="header">
+        <div class="cr">
+          <div class="">
+            <div class="fright"><%= link_to "Login", new_user_session_path, :id => "user_register" %></div>
+            <p>Cloud 9 Transaction Management</p>
+          </div>
+          <div class="clearFix"></div>
+        </div>
+        <div class="clearFix"></div>
+      </div>
+      <div id="content">
+        <div class="signupBox">
+          <h4>Create Your Account</h4>
+          <div class="signupLeftColumn">
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
+              <div class="signupRow">
+                <%= f.text_field :first_name, :class => "min-input", :title => "First Name", :placeholder => "First Name", :type => "text" %>
+                <%= f.text_field :last_name, :class => "min-input", :title => "First Name", :placeholder => "First Name", :type => "text" %>
+              </div>
+              <div class="signupRow">
+                <%= f.text_field :company_name, :title => "Company Name", :placeholder => "Company Name", :type => "text" %>
+                <span>We'll use this to brand your paperless system. You can change this later.</span>
+              </div>
+              <div class="signupRow">
+                <%= f.text_field :phone_number, :title => "Phone Number", :placeholder => "Phone Number", :type => "text" %>
+              </div>
+              <div class="signupRow">
+                <%= f.email_field :email, :title => "Email Address", :placeholder => "Email Address", :type => "text" %>
+                <span>You'll use this address to log in to your paperless system</span>
+              </div>
+              <div class="signupRow">
+                <%= f.password_field :password, :title => "Password", :placeholder => "Password", :type => "password" %>
+              </div>
+              <div class="signupRow">
+                <%= f.password_field :password_confirmation, :title => "Confirm Password", :placeholder => "Comfirm Password", :type => "password" %>
+              </div>
+              <div class="signupRow">
+                <%= f.submit "Sign up", :class => "btn-createAccount", :type => "submit", :value => "Create Account", :title => "Create Account" %>
+                <p>
+                  By creating an account, you agree to our<br /> <a title="Terms of Service" href="#">Terms of Service</a> and <a title="Privacy Policy" href="#">Privacy Policy</a>.
+                </p>
 
-    <div><%= f.label :email %><br />
-    <%= f.email_field :email, :autofocus => true %></div>
-
-    <div><%= f.label :password %><br />
-    <%= f.password_field :password %></div>
-
-    <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></div>
-
-    <div><%= f.submit "Sign up" %></div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
-</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="signupRightColumn">
+            <p><img title="Safe and Secure" alt="Safe and Secure" src="/assets/img-lock.png" /></p>
+            <h4>Safe and Secure</h4>
+            <p><span>Cloud 9 incorporates the most advanced security solutions, giving you the<br /> same level of data protection and redundancy as an online bank.</span></p>
+            <p><img title="Real Time Service Alerts" alt="Real Time Service Alerts" src="/assets/img-exclamation-mark.png" /></p>
+            <h4>Real Time Service Alerts</h4>
+            <p><span>Cloud 9 sends you real time service alerts through emails so that you<br /> don't miss out any transactions</span></p>
+          </div>
+        </div>
+        <div class="clearFix"></div>
+      </div>
+      <div id="footer">
+        <div class="footerMenu">
+          <ul>
+            <li><a title="Home" href="#">Home</a></li>
+            <li><a title="Privacy Policy" href="#">Privacy Policy</a></li>
+            <li><a title="Blog" href="#">Blog</a></li>
+            <li><a title="Live Help" href="#">Live Help</a></li>
+            <li><a title="Contact" href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="clearFix"></div>
+      </div>
+    </div>
+  </body>
+</html>

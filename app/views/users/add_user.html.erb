@@ -1,25 +1,28 @@
-<h2>Add New User</h2>
-<div style="background-color:white;padding-left:30px;">
-  <%= form_for(@user, :url => user_create_users_path(@user),:html => {:id => "commentForm", :method => "POST"}) do |f| %>
-
-    <div><%= f.label :email %><br />
-      <%= f.email_field :email, :autofocus => true %></div>
-
-    <div><%= f.label :password %><br />
-      <%= f.password_field :password %></div>
-
-    <div><%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %></div>
+<div id="rightColumn">
+  <div class="contentbox">
+    <h2>Add New User</h2>
+    <div style="background-color:white;padding-left:30px;">
+      <%= form_for(@user, :url => user_create_users_path(@user),:html => {:id => "commentForm", :method => "POST"}) do |f| %>
+          
+          <%= f.hidden_field :create_id, :value => current_user.id %>
       
-    <div><%= f.label :Role %><br />
-      <%= f.text_field :role %>
-    </div>
-    
-    <div style="border:solid 2px black;margin-right:805px;background-color:#566477;"><br />
-      Welcome Email
-    </div>
+        <div><%= f.label :email %><br />
+          <%= f.email_field :email, :autofocus => true %></div>
 
-    <br /><br />
-    <div><%= f.submit "Sign up" %></div>
-  <% end %>
+        <div><%= f.label :password %><br />
+          <%= f.password_field :password %></div>
+
+        <div><%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation %></div>
+
+        <div><%= f.label :Role %><br />
+          <%= f.text_field :role %>
+        </div>
+
+        <br /><br />
+        <div><%= f.submit "Sign up" %></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="clearFix"></div>
 </div>

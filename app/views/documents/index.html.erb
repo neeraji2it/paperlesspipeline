@@ -15,7 +15,7 @@
     <tr>
       <td style="width: 100px;"><%= document.document_file_name %></td>
       <td><%= document.document_file_name %></td>
-      <td><%= document.user.email %></td>
+      <%#*<td><%= document.user.email %></td>%>
       <td><%= time_ago_in_words(document.created_at) %></td>
       <% if document.comments.present? %>
         <td><%= link_to "Comments", document_comments_path(document), :remote => true %></td>

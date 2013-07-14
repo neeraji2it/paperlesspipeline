@@ -1,11 +1,12 @@
 require 'csv'
 class TransactionsController < ApplicationController
+  respond_to :html, :json
 
   before_filter :is_valid_account?, :except => ['index']
 
   def index
     #@transactions = Transaction.where("user_id = #{current_user.id}")
-    @transactions = Transaction.all
+    @transactions = Transaction.where("user_id = '#{current_user.id}'")
     #raise @transactions.inspect
   end
 
@@ -40,16 +41,50 @@ class TransactionsController < ApplicationController
     @transaction.user_id = current_user.id
     @transaction.location_id = params[:transaction][:location_id]
     if @transaction.save
-      redirect_to dashboard_index_path
+      csv_string = CSV.generate do |csv|
+        csv << ["Address", "MLS Number", "Status","Close Date","More Info","Buyer","Seller","List price","Sale price","Commission Amount","Commission Summary"]
+        csv << [@transaction.transaction_name, @transaction.transaction_number, @transaction.status, @transaction.close_date,@transaction.more_info,@transaction.buyer_name,@transaction.seller_name,@transaction.list_price,@transaction.sale_price,@transaction.total_commission,@transaction.commission_summary]
+      end
+
+      send_data csv_string,
+        :type => 'text/csv; charset=iso-8859-1; header=present',
+        :disposition => "attachment; filename=trasactions.csv"
     else
       render :action => 'new'
     end
   end
 
+  def edit
+    @transaction = Transaction.find(params[:id])
+  end
+
+  def update
+    @transaction = Transaction.find(params[:id])
+    @transaction.update_attributes(params[:transaction])
+    if @transaction.save
+      redirect_to dashboard_index_path
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def show
+    @transaction = Transaction.find(params[:id])
+  end
+
   def search
+    @transactions = Transaction.where("transaction_name = '#{params[:search]}'")
     respond_to do |format|
       format.js
     end
+  end
+
+  def advance_search
+
+  end
+
+  def filter
+    
   end
 
   def location_search

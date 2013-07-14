@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.12'
+
+gem "qbwc"
+gem 'best_in_place'
 gem 'thin' 
 gem 'sqlite3'
 gem 'bootstrap-sass'

@@ -1,83 +1,98 @@
-<div style="border-top: 10px;">
-  <h3>Office Docs</h3><br />
 
-<table>
-  <tr>
-    <th>
-      <div class="search-button" style="border-left: 40px;" >
-        <%= button_tag "Quick search", :class => "btn btn-success" %>
+<div id="rightColumn">
+  <div class="contentbox">
+    <h1>Office Docs</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <h3><em>Forms, disclosures, and listing presentations available to the entire company.</em></h3>
+                <div class="unreviewedBox page-transactionsN">
+                  <div class="unreviewedBoxContent">
+                    <input class="btn-quickSearch active" title="Quick Search" value="Quick Search" type="submit" />
+                    <p>
+<%#*<input class="input-searchTransactions" title="Search by Document name" placeholder="Search by Document name" type="text" />%>
+<%#*<input class="btn-searchDocs" title="Search Docs" value="Search Docs" type="submit" />%>
+                      <%= form_tag office_documents_path, :method => :get, :remote => true do  %>
+                      <p>
+                        <%= text_field_tag :query  %>
+                      </p>
+                      <p class="button">
+                        <%= submit_tag "Search", :class => "btn-searchDocs", :title => "Search Docs", :value => "Search Docs", :type => "submit"%>
+                      </p>
+                    <% end %>
+                    </p>
+                  </div>
+                </div>
+                <div id="documents-search">
+                  <p>Only active Documents are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></p>
+                  <div class="contentbox">
+                    <h1>
+                      <div class="column w5">Info</div>
+                      <div class="column w30">Contract Forms</div>
+                      <div class="column w12">Comments</div>
+                      <div class="column w20">Added By</div>
+                      <div class="column w20">Added On</div>
+                      <div class="column last">Actions</div>
+                    </h1>
+                    <div class="box">
+                      <% @docs.each do |doc| %>
+                        <div class="tableTransaction">
+                          <div class="transactionrow">
+                            <div class="column w5"><div class="icon-pdf"></div></div>
+                            <div class="column w30"><%= doc.document_file_name %></div>
+                            <div class="column w12"><div class="icon-comment"></div></div>
+                            <div class="column w20"><%= current_user.email %></div>
+                            <div class="column w20">Dec 19, 12</div>
+                            <div class="column last">
+                              <span class="btn-action admin">
+                                <em class="tooltip-container"><span>Action</span>
+                                  <strong class="tooltip">
+                                    <ul class="list-tooltip">
+                                      <li class="icon-download"><a title="Download" href="#">Download</a></li>
+                                      <li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>
+                                      <li class="icon-delete"><%= link_to "Delete", document_path(doc), :method => "DELETE" %></li>
+                                    </ul>
+                                    <i class="top-arrow"></i>
+                                  </strong>
+                                </em>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="clearFix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </th>
-  </tr>
-</table>
-
-<br /><br />
-<% @locations = Location.all %>
-<% @documents = Document.all %>
-<% @checklists = Checklist.all %>
-
-<div id="search-bordy" style="border:solid black 1px;background-color:#F2F2F2;height:50px">
-   <%= form_tag transaction_search_transactions_path, :method => :get, :remote => true do  %>
-      <%= text_field_tag :search  %>
-      <%= submit_tag "Search Transactions", :class => "btn btn-success" %>
-   <% end %>
+    </div>
+  </div>
+  <div class="clearFix"></div>
+</div>
+</div>
+<div class="clearFix"></div>
 </div>
 
-<div id="advanced-search-bordy" style="border:solid black 1px;background-color:#F2F2F2;height:140px">
-   Showing Purchase - Buyer Agreement transactions from dine-media with Incomplete checklists. View all active transactions → <br /><br />
-   <%= form_tag transaction_search_transactions_path, :method => :get, :remote => true do %>
-      <%= text_field_tag :search, 'Address, agent or MLS.' %>
-      <%= text_field_tag :search  %>
-      <%= text_field_tag :search  %><br />
-      <%= select_tag "listings", options_from_collection_for_select(@documents, "id","document_type") %>
-      <%= text_field_tag :search  %>
-      <%= text_field_tag :search  %>
-      <%= submit_tag "Search Transactions", :class => "btn btn-success" %>
-   <% end %>
-</div>
-
-<div id="filter" style="border:solid black 1px;background-color:#F2F2F2;height:50px">
-   <%= form_tag transaction_search_transactions_path, :method => :get, :remote => true do  %>
-      <%= select_tag "locations", options_from_collection_for_select(@locations, "id", "location") %>
-      <%= select_tag "listings", options_from_collection_for_select(@documents, "id", "document_type") %>
-      <%= select_tag "listings", options_from_collection_for_select(@checklists, "id", "name") %>
-      <%= submit_tag "Search Transactions", :class => "btn btn-success" %>
-   <% end %>
-</div>
-
-<div id="transaction_search"></div>
-</div>
-
-<script>
-  $(document).ready(function(){
-    $("#search-bordy").hide();
-    $(".search-button").click(function(){
-      $("#advanced-search-bordy").hide();
-      $("#filter").hide();
-      $("#search-bordy").toggle(800);
-      $("#search-bordy").css("background-color","#F2F2F2");
+<script type="text/javascript" language="javascript">
+  jQuery(document).ready(function () {
+    jQuery('#comment').click(function () {
+      jQuery('#commentBox').slideToggle('slow', function () {})
+    });
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
     });
   });
-
-  $(document).ready(function(){
-    $("#advanced-search-bordy").hide();
-    $(".advanced-search-button").click(function(){
-      $("#search-bordy").hide();
-      $("#filter").hide();
-      $("#advanced-search-bordy").toggle(800);
-      $("#advanced-search-bordy").css("background-color","#F2F2F2");
-    });
-  });
-
-  $(document).ready(function(){
-    $("#filter").hide();
-    $(".filter").click(function(){
-      $("#search-bordy").hide();
-      $("#advanced-search-bordy").hide();
-      $("#filter").toggle(800);
-      $("#filter").css("background-color","#F2F2F2");
-    });
-  });
-
 </script>
- 
+
