@@ -3,6 +3,7 @@ gem 'rails', '3.2.12'
 
 gem 'best_in_place'
 gem 'capistrano'
+gem 'rvm-capistrano'
 gem 'thin' 
 gem 'sqlite3'
 gem 'bootstrap-sass'
