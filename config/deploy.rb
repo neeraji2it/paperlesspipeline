@@ -3,6 +3,7 @@ require 'capistrano/ext/multistage'
 require 'bundler/capistrano'
 require 'rvm/capistrano'
 
+
 set :application, "paperlesspipeline"
 set :repository,  "git@github.com:neeraji2it/paperlesspipeline.git"
 set :scm, :git
