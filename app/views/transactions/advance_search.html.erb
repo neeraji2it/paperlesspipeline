@@ -16,7 +16,7 @@
                     <input class="btn-advanceSearch active" title="Advance search" value="Advance search" type="submit" />
                     <input class="btn-filter" title="Filter" value="Filter" type="submit" />
                     <ul class="list-advanceSearch">
-                      <%= form_for '', :url => transaction_advance_search_transactions_path, :method => "GET", :remote => true do |f| %>
+                      <%= form_for '', :url => advance_search_transactions_path, :method => "GET", :remote => true do |f| %>
                         <li>
                           <p>Advance Search</p>
                           <input title="Advance Search" placeholder="Search by Address, Agents or MLS" type="text" />
