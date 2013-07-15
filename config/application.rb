@@ -44,6 +44,7 @@ module Paperlesspipeline
     config.active_support.escape_html_entities_in_json = true
 
     config.assets.precompile += ['style.css']
+    config.assets.precompile << '*.js'
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
