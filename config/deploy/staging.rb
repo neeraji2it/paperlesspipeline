@@ -4,6 +4,8 @@ set :deploy_to, "/var/www/websites/paperlesspipeline_staging"
 
 set :user, "rails"
 set :use_sudo, false
+set :repository,  "git@github.com:neeraji2it/paperlesspipeline.git"
+ssh_options[:keys] = ["/home/mohan/Desktop/mykey.2.pem"]
 
 set :rails_env, "staging"
 role :app, "ec2-54-245-14-77.us-west-2.compute.amazonaws.com"
