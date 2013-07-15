@@ -6,12 +6,15 @@
 
       <title>Manage Locations</title>
       <%= stylesheet_link_tag    "application", "default" %>
-      <%= stylesheet_link_tag "default" %>
 
-      <%= javascript_include_tag "application", "jquery_002" %>
+      <%= javascript_include_tag "application", "assets/timepicker" %>
+      <%= stylesheet_link_tag "/assets/timepicker/jquery-ui-timepicker-addon", "/assets/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css" %>
+    <%= javascript_include_tag "/assets/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js",
+      "/assets/timepicker/jquery-ui-timepicker-addon", "countdown_timer" %>
       <%= csrf_meta_tags %>
-      <%= notice %>
-      <%= alert %>
+      <div id="flash">
+        <%= render :partial => 'layouts/flash', :object => flash %>
+      </div>
   </head>
 
   <body>

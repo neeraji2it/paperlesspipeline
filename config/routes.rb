@@ -51,6 +51,7 @@ Paperlesspipeline::Application.routes.draw do
       get :location_search
       get :search
       get :advance_search
+      get :transaction_advance_search
       get :filter
       get :transaction_search
       get :export_transactions

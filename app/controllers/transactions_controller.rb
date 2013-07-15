@@ -80,7 +80,19 @@ class TransactionsController < ApplicationController
   end
 
   def advance_search
+    @transactions = Transaction.where("user_id = '#{current_user.id}'")
+    if request.xhr?
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
 
+  def transaction_advance_search
+    @transactions = Transaction.where("close_date = '#{params[:close_date]}'")
+    respond_to do |format|
+      format.js
+    end
   end
 
   def filter
