@@ -6,7 +6,12 @@
 
       <title>Manage Locations</title>
       <%= stylesheet_link_tag    "application", "default" %>
+      <%= javascript_include_tag "vendor/custom.modernizr" %>
+
       <%= javascript_include_tag "application" %>
+      <%= stylesheet_link_tag "timepicker/jquery-ui-timepicker-addon", "jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css" %>
+      <%= javascript_include_tag "jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js",
+        "timepicker/jquery-ui-timepicker-addon" %>
       <%= csrf_meta_tags %>
       <div id="flash">
         <%= render :partial => 'layouts/flash', :object => flash %>
