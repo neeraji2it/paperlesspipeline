@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
+
+
+Location.create(:name => 'Bangalore',:user_id => 'current_user.id')
+Location.create(:name => 'Tumkur',:user_id => 'current_user.id')
+Location.create(:name => 'Mysore',:user_id => 'current_user.id')
+Location.create(:name => 'India',:user_id => 'current_user.id')
+Location.create(:name => 'China',:user_id => 'current_user.id')
