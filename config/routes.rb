@@ -1,6 +1,5 @@
 Paperlesspipeline::Application.routes.draw do
 
-  match 'apis/quickbooks/:action', :controller => 'qbwc', :as => 'quickbooks'
 
   devise_for :users
 
