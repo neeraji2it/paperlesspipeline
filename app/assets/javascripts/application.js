@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require best_in_place
+
+$(function(){ $(document).foundation(); });
 
 
 function remove_fields(link) {
@@ -35,3 +38,5 @@ $(document).ready(function() {
 });
 
 
+
+$(function(){ $(document).foundation(); });

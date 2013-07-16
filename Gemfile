@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.12'
 
+gem 'twitter-bootstrap-rails' , '>= 2.1.6'
 gem 'best_in_place'
 gem 'capistrano'
 gem 'rvm-capistrano'
@@ -16,7 +17,6 @@ gem 'aws-sdk'
 gem 'thinking-sphinx', '2.0.10'
 gem 'jquery-rails'
 gem "jquery-fileupload-rails"
-gem 'twitter-bootstrap-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -30,4 +30,5 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'zurb-foundation'
 end
