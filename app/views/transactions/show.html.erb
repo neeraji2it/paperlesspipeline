@@ -1,26 +1,21 @@
+<div class="contentbox homebox">
+  <div class="contentbox">
+    <div class="contentbox">
+      <h2><b><%= @transaction.transaction_name %></b></h2> &nbsp &nbsp&nbsp&nbsp add by <%= current_user.first_name %>
+      <br /><br /><br /><br /><br />
+      <b>MLS #:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @transaction.id %><br />
+      <b>Status:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.status %><br />
+      <b>Acceptance Date:</b> &nbsp&nbsp&nbsp&nbsp <%= @transaction.id %><br />
+      <b>Close Date:</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <%= @transaction.expiration_date %><br />
+      <b>List Price:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.list_price %><br />
+      <b>Sale Price:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.sale_price %><br />
+      <b>Buyer:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.buyer_name %><br />
+      <b>Seller:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.seller_name %><br />
 
+      <br /><br /><br /><br />
+      <b>More Information:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.more_info %><br />
 
-
-<div id="rightColumn">
-  <div class="contentbox homebox">
-      <div class="contentbox">
-        <div class="contentbox">
-          <h2><b><%= @transaction.transaction_name %></b></h2> &nbsp &nbsp&nbsp&nbsp add by <%= current_user.first_name %>
-          <br /><br /><br /><br /><br />
-          <b>MLS #:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @transaction.id %><br />
-          <b>Status:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.status %><br />
-          <b>Acceptance Date:</b> &nbsp&nbsp&nbsp&nbsp <%= @transaction.id %><br />
-          <b>Close Date:</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <%= @transaction.expiration_date %><br />
-          <b>List Price:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.list_price %><br />
-          <b>Sale Price:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.sale_price %><br />
-          <b>Buyer:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.buyer_name %><br />
-          <b>Seller:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.seller_name %><br />
-
-          <br /><br /><br /><br />
-          <b>More Information:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.more_info %><br />
-
-        </div>
-      </div>
-    <div class="clearFix"></div>
+    </div>
   </div>
+  <div class="clearFix"></div>
 </div>

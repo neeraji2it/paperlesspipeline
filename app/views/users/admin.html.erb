@@ -1,15 +1,14 @@
-<div id="rightColumn">
-  <div class="contentbox">
-    <div class="right-location">
-      <ul class="menu-checklist">
-        <li class="icon-managelocations active"><%= link_to "Manage Locations", manage_locations_user_path(current_user.id) %></li>
-        <li class="icon-manageusers"><%= link_to "Manage Users", manage_users_user_path(current_user.id) %></li>
-        <li class="icon-checklisttemplates"><%= link_to "Checklist Templates", checklists_path %></li>
-      </ul>
-    </div>
+<div class="contentbox">
+  <div class="right-location">
+    <ul class="menu-checklist">
+      <li class="icon-managelocations active"><%= link_to "Manage Locations", manage_locations_user_path(current_user.id) %></li>
+      <li class="icon-manageusers"><%= link_to "Manage Users", manage_users_user_path(current_user.id) %></li>
+      <li class="icon-checklisttemplates"><%= link_to "Checklist Templates", checklists_path %></li>
+    </ul>
   </div>
+</div>
 
-  <div class="dashboard-content" style="margin-top:20px;">
+<div class="dashboard-content" style="margin-top:20px;">
   <h2>Admin</h2>
   <hr></hr>
   <div style="background-color:#d4d4d4;margin-left:20px;float:left;">
@@ -18,40 +17,38 @@
 
   <%= form_for @user, :url => user_path(current_user), :method => 'PUT', :html => { :multipart => true } do |f| %>
 
-      <table>
-        <tr>
-          <td><%= f.label "Name:" %></td>
-          <td><%= f.text_field :name %></td>
-        </tr>
-        <tr>
-          <td><%= f.check_box :allow_pdf, :checked => true %>
-         </td>
-         <td>Only allow PDF documents</td>
-        </tr>
-        <tr>
-          <td><%= f.check_box :email_transaction_reminders, :checked => false %>
-         </td>
-         <td>Email agents expiring and closing transaction reminders</td>
-        </tr>
-        <tr>
-          <td><%= f.check_box :entered_docs_feature %>
-         </td>
-         <td>Enable Entered Docs feature</td>
-        </tr>
-        <tr>
-          <td><%= f.check_box :duplicate_document_uploads, :checked => true %>
-         </td>
-         <td>Prevent duplicate document uploads</td>
-        </tr>
+    <table>
+      <tr>
+        <td><%= f.label "Name:" %></td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td><%= f.check_box :allow_pdf, :checked => true %>
+        </td>
+        <td>Only allow PDF documents</td>
+      </tr>
+      <tr>
+        <td><%= f.check_box :email_transaction_reminders, :checked => false %>
+        </td>
+        <td>Email agents expiring and closing transaction reminders</td>
+      </tr>
+      <tr>
+        <td><%= f.check_box :entered_docs_feature %>
+        </td>
+        <td>Enable Entered Docs feature</td>
+      </tr>
+      <tr>
+        <td><%= f.check_box :duplicate_document_uploads, :checked => true %>
+        </td>
+        <td>Prevent duplicate document uploads</td>
+      </tr>
 
-       <tr>
-          <td><%= f.label "Photo" %></td>
-          <td><%= f.file_field :avatar %></td>
-       </tr>
-
+      <tr>
+        <td><%= f.label "Photo" %></td>
+        <td><%= f.file_field :avatar %></td>
+      </tr>
     </table>
     <br />
-
     <div style="background-color:#d4d4d4;margin-left:20px;float:left;">
       <b>Apperance</b>
     </div><br /><br />
@@ -59,11 +56,7 @@
     <%= link_to image_tag(current_user.avatar.url(:original)) %><br /><br /><br />
     <%= f.submit "Save Settings", :class => "btn btn-success" %>
     <%= link_to "Cancel" %>
-
   <% end %>
-
-</div>
-
 </div>
 <div class="clearFix"></div>
 </div>

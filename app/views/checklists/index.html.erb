@@ -1,68 +1,65 @@
-
-<div id="rightColumn">
-  <div class="contentbox">
-    <div class="right-location">
-      <ul class="menu-checklist">
-        <li class="icon-managelocations"><%= link_to "Manage Locations", manage_locations_user_path(current_user.id) %></li>
-        <li class="icon-manageusers"><%= link_to "Manage Users", manage_users_user_path(current_user.id) %></li>
-        <li class="icon-checklisttemplates active"><a title="Checklist Templates" href="#">Checklist Templates</a></li>
-      </ul>
-    </div>
-    <h1><em><input class="btn-addTemplate" title="Add Template" type="submit" value="Add Template" /></em>Checklist Templates</h1>
-    <div class="box">
-      <div class="bt">
-        <div class="br">
-          <div class="bb">
-            <div class="bl">
-              <div class="con">
-                <div class="tableTransaction">
-                  <div class="transactionrow">
-                    <div class="column w30">Checklist</div>
-                    <div class="column w30">Location</div>
-                    <div class="column w20">Created By</div>
-                    <div class="column last">Actions</div>
-                  </div>
-                  <div class="transactionrow">
-                    <div class="column w30">New Contract Checklist</div>
-                    <div class="column w30">Elite Real Estate</div>
-                    <div class="column w20">Justin Brown</div>
-                    <div class="column last">
-                      <span class="btn-action admin">
-                        <em class="tooltip-container"><span>Action</span>
-                          <strong class="tooltip">
-                            <ul class="list-tooltip">
-                              <li class="icon-edit"><a title="Edit Template" href="#">Edit Template</a></li>
-                              <li class="icon-copy"><a title="Copy Template" href="#">Copy Template</a></li>
-                              <li class="icon-delete"><a title="Deactivate User" href="#">Deactivate User</a></li>
-                            </ul>
-                            <i class="top-arrow"></i>
-                          </strong>
-                        </em>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="transactionrow">
-                    <div class="column w30">New Contract Checklist</div>
-                    <div class="column w30">Elite Real Estate</div>
-                    <div class="column w20">Justin Brown</div>
-                    <div class="column last">
-                      <span class="btn-action admin">
-                        <em class="tooltip-container"><span>Action</span>
-                          <strong class="tooltip">
-                            <ul class="list-tooltip">
-                              <li class="icon-edit"><a title="Edit Template" href="#">Edit Template</a></li>
-                              <li class="icon-copy"><a title="Copy Template" href="#">Copy Template</a></li>
-                              <li class="icon-delete"><a title="Deactivate User" href="#">Deactivate User</a></li>
-                            </ul>
-                            <i class="top-arrow"></i>
-                          </strong>
-                        </em>
-                      </span>
-                    </div>
+<div class="contentbox">
+  <div class="right-location">
+    <ul class="menu-checklist">
+      <li class="icon-managelocations"><%= link_to "Manage Locations", manage_locations_user_path(current_user.id) %></li>
+      <li class="icon-manageusers"><%= link_to "Manage Users", manage_users_user_path(current_user.id) %></li>
+      <li class="icon-checklisttemplates active"><a title="Checklist Templates" href="#">Checklist Templates</a></li>
+    </ul>
+  </div>
+  <h1><em><input class="btn-addTemplate" title="Add Template" type="submit" value="Add Template" /></em>Checklist Templates</h1>
+  <div class="box">
+    <div class="bt">
+      <div class="br">
+        <div class="bb">
+          <div class="bl">
+            <div class="con">
+              <div class="tableTransaction">
+                <div class="transactionrow">
+                  <div class="column w30">Checklist</div>
+                  <div class="column w30">Location</div>
+                  <div class="column w20">Created By</div>
+                  <div class="column last">Actions</div>
+                </div>
+                <div class="transactionrow">
+                  <div class="column w30">New Contract Checklist</div>
+                  <div class="column w30">Elite Real Estate</div>
+                  <div class="column w20">Justin Brown</div>
+                  <div class="column last">
+                    <span class="btn-action admin">
+                      <em class="tooltip-container"><span>Action</span>
+                        <strong class="tooltip">
+                          <ul class="list-tooltip">
+                            <li class="icon-edit"><a title="Edit Template" href="#">Edit Template</a></li>
+                            <li class="icon-copy"><a title="Copy Template" href="#">Copy Template</a></li>
+                            <li class="icon-delete"><a title="Deactivate User" href="#">Deactivate User</a></li>
+                          </ul>
+                          <i class="top-arrow"></i>
+                        </strong>
+                      </em>
+                    </span>
                   </div>
                 </div>
-                <div class="clearFix"></div>
+                <div class="transactionrow">
+                  <div class="column w30">New Contract Checklist</div>
+                  <div class="column w30">Elite Real Estate</div>
+                  <div class="column w20">Justin Brown</div>
+                  <div class="column last">
+                    <span class="btn-action admin">
+                      <em class="tooltip-container"><span>Action</span>
+                        <strong class="tooltip">
+                          <ul class="list-tooltip">
+                            <li class="icon-edit"><a title="Edit Template" href="#">Edit Template</a></li>
+                            <li class="icon-copy"><a title="Copy Template" href="#">Copy Template</a></li>
+                            <li class="icon-delete"><a title="Deactivate User" href="#">Deactivate User</a></li>
+                          </ul>
+                          <i class="top-arrow"></i>
+                        </strong>
+                      </em>
+                    </span>
+                  </div>
+                </div>
               </div>
+              <div class="clearFix"></div>
             </div>
           </div>
         </div>
@@ -72,8 +69,6 @@
 </div>
 <div class="clearFix"></div>
 </div>
-
-<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>
 <script type="text/javascript" language="javascript">
   jQuery(document).ready(function () {
     jQuery('#leftColumnShow').click(function () {

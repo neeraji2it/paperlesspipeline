@@ -1,30 +1,28 @@
-
-<div id="rightColumn">
-  <div class="contentbox">
-    <div class="right-location">
-      <ul class="menu-checklist">
-        <li class="icon-managelocations"><%= link_to "Manage Locations", manage_locations_user_path(current_user.id) %></li>
-        <li class="icon-manageusers active"><a title="Manage Users" href="#">Manage Users</a></li>
-        <li class="icon-checklisttemplates"><%= link_to "Checklist Templates", checklists_path %></li>
-      </ul>
-    </div>
-    <h1><em><input class="btn-addUser" title="Add User" type="submit" value="Add User" /><%= link_to "AddUser", add_user_users_path %><input class="btn-downloadList" title="Download List" type="submit" value="Download List" /></em>Manage Users</h1>
-    <div class="box">
-      <div class="bt">
-        <div class="br">
-          <div class="bb">
-            <div class="bl">
-              <div class="con">
-                <div class="tableTransaction">
-                  <div class="transactionrow">
-                    <div class="column w30">User</div>
-                    <div class="column w20">Email</div>
-                    <div class="column">Role</div>
-                    <div class="column w20">Location</div>
-                    <div class="column w5">Active</div>
-                    <div class="column last">Actions</div>
-                  </div>
-                  <% @users.each do |user| %>
+<div class="contentbox">
+  <div class="right-location">
+    <ul class="menu-checklist">
+      <li class="icon-managelocations"><%= link_to "Manage Locations", manage_locations_user_path(current_user.id) %></li>
+      <li class="icon-manageusers active"><a title="Manage Users" href="#">Manage Users</a></li>
+      <li class="icon-checklisttemplates"><%= link_to "Checklist Templates", checklists_path %></li>
+    </ul>
+  </div>
+  <h1><em><%= link_to "AddUser", add_user_users_path %></em>Manage Users</h1>
+  <div class="box">
+    <div class="bt">
+      <div class="br">
+        <div class="bb">
+          <div class="bl">
+            <div class="con">
+              <div class="tableTransaction">
+                <div class="transactionrow">
+                  <div class="column w30">User</div>
+                  <div class="column w20">Email</div>
+                  <div class="column">Role</div>
+                  <div class="column w20">Location</div>
+                  <div class="column w5">Active</div>
+                  <div class="column last">Actions</div>
+                </div>
+                <% @users.each do |user| %>
                   <div class="transactionrow">
                     <div class="column w30"><%= user.email %> </div>
                     <div class="column w20"><%= user.email %> </div>
@@ -45,11 +43,9 @@
                       </span>
                     </div>
                   </div>
-                  <% end %>
-                  
-                </div>
-                <div class="clearFix"></div>
+                <% end %>
               </div>
+              <div class="clearFix"></div>
             </div>
           </div>
         </div>
@@ -59,7 +55,6 @@
 </div>
 <div class="clearFix"></div>
 </div>
-
 <%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
 <script type="text/javascript" language="javascript">
   jQuery(document).ready(function () {

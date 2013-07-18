@@ -1,78 +1,335 @@
-<h4>
-  Working Docs<br />
-</h4>
-<div id="search"></div>
-<table width="100%" cellpadding="5" id="docs" border="1" style="margin-left: 20px; margin-top: 30px;">
-  <tr style="font-weight: bold;">
-    <td>Info</td>
-    <td>Working Docs</td>
-    <td>Added By</td>
-    <td>Added On</td>
-    <td>Comments</td>
-    <td>Actions</td>
-  </tr>
-  <% for document in @documents %>
-    <tr>
-      <td style="width: 100px;"><%= document.document_file_name %></td>
-      <td><%= document.document_file_name %></td>
-      <%#*<td><%= document.user.email %></td>%>
-      <td><%= time_ago_in_words(document.created_at) %></td>
-      <% if document.comments.present? %>
-        <td><%= link_to "Comments", document_comments_path(document), :remote => true %></td>
-      <% else %>
-        <td><%= link_to "Comments", new_document_comment_path(document), :remote => true %></td>
-      <% end %>
-      <td id="aaa_<%= document.id %>" class="btn"><%= "Actions" %></td>
-    </tr>
-    <tr>
-      <td><div id="comment_<%= document.id %>" style="width: 300px;"></div></td>
-    </tr>
-    <div id="dddd_<%= document.id %>" style="display: none;">
-      <%= link_to "Delete", document_path(document), :method => :delete, :remote => true, :confirm => "are you sure" %>
-    </div>
-    <script>
-      $("#aaa_<%= document.id %>").click(function(){
-        $("#dddd_<%= document.id %>").show();
-      })
-    </script>
-  <% end %>
-</table>
-<% if @transactions.present? %>
-<table width="100%" cellpadding="5" id="docs" border="1" style="margin-top: 30px;">
-  <tr>
-    <td>Transaction</td>
-    <td>Status</td>
-    <td>Complete</td>
-    <td>Agents</td>
-    <td>Location</td>
-    <td>Close Date</td>
-    <td>Actions</td>
-  </tr>
-  <% if @transactions.present? %>
-    <% @transactions.each do |transaction| %>
-      <tr>
-        <td style="width: 100px;"><%= transaction.user.email %></td>
-        <td><%= transaction.status %></td>
-        <td></td>
-        <td></td>
-        <td><%= transaction.location.location %></td>
-        <td><%= transaction.close_date %></td>
-        <td id="aaa_<%= transaction.id %>" class="btn"><%= "Actions" %></td>
-      </tr>
-      <div id="dddd_<%= transaction.id %>" style="display: none;">
-        <%= link_to "Delete", transaction_path(transaction), :method => :delete, :remote => true, :confirm => "are you sure" %>
+<div id="rightColumn">
+  <div class="contentbox homebox">
+    <h1>Transaction Stats</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <div class="transactionbox">
+                  <h2>March</h2>
+                  <div class="frow">
+                    <div>Listing</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Pending</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Closed</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                </div>
+                <div class="transactionbox">
+                  <h2>February</h2>
+                  <div class="frow">
+                    <div>Listing</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Pending</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Closed</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$21,894</div>
+                  </div>
+                </div>
+                <div class="transactionbox">
+                  <h2>2013 Total</h2>
+                  <div class="frow">
+                    <div>Listing</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Pending</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Closed</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$21,894</div>
+                  </div>
+                </div>
+                <div class="clearFix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <script>
-        $("#aaa_<%= transaction.id %>").click(function(){
-          $("#dddd_<%= transaction.id %>").show();
-        })
-      </script>
-    <% end %>
-  <% end %>
-  
-</table>
-<% end %>
-
-
-
-
+    </div>
+  </div>
+  <div class="contentbox">
+    <h1><em><a href="#" title="View All" class="btn-viewall"></a></em>2 Recent Transactions with Incomplete Checklists</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <div class="tableTransaction">
+                  <div class="transactionrow">
+                    <div class="column w30">Transaction</div>
+                    <div class="column">Status</div>
+                    <div class="column w8">Complete</div>
+                    <div class="column">Agents</div>
+                    <div class="column w20">Location</div>
+                    <div class="column">Close Date</div>
+                    <div class="column last">Actions</div>
+                  </div>
+                  <div class="transactionrow">
+                    <div class="column w30">6421 Borasco Dr. #3208<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column">Rental<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column w8"><img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column">
+                      <span class="icon-agent">
+                        <em class="tooltip-container">
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="alcent">Salley Ballew</li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                      <img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column w20">Elite Real Estate<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column">Dec 14, 12<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column last">
+                      <span class="btn-action">
+                        <em class="tooltip-container"><span>Action</span>
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
+                              <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="transactionrow">
+                    <div class="column w30">3740 Ocean Beach Blvd #204<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column">Under Contract<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column w8">
+                      <div class="completebox">
+                        <em class="tooltip-container"><abbr>7/8</abbr>
+                          <strong class="tooltip">
+                            <h6>3740 Ocean Beach</h6>
+                            <p>List Price $00</p>
+                            <h4>Incomplete Task</h4>
+                            <p><span>New Contract Check List<br />
+																	   Closed out in MLS</span></p>
+                            <h4>Recent Notes:</h4>
+                            <p><span>Lorem Ipsum is simply dummy text of the printing
+																	and typesetting industry.</span></p>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </div>
+                      <img alt="" title="" src="images/spacer.png" />
+                    </div>
+                    <div class="column">
+                      <span class="icon-agent">
+                        <em class="tooltip-container">
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="alcent">Salley Ballew</li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                      <img alt="" title="" src="images/spacer.png" />
+                    </div>
+                    <div class="column w20">Elite Real Estate<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column">Mar 06, 13<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column last">
+                      <span class="btn-action">
+                        <em class="tooltip-container"><span>Action</span>
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
+                              <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearFix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contentbox">
+    <h1>2 Transactions Past Their Closing Date</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <div class="tableTransaction">
+                  <div class="transactionrow">
+                    <div class="column w30">Transaction</div>
+                    <div class="column">Status</div>
+                    <div class="column w8">Complete</div>
+                    <div class="column">Agents</div>
+                    <div class="column w20">Location</div>
+                    <div class="column">Close Date</div>
+                    <div class="column last">Actions</div>
+                  </div>
+                  <div class="transactionrow">
+                    <div class="column w30">6421 Borasco Dr. #3208<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column">Rental<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column w8"><img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column">
+                      <span class="icon-agent">
+                        <em class="tooltip-container">
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="alcent">Salley Ballew</li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                      <img alt="" title="" src="images/spacer.png" />
+                    </div>
+                    <div class="column w20">Elite Real Estate<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column">Dec 14, 12<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column last">
+                      <span class="btn-action">
+                        <em class="tooltip-container"><span>Action</span>
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
+                              <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="transactionrow">
+                    <div class="column w30">3740 Ocean Beach Blvd #204<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column">Under Contract<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column w8">
+                      <div class="completebox">
+                        <em class="tooltip-container"><abbr>7/8</abbr>
+                          <strong class="tooltip">
+                            <h6>3740 Ocean Beach</h6>
+                            <p>List Price $00</p>
+                            <h4>Incomplete Task</h4>
+                            <p><span>New Contract Check List<br />
+																	   Closed out in MLS</span></p>
+                            <h4>Recent Notes:</h4>
+                            <p><span>Lorem Ipsum is simply dummy text of the printing
+																	and typesetting industry.</span></p>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </div>
+                      <img alt="" title="" src="images/spacer.png" />
+                    </div>
+                    <div class="column">
+                      <span class="icon-agent">
+                        <em class="tooltip-container">
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="alcent">Salley Ballew</li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                      <img alt="" title="" src="images/spacer.png" />
+                    </div>
+                    <div class="column w20">Elite Real Estate<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column">Mar 06, 13<img alt="" title="" src="images/spacer.png" /></div>
+                    <div class="column last">
+                      <span class="btn-action">
+                        <em class="tooltip-container"><span>Action</span>
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
+                              <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearFix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contentbox">
+    <h1>Transactions Closing in the Next 30 Days</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+										No transactions closing in the next 30 days
+                <div class="clearFix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

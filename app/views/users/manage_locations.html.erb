@@ -1,78 +1,71 @@
-
-<div id="rightColumn">
-  <div class="contentbox">
-    <div class="right-location">
-      <ul class="menu-checklist">
-        <li class="icon-managelocations active"><a title="Manage Locations" href="#">Manage Locations</a></li>
-        <li class="icon-manageusers"><%= link_to "Manage Users", manage_users_user_path(current_user.id) %></li>
-        <li class="icon-checklisttemplates"><%= link_to "Checklist Templates", checklists_path %></li>
-      </ul>
-    </div>
-    <h1><em>
-        <input class="btn-addLocation" title="Add Template" type="submit" value="Add Template" />
-      </em>Manage Locations</h1>
-    <div class="box">
-      <div class="bt">
-        <div class="br">
-          <div class="bb">
-            <div class="bl">
-              <div class="con">
-                <div class="tableTransaction">
-                  <p class="alcent">
-                    <%= form_for :location, :url => location_path(current_user), :method => 'PUT', :remote => true do |f| %>
+<div class="contentbox">
+  <div class="right-location">
+    <ul class="menu-checklist">
+      <li class="icon-managelocations active"><a title="Manage Locations" href="#">Manage Locations</a></li>
+      <li class="icon-manageusers"><%= link_to "Manage Users", manage_users_user_path(current_user.id) %></li>
+      <li class="icon-checklisttemplates"><%= link_to "Checklist Templates", checklists_path %></li>
+    </ul>
+  </div>
+  <h1><em>
+    </em>Manage Locations</h1>
+  <div class="box">
+    <div class="bt">
+      <div class="br">
+        <div class="bb">
+          <div class="bl">
+            <div class="con">
+              <div class="tableTransaction">
+                <p class="alcent">
+                  <%= form_for :location, :url => location_path(current_user), :method => 'PUT', :remote => true do |f| %>
                     <%= f.text_field :name, :class => "input-locationName", :placeholder => "Location Name" %>
                     <%= f.submit "Add Location", :class => "btn-add" %>
-                    <% end %>
-                  </p>
-                  <div class="transactionrow first">
-                    <div class="column w30">Location</div>
-                    <div class="column w20">Users</div>
-                    <div class="column w20">Transactions</div>
-                    <div class="column w20">Working Docs</div>
-                    <div class="column last">Actions</div>
-                  </div>
-                  <% @locations.each do |location| %>
-                    <div class="transactionrow">
-                      <div class="column w30"><%= location.name %></div>
-                      <div class="column w20"><%= Location.where("user_id = '#{location.user_id}' and name = '#{location.name}'").count %></div>
-                      <div class="column w20"><%= Transaction.where("location_id = '#{location.id}'").count %> </div>
-                      <div class="column"><%= Document.where("location_id = '#{location.id}'").count %></div>
-                      <div class="column last">
-                        <span class="btn-action">
-                          <em class="tooltip-container"><span>Action</span>
-                            <strong class="tooltip">
-                              <ul class="list-tooltip">
-                                <li class="icon-edit"><%= link_to "Edit", edit_location_path %></li>
-                                <li class="icon-delete"><%= link_to "Delete",location_path(location), :method => "DELETE" %></li>
-                              </ul>
-                              <i class="top-arrow"></i>
-                            </strong>
-                          </em>
-                        </span>
-                      </div>
-                    </div>
                   <% end %>
-                  </div>
-                  <div class="clearFix"></div>
+                </p>
+                <div class="transactionrow first">
+                  <div class="column w30">Location</div>
+                  <div class="column w20">Users</div>
+                  <div class="column w20">Transactions</div>
+                  <div class="column w20">Working Docs</div>
+                  <div class="column last">Actions</div>
                 </div>
+                <% @locations.each do |location| %>
+                  <div class="transactionrow">
+                    <div class="column w30"><%= location.name %></div>
+                    <div class="column w20"><%= Location.where("user_id = '#{location.user_id}' and name = '#{location.name}'").count %></div>
+                    <div class="column w20"><%= Transaction.where("location_id = '#{location.id}'").count %> </div>
+                    <div class="column"><%= Document.where("location_id = '#{location.id}'").count %></div>
+                    <div class="column last">
+                      <span class="btn-action">
+                        <em class="tooltip-container"><span>Action</span>
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="icon-edit"><%= link_to "Edit", edit_location_path %></li>
+                              <li class="icon-delete"><%= link_to "Delete",location_path(location), :method => "DELETE" %></li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                    </div>
+                  </div>
+                <% end %>
               </div>
+              <div class="clearFix"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="clearFix"></div>
-  </div>
-
-  <%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
-  <script type="text/javascript" language="javascript">
-    jQuery(document).ready(function () {
-      jQuery('#leftColumnShow').click(function () {
-        jQuery('#leftColumn').slideToggle('slow', function () {})
-      });
-      jQuery('#closeBox').click(function () {
-        jQuery('#leftColumn').slideToggle('slow', function () {})
-      });
+</div>
+<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+<script type="text/javascript" language="javascript">
+  jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
     });
-  </script>
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+  });
+</script>

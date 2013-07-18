@@ -1,95 +1,217 @@
+<div class="contentbox homebox">
+  <% if @documents.present? %>
+    <h1>Transaction Stats</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <div class="transactionbox">
+                  <h2><%= Time.now.strftime("%B") %></h2>
+                  <div class="frow">
+                    <div>Listing</div>
+                    <div><%=  current_user.transactions(Time.now.strftime("%B")).count %></div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$<%= current_user.total_commissioned %></div>
+                  </div>
+                  <div class="frow">
+                    <div>Pending</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Closed</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                </div>
+                <div class="transactionbox">
+                  <h2><%=  (Time.now-1.month).to_date.strftime("%B") %></h2>
+                  <div class="frow">
+                    <div>Listing</div>
+                    <div><%= current_user.transactions.where("created_at <= '#{1.month.ago}'").count %></div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$<%= current_user.total_commissioned - 40 %></div>
+                  </div>
+                  <div class="frow">
+                    <div>Pending</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Closed</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$21,894</div>
+                  </div>
+                </div>
+                <div class="transactionbox">
+                  <h2>2013 Total</h2>
+                  <div class="frow">
+                    <div>Listing</div>
+                    <div><%= current_user.transactions.all.count+1 %> </div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$<%= current_user.total_commissioned + 10 %></div>
+                  </div>
+                  <div class="frow">
+                    <div>Pending</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Closed</div>
+                    <div>0</div>
+                  </div>
+                  <div class="frow">
+                    <div>Commission</div>
+                    <div>$21,894</div>
+                  </div>
+                </div>
+                <div class="clearFix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contentbox">
+    <h1><em></em>2 Recent Transactions with Incomplete Checklists</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <div class="tableTransaction">
+                  <div class="transactionrow">
+                    <div class="column w30">Transaction</div>
+                    <div class="column">Status</div>
+                    <div class="column w8">Complete</div>
+                    <div class="column">Agents</div>
+                    <div class="column w20">Location</div>
+                    <div class="column">Close Date</div>
+                    <div class="column last">Actions</div>
+                  </div>
+                  <% @transactions.each do |i| %>
+                    <div class="transactionrow">
+                      <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column"><%= i.status %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column w8"><img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column">
+                        <span class="icon-agent">
+                          <em class="tooltip-container">
+                            <strong class="tooltip">
+                              <ul class="list-tooltip">
+                                <li class="alcent">Salley Ballew</li>
+                              </ul>
+                              <i class="top-arrow"></i>
+                            </strong>
+                          </em>
+                        </span>
+                        <img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column w20"><%= i.location.name %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column"><%= i.close_date %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column last">
+                        <span class="btn-action">
+                          <em class="tooltip-container"><span>Action</span>
+                            <strong class="tooltip">
+                              <ul class="list-tooltip">
+                                <li class="icon-zoomin"><%= link_to "ViewTransaction", transaction_path(i) %></li>
+                                <li class="icon-edit"><%= link_to "Edit", edit_transaction_path(i) %></li>
+                              </ul>
+                              <i class="top-arrow"></i>
+                            </strong>
+                          </em>
+                        </span>
+                      </div>
+                    </div>
+                  <% end %>
 
-<div id="rightColumn">
-  <div class="contentbox homebox">
-    <% if @documents.present? %>
-      <h1>Transaction Stats</h1>
-      <div class="box">
-        <div class="bt">
-          <div class="br">
-            <div class="bb">
-              <div class="bl">
-                <div class="con">
-                  <div class="transactionbox">
-                    <h2><%= Time.now.strftime("%B") %></h2>
-                    <div class="frow">
-                      <div>Listing</div>
-                      <div><%=  current_user.transactions(Time.now.strftime("%B")).count %></div>
-                    </div>
-                    <div class="frow">
-                      <div>Commission</div>
-                      <div>$<%= current_user.total_commissioned %></div>
-                    </div>
-                    <div class="frow">
-                      <div>Pending</div>
-                      <div>0</div>
-                    </div>
-                    <div class="frow">
-                      <div>Commission</div>
-                      <div>$0</div>
-                    </div>
-                    <div class="frow">
-                      <div>Closed</div>
-                      <div>0</div>
-                    </div>
-                    <div class="frow">
-                      <div>Commission</div>
-                      <div>$0</div>
-                    </div>
+                </div>
+                <div class="clearFix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contentbox">
+    <h1>2 Transactions Past Their Closing Date</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <div class="tableTransaction">
+                  <div class="transactionrow">
+                    <div class="column w30">Transaction</div>
+                    <div class="column">Status</div>
+                    <div class="column w8">Complete</div>
+                    <div class="column">Agents</div>
+                    <div class="column w20">Location</div>
+                    <div class="column">Close Date</div>
+                    <div class="column last">Actions</div>
                   </div>
-                  <div class="transactionbox">
-                    <h2><%=  (Time.now-1.month).to_date.strftime("%B") %></h2>
-                    <div class="frow">
-                      <div>Listing</div>
-                      <div><%= current_user.transactions.where("created_at <= '#{1.month.ago}'").count %></div>
+                  <% @passed_transactions.each do |i| %>
+                    <div class="transactionrow">
+                      <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column"><%= i.status %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column w8"><img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column">
+                        <span class="icon-agent">
+                          <em class="tooltip-container">
+                            <strong class="tooltip">
+                              <ul class="list-tooltip">
+                                <li class="alcent">Salley Ballew</li>
+                              </ul>
+                              <i class="top-arrow"></i>
+                            </strong>
+                          </em>
+                        </span>
+                        <img alt="" title="" src="/assets/spacer.png" />
+                      </div>
+                      <div class="column w20"><%= i.location.name %><img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column"><%= i.close_date  %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column last">
+                        <span class="btn-action">
+                          <em class="tooltip-container"><span>Action</span>
+                            <strong class="tooltip">
+                              <ul class="list-tooltip">
+                                <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
+                                <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
+                              </ul>
+                              <i class="top-arrow"></i>
+                            </strong>
+                          </em>
+                        </span>
+                      </div>
                     </div>
-                    <div class="frow">
-                      <div>Commission</div>
-                      <div>$<%= current_user.total_commissioned - 40 %></div>
-                    </div>
-                    <div class="frow">
-                      <div>Pending</div>
-                      <div>0</div>
-                    </div>
-                    <div class="frow">
-                      <div>Commission</div>
-                      <div>$0</div>
-                    </div>
-                    <div class="frow">
-                      <div>Closed</div>
-                      <div>0</div>
-                    </div>
-                    <div class="frow">
-                      <div>Commission</div>
-                      <div>$21,894</div>
-                    </div>
-                  </div>
-                  <div class="transactionbox">
-                    <h2>2013 Total</h2>
-                    <div class="frow">
-                      <div>Listing</div>
-                      <div><%= current_user.transactions.all.count+1 %> </div>
-                    </div>
-                    <div class="frow">
-                      <div>Commission</div>
-                      <div>$<%= current_user.total_commissioned + 10 %></div>
-                    </div>
-                    <div class="frow">
-                      <div>Pending</div>
-                      <div>0</div>
-                    </div>
-                    <div class="frow">
-                      <div>Commission</div>
-                      <div>$0</div>
-                    </div>
-                    <div class="frow">
-                      <div>Closed</div>
-                      <div>0</div>
-                    </div>
-                    <div class="frow">
-                      <div>Commission</div>
-                      <div>$21,894</div>
-                    </div>
-                  </div>
+                  <% end %>
+
                   <div class="clearFix"></div>
                 </div>
               </div>
@@ -99,7 +221,7 @@
       </div>
     </div>
     <div class="contentbox">
-      <h1><em><a href="#" title="View All" class="btn-viewall"></a></em>2 Recent Transactions with Incomplete Checklists</h1>
+      <h1>Transactions Closing in the Next 30 Days</h1>
       <div class="box">
         <div class="bt">
           <div class="br">
@@ -116,10 +238,10 @@
                       <div class="column">Close Date</div>
                       <div class="column last">Actions</div>
                     </div>
-                    <% @transactions.each do |i| %>
+                    <% @closing_transactions.each do |i| %>
                       <div class="transactionrow">
                         <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column"><%= i.status %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                        <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
                         <div class="column w8"><img alt="" title="" src="/assets/spacer.png" /></div>
                         <div class="column">
                           <span class="icon-agent">
@@ -133,15 +255,14 @@
                             </em>
                           </span>
                           <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column w20"><% if i.location.present? %><%= i.location.name %> <% end %><img alt="" title="" src="/assets/spacer.png" /></div>
+                        <div class="column w20"><%= i.location.name %> <img alt="" title="" src="/assets/spacer.png" /></div>
                         <div class="column"><%= i.close_date %> <img alt="" title="" src="/assets/spacer.png" /></div>
                         <div class="column last">
                           <span class="btn-action">
                             <em class="tooltip-container"><span>Action</span>
                               <strong class="tooltip">
                                 <ul class="list-tooltip">
-                                  <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
-                                  <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
+                                  <li class="icon-zoomin"><%= link_to "View Transaction", transaction_path(i)  %> </li>
                                 </ul>
                                 <i class="top-arrow"></i>
                               </strong>
@@ -160,148 +281,23 @@
         </div>
       </div>
     </div>
-    <div class="contentbox">
-      <h1>2 Transactions Past Their Closing Date</h1>
-      <div class="box">
-        <div class="bt">
-          <div class="br">
-            <div class="bb">
-              <div class="bl">
-                <div class="con">
-                  <div class="tableTransaction">
-                    <div class="transactionrow">
-                      <div class="column w30">Transaction</div>
-                      <div class="column">Status</div>
-                      <div class="column w8">Complete</div>
-                      <div class="column">Agents</div>
-                      <div class="column w20">Location</div>
-                      <div class="column">Close Date</div>
-                      <div class="column last">Actions</div>
-                    </div>
-                    <% @passed_transactions.each do |i| %>
-                      <div class="transactionrow">
-                        <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column"><%= i.status %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column w8"><img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column">
-                          <span class="icon-agent">
-                            <em class="tooltip-container">
-                              <strong class="tooltip">
-                                <ul class="list-tooltip">
-                                  <li class="alcent">Salley Ballew</li>
-                                </ul>
-                                <i class="top-arrow"></i>
-                              </strong>
-                            </em>
-                          </span>
-                          <img alt="" title="" src="/assets/spacer.png" />
-                        </div>
-                        <div class="column w20"><%= i.location.name %><img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column"><%= i.close_date  %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column last">
-                          <span class="btn-action">
-                            <em class="tooltip-container"><span>Action</span>
-                              <strong class="tooltip">
-                                <ul class="list-tooltip">
-                                  <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
-                                  <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
-                                </ul>
-                                <i class="top-arrow"></i>
-                              </strong>
-                            </em>
-                          </span>
-                        </div>
-                      </div>
-                    <% end %>
-
-                    <div class="clearFix"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="contentbox">
-        <h1>Transactions Closing in the Next 30 Days</h1>
-        <div class="box">
-          <div class="bt">
-            <div class="br">
-              <div class="bb">
-                <div class="bl">
-                  <div class="con">
-                    <div class="tableTransaction">
-                      <div class="transactionrow">
-                        <div class="column w30">Transaction</div>
-                        <div class="column">Status</div>
-                        <div class="column w8">Complete</div>
-                        <div class="column">Agents</div>
-                        <div class="column w20">Location</div>
-                        <div class="column">Close Date</div>
-                        <div class="column last">Actions</div>
-                      </div>
-                      <% @closing_transactions.each do |i| %>
-                        <div class="transactionrow">
-                          <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                          <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                          <div class="column w8"><img alt="" title="" src="/assets/spacer.png" /></div>
-                          <div class="column">
-                            <span class="icon-agent">
-                              <em class="tooltip-container">
-                                <strong class="tooltip">
-                                  <ul class="list-tooltip">
-                                    <li class="alcent">Salley Ballew</li>
-                                  </ul>
-                                  <i class="top-arrow"></i>
-                                </strong>
-                              </em>
-                            </span>
-                            <img alt="" title="" src="/assets/spacer.png" /></div>
-                          <div class="column w20"><%= i.location.name %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                          <div class="column"><%= i.close_date %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                          <div class="column last">
-                            <span class="btn-action">
-                              <em class="tooltip-container"><span>Action</span>
-                                <strong class="tooltip">
-                                  <ul class="list-tooltip">
-                                    <li class="icon-zoomin"><%= link_to "View Transaction", transaction_path(i)  %> </li>
-                                  </ul>
-                                  <i class="top-arrow"></i>
-                                </strong>
-                              </em>
-                            </span>
-                          </div>
-                        </div>
-                      <% end %>
-
-                    </div>
-                    <div class="clearFix"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% else %>
-      <script>
-        alert("Please upload all 3 types of Documents")
-      </script>
-      <tr><td>No Documents</td></tr>
-    <% end %>
-  </div>
-
-  <div class="clearFix"></div>
+  <% else %>
+    <script>
+      alert("Please upload all 3 types of Documents")
+    </script>
+    <tr><td>No Documents</td></tr>
+  <% end %>
 </div>
+<div class="clearFix"></div>
 
 <%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
 <script type="text/javascript" language="javascript">
-jQuery(document).ready(function () {
-  jQuery('#leftColumnShow').click(function () {
-    jQuery('#leftColumn').slideToggle('slow', function () {})
+  jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
   });
-  jQuery('#closeBox').click(function () {
-    jQuery('#leftColumn').slideToggle('slow', function () {})
-  });
-});
 </script>

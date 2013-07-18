@@ -11,10 +11,11 @@ class DocumentsController < ApplicationController
   def new
     @user = current_user
     @document = Document.new
+    @locations = Location.all
   end
 
   def create
-    @document = Document.new(:document =>params[:document])
+    @document = Document.new(params[:document])
     @document.user_id = current_user.id
     @document.location_id = params[:document][:location_id]
     if @document.save
@@ -26,12 +27,12 @@ class DocumentsController < ApplicationController
     @documents = Document.where("user_id = #{current_user.id}")
     @document = Document.find(params[:id])
     if @document.destroy
-        redirect_to office_documents_path(current_user), :notice => 'Document deleted successfully deleted.' 
+      redirect_to office_documents_path(current_user), :notice => 'Document deleted successfully deleted.'
     end
   end
 
   def working
-#    @documents = Document.search "*#{params[:query]}*"
+    #    @documents = Document.search "*#{params[:query]}*"
     @documents = Document.where("user_id = '#{current_user.id}'")
     if request.xhr?
       respond_to do |format|
@@ -73,10 +74,16 @@ class DocumentsController < ApplicationController
         format.js
       end
     end
-    
   end
 
   def unreviewed
+    @documents = Document.where("user_id = '#{current_user.id}'")
+    if request.xhr?
+      @document = Document.where("document_file_name = '#{params[:document_file_name]}'").first
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 
 end

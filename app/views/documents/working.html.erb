@@ -1,48 +1,46 @@
-
-<div id="rightColumn">
-  <div class="contentbox">
-    <h1>Office Docs</h1>
-    <div class="box">
-      <div class="bt">
-        <div class="br">
-          <div class="bb">
-            <div class="bl">
-              <div class="con">
-                <h3><em>Forms, disclosures, and listing presentations available to the entire company.</em></h3>
-                <div class="unreviewedBox page-transactionsN">
-                  <div class="unreviewedBoxContent">
-                    <input class="btn-quickSearch active" title="Quick Search" value="Quick Search" type="submit" />
+<div class="contentbox">
+  <h1>Office Docs</h1>
+  <div class="box">
+    <div class="bt">
+      <div class="br">
+        <div class="bb">
+          <div class="bl">
+            <div class="con">
+              <h3><em>Forms, disclosures, and listing presentations available to the entire company.</em></h3>
+              <div class="unreviewedBox page-transactionsN">
+                <div class="unreviewedBoxContent">
+                  <input class="btn-quickSearch active" title="Quick Search" value="Quick Search" type="submit" />
+                  <p>
+                    <%= form_tag search_documents_path, :method => :get, :remote => true do  %>
                     <p>
-                      <%= form_tag search_documents_path, :method => :get, :remote => true do  %>
-                      <p>
-                        <%= text_field_tag :query  %>
-                      </p>
-                      <p class="button">
-                        <%= submit_tag "Search", :class => "btn-searchDocs", :title => "Search Docs", :value => "Search Docs", :type => "submit"%>
-                      </p>
-                    <% end %>
+                      <%= text_field_tag :query  %>
                     </p>
-                  </div>
+                    <p class="button">
+                      <%= submit_tag "Search", :class => "btn-searchDocs", :title => "Search Docs", :value => "Search Docs", :type => "submit"%>
+                    </p>
+                  <% end %>
+                  </p>
                 </div>
-                <div id="searched-documents">
-                  <p>Only active Documents are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></p>
-                  <div class="contentbox">
+              </div>
+              <div id="searched-documents">
+                <p>Only active Documents are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></p>
+                <div class="contentbox">
 
-                    <h1>
-                      <div class="column w5">Info</div>
-                      <div class="column w30">Contract Forms</div>
-                      <div class="column w12">Comments</div>
-                      <div class="column w20">Added By</div>
-                      <div class="column w20">Added On</div>
-                      <div class="column last">Actions</div>
-                    </h1>
-                    <div class="box">
-                      <% @documents.each do |document| %>
+                  <h1>
+                    <div class="column w5">Info</div>
+                    <div class="column w30">Contract Forms</div>
+                    <div class="column w12">Comments</div>
+                    <div class="column w20">Added By</div>
+                    <div class="column w20">Added On</div>
+                    <div class="column last">Actions</div>
+                  </h1>
+                  <div class="box">
+                    <% @documents.each do |document| %>
                       <div id="searched-documents">
                         <div class="tableTransaction">
                           <div class="transactionrow">
                             <div class="column w5"><div class="icon-pdf"></div></div>
-                            <div class="column w30"><%= document.document_file_name %></div>
+                            <div class="column w30"><% if document.document_file_name.present? %><%= document.document_file_name %><% else %><%= document.id %><% end %></div>
                             <div class="column w12"><div class="icon-comment"></div></div>
                             <div class="column w20"><%= current_user.email %></div>
                             <div class="column w20"><%= document.created_at.to_date %></div>
@@ -63,19 +61,18 @@
                           </div>
                         </div>
                       </div>
-                      <% end %>
-                    </div>
+                    <% end %>
                   </div>
                 </div>
-                <div class="clearFix"></div>
               </div>
+              <div class="clearFix"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="clearFix"></div>
   </div>
+  <div class="clearFix"></div>
 </div>
 <div class="clearFix"></div>
 </div>

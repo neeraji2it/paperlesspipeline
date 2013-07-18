@@ -1,42 +1,38 @@
-
-<div id="rightColumn">
-  <div class="contentbox">
-    <%= form_for @document do |f| %>
-      <h1>Upload Office Documents</h1>
-      <div class="box">
-        <div class="bt">
-          <div class="br">
-            <div class="bb">
-              <div class="bl">
-                <div class="con">
-                  <div class="officerow">
-                    <p><%= f.file_field :document, :class => "input-chosen", :title => "Choose a File" %><strong>No File Chosen</strong></p>
-                  </div>
-                  <div class="contentbox">
-                    <h1>
-                      <div class="column w40">Document Name</div>
-                      <div class="column w40">Category</div>
-                      <div class="column columnDisplay">Display Order</div>
-                    </h1>
-                    <div class="box">
-                      <div class="bt">
-                        <div class="br">
-                          <div class="bb">
-                            <div class="bl">
-                              <div class="con">
-                                <div class="officerow">
-                                  <div class="column w40"><input class="min-input" type="text" title="Document Name" /></div>
-                                  <div class="column w40">
-                                    <%= f.select :document_type, %w(sale private listing), :title => "Choose a Category" %>
-                                  </div>
-                                  <div class="column columnDisplay"><input class="micro-input" type="text" title="Display Order" /></div>
+<div class="contentbox">
+  <%= form_for @document do |f| %>
+    <h1>Upload Office Documents</h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <div class="officerow">
+                  <p><%= f.file_field :document, :class => "input-chosen", :title => "Choose a File" %><strong>No File Chosen</strong></p>
+                </div>
+                <div class="contentbox">
+                  <h1>
+                    <div class="column w40"> Name</div>
+                    <div class="column w40">Category</div>
+                    <div class="column columnDisplay">Location</div>
+                  </h1>
+                  <div class="box">
+                    <div class="bt">
+                      <div class="br">
+                        <div class="bb">
+                          <div class="bl">
+                            <div class="con">
+                              <div class="officerow">
+                                <div class="column w40"><%= f.text_field :document_file_name, :class => "min-input", :type => "text", :title => "Document Name" %></div>
+                                <div class="column w40">
+                                  <%= f.select :document_type, %w(sale private listing), :title => "Choose a Category" %>
                                 </div>
-                                <p>
-                                  <%= f.submit "Document", :class => "btn-upload" %>
-                                  <input class="btn-cancel" type="submit" title="Cancel" value="Cancel" />
-                                </p>
-                                <div class="clearFix"></div>
+                                <div class="column columnDisplay2"><%= f.select :location_id, options_for_select(@locations.collect{|l| [l.name, l.id]}), :class => "micro-input" %></div>
                               </div>
+                              <p>
+                                <%= f.submit "Document", :class => "btn-upload" %>
+                              </p>
+
                             </div>
                           </div>
                         </div>
@@ -48,12 +44,12 @@
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
-    <div class="clearFix"></div>
+      </div>
+    <% end %>
   </div>
   <div class="clearFix"></div>
 </div>
+<div class="clearFix"></div>
 
 <div id="droparea" style="width :120px;height: 120px;border:1px dotted grey;">drag here</div>
 <div id="previewarea"></div>

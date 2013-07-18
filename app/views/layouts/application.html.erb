@@ -1,21 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-      <title>Manage Locations</title>
-      <%= stylesheet_link_tag    "application", "default" %>
-      <%= javascript_include_tag "vendor/custom.modernizr" %>
-
-      <%= javascript_include_tag "application" %>
-      <%= stylesheet_link_tag "timepicker/jquery-ui-timepicker-addon", "jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css" %>
-      <%= javascript_include_tag "jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js",
-        "timepicker/jquery-ui-timepicker-addon" %>
-      <%= csrf_meta_tags %>
-      <div id="flash">
-        <%= render :partial => 'layouts/flash', :object => flash %>
-      </div>
+    <title>Cloud 9</title>
+    <%= stylesheet_link_tag "default" %>
+    <%= javascript_include_tag "application","jquery_002" %>
   </head>
 
   <body>
@@ -24,54 +12,50 @@
         <div class="cr">
           <div class="topleftbox">
             <a title="Cloud 9 Transaction Management" href="#"><img id="logo" title="Cloud 9 Transaction Management" alt="Cloud 9 Transaction Management" src="/assets/logo.png" /></a>
-            <% if current_user.present? %>
-              <input class="input-search" type="text" title="Search Transaction by Address, Agents or MLS" placeholder="Search Transaction by Address, Agents or MLS" /><input class="btn-search" type="submit" title="Search" value="Search" />
-            <% end %>
+            <input class="input-search" type="text" title="Search Transaction by Address, Agents or MLS" placeholder="Search Transaction by Address, Agents or MLS" /><input class="btn-search" type="submit" title="Search" value="Search" />
           </div>
           <div class="toprighbox">
-            <% if current_user.present? %>
-              <ul id="topmenu">
-                <li><span>|</span><a title="Admin" href="#">Admin</a></li>
-                <li><span>|</span><a title="Profile" href="#">Profile</a></li>
-                <li class="icon-logout"><span>|</span><%= link_to "Logout", destroy_user_session_path,:method => 'DELETE' %></li>
-              </ul>
-              <p><a title="Nate B is signed in (Not you?)" href="#"><%= current_user.first_name %>  is signed in (Not you?)</a></p>
-            <% else %>
-              <ul id="topmenu">
-                <li><span>|</span><a title="Admin" href="#">Admin</a></li>
-                <li><span>|</span><a title="Profile" href="#">Profile</a></li>
-                <li class="icon-logout"><span>|</span><%= link_to "Login", new_user_session_path %></li>
-              </ul>
-  <%#*<p><a title="Nate B is signed in (Not you?)" href="#">Nate B is signed in (Not you?)</a></p>%>
-            <% end %>
-            <% if current_user.present? %>
-              <div class="newTransaction"><%= link_to "New Transaction", new_transaction_path %></div>
-            <% end %>
-          </div>
-          <div class="clearFix"></div>
-        </div>
-        <% if current_user.present? %>
-          <div id="navigation">
-            <ul>
-              <li><%= link_to "Dashboard", dashboard_index_path %></li>
-              <li><%= link_to "Transaction", transactions_path %></li>
-              <li><a title="Tasks" href="#"><span>Tasks</span></a></li>
-              <li><%= link_to "Workin", working_documents_path %> </li>
-              <li><%= link_to "Unreviewed", unreviewed_documents_path %></li>
-              <li><%= link_to "Office", office_documents_path %> </a></li>
+            <ul id="topmenu">
+              <li><span>|</span><a title="Admin" href="#">Admin</a></li>
+              <li><span>|</span><a title="Profile" href="#">Profile</a></li>
+              <li class="icon-logout"><span>|</span><%= current_user ? (link_to "Logout", destroy_user_session_path,:method => 'DELETE') : (link_to "Login", new_user_session_path) %></li>
             </ul>
+            <p><% if current_user %><a title="Nate B is signed in (Not you?)" href="#"><%= current_user.first_name %> is signed in (Not you?)</a></p> <% end %>
+            <div class="newTransaction"><%= current_user ? (link_to "New Transaction", new_transaction_path) : "" %></div>
           </div>
           <div class="clearFix"></div>
         </div>
-        <div id="content">
+        <div id="navigation">
+          <ul>
+            <% if current_user %>
+              <li class="active"><%= link_to "<spaan>Dashboard</span>".html_safe, dashboard_index_path %></li>
+              <li><%= link_to "<spaan>Transaction</span>".html_safe, transactions_path %></li>
+              <li><a title="Tasks" href="#"><span>Tasks</span></a></li>
+              <li><%= link_to "<spaan>Workin</span>".html_safe, working_documents_path %></li>
+              <li><%= link_to "<spaan>Unreviewed</span>".html_safe, unreviewed_documents_path %></li>
+              <li><%= link_to "<spaan>Office</span>".html_safe, office_documents_path %></li>
+            <% else %>
+              <li class="active"></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="clearFix"></div>
+      </div>
+      <div id="content">
+        <% if current_user %>
           <div id="leftColumnShow">Menu</div>
-          <div id="leftColumn" style="display: block;">
+          <div id="leftColumn">
             <div id="closeBox">Close</div>
             <ul class="leftmenu">
-              <li class="icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
+              <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
               <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path %></li>
               <li class="icon-profile"><%= link_to "Profile", profile_user_path(current_user) %></li>
-              <li class="active icon-admin">  <%= link_to "admin", admin_user_path(current_user) %></li>
+              <li class="icon-admin"><%= link_to "admin", admin_user_path(current_user) %></li>
               <li class="icon-monthly-backup"><a title="Monthly Backup" href="#">Monthly Backup</a></li>
               <li class="icon-help"><a title="Help" href="#">Help</a></li>
             </ul>
@@ -84,8 +68,8 @@
                       <div class="bl">
                         <div class="con">
                           <ul class="list-admin">
-                            <li><a title="Justin Brown" href="#"><%= current_user.first_name %></a></li>
-                            <li><a title="jbsold@gmail.com" href="#"><%= current_user.email %> </a></li>
+                            <li><a title="<%= current_user.first_name %>" href="#"><%= current_user.first_name %></a></li>
+                            <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
                           </ul>
                           <div class="clearFix"></div>
                         </div>
@@ -104,9 +88,9 @@
                       <div class="bl">
                         <div class="con">
                           <ul class="list-admin">
-                            <li><a title="Nate Brown" href="#"><%= current_user.first_name %></a></li>
-                            <li><a title="natebrown12@hotmail.com" href="#"><%= current_user.email %></a></li>
-                            <li><a title="Web Guy" href="#"><%= current_user.role %> </a></li>
+                            <li><a title="<%= current_user.first_name %>" href="#"><%= current_user.first_name %></a></li>
+                            <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
+                            <li><a title="<%= current_user.role %>" href="#"><%= current_user.role %></a></li>
                           </ul>
                           <div class="clearFix"></div>
                         </div>
@@ -125,7 +109,7 @@
                       <div class="bl">
                         <div class="con">
                           <ul class="list-admin">
-                            <li><span class="fright"><%= current_user.transactions.count %> </span><a title="Transaction Created" href="#">Transaction Created</a></li>
+                            <li><span class="fright"><%= current_user.transactions.count %></span><a title="Transaction Created" href="#">Transaction Created</a></li>
                             <li><span class="fright">5</span><a title="Transaction Quota" href="#">Transaction Quota</a></li>
                           </ul>
                           <p class="f11">Your monthly limit will reset back to 5 new transactions on March 28, 2013</p>
@@ -157,31 +141,36 @@
               </div>
             </div>
           </div>
+        <% end %>
+        <div id="rightColumn">
           <%= yield %>
-          <div id="footer">
-            <div class="footerMenu">
-              <ul>
-                <li><a title="What's New" href="#">What's New</a></li>
-                <li><a title="System Status" href="#">System Status</a></li>
-                <li><a title="Live Help" href="#">Live Help</a></li>
-                <li><a title="Privacy Policy" href="#">Privacy Policy</a></li>
-                <li><a title="Terms of Service" href="#">Terms of Service</a></li>
-              </ul>
-            </div>
-            <p>Having problems? Contact the office admin.</p>
-            <div class="clearFix"></div>
-          </div>
         </div>
-      <% end %>
-      <script type="text/javascript" language="javascript">
-        jQuery(document).ready(function () {
-          jQuery('#leftColumnShow').click(function () {
-            jQuery('#leftColumn').slideToggle('slow', function () {})
-          });
-          jQuery('#closeBox').click(function () {
-            jQuery('#leftColumn').slideToggle('slow', function () {})
-          });
+        <div class="clearFix"></div>
+      </div>
+      <div id="footer">
+        <div class="footerMenu">
+          <ul>
+            <li><a title="What's New" href="#">What's New</a></li>
+            <li><a title="System Status" href="#">System Status</a></li>
+            <li><a title="Live Help" href="#">Live Help</a></li>
+            <li><a title="Privacy Policy" href="#">Privacy Policy</a></li>
+            <li><a title="Terms of Service" href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <p>Having problems? Contact the office admin.</p>
+        <div class="clearFix"></div>
+      </div>
+    </div>
+    <%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+    <script type="text/javascript" language="javascript">
+      jQuery(document).ready(function () {
+        jQuery('#leftColumnShow').click(function () {
+          jQuery('#leftColumn').slideToggle('slow', function () {})
         });
-      </script>
+        jQuery('#closeBox').click(function () {
+          jQuery('#leftColumn').slideToggle('slow', function () {})
+        });
+      });
+    </script>
   </body>
 </html>

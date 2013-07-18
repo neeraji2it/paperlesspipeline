@@ -1,84 +1,82 @@
-<div id="rightColumn">
-  <div class="contentbox">
-    <h1>Transactions <span>(Showing all 17 transactions)</span></h1>
-    <div class="box">
-      <div class="bt">
-        <div class="br">
-          <div class="bb">
-            <div class="bl">
-              <div class="con">
-                <h3>Email docs to your Working Docs page: <strong>2946-32647-x@docs.paperlesspipeline.com  Download</strong></h3>
-                <div class="unreviewedBox page-transactionsN">
-                  <div class="unreviewedBoxContent">
-                    <input class="btn-quickSearch active" title="Quick Search" value="Quick Search" type="submit" />
-                    <input class="btn-advanceSearch" title="Advance search" value="Advance search" type="submit" />
-                    <%= link_to "Quick search", advance_search_transactions_path, :class => "btn-advanceSearch", :title => "Advance search", :value => "Advance search", :type => "submit" %>
-                    <input class="btn-filter" title="Filter" value="Filter" type="submit" />
-                    <% if @transactions.present? %>
+<div class="contentbox">
+  <h1>Transactions <span>(Showing all 17 transactions)</span></h1>
+  <div class="box">
+    <div class="bt">
+      <div class="br">
+        <div class="bb">
+          <div class="bl">
+            <div class="con">
+              <h3>Email docs to your Working Docs page: <strong>2946-32647-x@docs.paperlesspipeline.com  Download</strong></h3>
+              <div class="unreviewedBox page-transactionsN">
+                <div class="unreviewedBoxContent">
+                  <input class="btn-quickSearch active" title="Quick Search" value="Quick Search" type="submit" />
+                  <input class="btn-advanceSearch" title="Advance search" value="Advance search" type="submit" />
+                  <%= link_to "Quick search", advance_search_transactions_path, :class => "btn-advanceSearch", :title => "Advance search", :value => "Advance search", :type => "submit" %>
+                  <input class="btn-filter" title="Filter" value="Filter" type="submit" />
+                  <% if @transactions.present? %>
+                    <p>
+                      <%= form_tag search_transactions_path, :method => :get, :remote => true do %>
                       <p>
-                        <%= form_tag search_transactions_path, :method => :get, :remote => true do %>
-                        <p>
-                          <%= text_field_tag :search,'', :class => "input-searchTransactions"  %>
-                        </p>
-                        <p>
-                          <%= submit_tag "Search", :class => "btn-searchTransactions"%>
-                        </p>
-                      <% end %>
+                        <%= text_field_tag :search,'', :class => "input-searchTransactions"  %>
+                      </p>
+                      <p>
+                        <%= submit_tag "Search", :class => "btn-searchTransactions"%>
                       </p>
                     <% end %>
-                  </div>
+                    </p>
+                  <% end %>
                 </div>
-                <div class="officerow">Only active transactions are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></div>
-                <div class="contentbox search_results">
-                  <h1>
-                    <div class="column w30">Transaction</div>
-                    <div class="column">Status</div>
-                    <div class="column w11">Complete</div>
-                    <div class="column w9">Agents</div>
-                    <div class="column w20">Location</div>
-                    <div class="column">Close Date</div>
-                    <div class="column last">Actions</div>
-                  </h1>
-                  <div class="box">
-                    <% @transactions.each do |i|  %>
-                      <div class="tableTransaction">
-                        <div class="transactionrow">
-                          <div class="column w30"><%= i.transaction_name %></div>
-                          <div class="column"><%= i.status %> </div>
-                          <div class="column w11">
-                            <div class="completebox">7/8</div>
-                            <img alt="" title="" src="/assets/spacer.png" />
-                          </div>
-                          <div class="column w9"><div class="icon-agent"></div></div>
-                          <div class="column w20"><%= i.location.name %></div>
-                          <div class="column"><%= i.close_date %> </div>
-                          <div class="column last">
-                            <span class="btn-action">
-                              <em class="tooltip-container"><span>Action</span>
-                                <strong class="tooltip">
-                                  <ul class="list-tooltip">
-                                    <li class="icon-zoomin"><%= link_to "View Transaction", transaction_path(i)  %> </li>
-                                  </ul>
-                                  <i class="top-arrow"></i>
-                                </strong>
-                              </em>
-                            </span>
-                          </div>
+              </div>
+              <div class="officerow">Only active transactions are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></div>
+              <div class="contentbox search_results">
+                <h1>
+                  <div class="column w30">Transaction</div>
+                  <div class="column">Status</div>
+                  <div class="column w11">Complete</div>
+                  <div class="column w9">Agents</div>
+                  <div class="column w20">Location</div>
+                  <div class="column">Close Date</div>
+                  <div class="column last">Actions</div>
+                </h1>
+                <div class="box">
+                  <% @transactions.each do |i|  %>
+                    <div class="tableTransaction">
+                      <div class="transactionrow">
+                        <div class="column w30"><%= i.transaction_name %></div>
+                        <div class="column"><%= i.status %> </div>
+                        <div class="column w11">
+                          <div class="completebox">7/8</div>
+                          <img alt="" title="" src="/assets/spacer.png" />
                         </div>
-                      <% end %>
-                    </div>
-                    <div class="clearFix"></div>
+                        <div class="column w9"><div class="icon-agent"></div></div>
+                        <div class="column w20"><%= i.location.name %></div>
+                        <div class="column"><%= i.close_date %> </div>
+                        <div class="column last">
+                          <span class="btn-action">
+                            <em class="tooltip-container"><span>Action</span>
+                              <strong class="tooltip">
+                                <ul class="list-tooltip">
+                                  <li class="icon-zoomin"><%= link_to "View Transaction", transaction_path(i)  %> </li>
+                                </ul>
+                                <i class="top-arrow"></i>
+                              </strong>
+                            </em>
+                          </span>
+                        </div>
+                      </div>
+                    <% end %>
                   </div>
+                  <div class="clearFix"></div>
                 </div>
               </div>
             </div>
-            </div>
+          </div>
         </div>
-        <div class="clearFix"></div>
       </div>
+      <div class="clearFix"></div>
     </div>
-    <div class="clearFix"></div>
   </div>
+  <div class="clearFix"></div>
 </div>
 
 
