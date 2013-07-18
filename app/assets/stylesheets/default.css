@@ -340,7 +340,6 @@ i.top-arrow { position:absolute; left:72px; top:-6px; width:24px; height:6px; ba
 #leftColumnShow { position:absolute; left:0px; top:2px; width:28px; padding:10px; cursor:pointer; text-indent:-999em; border-radius:0px 25px 25px 0px; background:url(icon-menu.png) no-repeat 10px 10px #125687; }
 /* Large desktop */
 @media (min-width: 1200px) {
-...
 }
 
 /* Portrait tablet to landscape and desktop */
@@ -439,8 +438,6 @@ html body #navigation {
 padding-left:0px;
 width:100%;
 }*/
-.frow div:first-child { float:left; width:70%; }
-}
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
