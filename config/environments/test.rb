@@ -14,6 +14,8 @@ Paperlesspipeline::Application.configure do
   # Log error messages when you accidentally call methods on nil
   config.whiny_nils = true
 
+  config.assets.compile = true
+
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
@@ -35,7 +37,7 @@ Paperlesspipeline::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  config.assets.debug = true
+
   config.action_mailer.default_url_options = { :host => 'ec2-54-245-14-77.us-west-2.compute.amazonaws.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.delivery_method = :smtp
@@ -48,4 +50,5 @@ Paperlesspipeline::Application.configure do
     :authentication       => 'plain',
     :enable_starttls_auto => true
   }
+
 end
