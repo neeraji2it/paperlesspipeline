@@ -97,7 +97,13 @@ class TransactionsController < ApplicationController
   end
 
   def filter
-    
+    @transactions = Transaction.where("user_id = '#{current_user.id}'")
+    if request.xhr?
+      @transactions = Transaction.where("user_id = '#{current_user.id}' and transaction_name = '#{params[:transaction_name]}'")
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 
   def location_search

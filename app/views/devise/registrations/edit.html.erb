@@ -8,21 +8,23 @@
             <div class="bl">
               <div class="con">
                 <div class="page-transaction">
+                  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
                   <h3>Your Login Information</h3>
                   <p>Your Email Address</p>
-                  <p><input title="Your Email Address" type="text" /></p>
+                  <p><%= f.email_field :email, :autofocus => true, :title => "Your Email Address", :type => "text" %></p>
                   <p>Old Password</p>
-                  <p><input title="Old Password" type="text" /></p>
+                  <p><%= f.password_field :current_password %></p>
                   <p>New Password</p>
-                  <p><input title="New Password" type="text" /></p>
+                  <p><%= f.password_field :password, :title => "New Password", :type => "text" %></p>
                   <p>New Password Confirmation</p>
-                  <p><input title="New Password Confirmation" type="text" /></p>
+                  <p><%= f.password_field :password_confirmation, :title => "New Password Confirmation", :type => "text" %></p>
                   <p>Your Settings</p>
-                  <p><img title="Send me new document notifications" alt="Send me new document notifications" src="images/icon-checkbox-unselected.png" /> Send me new document notifications</p>
-                  <p><img title="Show customer support widget" alt="Show customer support widget" src="images/icon-checkbox-selected.png" /> Show customer support widget</p>
-                  <input class="btn-saveSettings" title="Save Settings" value="Save Settings" type="submit" />
+                  <p><img title="Send me new document notifications" alt="Send me new document notifications" src="/assets/icon-checkbox-unselected.png" /> Send me new document notifications</p>
+                  <p><img title="Show customer support widget" alt="Show customer support widget" src="/assets/icon-checkbox-selected.png" /> Show customer support widget</p>
+                  <%= f.submit "Save Settings" %>
                   <input class="btn-cancel" title="Cancel" value="Cancel" type="submit" />
                   <div class="clearFix"></div>
+                  <% end %>
                 </div>
               </div>
             </div>

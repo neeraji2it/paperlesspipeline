@@ -9,10 +9,9 @@
               <h3>Email docs to your Working Docs page: <strong>2946-32647-x@docs.paperlesspipeline.com  Download</strong></h3>
               <div class="unreviewedBox page-transactionsN">
                 <div class="unreviewedBoxContent">
-                  <input class="btn-quickSearch active" title="Quick Search" value="Quick Search" type="submit" />
                   <input class="btn-advanceSearch" title="Advance search" value="Advance search" type="submit" />
                   <%= link_to "Quick search", advance_search_transactions_path, :class => "btn-advanceSearch", :title => "Advance search", :value => "Advance search", :type => "submit" %>
-                  <input class="btn-filter" title="Filter" value="Filter" type="submit" />
+                  <%= link_to "Filter", filter_transactions_path, :class => "btn-filter", :title => "Filter", :value => "Filter", :type => "submit" %>
                   <% if @transactions.present? %>
                     <p>
                       <%= form_tag search_transactions_path, :method => :get, :remote => true do %>

@@ -15,8 +15,8 @@
                     <p>
                       <%= select_tag :document_file_name, options_for_select(@documents.collect{|l| [l.document_file_name]}), :class => "micro-input" %>
                       <%= submit_tag "Filter", :class => "btn-filterResults", :title => "Filter Results", :value => "Filter Results", :type => "submit" %>
+                    </p>
                     <% end %>
-                  </p>
                 </div>
               </div>
               <div id="searched-documents"></div>

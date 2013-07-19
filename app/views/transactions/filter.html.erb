@@ -1,0 +1,98 @@
+<div class="contentbox">
+  <h1>Transactions <span>(Showing all 17 transactions)</span></h1>
+  <div class="box">
+    <div class="bt">
+      <div class="br">
+        <div class="bb">
+          <div class="bl">
+            <div class="con">
+              <h3>Email docs to your Working Docs page: <strong>2946-32647-x@docs.paperlesspipeline.com  Download</strong></h3>
+              <div class="unreviewedBox page-transactionsN">
+                <div class="unreviewedBoxContent">
+                  <input class="btn-quickSearch" title="Quick Search" value="Quick Search" type="submit" />
+                  <%= link_to "Quick search", transactions_path, :class => "btn-quickSearch", :title => "Quick Search", :value => "Quick Search", :type => "submit" %>
+                  <%= link_to "Quick search", advance_search_transactions_path, :class => "btn-advanceSearch", :title => "Advance search", :value => "Advance search", :type => "submit" %>
+                  <ul class="list-advanceSearch">
+                    <div style="margin-top:30px;">
+                      <%= form_for '', :url => filter_transactions_path, :method => "GET", :remote => true do |f| %>
+                        <p>
+                          <%= select_tag :transaction_name, options_for_select(@transactions.collect{|l| [l.transaction_name]}), :class => "micro-input" %>
+                          <%= f.submit "Filter", :class => "btn-filterResults", :title => "Filter Results", :value => "Filter Results", :type => "submit" %>
+                        </p>
+                      <% end %>
+                    </div>
+                  </ul>
+                </div>
+                <div class="officerow">Only active transactions are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></div>
+                <div class="contentbox">
+                  <h1>
+                    <div class="column w30">Transaction</div>
+                    <div class="column">Status</div>
+                    <div class="column w11">Complete</div>
+                    <div class="column w9">Agents</div>
+                    <div class="column w20">Location</div>
+                    <div class="column">Close Date</div>
+                    <div class="column last">Actions</div>
+                  </h1>
+                  <div id="advance_search">
+                    <div class="box">
+                      <div class="tableTransaction">
+                        <div class="transactionrow">
+                          <% @transactions.each do |transaction| %>
+                            <div class="column w30"><%= transaction.transaction_name %></div>
+                            <div class="column"><%= transaction.status %></div>
+                            <div class="column w11">
+                              <div class="completebox"><abbr>7/8</abbr></div>
+                              <img alt="" title="" src="/assets/spacer.png" />
+                            </div>
+                            <div class="column w9"><div class="icon-agent"></div></div>
+                            <div class="column w20"><%= transaction.location.name %></div>
+                            <div class="column"><%= transaction.close_date %></div>
+                            <div class="column last">
+                              <span class="btn-action">
+                                <em class="tooltip-container"><span>Action</span>
+                                  <strong class="tooltip">
+                                    <ul class="list-tooltip">
+                                      <li class="icon-zoomin"><%= link_to "ViewTransaction", transaction_path(transaction) %></li>
+                                      <li class="icon-edit"><%= link_to "Edit", edit_transaction_path(transaction) %></li>
+                                    </ul>
+                                    <i class="top-arrow"></i>
+                                  </strong>
+                                </em>
+                              </span>
+                            </div>
+                          <% end %>
+                        </div>
+
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="clearFix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <div class="clearFix"></div>
+</div>
+
+
+</div>
+<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+<script type="text/javascript" language="javascript">
+  jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+  });
+</script>
