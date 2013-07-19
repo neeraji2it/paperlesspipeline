@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmable,:current_password,:name,
-  :duplicate_document_uploads, :email_transaction_reminders, :allow_pdf, :entered_docs_feature,:location,:photo,:avatar,:active,:confirmation_token,:confirmed_at,
-  :first_name, :last_name, :company_name, :phone_number,:role,:create_id
+    :duplicate_document_uploads, :email_transaction_reminders, :allow_pdf, :entered_docs_feature,:location,:photo,:avatar,:active,:confirmation_token,:confirmed_at,
+    :first_name, :last_name, :company_name, :phone_number,:role,:create_id
   # attr_accessible :title, :body
   
   #validations======================================================================================================================================
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
     :original => "900x900>",
     :default => "280x190>",
     :other => "96x96>" } if (Rails.env == 'staging')
-   #=================================================================================================================================================
+  #=================================================================================================================================================
 
   define_index do
     indexes role
@@ -56,6 +56,10 @@ class User < ActiveRecord::Base
       total_commission1 += i.total_commission.to_i
     end
     return total_commission1
+  end
+
+  def full_name
+    self.first_name+' '+self.last_name
   end
 
 end

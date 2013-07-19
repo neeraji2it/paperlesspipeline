@@ -1,178 +1,132 @@
-  <div class="contentbox">
-    <h1>New Transaction</h1>
-    <%= form_for @transaction do |f| %>
-      <div class="box">
-        <div class="bt">
-          <div class="br">
-            <div class="bb">
-              <div class="bl">
-                <div class="con">
-                  <div class="page-transaction">
-                    <div class="commonrowt">
-                      <h3>Transaction Information</h3>
-                      <p>Location</p>
-                      <p>
-                        <%= f.select :location_id, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.name, c.id]}, params[:locations]), :id => "locationI", :title => "Location" %>
-                      </p>
-                      <div class="bposi">
-                        <div id="locationBoxN" class="popup" style="display:none;">
-                          <strong>Enter the Location associated with this Transaction.</strong>
-                          <p><span>Important:</span> For security reasons,only your company
-                            admin can change the location after this transaction
-                            has been created</p>
-                        </div>
+<div class="contentbox">
+  <h1>New Transaction</h1>
+  <%= form_for @transaction do |f| %>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <div class="page-transaction">
+                  <div class="commonrowt">
+                    <h3>Transaction Information</h3>
+                    <p>Location</p>
+                    <p>
+                      <%= f.select :location_id, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.name, c.id]}, params[:locations]), :id => "locationI", :title => "Location" %>
+                    </p>
+                    <div class="bposi">
+                      <div id="locationBoxN" class="popup" style="display:none;">
+                        <strong>Enter the Location associated with this Transaction.</strong>
+                        <p><span>Important:</span> For security reasons,only your company
+                          admin can change the location after this transaction
+                          has been created</p>
                       </div>
-                      <p>Transaction Name or Address</p>
-                      <p><%= f.text_field :transaction_name, :title => "Transaction Name or Address", :type => "text"  %></p>
-                      <p>MLS or Transaction Number</p>
-                      <p><%= f.text_field :transaction_number, :id => "transactionI", :title => "MLS or Transaction Number", :type => "text" %></p>
-                      <div class="bposi">
-                        <div id="transactionBoxN" class="popup" style="display:none;">
-                          <strong>Enter the MLS or Transaction number </strong>
-                          <p>For example: 12345</p>
-                        </div>
+                    </div>
+                    <p>Transaction Name or Address</p>
+                    <p><%= f.text_field :transaction_name, :title => "Transaction Name or Address", :type => "text"  %></p>
+                    <p>MLS or Transaction Number</p>
+                    <p><%= f.text_field :transaction_number, :id => "transactionI", :title => "MLS or Transaction Number", :type => "text" %></p>
+                    <div class="bposi">
+                      <div id="transactionBoxN" class="popup" style="display:none;">
+                        <strong>Enter the MLS or Transaction number </strong>
+                        <p>For example: 12345</p>
                       </div>
-                      <p>Status</p>
-                      <p>
-                        <%= f.text_field :status, :title => "Status" %>
-                      </p>
-                      <p>Close Date</p>
-                      <p>
-                        <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%m/%d/%Y") : ""), :readonly => true %>
-                        <%#*<script>%>
-                          <%#*$("#transaction_close_date").datetimepicker({%>
-                            <%#*showOn: 'button',%>
-                            <%#*buttonImage: '/assets/icon-calendar.png',%>
-                            <%#*buttonImageOnly: true,%>
-                            <%#*showTimepicker: true,%>
-                            <%#*dateFormat: 'yy-mm-dd',%>
-                            <%#*minDate: 0%>
-                          <%#*})%>
-                        <%#*</script>%>
+                    </div>
+                    <p>Status</p>
+                    <p>
+                      <%= f.text_field :status, :title => "Status" %>
+                    </p>
+                    <p>Close Date</p>
+                    <p>
+                      <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%m/%d/%Y") : ""), :readonly => true %>
+  <%#*<script>%>
+  <%#*$("#transaction_close_date").datetimepicker({%>
+  <%#*showOn: 'button',%>
+  <%#*buttonImage: '/assets/icon-calendar.png',%>
+  <%#*buttonImageOnly: true,%>
+  <%#*showTimepicker: true,%>
+  <%#*dateFormat: 'yy-mm-dd',%>
+  <%#*minDate: 0%>
+  <%#*})%>
+  <%#*</script>%>
 
-                      </p>
-                    </div>
-                    <div class="commonrowt">
-                      <h3>Optional Information <span>Click to show/hide</span></h3>
-                      <p>More Info</p>
-                      <p><%= f.text_area :more_info, :rows => "5" %></p>
-                      <p>Automatic Expiration Date</p>
-                      <p><%= f.text_field :automatic_expire_date, :readOnly => true, :class => "icon-closedate", :title => "Automatic Expiration Date", :type => "text" %></p>
-                      <p>Buyer Name</p>
-                      <p><%= f.text_field :buyer_name %></p>
-                      <p>Seller Name</p>
-                      <p><%= f.text_field :seller_name %></p>
-                      <p>List Price</p>
-                      <p><%= f.text_field :list_price %></p>
-                      <p>Currency</p>
-                      <p><input title="Currency" type="text" /></p>
-                      <p>Sale Price</p>
-                      <p><%= f.text_field :sale_price %></p>
-                      <p>Currency</p>
-                      <p><input title="Currency" type="text" /></p>
-                      <p>Total Commission</p>
-                      <p><%= f.text_field :total_commission %></p>
-                      <p>Currency</p>
-                      <p><input title="Currency" type="text" /></p>
-                      <p>Commission Summary</p>
-                      <p><%= f.text_field :commission_summary %></p>
-                    </div>
-                    <div class="commonrowt">
-                      <h3>Assigned Agents <span>Search by agent name or select by location</span></h3>
-                      <p><input class="icon-search" type="text" title="Search by name" placeholder="Search by name" /></p>
-                    </div>
-                    <div class="transactionBox">
-                      <h3>Elite Real Estate</h3>
-                      <div class="tableTransactionN">
-                        <div class="row">
-                          <div>Listing</div>
-                          <div>Selling</div>
-                          <div>Agents</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
-                          <div>Amber Boshart</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div>Charlie Brown</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div>Justin Brown</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div>Nate Brown</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
-                          <div>Vanessa Kaleiwahea</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
-                          <div>Robb Krzyston</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="transactionBox">
-                      <h3>Asigned Agents</h3>
-                      <div class="tableTransactionN">
-                        <div class="row">
-                          <div>Listing</div>
-                          <div>Selling</div>
-                          <div>Agents</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
-                          <div>Amber Boshart</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div>Charlie Brown</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div>Justin Brown</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
-                          <div>Nate Brown</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
-                          <div>Vanessa Kaleiwahea</div>
-                        </div>
-                        <div class="row">
-                          <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
-                          <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
-                          <div>Robb Krzyston</div>
-                        </div>
-                      </div>
-                    </div>
-                    <p>
-                      <img title="" alt="" src="/assets/icon-checkbox-selected.png" />
-                      This transaction has outside (co-op) agents
                     </p>
-                    <p>
-                      <%= f.submit "Save", :class => "btn-addTransaction", :title => "Add Transaction", :type => "submit", :value => "Add Transaction" %>
-                      <input class="btn-cancel" title="Cancel" type="button" value="Cancel" />
-                    <ipp:connectToIntuit></ipp:connectToIntuit>
-                    </p>
-                  <% end %>
-                  <div class="clearFix"></div>
-                </div>
+                  </div>
+                  <div class="commonrowt">
+                    <h3>Optional Information <span>Click to show/hide</span></h3>
+                    <p>More Info</p>
+                    <p><%= f.text_area :more_info, :rows => "5" %></p>
+                    <p>Automatic Expiration Date</p>
+                    <p><%= f.text_field :automatic_expire_date, :readOnly => true, :class => "icon-closedate", :title => "Automatic Expiration Date", :type => "text" %></p>
+                    <p>Buyer Name</p>
+                    <p><%= f.text_field :buyer_name %></p>
+                    <p>Seller Name</p>
+                    <p><%= f.text_field :seller_name %></p>
+                    <p>List Price</p>
+                    <p><%= f.text_field :list_price %></p>
+                    <p>Currency</p>
+                    <p><input title="Currency" type="text" /></p>
+                    <p>Sale Price</p>
+                    <p><%= f.text_field :sale_price %></p>
+                    <p>Currency</p>
+                    <p><input title="Currency" type="text" /></p>
+                    <p>Total Commission</p>
+                    <p><%= f.text_field :total_commission %></p>
+                    <p>Currency</p>
+                    <p><input title="Currency" type="text" /></p>
+                    <p>Commission Summary</p>
+                    <p><%= f.text_field :commission_summary %></p>
+                  </div>
+                  <div class="commonrowt">
+                    <h3>Assigned Agents <span>Search by agent name or select by location</span></h3>
+                    <p><input class="icon-search" type="text" title="Search by name" placeholder="Search by name" /></p>
+                  </div>
+                  <div class="transactionBox">
+                    <h3>Elite Real Estate</h3>
+                    <div class="tableTransactionN">
+                      <div class="row">
+                        <div>Listing</div>
+                        <div>Selling</div>
+                        <div>Agents</div>
+                      </div>
+                      <% @users.each do |user| %>
+                        <div class="row">
+                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                          <div><%= user.email %> </div>
+                        </div>
+                      <% end %>
+
+                    </div>
+                  </div>
+                  <div class="transactionBox">
+                    <h3>Asigned Agents</h3>
+                    <div class="tableTransactionN">
+                      <div class="row">
+                        <div>Listing</div>
+                        <div>Selling</div>
+                        <div>Agents</div>
+                      </div>
+                      <% @users.each do |user| %>
+                        <div class="row">
+                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                          <div><%= user.email %> </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <p>
+                    <%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %>
+                    This transaction has outside (co-op) agents
+                  </p>
+                  <p>
+                    <%= f.submit "Save", :class => "btn-addTransaction", :title => "Add Transaction", :type => "submit", :value => "Add Transaction" %>
+                    <input class="btn-cancel" title="Cancel" type="button" value="Cancel" />
+                  <ipp:connectToIntuit></ipp:connectToIntuit>
+                  </p>
+                <% end %>
+                <div class="clearFix"></div>
               </div>
             </div>
           </div>
@@ -180,22 +134,23 @@
       </div>
     </div>
   </div>
+</div>
 <%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
 <script type="text/javascript" language="javascript">
-jQuery(document).ready(function () {
-  jQuery('#leftColumnShow').click(function () {
-    jQuery('#leftColumn').slideToggle('slow', function () {})
+  jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#locationI').hover(function () {
+      jQuery('#locationBoxN').slideToggle('slow', function () {})
+    });
+    jQuery('#transactionI').hover(function () {
+      jQuery('#transactionBoxN').slideToggle('slow', function () {})
+    });
   });
-  jQuery('#closeBox').click(function () {
-    jQuery('#leftColumn').slideToggle('slow', function () {})
-  });
-  jQuery('#locationI').hover(function () {
-    jQuery('#locationBoxN').slideToggle('slow', function () {})
-  });
-  jQuery('#transactionI').hover(function () {
-    jQuery('#transactionBoxN').slideToggle('slow', function () {})
-  });
-});
 </script>
 
 

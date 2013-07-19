@@ -34,6 +34,7 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
+    @users = User.all
   end
 
   def create
