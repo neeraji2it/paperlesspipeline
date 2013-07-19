@@ -20,7 +20,7 @@
               <li><span>|</span><a title="Profile" href="#">Profile</a></li>
               <li class="icon-logout"><span>|</span><%= current_user ? (link_to "Logout", destroy_user_session_path,:method => 'DELETE') : (link_to "Login", new_user_session_path) %></li>
             </ul>
-            <p><% if current_user %><a title="Nate B is signed in (Not you?)" href="#"><%= current_user.first_name %> is signed in (Not you?)</a></p> <% end %>
+            <p><% if current_user %><a title="Nate B is signed in (Not you?)" href="#"><%= current_user.email %> is signed in (Not you?)</a></p> <% end %>
             <div class="newTransaction"><%= current_user ? (link_to "New Transaction", new_transaction_path) : "" %></div>
           </div>
           <div class="clearFix"></div>
@@ -68,7 +68,7 @@
                       <div class="bl">
                         <div class="con">
                           <ul class="list-admin">
-                            <li><a title="<%= current_user.first_name %>" href="#"><%= current_user.first_name %></a></li>
+                            <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
                             <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
                           </ul>
                           <div class="clearFix"></div>
@@ -88,7 +88,7 @@
                       <div class="bl">
                         <div class="con">
                           <ul class="list-admin">
-                            <li><a title="<%= current_user.first_name %>" href="#"><%= current_user.first_name %></a></li>
+                            <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
                             <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
                             <li><a title="<%= current_user.role %>" href="#"><%= current_user.role %></a></li>
                           </ul>
