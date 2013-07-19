@@ -53,3 +53,4 @@ Paperlesspipeline::Application.configure do
   }
 
 end
+t
