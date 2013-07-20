@@ -51,7 +51,7 @@
                                     <ul class="list-tooltip">
                                       <li class="icon-download"><a title="Download" href="#">Download</a></li>
                                       <li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>
-                                      <li class="icon-delete"><a title="Delete" href="#">Delete</a></li>
+                                      <li class="icon-delete"><%= link_to "Delete", document_path(doc), :method => "DELETE" %></li>
                                     </ul>
                                     <i class="top-arrow"></i>
                                   </strong>
