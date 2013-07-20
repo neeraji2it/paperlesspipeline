@@ -38,7 +38,7 @@
                     </p>
                     <p>Close Date</p>
                     <p>
-                      <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%m/%d/%Y") : ""), :readonly => true %>
+                      <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%m/%d/%Y") : "") %>
   <%#*<script>%>
   <%#*$("#transaction_close_date").datetimepicker({%>
   <%#*showOn: 'button',%>
@@ -57,7 +57,7 @@
                     <p>More Info</p>
                     <p><%= f.text_area :more_info, :rows => "5" %></p>
                     <p>Automatic Expiration Date</p>
-                    <p><%= f.text_field :automatic_expire_date, :readOnly => true, :class => "icon-closedate", :title => "Automatic Expiration Date", :type => "text" %></p>
+                    <p><%= f.text_field :automatic_expire_date, :class => "icon-closedate", :title => "Automatic Expiration Date", :type => "text" %></p>
                     <p>Buyer Name</p>
                     <p><%= f.text_field :buyer_name %></p>
                     <p>Seller Name</p>
@@ -77,10 +77,6 @@
                     <p>Commission Summary</p>
                     <p><%= f.text_field :commission_summary %></p>
                   </div>
-                  <div class="commonrowt">
-                    <h3>Assigned Agents <span>Search by agent name or select by location</span></h3>
-                    <p><input class="icon-search" type="text" title="Search by name" placeholder="Search by name" /></p>
-                  </div>
                   <div class="transactionBox">
                     <h3>Elite Real Estate</h3>
                     <div class="tableTransactionN">
@@ -89,16 +85,10 @@
                         <div>Selling</div>
                         <div>Agents</div>
                       </div>
-
-                      <% if @users.present? %>
-                        <% @users.each do |user| %>
-                          <div class="row">
-                            <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                            <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                            <div><%= user.email %> </div>
-                          </div>
-                        <% end %>
-                      <% end %>
+                        <div class="row">
+                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                        </div>
 
                     </div>
                   </div>
@@ -110,15 +100,10 @@
                         <div>Selling</div>
                         <div>Agents</div>
                       </div>
-                      <% if @users.present? %>
-                        <% @users.each do |user| %>
-                          <div class="row">
-                            <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                            <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                            <div><%= user.email %> </div>
-                          </div>
-                        <% end %>
-                      <% end %>
+                        <div class="row">
+                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                        </div>
                     </div>
                   </div>
                   <p>
