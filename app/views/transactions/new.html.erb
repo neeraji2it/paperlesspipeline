@@ -89,12 +89,15 @@
                         <div>Selling</div>
                         <div>Agents</div>
                       </div>
-                      <% User.all.each do |user| %>
-                        <div class="row">
-                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                          <div><%= user.email %> </div>
-                        </div>
+
+                      <% if @users.present? %>
+                        <% @users.each do |user| %>
+                          <div class="row">
+                            <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                            <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                            <div><%= user.email %> </div>
+                          </div>
+                        <% end %>
                       <% end %>
 
                     </div>
@@ -107,12 +110,14 @@
                         <div>Selling</div>
                         <div>Agents</div>
                       </div>
-                      <% @users.each do |user| %>
-                        <div class="row">
-                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                          <div><%= user.email %> </div>
-                        </div>
+                      <% if @users.present? %>
+                        <% @users.each do |user| %>
+                          <div class="row">
+                            <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                            <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
+                            <div><%= user.email %> </div>
+                          </div>
+                        <% end %>
                       <% end %>
                     </div>
                   </div>
