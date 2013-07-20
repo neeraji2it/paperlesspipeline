@@ -8,8 +8,9 @@
       <%= stylesheet_link_tag "default.css" %>
       <%= javascript_include_tag "application" %>
       <%= csrf_meta_tags %>
-      <%= notice %>
-      <%= alert %>
+      <div id="flash">
+        <%= render :partial => 'layouts/flash', :object => flash %>
+      </div>
   </head>
   <body class="page-login">
     <div id="loginbox">
@@ -18,7 +19,7 @@
         <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
           <p><%= f.email_field :email, :autofocus => true,:class => "icon-user", :title => "Username", :type => "text", :placeholder => "Username" %></p>
           <p><%= f.password_field :password, :class => "icon-password", :title => "Password", :type => "password", :placeholder => "Password"  %></p>
-          <a class="fright" title="Forgot Password?" href="#">Forgot Password?</a>
+          <%= link_to "Forgot your password?", new_password_path(resource_name), :class => "fright" %>
           <p>Remember me <%= f.check_box :remember_me, :src => "/assets/icon-checkbox-selected.png" %></p>
           <%= f.submit "Sign In", :class => "btn-signin" %>
         <% end %>
