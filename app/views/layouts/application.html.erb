@@ -4,6 +4,10 @@
     <title>Cloud 9</title>
     <%= stylesheet_link_tag "default" %>
     <%= javascript_include_tag "application","jquery_002" %>
+    <%= csrf_meta_tags %>
+    <div id="flash">
+      <%= render :partial => 'layouts/flash', :object => flash %>
+    </div>
   </head>
 
   <body>
@@ -12,7 +16,7 @@
         <div class="cr">
           <div class="topleftbox">
             <a title="Cloud 9 Transaction Management" href="#"><img id="logo" title="Cloud 9 Transaction Management" alt="Cloud 9 Transaction Management" src="/assets/logo.png" /></a>
-            <%#*<input class="input-search" type="text" title="Search Transaction by Address, Agents or MLS" placeholder="Search Transaction by Address, Agents or MLS" /><input class="btn-search" type="submit" title="Search" value="Search" />%>
+<%#*<input class="input-search" type="text" title="Search Transaction by Address, Agents or MLS" placeholder="Search Transaction by Address, Agents or MLS" /><input class="btn-search" type="submit" title="Search" value="Search" />%>
           </div>
           <div class="toprighbox">
             <ul id="topmenu">
@@ -162,7 +166,7 @@
         <div class="clearFix"></div>
       </div>
     </div>
-    <%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
     <script type="text/javascript" language="javascript">
       jQuery(document).ready(function () {
         jQuery('#leftColumnShow').click(function () {
