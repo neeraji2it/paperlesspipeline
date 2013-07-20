@@ -18,7 +18,8 @@
             <ul id="topmenu">
               <li><span>|</span><a title="Admin" href="#">Admin</a></li>
               <li><span>|</span><a title="Profile" href="#">Profile</a></li>
-              <li class="icon-logout"><span>|</span><%= current_user ? (link_to "Logout", destroy_user_session_path,:method => 'DELETE') : (link_to "Login", new_user_session_path) %></li>
+              <li class="icon-logout"><span>|</span><%= current_user ? (link_to "Logout", destroy_user_session_path,:method => 'DELETE') : (link_to "Login", new_user_session_path) %> </li>
+              <% if current_user.present? %><%  else %><%= link_to "|Signup", new_user_registration_path %><% end %>
             </ul>
             <p><% if current_user %><a title="Nate B is signed in (Not you?)" href="#"><%= current_user.email %> is signed in (Not you?)</a></p> <% end %>
             <div class="newTransaction"><%= current_user ? (link_to "New Transaction", new_transaction_path) : "" %></div>

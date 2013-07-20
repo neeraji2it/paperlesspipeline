@@ -46,13 +46,15 @@ Paperlesspipeline::Application.configure do
   # the I18n.default_locale when a translation can not be found)
   
   config.action_mailer.default_url_options = { :host => 'http://ec2-54-245-14-77.us-west-2.compute.amazonaws.com' }
+
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    #:domain               => 'edupdu.com',
-    :user_name            => 'notification_noreply@edupdu.com',
-    :password             => 'edupdu@123',
+    #:domain               => 'baci.lindsaar.net',
+    :user_name            => 'cloud9ppp@gmail.com',
+    :password             => 'cloud9123',
     :authentication       => 'plain',
     :enable_starttls_auto => true
   }
