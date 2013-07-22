@@ -77,6 +77,10 @@
                     <p>Commission Summary</p>
                     <p><%= f.text_field :commission_summary %></p>
                   </div>
+                  <div class="commonrowt">
+                    <h3>Assigned Agents <span>Search by agent name or select by location</span></h3>
+                    <p><input class="icon-search" type="text" title="Search by name" placeholder="Search by name" /></p>
+                  </div>
                   <div class="transactionBox">
                     <h3>Elite Real Estate</h3>
                     <div class="tableTransactionN">
@@ -85,11 +89,37 @@
                         <div>Selling</div>
                         <div>Agents</div>
                       </div>
-                        <div class="row">
-                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                        </div>
-
+                      <div class="row">
+                        <%= f.check_box :fsadkfj %>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
+                        <div>Amber Boshart</div>
+                      </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div>Charlie Brown</div>
+                      </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div>Justin Brown</div>
+                      </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div>Nate Brown</div>
+                      </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
+                        <div>Vanessa Kaleiwahea</div>
+                      </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
+                        <div>Robb Krzyston</div>
+                      </div>
                     </div>
                   </div>
                   <div class="transactionBox">
@@ -100,47 +130,73 @@
                         <div>Selling</div>
                         <div>Agents</div>
                       </div>
-                        <div class="row">
-                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                          <div><%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %></div>
-                        </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
+                        <div>Amber Boshart</div>
+                      </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div>Charlie Brown</div>
+                      </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div>Justin Brown</div>
+                      </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-unselected.png" /></div>
+                        <div>Nate Brown</div>
+                      </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
+                        <div>Vanessa Kaleiwahea</div>
+                      </div>
+                      <div class="row">
+                        <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
+                        <div><img title="" alt="" src="/assets/icon-checkbox-selected.png" /></div>
+                        <div>Robb Krzyston</div>
+                      </div>
                     </div>
                   </div>
-                  <p>
-                    <%= f.check_box :transaction_name, :src => "/assets/icon-checkbox-selected.png" %>
-                    This transaction has outside (co-op) agents
-                  </p>
-                  <p>
-                    <%= f.submit "Save", :class => "btn-addTransaction", :title => "Add Transaction", :type => "submit", :value => "Add Transaction" %>
-                    <input class="btn-cancel" title="Cancel" type="button" value="Cancel" />
-                  <ipp:connectToIntuit></ipp:connectToIntuit>
-                  </p>
-                <% end %>
-                <div class="clearFix"></div>
+                </div>
               </div>
-            </div>
+              <p>
+                <img title="" alt="" src="/assets/icon-checkbox-selected.png" />
+                This transaction has outside (co-op) agents
+              </p>
+              <p>
+                <%= f.submit "Save", :class => "btn-addTransaction", :title => "Add Transaction", :type => "submit", :value => "Add Transaction" %>
+                <input class="btn-cancel" title="Cancel" type="button" value="Cancel" />
+              <ipp:connectToIntuit></ipp:connectToIntuit>
+              </p>
+            <% end %>
+            <div class="clearFix"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
-<script type="text/javascript" language="javascript">
-  jQuery(document).ready(function () {
-    jQuery('#leftColumnShow').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
-    });
-    jQuery('#closeBox').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
-    });
-    jQuery('#locationI').hover(function () {
-      jQuery('#locationBoxN').slideToggle('slow', function () {})
-    });
-    jQuery('#transactionI').hover(function () {
-      jQuery('#transactionBoxN').slideToggle('slow', function () {})
-    });
-  });
+</div>
+</div>
+jQuery(document).ready(function () {
+jQuery('#leftColumnShow').click(function () {
+jQuery('#leftColumn').slideToggle('slow', function () {})
+});
+jQuery('#closeBox').click(function () {
+jQuery('#leftColumn').slideToggle('slow', function () {})
+});
+jQuery('#locationI').hover(function () {
+jQuery('#locationBoxN').slideToggle('slow', function () {})
+});
+jQuery('#transactionI').hover(function () {
+jQuery('#transactionBoxN').slideToggle('slow', function () {})
+});
+});
 </script>
 
 
