@@ -33,12 +33,12 @@
         <div id="navigation">
           <ul>
             <% if current_user %>
-              <li class="active"><%= link_to "<span>Dashboard</span>".html_safe, dashboard_index_path %></li>
-              <li><%= link_to "<span>Transaction</span>".html_safe, transactions_path %></li>
-              <li><%= link_to "<span>Tasks</span>".html_safe, tasks_path %></li>
-              <li><%= link_to "<span>Workin</span>".html_safe, working_documents_path %></li>
-              <li><%= link_to "<span>Unreviewed</span>".html_safe, unreviewed_documents_path %></li>
-              <li><%= link_to "<span>Office</span>".html_safe, office_documents_path %></li>
+            <li class=<%= (params[:controller] == "dashboard" ? "active" : "") %>><%= link_to "<span>Dashboard</span>".html_safe, dashboard_index_path %></li>
+              <li class=<%= (params[:controller] == "transactions" ? "active" : "") %>><%= link_to "<span>Transaction</span>".html_safe, transactions_path %></li>
+              <li class=<%= (params[:controller] == "tasks" ? "active" : "") %>><%= link_to "<span>Tasks</span>".html_safe, tasks_path %></li>
+              <li class=<%= (params[:controller] == "documents" && params[:action] == "working" ? "active" : "") %>><%= link_to "<span>Workin</span>".html_safe, working_documents_path %></li>
+              <li class=<%= (params[:controller] == "documents" && params[:action] == "unreviewed" ? "active" : "") %>><%= link_to "<span>Unreviewed</span>".html_safe, unreviewed_documents_path %></li>
+              <li class=<%= (params[:controller] == "documents" && params[:action] == "office" ? "active" : "") %>><%= link_to "<span>Office</span>".html_safe, office_documents_path %></li>
             <% else %>
               <li class="active"></li>
               <li></li>
@@ -53,99 +53,7 @@
       </div>
       <div id="content">
         <% if current_user %>
-          <div id="leftColumnShow">Menu</div>
-          <div id="leftColumn">
-            <div id="closeBox">Close</div>
-            <ul class="leftmenu">
-              <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
-              <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path %></li>
-              <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
-              <li class="icon-admin"><%= link_to "admin", admin_user_path(current_user) %></li>
-              <li class="icon-monthly-backup"><a title="Monthly Backup" href="#">Monthly Backup</a></li>
-              <li class="icon-help"><a title="Help" href="#">Help</a></li>
-            </ul>
-            <div class="contentbox">
-              <h1>Admin &amp; Tech Support</h1>
-              <div class="box">
-                <div class="bt">
-                  <div class="br">
-                    <div class="bb">
-                      <div class="bl">
-                        <div class="con">
-                          <ul class="list-admin">
-                            <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
-                            <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
-                          </ul>
-                          <div class="clearFix"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="contentbox">
-              <h1><em><a title="Change" href="#">(Change)</a></em>Your Info</h1>
-              <div class="box">
-                <div class="bt">
-                  <div class="br">
-                    <div class="bb">
-                      <div class="bl">
-                        <div class="con">
-                          <ul class="list-admin">
-                            <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
-                            <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
-                            <li><a title="<%= current_user.role %>" href="#"><%= current_user.role %></a></li>
-                          </ul>
-                          <div class="clearFix"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="contentbox">
-              <h1>Monthly Stats</h1>
-              <div class="box">
-                <div class="bt">
-                  <div class="br">
-                    <div class="bb">
-                      <div class="bl">
-                        <div class="con">
-                          <ul class="list-admin">
-                            <li><span class="fright"><%= current_user.transactions.count %></span><a title="Transaction Created" href="#">Transaction Created</a></li>
-                            <li><span class="fright">5</span><a title="Transaction Quota" href="#">Transaction Quota</a></li>
-                          </ul>
-                          <p class="f11">Your monthly limit will reset back to 5 new transactions on March 28, 2013</p>
-                          <div class="clearFix"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="contentbox">
-              <h1>Your Permissions</h1>
-              <div class="box">
-                <div class="bt">
-                  <div class="br">
-                    <div class="bb">
-                      <div class="bl">
-                        <div class="con">
-                          <ul class="list-admin">
-                            <li><a title="Elite Real estate" href="#">Elite Real estate</a></li>
-                          </ul>
-                          <div class="clearFix"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         <%= render :partial => "/layouts/side_panel" %>
         <% end %>
         <div id="rightColumn">
           <%= yield %>
