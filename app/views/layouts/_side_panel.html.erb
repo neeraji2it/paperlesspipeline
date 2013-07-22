@@ -1,97 +1,8 @@
 <div id="leftColumnShow">Menu</div>
 <div id="leftColumn">
   <div id="closeBox">Close</div>
-  <% if params[:controller] == "dashboard" %>
-    <ul class="leftmenu">
-      <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
-      <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path %></li>
-      <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
-      <li class="icon-admin"><%= link_to "admin", admin_user_path(current_user) %></li>
-      <li class="icon-monthly-backup"><a title="Monthly Backup" href="#">Monthly Backup</a></li>
-      <li class="icon-help"><a title="Help" href="#">Help</a></li>
-    </ul>
-    <div class="contentbox">
-      <h1>Admin &amp; Tech Support</h1>
-      <div class="box">
-        <div class="bt">
-          <div class="br">
-            <div class="bb">
-              <div class="bl">
-                <div class="con">
-                  <ul class="list-admin">
-                    <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
-                    <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
-                  </ul>
-                  <div class="clearFix"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="contentbox">
-      <h1><em><a title="Change" href="#">(Change)</a></em>Your Info</h1>
-      <div class="box">
-        <div class="bt">
-          <div class="br">
-            <div class="bb">
-              <div class="bl">
-                <div class="con">
-                  <ul class="list-admin">
-                    <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
-                    <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
-                    <li><a title="<%= current_user.role %>" href="#"><%= current_user.role %></a></li>
-                  </ul>
-                  <div class="clearFix"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="contentbox">
-      <h1>Monthly Stats</h1>
-      <div class="box">
-        <div class="bt">
-          <div class="br">
-            <div class="bb">
-              <div class="bl">
-                <div class="con">
-                  <ul class="list-admin">
-                    <li><span class="fright"><%= current_user.transactions.count %></span><a title="Transaction Created" href="#">Transaction Created</a></li>
-                    <li><span class="fright">5</span><a title="Transaction Quota" href="#">Transaction Quota</a></li>
-                  </ul>
-                  <p class="f11">Your monthly limit will reset back to 5 new transactions on March 28, 2013</p>
-                  <div class="clearFix"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="contentbox">
-      <h1>Your Permissions</h1>
-      <div class="box">
-        <div class="bt">
-          <div class="br">
-            <div class="bb">
-              <div class="bl">
-                <div class="con">
-                  <ul class="list-admin">
-                    <li><a title="Elite Real estate" href="#">Elite Real estate</a></li>
-                  </ul>
-                  <div class="clearFix"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% elsif (params[:controller] == "transactions" && params[:action] == "index")  %>
+
+  <% if (params[:controller] == "transactions" && params[:action] == "index")  %>
     <ul class="leftmenu">
       <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
       <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path %></li>
@@ -123,7 +34,7 @@
       </div>
     </div>
   <% elsif (params[:controller] == "tasks")  %>
-  <ul class="leftmenu">
+    <ul class="leftmenu">
       <li class="icon-help"><a title="Help" href="#">Help</a></li>
     </ul>
     <div class="contentbox">
@@ -223,6 +134,96 @@
                     <li><a title="1441 Paragon Rd, Plam Bay MLS #: 333162" href="#">1441 Paragon Rd, Plam Bay <br />MLS #: 333162</a></li>
                   </ul>
                   <a class="link-viewall" title="View All" href="#">View All</a>
+                  <div class="clearFix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% elsif params[:controller] == "dashboard" || params[:controller] == "documents" || (params[:controller] == "users" && (params[:action] == "admin" || params[:action] == "manage_users" )) || params[:controller] == "checklists" %>
+    <ul class="leftmenu">
+      <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
+      <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path %></li>
+      <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
+      <li class="icon-admin"><%= link_to "admin", admin_user_path(current_user) %></li>
+      <li class="icon-monthly-backup"><a title="Monthly Backup" href="#">Monthly Backup</a></li>
+      <li class="icon-help"><a title="Help" href="#">Help</a></li>
+    </ul>
+    <div class="contentbox">
+      <h1>Admin &amp; Tech Support</h1>
+      <div class="box">
+        <div class="bt">
+          <div class="br">
+            <div class="bb">
+              <div class="bl">
+                <div class="con">
+                  <ul class="list-admin">
+                    <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
+                    <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
+                  </ul>
+                  <div class="clearFix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contentbox">
+      <h1><em><a title="Change" href="#">(Change)</a></em>Your Info</h1>
+      <div class="box">
+        <div class="bt">
+          <div class="br">
+            <div class="bb">
+              <div class="bl">
+                <div class="con">
+                  <ul class="list-admin">
+                    <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
+                    <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
+                    <li><a title="<%= current_user.role %>" href="#"><%= current_user.role %></a></li>
+                  </ul>
+                  <div class="clearFix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contentbox">
+      <h1>Monthly Stats</h1>
+      <div class="box">
+        <div class="bt">
+          <div class="br">
+            <div class="bb">
+              <div class="bl">
+                <div class="con">
+                  <ul class="list-admin">
+                    <li><span class="fright"><%= current_user.transactions.count %></span><a title="Transaction Created" href="#">Transaction Created</a></li>
+                    <li><span class="fright">5</span><a title="Transaction Quota" href="#">Transaction Quota</a></li>
+                  </ul>
+                  <p class="f11">Your monthly limit will reset back to 5 new transactions on March 28, 2013</p>
+                  <div class="clearFix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contentbox">
+      <h1>Your Permissions</h1>
+      <div class="box">
+        <div class="bt">
+          <div class="br">
+            <div class="bb">
+              <div class="bl">
+                <div class="con">
+                  <ul class="list-admin">
+                    <li><a title="Elite Real estate" href="#">Elite Real estate</a></li>
+                  </ul>
                   <div class="clearFix"></div>
                 </div>
               </div>
