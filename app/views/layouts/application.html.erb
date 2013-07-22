@@ -2,12 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>Cloud 9</title>
-    <%= stylesheet_link_tag "default" %>
-    <%= javascript_include_tag "application","jquery_002" %>
+    <%= stylesheet_link_tag "default", "jquery.notifyBar", :media => "all" %>
+    <%= javascript_include_tag "application","jquery_002","jquery.notifyBar" %>
     <%= csrf_meta_tags %>
-    <div id="flash">
-      <%= render :partial => 'layouts/flash', :object => flash %>
-    </div>
+    <%['notice', 'error', 'warning', 'alert'].each do |f|%>
+      <%if flash[f.to_sym]%>
+        <script type="text/javascript" >
+          jQuery(function () {
+            jQuery.notifyBar({
+              cls: "<%= f %>",
+              html: "<%=  flash[f.to_sym] %>",
+              delay: 10000,
+              animationSpeed: "normal"
+            });
+          });
+        </script>
+      <%end%>
+    <% end %>
   </head>
 
   <body>
@@ -25,7 +36,7 @@
               <li class="icon-logout"><span>|</span><%= current_user ? (link_to "Logout", destroy_user_session_path,:method => 'DELETE') : (link_to "Login", new_user_session_path) %> </li>
               <% if current_user.present? %><%  else %><%= link_to "|Signup", new_user_registration_path %><% end %>
             </ul>
-            <p><% if current_user %><a title="Nate B is signed in (Not you?)" href="#"><%= current_user.email %> is signed in (Not you?)</a></p> <% end %>
+            <p><% if current_user %><a title="Nate B is signed in (Not you?)" href="#"><%= current_user.first_name %> is signed in (Not you?)</a></p> <% end %>
             <div class="newTransaction"><%= current_user ? (link_to "New Transaction", new_transaction_path) : "" %></div>
           </div>
           <div class="clearFix"></div>

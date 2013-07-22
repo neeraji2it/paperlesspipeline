@@ -15,7 +15,9 @@
 //= require foundation
 //= require best_in_place
 
-$(function(){ $(document).foundation(); });
+$(function(){
+    $(document).foundation();
+});
 
 
 function remove_fields(link) {
@@ -39,4 +41,19 @@ $(document).ready(function() {
 
 
 
-$(function(){ $(document).foundation(); });
+$(function(){
+    $(document).foundation();
+});
+
+
+function show_flash_messages(message){
+    jQuery(function () {
+        jQuery.notifyBar({
+            cls: "error",
+            html: message,
+            delay: 1000000,
+            animationSpeed: "normal",
+            close: true
+        });
+    });
+}

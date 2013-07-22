@@ -1,8 +1,17 @@
-<% [:notice, :error, :alert].each do |level| %>
-   <% unless flash[level].blank? %>
-     <div class="<%= flash_class(level) %> fade in">
-      <a href="#" data-dismiss="alert" class="close">×</a>
-       <b>Notice:</b><%= content_tag :p, flash[level] %>
-     </div>
-   <% end %>
+<% if notice.present? %>
+  <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em; margin-bottom: 10px;">
+    <p class="notice">
+      <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+      <%= notice %>
+    </p>
+  </div>
+<% end %>
+
+<% if alert.present? %>
+  <div class="ui-state-error ui-corner-all" style="padding: 0 .7em; margin-bottom: 10px;">
+    <p class="alert">
+      <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+      <%= alert %>
+    </p>
+  </div>
 <% end %>

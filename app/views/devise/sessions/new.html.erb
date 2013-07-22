@@ -13,6 +13,7 @@
       </div>
   </head>
   <body class="page-login">
+    <div style="margin-top:-137px;" class="fright"><%= link_to "Signup", new_user_registration_path, :id => "user_register" %></div>
     <div id="loginbox">
       <h5>Log In to Cloud 9</h5>
       <div class="loginContent">
@@ -20,7 +21,7 @@
           <p><%= f.email_field :email, :autofocus => true,:class => "icon-user", :title => "Username", :type => "text", :placeholder => "Username" %></p>
           <p><%= f.password_field :password, :class => "icon-password", :title => "Password", :type => "password", :placeholder => "Password"  %></p>
           <%= link_to "Forgot your password?", new_password_path(resource_name), :class => "fright" %>
-          <p>Remember me <%= f.check_box :remember_me, :src => "/assets/icon-checkbox-selected.png" %></p>
+          <p>Remember me <%= f.check_box :remember_me, :title =>"Remember me", :alt =>"Remember me", :src => "/assets/icon-checkbox.png" %></p>
           <%= f.submit "Sign In", :class => "btn-signin" %>
         <% end %>
       </div>
