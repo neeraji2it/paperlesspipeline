@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-  <% elsif (params[:controller] == "tasks")  %>
+  <% elsif (params[:controller] == "tasks")  || (params[:controller] == "transactions" && (params[:action] == "new" || params[:action] == "create"))  %>
     <ul class="leftmenu">
       <li class="icon-help"><a title="Help" href="#">Help</a></li>
     </ul>
@@ -142,7 +142,7 @@
         </div>
       </div>
     </div>
-  <% elsif params[:controller] == "dashboard" || params[:controller] == "documents" || (params[:controller] == "users" && (params[:action] == "admin" || params[:action] == "manage_users" )) || params[:controller] == "checklists" %>
+  <% elsif params[:controller] == "dashboard" || params[:controller] == "documents" || (params[:controller] == "users" && (params[:action] == "admin" || params[:action] == "manage_users" || params[:action] == "manage_locations" )) || params[:controller] == "checklists" %>
     <ul class="leftmenu">
       <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
       <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path %></li>

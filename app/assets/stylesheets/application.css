@@ -25,6 +25,16 @@
     border: 2px;
 }
 
+
+#droparea{
+    border: 1px dotted grey;
+    height: 65px;
+    padding-top: 40px;
+    text-align: center;
+    width: 705px;
+    float: right;
+}
+
 .buttons:hover{
     background-color:yellow;
     width: 15%;
