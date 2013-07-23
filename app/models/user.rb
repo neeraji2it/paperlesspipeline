@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates :password,
     :length => { :minimum => 6, :maximum => 15,:message => 'should be  a minimum of 6 characters and a maximum of 15 characters.' },
     :confirmation =>true,:on => :create
-  validates :phone_number, :presence => true, :on => :update
+  validates :phone_number, :presence => true
   validates :first_name, :presence => {:message => "is required"}
   validates :last_name, :presence => {:message => "is required"}
   validates :company_name, :presence => {:message => "is required"}
