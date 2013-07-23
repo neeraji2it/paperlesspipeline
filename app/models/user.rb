@@ -3,9 +3,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable, :confirmable
+    :recoverable, :rememberable, :trackable, :validatable, :confirmable, :timeoutable
   
-  devise :authenticatable, :timeoutable, :validatable#, :timeout_in => 15.minutes
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmable,:current_password,:name,
@@ -15,16 +14,16 @@ class User < ActiveRecord::Base
   
   #validations======================================================================================================================================
   validates :email,
-    :presence => true,
     :uniqueness => true,  :length => { :maximum => 90, :minimum => 6 },
     :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
-  validates :password, :presence =>true,
+  validates :password,
     :length => { :minimum => 6, :maximum => 15,:message => 'should be  a minimum of 6 characters and a maximum of 15 characters.' },
     :confirmation =>true,:on => :create
-  validates :password, :presence => true,
-    :length => { :minimum => 6, :maximum => 15,:message => 'should be  a minimum of 6 characters and a maximum of 15 characters.' },
-    :confirmation =>true, :unless => lambda {|u| u.password.nil? },:on => :update
   validates :phone_number, :presence => true
+  validates :first_name, :presence => {:message => "is required"}
+  validates :last_name, :presence => {:message => "is required"}
+  validates :company_name, :presence => {:message => "is required"}
+  validates :password_confirmation, :presence => {:message => "is required"}
   #=================================================================================================================================================
   
   #Associations=====================================================================================================================================

@@ -5,20 +5,6 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application","jquery.notifyBar" %>
     <%= csrf_meta_tags %>
-    <%['notice', 'error', 'warning', 'alert'].each do |f|%>
-      <%if flash[f.to_sym]%>
-        <script type="text/javascript" >
-          jQuery(function () {
-            jQuery.notifyBar({
-              cls: "<%= f %>",
-              html: "<%=  flash[f.to_sym] %>",
-              delay: 1000,
-              animationSpeed: "normal"
-            });
-          });
-        </script>
-      <%end%>
-    <% end %>
   </head>
 
   <body>
@@ -34,7 +20,7 @@
               <li><span>|</span><a title="Admin" href="#">Admin</a></li>
               <li><span>|</span><a title="Profile" href="#">Profile</a></li>
               <li class="icon-logout"><span>|</span><%= current_user ? (link_to "Logout", destroy_user_session_path,:method => 'DELETE') : (link_to "Login", new_user_session_path) %> </li>
-              </ul>
+            </ul>
             <p><% if current_user %><a title="Nate B is signed in (Not you?)" href="#"><%= current_user.first_name %> is signed in (Not you?)</a></p> <% end %>
             <div class="newTransaction"><%= current_user ? (link_to "New Transaction", new_transaction_path) : "" %></div>
           </div>
@@ -43,7 +29,7 @@
         <div id="navigation">
           <ul>
             <% if current_user %>
-            <li class=<%= (params[:controller] == "dashboard" ? "active" : "") %>><%= link_to "<span>Dashboard</span>".html_safe, dashboard_index_path %></li>
+              <li class=<%= (params[:controller] == "dashboard" ? "active" : "") %>><%= link_to "<span>Dashboard</span>".html_safe, dashboard_index_path %></li>
               <li class=<%= (params[:controller] == "transactions" ? "active" : "") %>><%= link_to "<span>Transaction</span>".html_safe, transactions_path %></li>
               <li class=<%= (params[:controller] == "tasks" ? "active" : "") %>><%= link_to "<span>Tasks</span>".html_safe, tasks_path %></li>
               <li class=<%= (params[:controller] == "documents" && params[:action] == "working" ? "active" : "") %>><%= link_to "<span>Working</span>".html_safe, working_documents_path %></li>
@@ -61,9 +47,9 @@
         </div>
         <div class="clearFix"></div>
       </div>
-      <div id="content">
+      <div id="content"  style="min-height: 450px;">
         <% if current_user %>
-         <%= render :partial => "/layouts/side_panel" %>
+          <%= render :partial => "/layouts/side_panel" %>
         <% end %>
         <div id="rightColumn">
           <%= yield %>
