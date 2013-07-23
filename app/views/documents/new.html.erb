@@ -8,7 +8,8 @@
             <div class="bl">
               <div class="con">
                 <div class="officerow">
-                  <p><%= f.file_field :document, :class => "input-chosen", :title => "Choose a File" %><strong>No File Chosen</strong></p>
+                  <p style="float: left;"><%= f.file_field :document, :class => "input-chosen", :title => "Choose a File" %><strong>No File Chosen</strong></p>
+                  <div id="droparea">drag here</div>
                 </div>
                 <div class="contentbox">
                   <h1>
@@ -49,37 +50,19 @@
   </div>
   <div class="clearFix"></div>
 </div>
-<div class="clearFix"></div>
 
-<div id="droparea" style="width :120px;height: 120px;border:1px dotted grey;">drag here</div>
-<div id="previewarea"></div>
-<script>
-  var dropArea = document.getElementById("droparea"),
-  viewArea = document.getElementById("previewarea");
+<script type="text/javascript" >
+  var dropArea = document.getElementById("droparea")
 
   dropArea.addEventListener("drop", function(evt){
-    previewFiles(evt.dataTransfer.files);
+    evt.preventDefault();
+    evt.stopPropagation();
+
+    uploadFiles(evt.dataTransfer.files);
+
     return false;
   }, false);
 
-  function previewFiles(files){
-    for (i=0; i < files.length; i++){
-      if (typeof FileReader != "undefined"){
-        var img = document.createElement("img");
-        viewArea.appendChild(img);
-
-        var reader = new FileReader();
-        reader.onload = (function(theImg){
-          return function(evt){
-            theImg.src = evt.target.result;
-          }
-        }(img));
-        reader.readAsDataURL(files[i]);
-      }
-    }
-
-    uploadFiles(files);
-  }
 
   function uploadFiles(files){
     var fd = FormData();
@@ -88,14 +71,14 @@
     if (typeof fd != "undefined"){
       function queue(){
         if (max >= 1 && position <= max - 1){
-          fd.append("document", files[position]);
+          fd.append("document[document]", files[position]);
           upload();
         }
       }
 
       function upload(){
         $.ajax({
-          url: '/documents',
+          url: '/documents/',
           data: fd,
           processData: false,
           contentType: false,
@@ -135,13 +118,3 @@
   }
 </script>
 
-<script type="text/javascript" language="javascript">
-  jQuery(document).ready(function () {
-    jQuery('#leftColumnShow').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
-    });
-    jQuery('#closeBox').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
-    });
-  });
-</script>
