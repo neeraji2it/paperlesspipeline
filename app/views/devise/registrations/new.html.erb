@@ -30,12 +30,14 @@
           <h4>Create Your Account</h4>
           <div class="signupLeftColumn">
             <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-              <%= devise_error_messages! %>
               <div class="signupRow">
+                <%= validation_error(resource.errors["first_name"]) %>
                 <%= f.text_field :first_name, :class => "min-input", :title => "First Name", :placeholder => "First Name", :type => "text" %>
+                <%= validation_error(resource.errors["last_name"]) %>
                 <%= f.text_field :last_name, :class => "min-input", :title => "First Name", :placeholder => "First Name", :type => "text" %>
               </div>
               <div class="signupRow">
+                <%= validation_error(resource.errors["company_name"]) %>
                 <%= f.text_field :company_name, :title => "Company Name", :placeholder => "Company Name", :type => "text" %>
                 <span>We'll use this to brand your paperless system. You can change this later.</span>
               </div>
@@ -43,13 +45,16 @@
                 <%= f.text_field :phone_number, :title => "Phone Number", :placeholder => "Phone Number", :type => "text" %>
               </div>
               <div class="signupRow">
+                <%= validation_error(resource.errors["email"]) %>
                 <%= f.email_field :email, :title => "Email Address", :placeholder => "Email Address", :type => "text" %>
                 <span>You'll use this address to log in to your paperless system</span>
               </div>
               <div class="signupRow">
+                <%= validation_error(resource.errors["password"]) %>
                 <%= f.password_field :password, :title => "Password", :placeholder => "Password", :type => "password" %>
               </div>
               <div class="signupRow">
+                <%= validation_error(resource.errors["password_confirmation"]) %>
                 <%= f.password_field :password_confirmation, :title => "Confirm Password", :placeholder => "Comfirm Password", :type => "password" %>
               </div>
               <div class="signupRow">

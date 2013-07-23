@@ -42,6 +42,7 @@ class UsersController < ApplicationController
       redirect_to dashboard_index_path
       flash[:notice] = 'OK!  Please check your email to complete your registration.'
     else
+      puts @user.errors.inspect
       render :action => 'add_user'
     end
   end

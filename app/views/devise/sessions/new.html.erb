@@ -8,14 +8,25 @@
       <%= stylesheet_link_tag "default.css" %>
       <%= javascript_include_tag "application" %>
       <%= csrf_meta_tags %>
-      <div id="flash">
-        <%= render :partial => 'layouts/flash', :object => flash %>
-      </div>
+      <%['notice', 'error', 'warning', 'alert'].each do |f|%>
+        <%if flash[f.to_sym]%>
+          <script type="text/javascript" >
+            jQuery(function () {
+              jQuery.notifyBar({
+                cls: "<%= f %>",
+                html: "<%=  flash[f.to_sym] %>",
+                delay: 1000,
+                animationSpeed: "normal"
+              });
+            });
+          </script>
+        <%end%>
+      <% end %>
   </head>
   <body class="page-login">
     <div style="margin-top:-157px;" class="fright"><%= button_to "Signup", new_user_registration_path,:class => "btn-createAccount", :method => "get" %></div>
-    
-    <%#= link_to "Signup", new_user_registration_path, :class => "btn-createAccount", :type => "submit", :value => "Create Account", :title => "Create Account" %>
+
+<%#= link_to "Signup", new_user_registration_path, :class => "btn-createAccount", :type => "submit", :value => "Create Account", :title => "Create Account" %>
 
     <div id="loginbox">
       <h5>Log In to Cloud 9</h5>
