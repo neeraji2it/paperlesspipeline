@@ -1,5 +1,0 @@
-development:
-  adapter: mysql2
-  database: ppp
-  username: root
-  password:

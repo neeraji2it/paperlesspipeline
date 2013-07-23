@@ -3,6 +3,7 @@ gem 'rails', '3.2.12'
 
 gem 'premailer-rails3'
 gem 'twitter-bootstrap-rails' , '>= 2.1.6'
+gem 'best_in_place'
 gem 'capistrano'
 gem 'rvm-capistrano'
 gem 'thin' 
@@ -31,4 +32,5 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'zurb-foundation'
 end

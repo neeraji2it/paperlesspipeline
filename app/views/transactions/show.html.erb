@@ -1,21 +1,169 @@
-<div class="contentbox homebox">
-  <div class="contentbox">
-    <div class="contentbox">
-      <h2><b><%= @transaction.transaction_name %></b></h2> &nbsp &nbsp&nbsp&nbsp add by <%= current_user.first_name %>
-      <br /><br /><br /><br /><br />
-      <b>MLS #:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @transaction.id %><br />
-      <b>Status:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.status %><br />
-      <b>Acceptance Date:</b> &nbsp&nbsp&nbsp&nbsp <%= @transaction.id %><br />
-      <b>Close Date:</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <%= @transaction.expiration_date %><br />
-      <b>List Price:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.list_price %><br />
-      <b>Sale Price:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.sale_price %><br />
-      <b>Buyer:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.buyer_name %><br />
-      <b>Seller:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.seller_name %><br />
-
-      <br /><br /><br /><br />
-      <b>More Information:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @transaction.more_info %><br />
-
+<div class="contentbox">
+  <h1><em><span>83% COMPLETE</span><%= @transaction.transaction_name %></em><span>(Last updated Jun 5, 2013 by Dawn Long)</span></h1>
+  <div class="box">
+    <div class="bt">
+      <div class="br">
+        <div class="bb">
+          <div class="bl">
+            <div class="con">
+              <h3>Email docs and notes to this transaction: <a title="2946-32647-TX-354630@docs.paperlesspipeline.com Download vCard" href="#">2946-32647-TX-354630@docs.paperlesspipeline.com Download vCard</a></h3>
+              <div class="transactionDetailBox">
+                <div class="frow">
+                  <div>MLS #:</div>
+                  <div>533963</div>
+                </div>
+                <div class="frow">
+                  <div>Status:</div>
+                  <div>Active</div>
+                </div>
+                <div class="frow">
+                  <div>List Price:</div>
+                  <div>$169,900</div>
+                </div>
+                <div class="frow">
+                  <div>Seller:</div>
+                  <div>Rosemarie Meoni Trust / Dawn Clukey</div>
+                </div>
+                <div class="frow">
+                  <div>Location:</div>
+                  <div>Elite Real Estate</div>
+                </div>
+                <div class="frow">
+                  <div>Added On:</div>
+                  <div>Aug 21, 12</div>
+                </div>
+                <div class="frow">
+                  <div>Added By:</div>
+                  <div>Sally Ballew</div>
+                </div>
+              </div>
+              <div class="contentbox">
+                <h1><em><a class="btn-addContact" title="Add Contact" href="#">Add Contact</a></em>Contact</h1>
+                <div class="box">
+                  <div class="tableTransaction transactionDetail">
+                    <div class="con">
+                      <ul class="list-contact">
+                        <li>
+                          <p>Name</p>
+                          <input type="text" title="Name" />
+                        </li>
+                        <li>
+                          <p>Role</p>
+                          <input type="text" title="Role" />
+                        </li>
+                        <li>
+                          <p>Phone <span class="colorGray">(Optional)</span></p>
+                          <input type="text" title="Phone" />
+                        </li>
+                        <li>
+                          <p>Fax <span class="colorGray">(Optional)</span></p>
+                          <input type="text" title="Fax" />
+                        </li>
+                        <li>
+                          <p>Email <span class="colorGray">(Optional)</span></p>
+                          <input type="text" title="Email" />
+                        </li>
+                        <li>
+                          <input class="btn-submit" type="submit" title="Submit" value="Submit" />
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="contentbox">
+                <div class="tableTransaction">
+                  <h1>
+                    <div class="column">Info</div>
+                    <div class="column w30">Listing Docs</div>
+                    <div class="column w12">Comments</div>
+                    <div class="column w13">Added On</div>
+                    <div class="column w13">Reviewed</div>
+                    <div class="column w13">Entered</div>
+                    <div class="column last">Actions</div>
+                  </h1>
+                  <div class="box">
+                    <div class="tableTransaction">
+                      <div class="transactionrow">
+                        <div class="column"><div class="icon-pdf"></div></div>
+                        <div class="column w30">Listing Packet</div>
+                        <div class="column w12"><div class="icon-comment"></div></div>
+                        <div class="column w13">Aug 21, 12</div>
+                        <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
+                        <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
+                        <div class="column last">
+                          <span class="btn-action transaction">
+                            <em class="tooltip-container"><span>Action</span>
+                              <strong class="tooltip">
+                                <ul class="list-tooltip">
+                                  <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
+                                  <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
+                                </ul>
+                                <i class="top-arrow"></i>
+                              </strong>
+                            </em>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="transactionrow">
+                        <div class="column"><div class="icon-pdf"></div></div>
+                        <div class="column w30">Listing Packet</div>
+                        <div class="column w12"><div class="icon-comment"></div></div>
+                        <div class="column w13">Aug 21, 12</div>
+                        <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
+                        <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
+                        <div class="column last">
+                          <span class="btn-action transaction">
+                            <em class="tooltip-container"><span>Action</span>
+                              <strong class="tooltip">
+                                <ul class="list-tooltip">
+                                  <li><a title="Email Doc" href="#">Email Doc</a></li>
+                                  <li><a title="Download" href="#">Download</a></li>
+                                  <li><a title="Edit Doc" href="#">Edit Doc</a></li>
+                                  <li><a title="Rotate Right" href="#">Rotate Right</a></li>
+                                  <li><a title="Rotate Left" href="#">Rotate Left</a></li>
+                                  <li><a title="Break Apart" href="#">Break Apart</a></li>
+                                  <li><a title="Unassign Doc" href="#">Unassign Doc</a></li>
+                                  <li><a title="Delete" href="#">Delete</a></li>
+                                </ul>
+                                <i class="top-arrow"></i>
+                              </strong>
+                            </em>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="contentbox">
+                <h1><em><a class="btn-addNote" title="Add Note" href="#">Add Note</a></em>Note History</h1>
+                <div class="box">
+                  <div class="tableTransaction transactionDetail">
+                    <div class="con">
+                      <ul class="list-comment">
+                        <li>
+                          <h5>heading</h5>
+                          <p><abbr>Jun 5, 13</abbr></p>
+                          <p>We are missing your initials on the bottom of all page of the listing agreement and the fully executed lead base paint addendum, could you please upload the documents to the paperless pipeline for our records and FREC. Thank You DL</p>
+                          <em>Sally Ballew</em>
+                        </li>
+                        <li>
+                          <h5>heading</h5>
+                          <p><abbr>Jun 5, 13</abbr></p>
+                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting of industry. Lorem Ipsum has been the industry's <br> standard dummytext ever since the 1500s, Lorem Ipsum is simply dummy text of the printing and typesetting<br> industry. in the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.typesetting industry. </p>
+                          <em>Lorem Ipsum</em>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearFix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="clearFix"></div>
 </div>
