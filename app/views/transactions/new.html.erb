@@ -12,6 +12,7 @@
                     <h3>Transaction Information</h3>
                     <p>Location</p>
                     <p>
+                      <%= validation_error(@transaction.errors["location_id"]) %>
                       <%= f.select :location_id, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.name, c.id]}, params[:locations]), :id => "locationI", :title => "Location" %>
                     </p>
                     <div class="bposi">
@@ -23,9 +24,9 @@
                       </div>
                     </div>
                     <p>Transaction Name or Address</p>
-                    <p><%= f.text_field :transaction_name, :title => "Transaction Name or Address", :type => "text"  %></p>
+                    <p><%= validation_error(@transaction.errors["transaction_name"]) %><%= f.text_field :transaction_name, :title => "Transaction Name or Address", :type => "text"  %></p>
                     <p>MLS or Transaction Number</p>
-                    <p><%= f.text_field :transaction_number, :id => "transactionI", :title => "MLS or Transaction Number", :type => "text" %></p>
+                    <p><%= validation_error(@transaction.errors["transaction_number"]) %><%= f.text_field :transaction_number, :id => "transactionI", :title => "MLS or Transaction Number", :type => "text" %></p>
                     <div class="bposi">
                       <div id="transactionBoxN" class="popup" style="display:none;">
                         <strong>Enter the MLS or Transaction number </strong>
@@ -34,10 +35,12 @@
                     </div>
                     <p>Status</p>
                     <p>
+                      <%= validation_error(@transaction.errors["status"]) %>
                       <%= f.text_field :status, :title => "Status" %>
                     </p>
                     <p>Close Date</p>
                     <p>
+                      <%= validation_error(@transaction.errors["close_date"]) %>
                       <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%m/%d/%Y") : "") %>
   <%#*<script>%>
   <%#*$("#transaction_close_date").datetimepicker({%>
@@ -55,27 +58,27 @@
                   <div class="commonrowt">
                     <h3>Optional Information <span>Click to show/hide</span></h3>
                     <p>More Info</p>
-                    <p><%= f.text_area :more_info, :rows => "5" %></p>
+                    <p><%= validation_error(@transaction.errors["more_info"]) %><%= f.text_area :more_info, :rows => "5" %></p>
                     <p>Automatic Expiration Date</p>
                     <p><%= f.text_field :automatic_expire_date, :class => "icon-closedate", :title => "Automatic Expiration Date", :type => "text" %></p>
                     <p>Buyer Name</p>
-                    <p><%= f.text_field :buyer_name %></p>
+                    <p><%= validation_error(@transaction.errors["buyer_name"]) %><%= f.text_field :buyer_name %></p>
                     <p>Seller Name</p>
-                    <p><%= f.text_field :seller_name %></p>
+                    <p><%= validation_error(@transaction.errors["seller_name"]) %><%= f.text_field :seller_name %></p>
                     <p>List Price</p>
-                    <p><%= f.text_field :list_price %></p>
+                    <p><%= validation_error(@transaction.errors["list_price"]) %><%= f.text_field :list_price %></p>
                     <p>Currency</p>
                     <p><input title="Currency" type="text" /></p>
                     <p>Sale Price</p>
-                    <p><%= f.text_field :sale_price %></p>
+                    <p><%= validation_error(@transaction.errors["sale_price"]) %><%= f.text_field :sale_price %></p>
                     <p>Currency</p>
                     <p><input title="Currency" type="text" /></p>
                     <p>Total Commission</p>
-                    <p><%= f.text_field :total_commission %></p>
+                    <p><%= validation_error(@transaction.errors["total_commission"]) %><%= f.text_field :total_commission %></p>
                     <p>Currency</p>
                     <p><input title="Currency" type="text" /></p>
                     <p>Commission Summary</p>
-                    <p><%= f.text_field :commission_summary %></p>
+                    <p><%= validation_error(@transaction.errors["commission_summary"]) %><%= f.text_field :commission_summary %></p>
                   </div>
                   <div class="commonrowt">
                     <h3>Assigned Agents <span>Search by agent name or select by location</span></h3>
@@ -180,22 +183,21 @@
     </div>
   </div>
 </div>
-</div>
-</div>
-jQuery(document).ready(function () {
-jQuery('#leftColumnShow').click(function () {
-jQuery('#leftColumn').slideToggle('slow', function () {})
-});
-jQuery('#closeBox').click(function () {
-jQuery('#leftColumn').slideToggle('slow', function () {})
-});
-jQuery('#locationI').hover(function () {
-jQuery('#locationBoxN').slideToggle('slow', function () {})
-});
-jQuery('#transactionI').hover(function () {
-jQuery('#transactionBoxN').slideToggle('slow', function () {})
-});
-});
+<script
+  jQuery(document).ready(function () {
+  jQuery('#leftColumnShow').click(function () {
+  jQuery('#leftColumn').slideToggle('slow', function () {})
+  });
+  jQuery('#closeBox').click(function () {
+  jQuery('#leftColumn').slideToggle('slow', function () {})
+  });
+  jQuery('#locationI').hover(function () {
+  jQuery('#locationBoxN').slideToggle('slow', function () {})
+  });
+  jQuery('#transactionI').hover(function () {
+  jQuery('#transactionBoxN').slideToggle('slow', function () {})
+  });
+  });
 </script>
 
 
