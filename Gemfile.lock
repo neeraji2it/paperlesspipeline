@@ -35,6 +35,9 @@ GEM
       nokogiri (< 1.6.0)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.1)
+    best_in_place (2.1.0)
+      jquery-rails
+      rails (~> 3.1)
     bootstrap-sass (2.3.2.0)
       sass (~> 3.2)
     builder (3.0.4)
@@ -186,12 +189,15 @@ GEM
     uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
+    zurb-foundation (4.2.3)
+      sass (>= 3.2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   aws-sdk
+  best_in_place
   bootstrap-sass
   capistrano
   coffee-rails (~> 3.2.1)
@@ -214,3 +220,4 @@ DEPENDENCIES
   thinking-sphinx (= 2.0.10)
   twitter-bootstrap-rails (>= 2.1.6)
   uglifier (>= 1.0.3)
+  zurb-foundation
