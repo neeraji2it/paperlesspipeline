@@ -5,6 +5,20 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application","jquery.notifyBar" %>
     <%= csrf_meta_tags %>
+    <%['notice', 'error', 'warning', 'alert'].each do |f|%>
+      <%if flash[f.to_sym]%>
+        <script type="text/javascript" >
+          jQuery(function () {
+            jQuery.notifyBar({
+              cls: "<%= f %>",
+              html: "<%=  flash[f.to_sym] %>",
+              delay: 1000,
+              animationSpeed: "normal"
+            });
+          });
+        </script>
+      <%end%>
+    <% end %>
   </head>
 
   <body>
