@@ -31,6 +31,32 @@ function add_fields(link, association, content) {
 $(document).ready(function() {
     /* Activating Best In Place */
     jQuery(".best_in_place").best_in_place();
+
+
+    jQuery('#leftColumnShow').click(function () {
+        jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+        jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#addContact').click(function () {
+        jQuery('#addContactContent').slideToggle('slow', function () {})
+    });
+    jQuery('#addContactClose').click(function () {
+        jQuery('#addContactContent').slideToggle('slow', function () {})
+    });
+    jQuery('#addNote').click(function () {
+        jQuery('#addNoteContent').slideToggle('slow', function () {})
+    });
+    jQuery('#addNoteClose').click(function () {
+        jQuery('#addNoteContent').slideToggle('slow', function () {})
+    });
+    jQuery('#newTask').click(function () {
+        jQuery('#newTaskContent').slideToggle('slow', function () {})
+    });
+    jQuery('#newTaskClose').click(function () {
+        jQuery('#newTaskContent').slideToggle('slow', function () {})
+    });			
 });
 
 

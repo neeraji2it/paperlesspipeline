@@ -1,5 +1,5 @@
 <div class="contentbox">
-  <h1><em><span>83% COMPLETE</span><%= @transaction.transaction_name %></em><span>(Last updated Jun 5, 2013 by Dawn Long)</span></h1>
+  <h1><em><span>83% COMPLETE</span></em>120 Tyler Ave, Cape Canaveral, 32920<span>(Last updated Jun 5, 2013 by Dawn Long)</span></h1>
   <div class="box">
     <div class="bt">
       <div class="br">
@@ -38,8 +38,8 @@
                 </div>
               </div>
               <div class="contentbox">
-                <h1><em><a class="btn-addContact" title="Add Contact" href="#">Add Contact</a></em>Contact</h1>
-                <div class="box">
+                <h1><em><a id="addContact" class="btn-addContact" title="Add Contact" href="javascript:;">Add Contact</a></em>Contact</h1>
+                <div class="box" id="addContactContent" style="display:none;">
                   <div class="tableTransaction transactionDetail">
                     <div class="con">
                       <ul class="list-contact">
@@ -64,7 +64,7 @@
                           <input type="text" title="Email" />
                         </li>
                         <li>
-                          <input class="btn-submit" type="submit" title="Submit" value="Submit" />
+                          <input id="addContactClose" class="btn-submit" type="submit" title="Submit" value="Submit" />
                         </li>
                       </ul>
                     </div>
@@ -136,8 +136,33 @@
                   </div>
                 </div>
               </div>
+              <div class="contentbox" id="addNoteContent" style="display:none;">
+                <h1>Add Note</h1>
+                <div class="box">
+                  <div class="tableTransaction transactionDetail">
+                    <div class="con">
+                      <h3>New note for 120 Tyler Ave, Cape Canaveral, 32920</h3>
+                      <p><textarea placeholder="Type your note here. When you're finished, select the agents or staff who should receive your note by email."></textarea></p>
+                      <h3>Email this note to the agents or staff selected below:</h3>
+                      <ul class="list-emailnote">
+                        <li><span><input title="Listing agents" type="checkbox" />Listing agents</span></li>
+                        <li><input title="Sally" type="checkbox" /> Sally</li>
+                      </ul>
+                      <ul class="list-emailnote">
+                        <li><span><input title="Staff" type="checkbox" />Staff</span></li>
+                        <li><input title="Justin Brown" type="checkbox" /> Justin Brown</li>
+                        <li><input title="Nate Brown" type="checkbox" /> Nate Brown</li>
+                        <li><input title="Susan Lewis" type="checkbox" /> Susan Lewis</li>
+                        <li><input title="Dawn Long" type="checkbox" /> Dawn Long</li>
+                        <li><input title="Lisi Ross" type="checkbox" /> Lisi Ross</li>
+                      </ul>
+                      <input id="addNoteClose" class="btn-sendNote" type="submit" title="Send Note" value="Send Note" /><p><input type="checkbox" title="Append incomplete tasks to note" />Append incomplete tasks to note <input class="mleft" type="checkbox" title="Append completed tasks to note" />Append completed tasks to note</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="contentbox">
-                <h1><em><a class="btn-addNote" title="Add Note" href="#">Add Note</a></em>Note History</h1>
+                <h1><em><a id="addNote" class="btn-addNote" title="Add Note" href="javascript:;">Add Note</a></em>Note History</h1>
                 <div class="box">
                   <div class="tableTransaction transactionDetail">
                     <div class="con">
@@ -151,7 +176,7 @@
                         <li>
                           <h5>heading</h5>
                           <p><abbr>Jun 5, 13</abbr></p>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting of industry. Lorem Ipsum has been the industry's <br> standard dummytext ever since the 1500s, Lorem Ipsum is simply dummy text of the printing and typesetting<br> industry. in the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.typesetting industry. </p>
+                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting of industry. Lorem Ipsum has been the industry's <br/> standard dummytext ever since the 1500s, Lorem Ipsum is simply dummy text of the printing and typesetting<br/> industry. in the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.typesetting industry. </p>
                           <em>Lorem Ipsum</em>
                         </li>
                       </ul>
