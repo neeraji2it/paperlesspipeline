@@ -73,7 +73,10 @@ function CreateList(list, trn_id){
     var check = jQuery(list).val()
     $.ajax({
         url: "/checklists",
-        data: {"checklist":check, "transaction_id":trn_id},
+        data: {
+            "checklist":check,
+            "transaction_id":trn_id
+        },
         method: "POST",
         success: function(data){
 
@@ -85,10 +88,49 @@ function TaskStatusUpdate(st, task_id, trn_id){
     var check= $(st).is(':checked')
     $.ajax({
         url: "/tasks/"+task_id+"/update_status",
-        data: {"status":check, "transaction_id":trn_id},
+        data: {
+            "status":check,
+            "transaction_id":trn_id
+        },
         method: "PUT",
         success: function(data){
 
         }
     })
+}
+
+function select_listing(user_id,u_name){
+    if($("#li_"+user_id).is(':checked')){
+        if($("#listing_users_"+user_id).length > 0){
+            if($("#se_"+user_id).is(':checked')){
+                $("#ch_li_"+user_id).attr("checked",true)
+            }
+        }else{
+            $("#listing_users").append('<div class="row" id="listing_users_'+user_id+'"><div class="assigned-agents-vale1"><input id="ch_li_'+user_id+'" type="checkbox" value="'+user_id+'" name="listing[]" checked></div><div class="assigned-agents-vale1"><input id="ch_se_'+user_id+'" type="checkbox" value="'+user_id+'" name="selling[]"></div><div>'+u_name+'</div></div>')
+        }
+    }else{
+        if($("#se_"+user_id).is(':checked')){
+            $("#ch_li_"+user_id).attr("checked",false)
+        }else{
+            $("#listing_users_"+user_id).remove();
+        }
+    }
+}
+
+function select_selling(user_id,u_name){
+    if($("#se_"+user_id).is(':checked')){
+        if($("#listing_users_"+user_id).length > 0){
+            if($("#li_"+user_id).is(':checked')){
+                $("#ch_se_"+user_id).attr("checked",true)
+            }
+        }else{
+            $("#listing_users").append('<div class="row" id="listing_users_'+user_id+'"><div class="assigned-agents-vale1"><input id="ch_li_'+user_id+'" type="checkbox" value="'+user_id+'" name="listing[]"></div><div class="assigned-agents-vale1"><input id="ch_se_'+user_id+'" type="checkbox" value="'+user_id+'" name="selling[]" checked></div><div>'+u_name+'</div></div>')
+        }
+    }else{
+        if($("#li_"+user_id).is(':checked')){
+            $("#ch_se_"+user_id).attr("checked",false)
+        }else{
+            $("#listing_users_"+user_id).remove();
+        }
+    }
 }

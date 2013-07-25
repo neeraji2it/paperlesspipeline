@@ -6,11 +6,38 @@
         <tr>
           <td><%= f.hidden_field :create_id, :value => current_user.id %></td>
         </tr>
+        <tr><td>&nbsp</td></tr>
+        <tr>
+          <td><%= f.label :first_name,"First Name" %></td>
+          <td><%= f.text_field :first_name, :autofocus => true %></td>
+          <td><%= validation_error(@user.errors["first_name"]) %></td>
+        </tr>
+        <tr><td>&nbsp</td></tr>
+        <tr>
+          <td><%= f.label :last_name %></td>
+          <td><%= f.text_field :last_name, :autofocus => true %></td>
+          <td><%= validation_error(@user.errors["last_name"]) %></td>
+        </tr>
+        <tr><td>&nbsp</td></tr>
         <tr>
           <td><%= f.label :email %></td>
           <td><%= f.email_field :email, :autofocus => true %></td>
           <td><%= validation_error(@user.errors["email"]) %></td>
         </tr>
+        <tr><td>&nbsp</td></tr>
+        <tr>
+          <td><%= f.label :Location %></td>
+          <td><%= f.select :location, options_for_select(Location.all.collect{|l| [l.name, l.id]}), :class => "micro-input" %></td>
+          <td><%= validation_error(@user.errors["location_id"]) %></td>
+        </tr>
+        <tr><td>&nbsp</td></tr>
+        <tr>
+          <td><%= f.label :Role %></td>
+          <td><%= f.select :role, %w(Admin Agent User), :title => "Add a Role" %></td>
+          <td><%= validation_error(@user.errors["role"]) %></td>
+        </tr>
+
+
         <tr><td>&nbsp</td></tr>
         <tr>
           <td><%= f.label :password %></td>
@@ -24,11 +51,7 @@
           <td><%= validation_error(@user.errors["password_confirmation"]) %></td>
         </tr>
         <tr><td>&nbsp</td></tr>
-        <tr>
-          <td><%= f.label :Role %></td>
-          <td><%= f.select :role, %w(Admin Agent User), :title => "Add a Role" %></td>
-          <td><%= validation_error(@user.errors["role"]) %></td>
-        </tr>
+
         <tr><td>&nbsp</td></tr>
         <tr><td>&nbsp</td></tr>
         <tr><td>&nbsp</td></tr>

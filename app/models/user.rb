@@ -19,19 +19,19 @@ class User < ActiveRecord::Base
   validates :password,
     :length => { :minimum => 6, :maximum => 15,:message => 'should be  a minimum of 6 characters and a maximum of 15 characters.' },
     :confirmation =>true,:on => :create
-  validates :phone_number, :presence => true
-  validates :first_name, :presence => {:message => "is required"}
-  validates :last_name, :presence => {:message => "is required"}
-  validates :company_name, :presence => {:message => "is required"}
-  validates :password_confirmation, :presence => {:message => "is required"}
+  #validates :phone_number, :presence => true
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+  #validates :company_name, :presence => {:message => "is required"}
+  validates :password_confirmation, :presence => true
   #=================================================================================================================================================
   
   #Associations=====================================================================================================================================
   has_many :transactions, :dependent => :destroy
   has_many :docuemts, :dependent => :destroy
-  has_many :locations, :dependent => :destroy
   has_many :documents, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  belongs_to :locations
   has_attached_file :avatar, :styles => { :thumb=> "100x100#", :small  => "400x400>" } if (Rails.env == 'development')
   
   has_attached_file :avatar,

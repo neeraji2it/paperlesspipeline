@@ -34,14 +34,32 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @users = User.all
+    @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ")
   end
 
   def create
     @transaction = Transaction.new(params[:transaction])
     @transaction.user_id = current_user.id
     @transaction.location_id = params[:transaction][:location_id]
+    @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ")
     if @transaction.save
+      if !params[:listing].empty?
+        params[:listing].each do |list|
+          Agent.create(:user_id => list,:transaction_id => @transaction.id,:listing => true,:selling => false)
+        end
+      end
+
+      if !params[:selling].empty?
+        params[:selling].each do |sell|
+          @agent = Agent.find_by_transaction_id_and_user_id(@transaction.id,sell)
+          if @agent
+            @agent.selling = true
+            @agent.save
+          else
+            Agent.create(:user_id => sell,:transaction_id => @transaction.id,:listing => false,:selling => true)
+          end
+        end
+      end
       csv_string = CSV.generate do |csv|
         csv << ["Address", "MLS Number", "Status","Close Date","More Info","Buyer","Seller","List price","Sale price","Commission Amount","Commission Summary"]
         csv << [@transaction.transaction_name, @transaction.transaction_number, @transaction.status, @transaction.close_date,@transaction.more_info,@transaction.buyer_name,@transaction.seller_name,@transaction.list_price,@transaction.sale_price,@transaction.total_commission,@transaction.commission_summary]
