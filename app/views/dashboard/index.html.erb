@@ -124,7 +124,9 @@
                           <em class="tooltip-container">
                             <strong class="tooltip">
                               <ul class="list-tooltip">
-                                <li class="alcent">Salley Ballew</li>
+                                <% @agent = Agent.find_by_transaction_id(i.id) %>
+                                <% if @agent.present? %><% @user = User.find_by_id(@agent.user_id) %><% end %>
+                                <li class="alcent"><% if @user.present? %><%= @user.first_name %><% end  %></li>
                               </ul>
                               <i class="top-arrow"></i>
                             </strong>
@@ -186,7 +188,9 @@
                           <em class="tooltip-container">
                             <strong class="tooltip">
                               <ul class="list-tooltip">
-                                <li class="alcent">Salley Ballew</li>
+                                <% @agent = Agent.find_by_transaction_id(i.id) %>
+                                <% if @agent.present? %><% @user = User.find_by_id(@agent.user_id) %><% end %>
+                                <li class="alcent"><% if @user.present? %><%= @user.first_name %><% end  %></li>
                               </ul>
                               <i class="top-arrow"></i>
                             </strong>
@@ -248,7 +252,9 @@
                             <em class="tooltip-container">
                               <strong class="tooltip">
                                 <ul class="list-tooltip">
-                                  <li class="alcent">Salley Ballew</li>
+                                  <% @agent = Agent.find_by_transaction_id(i.id) %>
+                                  <% if @agent.present? %><% @user = User.find_by_id(@agent.user_id) %><% end %>
+                                  <li class="alcent"><% if @user.present? %><%= @user.first_name %><% end  %></li>
                                 </ul>
                                 <i class="top-arrow"></i>
                               </strong>

@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require best_in_place
 
 
 function remove_fields(link) {
@@ -29,10 +28,6 @@ function add_fields(link, association, content) {
 
 
 $(document).ready(function() {
-    /* Activating Best In Place */
-    jQuery(".best_in_place").best_in_place();
-
-
     jQuery('#leftColumnShow').click(function () {
         jQuery('#leftColumn').slideToggle('slow', function () {})
     });

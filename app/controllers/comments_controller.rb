@@ -18,14 +18,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @document = Document.find(params[:document_id])
-    @comments = @document.comments
-    @comment = @document.comments.new(params[:comment].merge(:user_id => current_user.id, :document_id => @document.id))
-    if @comment.save
-      respond_to do |format|
-        format.js
-      end
-    end
+    @comment = Comment.new(params[:comment].merge(:document_id => params[:document_id], :user_id => current_user.id))
+    @comment.save
   end
 
   def edit
@@ -49,6 +43,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    puts "======================================================="
+    puts params.inspect
+    puts "======================================================="
     @document = Document.find(params[:document_id])
     @comment = @document.comments.find(params[:id])
     if @comment.destroy

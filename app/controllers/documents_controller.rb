@@ -86,4 +86,13 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def comment
+    @comment = Comment.new(params[:comment])
+    @comment.save
+    respond_to do |format|
+      @document = Document.find(@comment.document_id)
+      format.js
+    end
+  end
+
 end
