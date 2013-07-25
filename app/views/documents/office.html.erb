@@ -61,6 +61,7 @@
 
                           <div class="commentBox" id="commentBox" style="display:none">
                             <div id="comment-new-and-show">
+
                               <%= form_for :comment, :url => comment_documents_path, :method => 'POST', :remote => true do |f| %>
     <%#*<input title="Comments" type="text" />%>
                                 <%= f.text_field :comment, :title => "Comments", :type =>"text" %>
@@ -69,6 +70,9 @@
     <%#*<input class="btn-save" title="Save" type="submit" value="Save" />%>
                                 <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
                               <% end %>
+                              <div id="document_comments_<%= doc.id %>">
+                                <%= render :partial => "documents/comment",:locals => {:doc => doc} %>
+                              </div>
                             </div>
                           </div>
                         </div>

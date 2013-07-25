@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.12'
 
+gem "best_in_place"
 gem 'premailer-rails3'
 gem 'twitter-bootstrap-rails' , '>= 2.1.6'
 gem 'best_in_place'

@@ -1,9 +1,29 @@
-<%= @document.comments.last.comment %><b>-</b><b><%= current_user.first_name %>.</b>
+<table>
+  <tr>
+    <th>Comment</th>
+    <th>Delete</th>
+    <th>|</th>
+    <th>Edit</th>
+  </tr>
+  <% doc.comments.last(5).each do |comment| %>
+    <tr>
+      <td><%= comment.comment  %><b>-</b><b><%= current_user.first_name %>.</b></td>
+      <td> <%= link_to "Delete Comment", document_comment_path(:document_id => doc.id,:id => comment.id),:method => "DELETE",:remote => true %></td>
+  <%#= link_to_function "Delete Comment", "delete_comment(#{@document.id},#{@document.comments.last.id})" %>
+      <td>|</td>
+      <td><%= link_to "Edit"  %></td>
+    </tr>
+  <% end %>
+</table>
 
-<div style="float:right;">
-  <p>
-    <%= link_to "Destroy" %>
-    <%= link_to "Edit"  %>
-  </p>
-</div>
+
+
+<script>
+  function delete_comment(document_id,comment_id){
+    $.ajax({
+      type: "DELETE",
+      url: "/documents/"+document_id+"/comments/"+comment_id
+    });
+  }
+</script>
 

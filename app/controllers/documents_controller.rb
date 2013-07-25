@@ -94,5 +94,6 @@ class DocumentsController < ApplicationController
       format.js
     end
   end
+  
 
 end

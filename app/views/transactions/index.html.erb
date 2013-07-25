@@ -41,7 +41,7 @@
                   <% @transactions.each do |i|  %>
                     <div class="tableTransaction">
                       <div class="transactionrow">
-                        <div class="column w30"><%= i.transaction_name %></div>
+                        <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %></div>
                         <div class="column"><%= i.status %> </div>
                         <div class="column w11">
                           <div class="completebox">7/8</div>

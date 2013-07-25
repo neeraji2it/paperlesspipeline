@@ -43,11 +43,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    puts "======================================================="
-    puts params.inspect
-    puts "======================================================="
     @document = Document.find(params[:document_id])
-    @comment = @document.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
     if @comment.destroy
       respond_to do |format|
         format.js
