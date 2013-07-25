@@ -51,12 +51,9 @@ $(document).ready(function() {
     jQuery('#addNoteClose').click(function () {
         jQuery('#addNoteContent').slideToggle('slow', function () {})
     });
-    jQuery('#newTask').click(function () {
-        jQuery('#newTaskContent').slideToggle('slow', function () {})
+    jQuery('#newList').click(function () {
+        jQuery('#newListContent').slideToggle('slow', function () {})
     });
-    jQuery('#newTaskClose').click(function () {
-        jQuery('#newTaskContent').slideToggle('slow', function () {})
-    });			
 });
 
 
@@ -70,4 +67,28 @@ function show_flash_messages(message){
             close: true
         });
     });
+}
+
+function CreateList(list, trn_id){
+    var check = jQuery(list).val()
+    $.ajax({
+        url: "/checklists",
+        data: {"checklist":check, "transaction_id":trn_id},
+        method: "POST",
+        success: function(data){
+
+        }
+    })
+}
+
+function TaskStatusUpdate(st, task_id, trn_id){
+    var check= $(st).is(':checked')
+    $.ajax({
+        url: "/tasks/"+task_id+"/update_status",
+        data: {"status":check, "transaction_id":trn_id},
+        method: "PUT",
+        success: function(data){
+
+        }
+    })
 }

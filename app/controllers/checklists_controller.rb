@@ -1,60 +1,13 @@
 class ChecklistsController < ApplicationController
-  # GET /checklists
-  # GET /checklists.json
-  def index
-    if params[:search].present?
-      @checklists = Checklist.search "*#{params[:search]}*"
-    else
-      @checklists = Checklist.all
-    end
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
-  end
-
-  # GET /checklists/1
-  # GET /checklists/1.json
-  def show
-    @checklist = Checklist.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
-  end
-
-  # GET /checklists/new
-  # GET /checklists/new.json
-  def new
-    @checklist = Checklist.new
-    @locations = Location.all
-    1.times { @checklist.tasks.build }
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
-  end
-
-  # GET /checklists/1/edit
-  def edit
-    @checklist = Checklist.find(params[:id])
-  end
-
+  
   # POST /checklists
   # POST /checklists.json
   def create
-    @checklist = Checklist.new(params[:checklist])
-    if @checklist.tasks.blank?
-      1.times { @checklist.tasks.build }
-    end
+    Checklist.create(:name => params[:checklist], :transaction_id => params[:transaction_id])
+    @transaction = Transaction.find(params[:transaction_id])
+    @checklists = @transaction.checklists
     respond_to do |format|
-      if @checklist.save
-        #format.html { redirect_to @checklist, :notice => 'Checklist was successfully created.' }
-        redirect_to checklists_path
-        flash[:notice] = "Checklist created"
-      else
-        format.html { render :action => "new" }
-      end
+      format.js
     end
   end
 
