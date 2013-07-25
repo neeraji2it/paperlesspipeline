@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require best_in_place
 
 
 function remove_fields(link) {
@@ -73,7 +72,8 @@ function CreateList(list, trn_id){
             "checklist":check,
             "transaction_id":trn_id
         },
-        method: "POST",
+        type: "POST",
+        dataType: "script",
         success: function(data){
 
         }
@@ -88,7 +88,7 @@ function TaskStatusUpdate(st, task_id, trn_id){
             "status":check,
             "transaction_id":trn_id
         },
-        method: "PUT",
+        type: "PUT",
         success: function(data){
 
         }
@@ -130,3 +130,16 @@ function select_selling(user_id,u_name){
         }
     }
 }
+
+function show_commentbox(doc_id){
+    jQuery('#commentBox_'+doc_id).slideToggle('slow',function() {})
+}
+
+jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+        jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+        jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+});
