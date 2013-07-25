@@ -1,0 +1,45 @@
+<% checklists.each do |check| %>
+  <div class="contentbox">
+    <h1><%= check.name %></h1>
+    <div class="box">
+      <div class="bt">
+        <div class="br">
+          <div class="bb">
+            <div class="bl">
+              <div class="con">
+                <ul class="list-admin">
+                  <li>
+                    <div id="tasks_<%= check.id %>">
+                      <% @checklist = Checklist.find(check.id) %>
+                      <% @tasks = @checklist.tasks %>
+                      <%= render :partial => "tasks/tasks", :locals => {:tasks => @tasks} %>
+                    </div>
+                    <a id="newTask_<%= check.id %>" href="javascript:;" title="+ New Task" class="link-viewall">+ New Task</a>
+                    <div class="commonrow" id="newTaskContent_<%= check.id %>" style="display:none;">
+                      <%= form_for Task.new, :url => tasks_path(:checklist_id => check.id, :transaction_id => @transaction.id), :remote => true do |f| %>
+                        <%= f.text_field :name, :class => "input-newTask", :title => "New Task" %>
+                        <div id="error_<%= check.id %>" style="color:red;"></div>
+                        <%= f.submit :save, :class => "btn-saveTask", :title => "Save" %>
+                        <input class="btn-saveTask" type="button" title="Cancle" value="Cancle" id="newTaskClose_<%= check.id %>" />
+                      <% end %>
+                    </div>
+                    <script type="text/javascript">
+                      jQuery('#newTask_<%= check.id %>').click(function () {
+                        jQuery('#newTaskContent_<%= check.id %>').slideToggle('slow', function () {})
+                      });
+                      jQuery('#newTaskClose_<%= check.id %>').click(function () {
+                        jQuery('#newTaskContent_<%= check.id %>').slideToggle('slow', function () {})
+                        $("#error_<%= check.id %>").hide();
+                      });
+                    </script>
+                  </li>
+                </ul>
+                <div class="clearFix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<% if !@task.new_record? %>
+  $("#tasks_<%= @task.checklist_id %>").html("<%= escape_javascript(render :partial => "tasks", :locals => {:tasks => @tasks}) %>")
+  $("#newTaskContent_<%= @task.checklist_id %> #task_name").val(' ');
+  $("#newTaskContent_<%= @task.checklist_id %>").hide();
+  $("h1#chk_con").html("<%= "Checklists#{@completed_tasks.count()}/#{@total_tran_tasks.count()}" %>")
+<% else %>
+  $("#error_<%= @task.checklist_id %>").html("<%= @task.errors["name"][0] %>");
+<% end %>

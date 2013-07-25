@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(:version => 20130724075154) do
   end
 
   create_table "checklists", :force => true do |t|
-    t.integer  "location_id"
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "created_by"
+    t.integer  "transaction_id"
   end
 
   create_table "comments", :force => true do |t|
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(:version => 20130724075154) do
     t.text     "comment"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "role"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "email"
+    t.integer  "transaction_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "documents", :force => true do |t|
@@ -59,8 +70,10 @@ ActiveRecord::Schema.define(:version => 20130724075154) do
   create_table "tasks", :force => true do |t|
     t.integer  "checklist_id"
     t.string   "name"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "transaction_id"
+    t.boolean  "status",         :default => false
   end
 
   create_table "transactions", :force => true do |t|

@@ -152,17 +152,21 @@
       <li class="icon-help"><a title="Help" href="#">Help</a></li>
     </ul>
     <div class="contentbox">
-      <h1>Checklists5/6</h1>
+      <% @transaction = Transaction.find(params[:id]) %>
+      <% @checklists = @transaction.checklists %>
+      <% @total_tran_tasks = @transaction.tasks %>
+      <% @completed_tasks = @transaction.tasks.where("status = ?", true) %>
+      <h1 id="chk_con">Checklists<%= @completed_tasks.count() %>/<%= @total_tran_tasks.count() %></h1>
       <div class="box">
         <div class="bt">
           <div class="br">
             <div class="bb">
               <div class="bl">
                 <div class="con">
-                  <select title="Add a checklist" class="select-checklist">
-                    <option>New Contract Checklist</option>
-                    <option>New Listing Checklist</option>
-                  </select>
+                  <a id="newList" href="javascript:;" title="+ New List" class="link-viewall">+ New List</a>
+                  <div class="commonrow" id="newListContent" style="display:none;">
+                    <%= select_tag :create_list, options_for_select([["Add New List", ""],["New Contract Checklist", "New Contract Checklist"], ["New Listing Checklist", "New Listing Checklist"]]) , :title => "Add a checklist", :class => "select-checklist", :onchange => "CreateList(this, #{params[:id]})" %>
+                  </div>
                   <div class="clearFix"></div>
                 </div>
               </div>
@@ -171,55 +175,8 @@
         </div>
       </div>
     </div>
-    <div class="contentbox">
-      <h1>New Listing Checklist</h1>
-      <div class="box">
-        <div class="bt">
-          <div class="br">
-            <div class="bb">
-              <div class="bl">
-                <div class="con">
-                  <ul class="list-admin">
-                    <li>
-                      <ul class="list-checklist">
-                        <li><input type="checkbox" title="Lead Base Paint Law:   Licensee Notice to Seller/Landlord (Pre 1978)" />Lead Base Paint Law:   Licensee Notice to Seller/Landlord (Pre 1978)</li>
-                        <li><input type="checkbox" title="Listing Worksheet" />Listing Worksheet</li>
-                        <li><input type="checkbox" title="Exclusive Right of Sale" />Exclusive Right of Sale</li>
-                        <li><input type="checkbox" title="Seller's Cost Disclosure" />Seller's Cost Disclosure</li>
-                        <li><input type="checkbox" title="MLS" />MLS</li>
-                        <li><input type="checkbox" title="Tax Record" />Tax Record</li>
-                      </ul>
-                      <a id="newTask" href="javascript:;" title="+ New Task" class="link-viewall">+ New Task</a>
-                      <div class="commonrow" id="newTaskContent" style="display:none;">
-                        <input class="input-newTask" type="text" title="New Task" />
-                        <input class="btn-saveTask" type="submit" title="Save" value="Save" id="newTaskClose" />
-                        <input class="btn-saveTask" type="submit" title="Cancel" value="Cancel" />
-                      </div>
-                    </li>
-                    <li>
-                      <ul class="list-checklist">
-                        <li><input type="checkbox" title="Lead Base Paint Law:   Licensee Notice to Seller/Landlord (Pre 1978)" />Lead Base Paint Law:   Licensee Notice to Seller/Landlord (Pre 1978)</li>
-                        <li><input type="checkbox" title="Listing Worksheet" />Listing Worksheet</li>
-                        <li><input type="checkbox" title="Exclusive Right of Sale" />Exclusive Right of Sale</li>
-                        <li><input type="checkbox" title="Seller's Cost Disclosure" />Seller's Cost Disclosure</li>
-                        <li><input type="checkbox" title="MLS" />MLS</li>
-                        <li><input type="checkbox" title="Tax Record" />Tax Record</li>
-                      </ul>
-                      <a id="newTask" href="javascript:;" title="+ New Task" class="link-viewall">+ New Task</a>
-                      <div class="commonrow" id="newTaskContent" style="display:none;">
-                        <input class="input-newTask" type="text" title="New Task" />
-                        <input class="btn-saveTask" type="submit" title="Save" value="Save" id="newTaskClose" />
-                        <input class="btn-saveTask" type="submit" title="Cancel" value="Cancel" />
-                      </div>
-                    </li>
-                  </ul>
-                  <div class="clearFix"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div id="check">
+      <%= render :partial => "checklists/checklists", :locals => {:checklists => @checklists} %>
     </div>
   <% elsif params[:controller] == "dashboard" || params[:controller] == "documents" || (params[:controller] == "users" && (params[:action] == "admin" || params[:action] == "manage_users" || params[:action] == "manage_locations" )) || params[:controller] == "checklists" %>
     <ul class="leftmenu">

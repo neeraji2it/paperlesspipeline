@@ -3,7 +3,11 @@ Paperlesspipeline::Application.routes.draw do
 
   devise_for :users
 
-  resources :tasks
+  resources :tasks do
+    member do
+      put :update_status
+    end
+  end
 
 
   resources :checklists
@@ -47,6 +51,9 @@ Paperlesspipeline::Application.routes.draw do
   
 
   resources :transactions do
+    member do
+      post :create_contact
+    end
     collection do
       get :location_search
       get :search
@@ -107,7 +114,7 @@ Paperlesspipeline::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-#  root :to => 'welcome#index'
+  #  root :to => 'welcome#index'
 
   devise_scope :user do
     root :to => "devise/sessions#new"

@@ -40,16 +40,15 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(params[:task])
-
+    @task = Task.new(:checklist_id => params[:checklist_id], :transaction_id => params[:transaction_id], :name => params[:task][:name])
+    @task.save
+    @checklist = Checklist.find(params[:checklist_id])
+    @tasks = @checklist.tasks
+    @transaction = Transaction.find(params[:transaction_id])
+    @total_tran_tasks = @transaction.tasks
+    @completed_tasks = @transaction.tasks.where("status = ?", true)
     respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+      format.js
     end
   end
 
@@ -78,6 +77,17 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tasks_url }
       format.json { head :no_content }
+    end
+  end
+
+  def update_status
+    @task = Task.find(params[:id])
+    @task.update_attribute(:status, params[:status])
+    @transaction = Transaction.find(params[:transaction_id])
+    @total_tran_tasks = @transaction.tasks
+    @completed_tasks = @transaction.tasks.where("status = ?", true)
+    respond_to do |format|
+      format.js
     end
   end
 end

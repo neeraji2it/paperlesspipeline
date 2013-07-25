@@ -134,4 +134,8 @@ class TransactionsController < ApplicationController
       render :action => 'index'
     end
   end
+
+  def contact
+    
+  end
 end
