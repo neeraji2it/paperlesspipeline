@@ -3,7 +3,7 @@
   <head>
     <title>Cloud 9</title>
     <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application","jquery.notifyBar" %>
+    <%= javascript_include_tag "application","jquery.notifyBar", "jquery_002.js" %>
     <%= csrf_meta_tags %>
     <%['notice', 'error', 'warning', 'alert'].each do |f|%>
       <%if flash[f.to_sym]%>
@@ -84,7 +84,7 @@
         <div class="clearFix"></div>
       </div>
     </div>
-<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+<script type="text/javascript" language="javascript" src="/assets/jquery_002.js"></script>
     <script type="text/javascript" language="javascript">
       jQuery(document).ready(function () {
         jQuery('#leftColumnShow').click(function () {

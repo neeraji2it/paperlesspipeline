@@ -1,25 +1,7 @@
-<h1>Listing tasks</h1>
+<h1>Upcoming tasks</h1>
 <div style="margin-top: 50px;">
   <h2><b>Upcoming Tasks</b></h2>
 </div>
-<div style="margin-top: 80px;">
-  <table>
-    <tr>
-      <th>Checklist</th>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.name %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %>
-          <%= link_to 'Destroy', task_path(task), :confirm => 'Are you sure?' %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
-<br />
-<%= link_to 'New Task', new_task_path %>
+
+
+<b>There are no overdue or upcoming tasks at the moment. Learn more about task due dates on the blog here →</b>

@@ -44,6 +44,7 @@ Paperlesspipeline::Application.routes.draw do
       get :working_filter
       get :office
       get :unreviewed
+      post :comment
     end
     resources :comments
   end

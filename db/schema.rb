@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130724075154) do
+ActiveRecord::Schema.define(:version => 20130724111928) do
 
   create_table "agents", :force => true do |t|
     t.integer  "transaction_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20130724075154) do
   end
 
   create_table "checklists", :force => true do |t|
+    t.integer  "location_id"
     t.string   "name"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
