@@ -42,31 +42,39 @@
                 <div class="box" id="addContactContent" style="display:none;">
                   <div class="tableTransaction transactionDetail">
                     <div class="con">
-                      <ul class="list-contact">
-                        <li>
-                          <p>Name</p>
-                          <input type="text" title="Name" />
-                        </li>
-                        <li>
-                          <p>Role</p>
-                          <input type="text" title="Role" />
-                        </li>
-                        <li>
-                          <p>Phone <span class="colorGray">(Optional)</span></p>
-                          <input type="text" title="Phone" />
-                        </li>
-                        <li>
-                          <p>Fax <span class="colorGray">(Optional)</span></p>
-                          <input type="text" title="Fax" />
-                        </li>
-                        <li>
-                          <p>Email <span class="colorGray">(Optional)</span></p>
-                          <input type="text" title="Email" />
-                        </li>
-                        <li>
-                          <input id="addContactClose" class="btn-submit" type="submit" title="Submit" value="Submit" />
-                        </li>
-                      </ul>
+                      <div id="error_explanation" style="color:red;">
+
+                      </div>
+                      <%= form_for Contact.new, :url => create_contact_transaction_path(@transaction.id), :method => "POST", :remote => true do |f| %>
+                        <ul class="list-contact">
+                          <li>
+                            <p>Name</p>
+                            <%= f.text_field :name %>
+                          </li>
+                          <li>
+                            <p>Role</p>
+                            <%= f.text_field :role %>
+                          </li>
+                          <li>
+                            <p>Phone <span class="colorGray">(Optional)</span></p>
+                            <%= f.text_field :phone %>
+                          </li>
+                          <li>
+                            <p>Fax <span class="colorGray">(Optional)</span></p>
+                            <%= f.text_field :fax %>
+                          </li>
+                          <li>
+                            <p>Email <span class="colorGray">(Optional)</span></p>
+                            <%= f.text_field :email %>
+                          </li>
+                          <li>
+                            <%= f.submit "Submit", :class => "btn-submit" %>
+                          </li>
+                        </ul>
+                      <% end %>
+                      <div id="contacts">
+                        <%= render :partial => "contacts", :locals => {:contacts => @contacts} %>
+                      </div>
                     </div>
                   </div>
                 </div>

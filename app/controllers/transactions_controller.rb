@@ -89,6 +89,7 @@ class TransactionsController < ApplicationController
 
   def show
     @transaction = Transaction.find(params[:id])
+    @contacts = @transaction.contacts
   end
 
   def search
@@ -135,7 +136,14 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def contact
-    
+  def create_contact
+    @contact = Contact.new(params[:contact])
+    @transaction = Transaction.find(params[:id])
+    @contact.transaction_id = params[:id]
+    @contact.save
+    @contacts = @transaction.contacts
+    respond_to do |format|
+      format.js
+    end
   end
 end
