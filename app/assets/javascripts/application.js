@@ -143,3 +143,9 @@ jQuery(document).ready(function () {
         jQuery('#leftColumn').slideToggle('slow', function () {})
     });
 });
+
+
+function edit_comment(comment_id){
+    $('#hide-comment_'+comment_id).hide();
+    $('#edit-comment_'+comment_id).show();
+}
