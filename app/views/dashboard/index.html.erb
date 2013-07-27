@@ -120,19 +120,19 @@
                       <div class="column"><%= i.status %> <img alt="" title="" src="/assets/spacer.png" /></div>
                       <div class="column w8">
 
-                            <% @cs = i.checklists.count  %>
-                            <% @ts = i.tasks.count %>
+                        <% @cs = i.checklists.count  %>
+                        <% @ts = i.tasks.count %>
 
-                            <div class="completebox">
-                              <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
-                                <strong class="tooltip">
-                                  <h6><%= i.transaction_name %></h6>
-                                  <p>List Price <%= i.list_price %></p>
-                                  <h4>Incomplete Task</h4>
-                                  <p><span><% if i.checklists.present? %><%= i.checklists.last.name  %><% end %><br />
-                                      <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
-                                  <h4<% @cs = i.checklists.count  %>
-                                    <% @ts = i.tasks.count %>>Recent Notes:</h4>
+                        <div class="completebox">
+                          <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
+                            <strong class="tooltip">
+                              <h6><%= i.transaction_name %></h6>
+                              <p>List Price <%= i.list_price %></p>
+                              <h4>Incomplete Task</h4>
+                              <p><span><% if i.checklists.present? %><%= i.checklists.last.name  %><% end %><br />
+                                  <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
+                              <h4<% @cs = i.checklists.count  %>
+                                <% @ts = i.tasks.count %>>Recent Notes:</h4>
                               <p><span><% if i.notes.present? %><%= i.notes.last.note %><% end %></span></p>
                               <i class="top-arrow"></i>
                             </strong>
@@ -374,63 +374,65 @@
                     <div class="column last">Actions</div>
                   </div>
                   <% @transactions.each do |i| %>
-                    <% if i.close_date.strftime("%m") == Date.today.strftime("%m") and i.close_date.strftime("%y") == Date.today.strftime("%y") %>
-                      <% @count << 1 %>
-                      <div class="transactionrow">
-                        <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column w8">
+                    <% if i.close_date.present? %>
+                      <% if i.close_date.strftime("%m") == Date.today.strftime("%m") and i.close_date.strftime("%y") == Date.today.strftime("%y") %>
+                        <% @count << 1 %>
+                        <div class="transactionrow">
+                          <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                          <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                          <div class="column w8">
 
-                          <% @cs = i.checklists.count  %>
-                          <% @ts = i.tasks.count %>
+                            <% @cs = i.checklists.count  %>
+                            <% @ts = i.tasks.count %>
 
 
-                          <div class="completebox">
-                            <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
-                              <strong class="tooltip">
-                                <h6><%= i.transaction_name %></h6>
-                                <p>List Price <%= i.list_price %></p>
-                                <h4>Incomplete Task</h4>
-                                <p><span><% if i.checklists.present? %><%= i.checklists.last.name  %><% end %><br />
-                                    <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
-                                <h4>Recent Notes:</h4>
-                                <p><span>Lorem Ipsum is simply dummy text of the printing
-                                    and typesetting industry.</span></p>
-                                <i class="top-arrow"></i>
-                              </strong>
-                            </em>
+                            <div class="completebox">
+                              <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
+                                <strong class="tooltip">
+                                  <h6><%= i.transaction_name %></h6>
+                                  <p>List Price <%= i.list_price %></p>
+                                  <h4>Incomplete Task</h4>
+                                  <p><span><% if i.checklists.present? %><%= i.checklists.last.name  %><% end %><br />
+                                      <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
+                                  <h4>Recent Notes:</h4>
+                                  <p><span>Lorem Ipsum is simply dummy text of the printing
+                                      and typesetting industry.</span></p>
+                                  <i class="top-arrow"></i>
+                                </strong>
+                              </em>
+                            </div>
+
+                            <img alt="" title="" src="/assets/spacer.png" /></div>
+                          <div class="column">
+                            <span class="icon-agent">
+                              <em class="tooltip-container">
+                                <strong class="tooltip">
+                                  <ul class="list-tooltip">
+                                    <% @agent = Agent.find_by_transaction_id(i.id) %>
+                                    <% if @agent.present? %><% @user = User.find_by_id(@agent.user_id) %><% end %>
+                                    <li class="alcent"><% if @user.present? %><%= @user.first_name %><% end  %></li>
+                                  </ul>
+                                  <i class="top-arrow"></i>
+                                </strong>
+                              </em>
+                            </span>
+                            <img alt="" title="" src="/assets/spacer.png" /></div>
+                          <div class="column w20"><% if i.location.present? %><%= i.location.name %><% end %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                          <div class="column"><%= i.close_date %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                          <div class="column last">
+                            <span class="btn-action">
+                              <em class="tooltip-container"><span>Action</span>
+                                <strong class="tooltip">
+                                  <ul class="list-tooltip">
+                                    <li class="icon-zoomin"><%= link_to "View Transaction", transaction_path(i)  %> </li>
+                                  </ul>
+                                  <i class="top-arrow"></i>
+                                </strong>
+                              </em>
+                            </span>
                           </div>
-
-                          <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column">
-                          <span class="icon-agent">
-                            <em class="tooltip-container">
-                              <strong class="tooltip">
-                                <ul class="list-tooltip">
-                                  <% @agent = Agent.find_by_transaction_id(i.id) %>
-                                  <% if @agent.present? %><% @user = User.find_by_id(@agent.user_id) %><% end %>
-                                  <li class="alcent"><% if @user.present? %><%= @user.first_name %><% end  %></li>
-                                </ul>
-                                <i class="top-arrow"></i>
-                              </strong>
-                            </em>
-                          </span>
-                          <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column w20"><% if i.location.present? %><%= i.location.name %><% end %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column"><%= i.close_date %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column last">
-                          <span class="btn-action">
-                            <em class="tooltip-container"><span>Action</span>
-                              <strong class="tooltip">
-                                <ul class="list-tooltip">
-                                  <li class="icon-zoomin"><%= link_to "View Transaction", transaction_path(i)  %> </li>
-                                </ul>
-                                <i class="top-arrow"></i>
-                              </strong>
-                            </em>
-                          </span>
                         </div>
-                      </div>
+                      <% end %>
                     <% end %>
                   <% end %>
 
