@@ -43,7 +43,7 @@ class DashboardController < ApplicationController
       # Current month all transaction ======================================================================
       @this_month_listing_total_commission = []
       @transactions.each do |i|
-        if i.present?
+        if i.present? and i.close_date.present?
           if i.close_date.strftime("%m") == Date.today.strftime("%m") and i.close_date.strftime("%y") == Date.today.strftime("%y")
             @this_month_listing_total_commission << i.total_commission
           end
