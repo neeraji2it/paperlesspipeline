@@ -15,7 +15,23 @@
         <div class="column w30"><%= transaction.transaction_name %></div>
         <div class="column"><%= transaction.status %></div>
         <div class="column w11">
-          <div class="completebox"><%= transaction.transaction_name %></div>
+          <% @cs = transaction.checklists.count  %>
+          <% @ts = transaction.tasks.count %>
+          <div class="completebox">
+            <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
+              <strong class="tooltip">
+                <h6><%= transaction.transaction_name %></h6>
+                <p>List Price <%= transaction.list_price %></p>
+                <h4>Incomplete Task</h4>
+                <p><span><% if transaction.checklists.present? %><%= transaction.checklists.last.name  %><% end %><br />
+                    <% if transaction.tasks.present? %> <%= transaction.tasks.last.name %><% end %></span></p>
+                <h4<% @cs = transaction.checklists.count  %>
+                  <% @ts = transaction.tasks.count %>>Recent Notes:</h4>
+                <p><span><% if transaction.notes.present? %><%= transaction.notes.last.note %><% end %></span></p>
+                <i class="top-arrow"></i>
+              </strong>
+            </em>
+          </div>
           <img alt="" title="" src="/assets/spacer.png" />
         </div>
         <div class="column w9"><div class="icon-agent"></div></div>

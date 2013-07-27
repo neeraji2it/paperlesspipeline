@@ -118,7 +118,28 @@
                     <div class="transactionrow">
                       <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
                       <div class="column"><%= i.status %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                      <div class="column w8"><img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column w8">
+
+                            <% @cs = i.checklists.count  %>
+                            <% @ts = i.tasks.count %>
+
+                            <div class="completebox">
+                              <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
+                                <strong class="tooltip">
+                                  <h6><%= i.transaction_name %></h6>
+                                  <p>List Price <%= i.list_price %></p>
+                                  <h4>Incomplete Task</h4>
+                                  <p><span><% if i.checklists.present? %><%= i.checklists.last.name  %><% end %><br />
+                                      <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
+                                  <h4<% @cs = i.checklists.count  %>
+                                    <% @ts = i.tasks.count %>>Recent Notes:</h4>
+                              <p><span><% if i.notes.present? %><%= i.notes.last.note %><% end %></span></p>
+                              <i class="top-arrow"></i>
+                            </strong>
+                          </em>
+                        </div>
+
+                        <img alt="" title="" src="/assets/spacer.png" /></div>
                       <div class="column">
                         <span class="icon-agent">
                           <em class="tooltip-container">
@@ -181,8 +202,31 @@
                   <% @passed_transactions.each do |i| %>
                     <div class="transactionrow">
                       <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                      <div class="column"><%= i.status %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                      <div class="column w8"><img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column"><%= i.status %>
+                        <img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column w8">
+
+
+                        <% @cs = i.checklists.count  %>
+                        <% @ts = i.tasks.count %>
+
+                        <div class="completebox">
+                          <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
+                            <strong class="tooltip">
+                              <h6><%= i.transaction_name %></h6>
+                              <p>List Price <%= i.list_price %></p>
+                              <h4>Incomplete Task</h4>
+                              <p><span><% if i.checklists.present? %><%= i.checklists.last.name  %><% end %><br />
+                                  <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
+                              <h4>Recent Notes:</h4>
+                              <p><span>Lorem Ipsum is simply dummy text of the printing
+                                  and typesetting industry.</span></p>
+                              <i class="top-arrow"></i>
+                            </strong>
+                          </em>
+                        </div>
+
+                        <img alt="" title="" src="/assets/spacer.png" /></div>
                       <div class="column">
                         <span class="icon-agent">
                           <em class="tooltip-container">
@@ -247,7 +291,28 @@
                     <div class="transactionrow">
                       <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
                       <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                      <div class="column w8"><img alt="" title="" src="/assets/spacer.png" /></div>
+                      <div class="column w8">
+
+                        <% @cs = i.checklists.count  %>
+                        <% @ts = i.tasks.count %>
+
+                        <div class="completebox">
+                          <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
+                            <strong class="tooltip">
+                              <h6><%= i.transaction_name %></h6>
+                              <p>List Price <%= i.list_price %></p>
+                              <h4>Incomplete Task</h4>
+                              <p><span><% if i.checklists.present? %><%= i.checklists.last.name  %><% end %><br />
+                                  <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
+                              <h4>Recent Notes:</h4>
+                              <p><span>Lorem Ipsum is simply dummy text of the printing
+                                  and typesetting industry.</span></p>
+                              <i class="top-arrow"></i>
+                            </strong>
+                          </em>
+                        </div>
+
+                        <img alt="" title="" src="/assets/spacer.png" /></div>
                       <div class="column">
                         <span class="icon-agent">
                           <em class="tooltip-container">
@@ -314,7 +379,29 @@
                       <div class="transactionrow">
                         <div class="column w30"><%= i.transaction_name %> <img alt="" title="" src="/assets/spacer.png" /></div>
                         <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column w8"><img alt="" title="" src="/assets/spacer.png" /></div>
+                        <div class="column w8">
+
+                          <% @cs = i.checklists.count  %>
+                          <% @ts = i.tasks.count %>
+
+
+                          <div class="completebox">
+                            <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
+                              <strong class="tooltip">
+                                <h6><%= i.transaction_name %></h6>
+                                <p>List Price <%= i.list_price %></p>
+                                <h4>Incomplete Task</h4>
+                                <p><span><% if i.checklists.present? %><%= i.checklists.last.name  %><% end %><br />
+                                    <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
+                                <h4>Recent Notes:</h4>
+                                <p><span>Lorem Ipsum is simply dummy text of the printing
+                                    and typesetting industry.</span></p>
+                                <i class="top-arrow"></i>
+                              </strong>
+                            </em>
+                          </div>
+
+                          <img alt="" title="" src="/assets/spacer.png" /></div>
                         <div class="column">
                           <span class="icon-agent">
                             <em class="tooltip-container">

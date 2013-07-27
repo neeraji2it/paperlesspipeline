@@ -146,4 +146,18 @@ class TransactionsController < ApplicationController
       format.js
     end
   end
+
+  def add_note
+    @note = Note.new(params[:note])
+    @transaction = Transaction.find(params[:note][:transaction_id])
+    @note.transaction_id = @transaction.id
+    @note.user_id = current_user.id
+    @note.save
+    respond_to do |format|
+      format.js
+    end
+
+
+  end
+
 end
