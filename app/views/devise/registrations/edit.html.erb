@@ -56,7 +56,8 @@
                     <div class="bl">
                       <div class="con">
                         <ul class="list-admin">
-                          <li><%= current_user.location.name %></li>
+                          <% @location = Location.find_by_user_id(current_user.id) %>
+                          <li><% if current_user.present? %><%= @location.name %><% end %></li>
                         </ul>
                         <a class="link-viewall" title="View All" href="#">View All</a>
                         <div class="clearFix"></div>
@@ -76,9 +77,8 @@
                     <div class="bl">
                       <div class="con">
                         <ul class="list-admin">
-                          <li><a title="Elite Real estate" href="#">Elite Real estate</a></li>
-                          <li><a title="Elite Real estate" href="#">Elite Real estate</a></li>
-                          <li><a title="Elite Real estate" href="#">Elite Real estate</a></li>
+                          <% @location = Location.find_by_user_id(current_user.id) %>
+                          <li><% if current_user.present? %><%= @location.name %><% end %></li>
                         </ul>
                         <a class="link-viewall" title="View All" href="#">View All</a>
                         <div class="clearFix"></div>
