@@ -63,6 +63,7 @@ class DocumentsController < ApplicationController
   end
 
   def office
+    @comment = Comment.new
     @checklists = Checklist.search "*#{params[:search]}*"
     #@users = User.search "*#{params[:search]}*"
     #    @documents = Document.search "*#{params[:search]}*"

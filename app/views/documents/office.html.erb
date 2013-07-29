@@ -26,6 +26,11 @@
               </div>
               <div id="documents-search">
                 <p>Only active Documents are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></p>
+                <% if @comment.errors.any? %>
+                  <% @comment.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                <% end %>
                 <div class="contentbox">
                   <h1>
                     <div class="column w5">Info</div>
@@ -69,6 +74,7 @@
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
     <%#*<input class="btn-save" title="Save" type="submit" value="Save" />%>
                                 <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
+                                <%= link_to "Cancel", office_documents_path %>
                               <% end %>
                               <div id="document_comments_<%= doc.id %>">
                                 <%= render :partial => "documents/comment",:locals => {:doc => doc} %>

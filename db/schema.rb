@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729065959) do
+ActiveRecord::Schema.define(:version => 20130729115248) do
 
   create_table "agents", :force => true do |t|
     t.integer  "transaction_id"

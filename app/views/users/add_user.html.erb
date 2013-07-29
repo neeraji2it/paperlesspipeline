@@ -33,7 +33,7 @@
         <tr><td>&nbsp</td></tr>
         <tr>
           <td><%= f.label :Role %></td>
-          <td><%= f.select :role, %w(Admin Agent User), :title => "Add a Role" %></td>
+          <td><%= f.select :role, %w(Admin Agent User Staff), :title => "Add a Role" %></td>
           <td><%= validation_error(@user.errors["role"]) %></td>
           <td><%= link_to "add role", :id => "add-role" %></td>
         </tr>

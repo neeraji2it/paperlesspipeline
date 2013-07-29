@@ -90,6 +90,10 @@ class TransactionsController < ApplicationController
   def show
     @transaction = Transaction.find(params[:id])
     @contacts = @transaction.contacts
+
+    @listing_agents = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' and role = '#{Agent}' ")
+    @staff_agents = User.all
+
   end
 
   def search
@@ -148,10 +152,13 @@ class TransactionsController < ApplicationController
   end
 
   def add_note
+    puts "======================="
+    puts params.inspect
+    puts "======================="
     @note = Note.new(params[:note])
     @transaction = Transaction.find(params[:note][:transaction_id])
     @note.transaction_id = @transaction.id
-    @note.user_id = current_user.id
+    @user = current_user.id
     @note.save
     respond_to do |format|
       format.js
