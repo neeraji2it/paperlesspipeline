@@ -19,8 +19,6 @@ gem 'thinking-sphinx', '2.0.10'
 gem 'jquery-rails',  "2.3.0"
 gem "prototype-rails","~> 3.2.1"
 gem "jquery-fileupload-rails"
-gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
-                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 
 
 # Gems used only for assets and not required

@@ -235,7 +235,7 @@
       $("#login-error-message").html(b.responseText);
 
     } else{
-      window.location.href = jQuery.parseJSON(b.responseText).redirectUrl;
+      window.location.reload();
     }
   });
 </script>
