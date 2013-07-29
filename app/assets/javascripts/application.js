@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-datepicker
 
 
 function remove_fields(link) {
@@ -28,32 +29,38 @@ function add_fields(link, association, content) {
 
 
 $(document).ready(function() {
-    jQuery('#leftColumnShow').click(function () {
-        jQuery('#leftColumn').slideToggle('slow', function () {})
+    $('#transaction_automatic_expire_date').datepicker();
+    jQuery('#leftColumnShow').click(function() {
+        jQuery('#leftColumn').slideToggle('slow', function() {
+        });
     });
-    jQuery('#closeBox').click(function () {
-        jQuery('#leftColumn').slideToggle('slow', function () {})
+    jQuery('#closeBox').click(function() {
+        jQuery('#leftColumn').slideToggle('slow', function() {
+        })
     });
-    jQuery('#addContact').click(function () {
-        jQuery('#addContactContent').slideToggle('slow', function () {})
+    jQuery('#addContact').click(function() {
+        jQuery('#addContactContent').slideToggle('slow', function() {
+        })
     });
-    jQuery('#addContactClose').click(function () {
-        jQuery('#addContactContent').slideToggle('slow', function () {})
+    jQuery('#addContactClose').click(function() {
+        jQuery('#addContactContent').slideToggle('slow', function() {
+        })
     });
-    jQuery('#addNote').click(function () {
-        jQuery('#addNoteContent').slideToggle('slow', function () {})
+    jQuery('#addNote').click(function() {
+        jQuery('#addNoteContent').slideToggle('slow', function() {
+        })
     });
-    jQuery('#addNoteClose').click(function () {
-        jQuery('#addNoteContent').slideToggle('slow', function () {})
+    jQuery('#addNoteClose').click(function() {
+        jQuery('#addNoteContent').slideToggle('slow', function() {
+        })
     });
-    jQuery('#newList').click(function () {
-        jQuery('#newListContent').slideToggle('slow', function () {})
+    jQuery('#newList').click(function() {
+        jQuery('#newListContent').slideToggle('slow', function() {
+        })
     });
 });
-
-
-function show_flash_messages(message){
-    jQuery(function () {
+function show_flash_messages(message) {
+    jQuery(function() {
         jQuery.notifyBar({
             cls: "error",
             html: message,
@@ -64,88 +71,96 @@ function show_flash_messages(message){
     });
 }
 
-function CreateList(list, trn_id){
+function CreateList(list, trn_id) {
     var check = jQuery(list).val()
     $.ajax({
         url: "/checklists",
         data: {
-            "checklist":check,
-            "transaction_id":trn_id
+            "checklist": check,
+            "transaction_id": trn_id
         },
         type: "POST",
         dataType: "script",
-        success: function(data){
+        success: function(data) {
 
         }
     })
 }
 
-function TaskStatusUpdate(st, task_id, trn_id){
-    var check= $(st).is(':checked')
+function TaskStatusUpdate(st, task_id, trn_id) {
+    var check = $(st).is(':checked')
     $.ajax({
-        url: "/tasks/"+task_id+"/update_status",
+        url: "/tasks/" + task_id + "/update_status",
         data: {
-            "status":check,
-            "transaction_id":trn_id
+            "status": check,
+            "transaction_id": trn_id
         },
         type: "PUT",
-        success: function(data){
+        success: function(data) {
 
         }
     })
 }
 
-function select_listing(user_id,u_name){
-    if($("#li_"+user_id).is(':checked')){
-        if($("#listing_users_"+user_id).length > 0){
-            if($("#se_"+user_id).is(':checked')){
-                $("#ch_li_"+user_id).attr("checked",true)
+function select_listing(user_id, u_name) {
+    if ($("#li_" + user_id).is(':checked')) {
+        if ($("#listing_users_" + user_id).length > 0) {
+            if ($("#se_" + user_id).is(':checked')) {
+                $("#ch_li_" + user_id).attr("checked", true)
             }
-        }else{
-            $("#listing_users").append('<div class="row" id="listing_users_'+user_id+'"><div class="assigned-agents-vale1"><input id="ch_li_'+user_id+'" type="checkbox" value="'+user_id+'" name="listing[]" checked></div><div class="assigned-agents-vale1"><input id="ch_se_'+user_id+'" type="checkbox" value="'+user_id+'" name="selling[]"></div><div>'+u_name+'</div></div>')
+        } else {
+            $("#listing_users").append('<div class="row" id="listing_users_' + user_id + '"><div class="assigned-agents-vale1"><input id="ch_li_' + user_id + '" type="checkbox" value="' + user_id + '" name="listing[]" checked></div><div class="assigned-agents-vale1"><input id="ch_se_' + user_id + '" type="checkbox" value="' + user_id + '" name="selling[]"></div><div>' + u_name + '</div></div>')
         }
-    }else{
-        if($("#se_"+user_id).is(':checked')){
-            $("#ch_li_"+user_id).attr("checked",false)
-        }else{
-            $("#listing_users_"+user_id).remove();
+    } else {
+        if ($("#se_" + user_id).is(':checked')) {
+            $("#ch_li_" + user_id).attr("checked", false)
+        } else {
+            $("#listing_users_" + user_id).remove();
         }
     }
 }
 
-function select_selling(user_id,u_name){
-    if($("#se_"+user_id).is(':checked')){
-        if($("#listing_users_"+user_id).length > 0){
-            if($("#li_"+user_id).is(':checked')){
-                $("#ch_se_"+user_id).attr("checked",true)
+function select_selling(user_id, u_name) {
+    if ($("#se_" + user_id).is(':checked')) {
+        if ($("#listing_users_" + user_id).length > 0) {
+            if ($("#li_" + user_id).is(':checked')) {
+                $("#ch_se_" + user_id).attr("checked", true)
             }
-        }else{
-            $("#listing_users").append('<div class="row" id="listing_users_'+user_id+'"><div class="assigned-agents-vale1"><input id="ch_li_'+user_id+'" type="checkbox" value="'+user_id+'" name="listing[]"></div><div class="assigned-agents-vale1"><input id="ch_se_'+user_id+'" type="checkbox" value="'+user_id+'" name="selling[]" checked></div><div>'+u_name+'</div></div>')
+        } else {
+            $("#listing_users").append('<div class="row" id="listing_users_' + user_id + '"><div class="assigned-agents-vale1"><input id="ch_li_' + user_id + '" type="checkbox" value="' + user_id + '" name="listing[]"></div><div class="assigned-agents-vale1"><input id="ch_se_' + user_id + '" type="checkbox" value="' + user_id + '" name="selling[]" checked></div><div>' + u_name + '</div></div>')
         }
-    }else{
-        if($("#li_"+user_id).is(':checked')){
-            $("#ch_se_"+user_id).attr("checked",false)
-        }else{
-            $("#listing_users_"+user_id).remove();
+    } else {
+        if ($("#li_" + user_id).is(':checked')) {
+            $("#ch_se_" + user_id).attr("checked", false)
+        } else {
+            $("#listing_users_" + user_id).remove();
         }
     }
 }
 
-function show_commentbox(doc_id){
-    jQuery('#commentBox_'+doc_id).slideToggle('slow',function() {})
+function show_commentbox(doc_id) {
+    jQuery('#commentBox_' + doc_id).slideToggle('slow', function() {
+    })
 }
 
-jQuery(document).ready(function () {
-    jQuery('#leftColumnShow').click(function () {
-        jQuery('#leftColumn').slideToggle('slow', function () {})
+jQuery(document).ready(function() {
+    jQuery('#leftColumnShow').click(function() {
+        jQuery('#leftColumn').slideToggle('slow', function() {
+        })
     });
-    jQuery('#closeBox').click(function () {
-        jQuery('#leftColumn').slideToggle('slow', function () {})
+    jQuery('#closeBox').click(function() {
+        jQuery('#leftColumn').slideToggle('slow', function() {
+        })
     });
 });
-
-
-function edit_comment(comment_id){
-    $('#hide-comment_'+comment_id).hide();
-    $('#edit-comment_'+comment_id).show();
+function edit_comment(comment_id) {
+    $('#hide-comment_' + comment_id).hide();
+    $('#edit-comment_' + comment_id).show();
 }
+
+$(document).ajaxStart(function() {
+    $('#ajax_loader_big_div').show();
+});
+$(document).ajaxStop(function() {
+    $('#ajax_loader_big_div').hide();
+});

@@ -45,19 +45,8 @@
                     </p>
                     <p>Close Date</p>
                     <p>
-                      <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%m/%d/%Y") : "") %>
+                      <%= f.text_field :close_date, :id => 'datepicker' %>
                       <%= validation_error(@transaction.errors["close_date"]) %>
-  <%#*<script>%>
-  <%#*$("#transaction_close_date").datetimepicker({%>
-  <%#*showOn: 'button',%>
-  <%#*buttonImage: '/assets/icon-calendar.png',%>
-  <%#*buttonImageOnly: true,%>
-  <%#*showTimepicker: true,%>
-  <%#*dateFormat: 'yy-mm-dd',%>
-  <%#*minDate: 0%>
-  <%#*})%>
-  <%#*</script>%>
-
                     </p>
                   </div>
                   <div class="commonrowt">
@@ -131,30 +120,35 @@
   </div>
 </div>
 <script type="text/javascript">
-  jQuery(document).ready(function () {
-    jQuery('#leftColumnShow').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
+  jQuery(document).ready(function() {
+    jQuery('#leftColumnShow').click(function() {
+      jQuery('#leftColumn').slideToggle('slow', function() {
+      })
     });
-    jQuery('#closeBox').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
+    jQuery('#closeBox').click(function() {
+      jQuery('#leftColumn').slideToggle('slow', function() {
+      })
     });
-    jQuery('#locationI').hover(function () {
-      jQuery('#locationBoxN').slideToggle('slow', function () {})
+    jQuery('#locationI').hover(function() {
+      jQuery('#locationBoxN').slideToggle('slow', function() {
+      })
     });
-    jQuery('#transactionI').hover(function () {
-      jQuery('#transactionBoxN').slideToggle('slow', function () {})
+    jQuery('#transactionI').hover(function() {
+      jQuery('#transactionBoxN').slideToggle('slow', function() {
+      })
     });
 
-    $("#agents_seller").keyup(function(){
+    $("#agents_seller").keyup(function() {
       var agents = $(this).val();
       $.ajax({
-        url:"/transactions/agents_search",
-        data:{
-          agent_name:agents
+        url: "/transactions/agents_search",
+        data: {
+          agent_name: agents
         },
-        type:'GET',
-        dataType:'script',
-        success:function(data){}
+        type: 'GET',
+        dataType: 'script',
+        success: function(data) {
+        }
       });
     });
 

@@ -5,7 +5,7 @@
   <% if (params[:controller] == "transactions" && params[:action] == "index")  %>
     <ul class="leftmenu">
       <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
-      <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path %></li>
+      <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
       <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
       <li class="icon-admin"><%= link_to "admin", admin_user_path(current_user) %></li>
       <li class="icon-monthly-backup"><a title="Monthly Backup" href="#">Monthly Backup</a></li>
@@ -61,7 +61,7 @@
     </div>
   <% elsif (params[:controller] == "documents" && params[:action] == "working")  %>
     <ul class="leftmenu">
-      <li class="icon-upload-documents"><%= link_to "Upload Documents", new_document_path %></li>
+      <li class="icon-upload-documents"><%= link_to "Upload Documents", new_document_path(:type => "transaction") %></li>
       <li class="icon-upload-docs-by-email active"><a title="Upload Docs by Email" href="#">Upload Docs by Email</a></li>
       <li class="icon-help"><a title="Help" href="#">Help</a></li>
     </ul>
@@ -117,7 +117,7 @@
     </div>
   <% elsif (params[:controller] == "documents" && params[:action] == "office")  %>
     <ul class="leftmenu">
-      <li class="icon-upload-documents"><%= link_to "Upload Documents", new_document_path %></li>
+      <li class="icon-upload-documents"><%= link_to "Upload Documents", new_document_path(:type => "office") %></li>
       <li class="icon-help"><a title="Help" href="#">Help</a></li>
     </ul>
     <div class="contentbox">
@@ -145,7 +145,7 @@
   <% elsif params[:controller] == "transactions" && (params[:action] == "show") %>
     <ul class="leftmenu">
       <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
-      <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path %></li>
+      <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
       <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
       <li class="icon-admin"><%= link_to "admin", admin_user_path(current_user) %></li>
       <li class="icon-monthly-backup"><a title="Monthly Backup" href="#">Monthly Backup</a></li>
@@ -181,7 +181,7 @@
   <% elsif params[:controller] == "dashboard" || params[:controller] == "documents" || (params[:controller] == "users" && (params[:action] == "admin" || params[:action] == "manage_users" || params[:action] == "manage_locations" )) || params[:controller] == "checklists" %>
     <ul class="leftmenu">
       <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
-      <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path %></li>
+      <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
       <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
       <li class="icon-admin"><%= link_to "admin", admin_user_path(current_user) %></li>
       <li class="icon-monthly-backup"><a title="Monthly Backup" href="#">Monthly Backup</a></li>

@@ -9,18 +9,19 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap-datepicker
  *= require_tree .
  */
 
- .email-text {
+.email-text {
     font-size: 20px;
     color: white;
-  }
+}
 
-  .password-text{
+.password-text{
     font-size: 20px;
     color: white;
-  }
+}
 
 
 #user_register{

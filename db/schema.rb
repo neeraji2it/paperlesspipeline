@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20130729115248) do
   end
 
   create_table "checklists", :force => true do |t|
-    t.integer  "location_id"
     t.string   "name"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
@@ -55,10 +54,13 @@ ActiveRecord::Schema.define(:version => 20130729115248) do
     t.string   "document_file_name"
     t.string   "document_content_type"
     t.integer  "document_file_size"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.integer  "location_id"
     t.string   "document_type"
+    t.string   "doc_type"
+    t.boolean  "reviewed",              :default => false
+    t.integer  "transaction_id"
   end
 
   create_table "locations", :force => true do |t|
