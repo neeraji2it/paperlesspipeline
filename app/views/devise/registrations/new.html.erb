@@ -57,6 +57,12 @@
                 <%= validation_error(resource.errors["phone_number"]) %>
                 <%= f.text_field :phone_number, :title => "Phone Number", :placeholder => "Phone Number", :type => "text" %><span style="color:red;">*</span>
               </div>
+
+              <div class="signupRow">
+                <%= validation_error(resource.errors["location_id"]) %>
+                <%= f.select :location, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.name, c.id]}, params[:locations]), :id => "locationI", :title => "Location" %><span style="color:red;">*</span>
+              </div>
+
               <div class="signupRow">
                 <%= validation_error(resource.errors["email"]) %>
                 <%= f.email_field :email, :title => "Email Address", :placeholder => "Email Address", :type => "text" %><span style="color:red;">*</span>
