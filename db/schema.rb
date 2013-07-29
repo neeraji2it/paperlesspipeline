@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729065959) do
+ActiveRecord::Schema.define(:version => 20130729103928) do
 
   create_table "agents", :force => true do |t|
     t.integer  "transaction_id"
@@ -54,10 +54,13 @@ ActiveRecord::Schema.define(:version => 20130729065959) do
     t.string   "document_file_name"
     t.string   "document_content_type"
     t.integer  "document_file_size"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.integer  "location_id"
     t.string   "document_type"
+    t.string   "doc_type"
+    t.boolean  "reviewed",              :default => false
+    t.integer  "transaction_id"
   end
 
   create_table "locations", :force => true do |t|

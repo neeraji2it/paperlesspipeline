@@ -1,15 +1,19 @@
 <div class="contentbox">
   <%= form_for @document do |f| %>
-    <h1>Upload Office Documents</h1>
+    <h1>Upload <%= params[:type] == "transaction" ? "Transaction" : "Office" %> Documents</h1>
     <div class="box">
       <div class="bt">
         <div class="br">
           <div class="bb">
             <div class="bl">
               <div class="con">
+                 <% unless params[:type] != "transaction" %>
+                    <%= f.select :transaction_id, options_for_select(current_user.transactions.map{|trn| [trn.transaction_name,trn.id]}) %>
+                  <% end %>
                 <div class="officerow">
                   <p style="float: left;"><%= f.file_field :document, :class => "input-chosen", :title => "Choose a File" %><strong>No File Chosen</strong></p>
                   <div id="droparea">drag here</div>
+                  <%= f.hidden_field :doc_type, :value => params[:type]  %>
                 </div>
                 <div class="contentbox">
                   <h1>
@@ -54,7 +58,7 @@
 <script type="text/javascript" >
   var dropArea = document.getElementById("droparea")
 
-  dropArea.addEventListener("drop", function(evt){
+  dropArea.addEventListener("drop", function(evt) {
     evt.preventDefault();
     evt.stopPropagation();
 
@@ -64,26 +68,26 @@
   }, false);
 
 
-  function uploadFiles(files){
-    var fd = FormData();
+  function uploadFiles(files) {
+    var formdata = new FormData();
     var position = 0;
     var max = files.length;
-    if (typeof fd != "undefined"){
-      function queue(){
-        if (max >= 1 && position <= max - 1){
-          fd.append("document[document]", files[position]);
+    if (typeof formdata != "undefined") {
+      function queue() {
+        if (max >= 1 && position <= max - 1) {
+          formdata.append("document[document]", files[position]);
           upload();
         }
       }
 
-      function upload(){
+      function upload() {
         $.ajax({
           url: '/documents/',
-          data: fd,
+          data: formdata,
           processData: true,
           contentType: false,
           type: 'POST',
-          success: function(data){
+          success: function(data) {
             position = position + 1;
             queue();
           }
@@ -93,26 +97,26 @@
     }
   }
 
-  dropArea.addEventListener("dragenter", function(evt){
-    if (evt){
+  dropArea.addEventListener("dragenter", function(evt) {
+    if (evt) {
       this.className = "drag-enter";
     }
     endFn(evt);
   }, false);
 
-  dropArea.addEventListener("dragleave", function(evt){
+  dropArea.addEventListener("dragleave", function(evt) {
     this.className = "";
     endFn(evt);
   }, false);
 
-  dropArea.addEventListener("dragover", function(evt){
+  dropArea.addEventListener("dragover", function(evt) {
     endFn(evt);
     evt.dataTransfer.dropEffect = 'move';
 
     return false;
   }, false);
 
-  function endFn(evt){
+  function endFn(evt) {
     evt.preventDefault();
     evt.stopProp
   }

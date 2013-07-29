@@ -287,7 +287,7 @@ input[type=submit].btn-downloadList { width:111px; margin-left:5px; background:u
 input[type=submit].btn-reset { width:242px; height:40px; margin-right:0px; background:url(/assets/img-button.png) no-repeat 0px -427px; }
 a.btn-viewall { float:right; width:59px; height:26px; position:relative; top:5px; background:url(/assets/img-button.png) no-repeat -96px 0px; }
 .btn-addTransaction { width:162px; height:50px; background:url(/assets/img-button.png) no-repeat 0px -268px; }
-.btn-filterResults { width:162px; height:50px; background:url(/assets/img-button.png) no-repeat -119px -88px; }
+.btn-filterResults { width:135px; height:50px; background:url(/assets/img-button.png) no-repeat -119px -88px; }
 .btn-upload { width:90px; height:42px; background:url(/assets/img-button.png) no-repeat -169px -236px; }
 .btn-add { width:105px; height:52px; background:url(/assets/img-button.png) no-repeat -106px -33px; }
 .btn-cancel { width:70px; height:40px; background:url(/assets/img-button.png) no-repeat -137px -147px; }

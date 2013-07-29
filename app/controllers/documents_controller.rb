@@ -18,6 +18,8 @@ class DocumentsController < ApplicationController
     @document = Document.new(params[:document])
     @document.user_id = current_user.id
     @document.location_id = params[:document][:location_id]
+    @document.transaction_id = params[:document][:transaction_id]
+    @document.doc_type = params[:document][:doc_type]
     if @document.save
       redirect_to dashboard_index_path
     end
