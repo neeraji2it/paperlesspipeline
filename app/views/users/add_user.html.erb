@@ -35,8 +35,9 @@
           <td><%= f.label :Role %></td>
           <td><%= f.select :role, %w(Admin Agent User), :title => "Add a Role" %></td>
           <td><%= validation_error(@user.errors["role"]) %></td>
+          <td><%= link_to "add role", :id => "add-role" %></td>
         </tr>
-
+        
 
         <tr><td>&nbsp</td></tr>
         <tr>
@@ -60,6 +61,18 @@
         </tr>
       <% end %>
     </table>
+
+    <div id="role-text-box">fsad</div>
+    
   </div>
 </div>
 <div class="clearFix"></div>
+
+<script>
+  jQuery(document).ready(function () {
+    $('#role-text-box').hide();
+    $('#add-role').click(function(){
+      $('#role-text-box').show
+      });
+  });
+</script>

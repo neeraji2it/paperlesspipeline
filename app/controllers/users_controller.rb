@@ -63,4 +63,9 @@ class UsersController < ApplicationController
     end
     redirect_to manage_users_user_path(current_user)
   end
+
+  def add_role
+    raise params.inspect
+  end
+
 end
