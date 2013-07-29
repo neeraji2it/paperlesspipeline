@@ -1,8 +1,6 @@
 <div class="contentbox">
   <% @cs = @transaction.checklists.count  %>
   <% @ts = @transaction.tasks.count %>
-  <%= @cs %>
-  <%= @ts %>
   <% if @ts > 0 %><% @ctp = (@cs/@ts)*100 %><% end %>
   <h1><em><span><%= @ctp %> </span></em>120 Tyler Ave, Cape Canaveral, 32920<span>(Last updated Jun 5, 2013 by Dawn Long)</span></h1>
   <div class="box">
@@ -162,15 +160,21 @@
                         <h3>Email this note to the agents or staff selected below:</h3>
                         <ul class="list-emailnote">
                           <li><span><input title="Listing agents" type="checkbox" />Listing agents</span></li>
-                          <li><input title="Sally" type="checkbox" /> Sally</li>
+                          <% if @listing_agents.present? %>
+                            <% @listing_agents.each do |user| %>
+                              <%= f.check_box :note %><%= user.first_name %>
+                            <% end %>
+                          <% end %>
                         </ul>
                         <ul class="list-emailnote">
                           <li><span><input title="Staff" type="checkbox" />Staff</span></li>
-                          <li><input title="Justin Brown" type="checkbox" /> Justin Brown</li>
-                          <li><input title="Nate Brown" type="checkbox" /> Nate Brown</li>
-                          <li><input title="Susan Lewis" type="checkbox" /> Susan Lewis</li>
-                          <li><input title="Dawn Long" type="checkbox" /> Dawn Long</li>
-                          <li><input title="Lisi Ross" type="checkbox" /> Lisi Ross</li>
+                          <% if @staff_agents.present? %>
+                            <% @staff_agents.each do |s| %>
+                              <% if s.first_name.present? %>
+                                <%= f.check_box :note %><%= s.first_name %>
+                              <% end %>
+                            <% end %>
+                          <% end %>
                         </ul>
                         <input id="addNoteClose" class="btn-sendNote" type="submit" title="Send Note" value="Send Note" /><p><input type="checkbox" title="Append incomplete tasks to note" />Append incomplete tasks to note <input class="mleft" type="checkbox" title="Append completed tasks to note" />Append completed tasks to note</p>
                       </div>

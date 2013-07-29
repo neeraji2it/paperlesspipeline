@@ -39,7 +39,8 @@
         <div class="signupBox">
           <h4>Create Your Account</h4>
           <div class="signupLeftColumn">
-            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+            <div id="login-error-message"></div>
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => {:id => "user_sign_in"}, :remote => true) do |f| %>
               <%= params[:message].to_s.html_safe %>
               <%= devise_error_messages! %>
               <div class="signupRow">
@@ -296,4 +297,17 @@
       }
 
     })(jQuery) };
+
+
+  $("#user_sign_in").bind("ajax:complete", function(a,b){
+    $("#login-error-message").html();
+
+    if(b.status == "401") {
+      $("#login-error-message").html(b.responseText);
+
+    } else{
+      window.location.href = jQuery.parseJSON(b.responseText).redirectUrl;
+    }
+  });
+
 </script>
