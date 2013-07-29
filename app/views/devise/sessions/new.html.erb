@@ -30,7 +30,8 @@
     <div id="loginbox">
       <h5>Log In to Cloud 9</h5>
       <div class="loginContent">
-        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <div id="login-error-message"></div>
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html => {:id => "user_sign_in"}, :remote => true) do |f| %>
           <p><%= f.email_field :email, :autofocus => true,:class => "icon-user", :title => "Username", :type => "text", :placeholder => "User name", :id => "siginin-page-user-name-text" %></p>
           <p><%= f.password_field :password, :class => "icon-password", :title => "Password", :type => "password", :placeholder => "Password",:id => "siginin-page-password-text"  %></p>
           <%= link_to "Forgot your password?", new_password_path(resource_name), :class => "fright" %>
@@ -226,4 +227,15 @@
       }
 
     })(jQuery) };
+
+  $("#user_sign_in").bind("ajax:complete", function(a,b){
+    $("#login-error-message").html();
+
+    if(b.status == "401") {
+      $("#login-error-message").html(b.responseText);
+
+    } else{
+      window.location.href = jQuery.parseJSON(b.responseText).redirectUrl;
+    }
+  });
 </script>
