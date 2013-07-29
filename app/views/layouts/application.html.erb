@@ -31,8 +31,8 @@
           </div>
           <div class="toprighbox">
             <ul id="topmenu">
-              <li><span>|</span><a title="Admin" href="#">Admin</a></li>
-              <li><span>|</span><a title="Profile" href="#">Profile</a></li>
+              <li><span>|</span><%= current_user ? (link_to "Admin", admin_user_path(current_user)) : "" %></li>
+              <li><span>|</span><%= current_user ? (link_to "Profile", profile_user_path(current_user)) : "" %></li>
               <li class="icon-logout"><span>|</span><%= current_user ? (link_to "Logout", destroy_user_session_path,:method => 'DELETE') : (link_to "Login", new_user_session_path) %> </li>
             </ul>
             <p><% if current_user %><a title="Nate B is signed in (Not you?)" href="#"><%= current_user.first_name %> is signed in (Not you?)</a></p> <% end %>

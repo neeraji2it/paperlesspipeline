@@ -31,8 +31,8 @@
       <h5>Log In to Cloud 9</h5>
       <div class="loginContent">
         <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-          <p><%= f.email_field :email, :autofocus => true,:class => "icon-user", :title => "Username", :type => "text", :placeholder => "Username" %></p>
-          <p><%= f.password_field :password, :class => "icon-password", :title => "Password", :type => "password", :placeholder => "Password"  %></p>
+          <p><%= f.email_field :email, :autofocus => true,:class => "icon-user", :title => "Username", :type => "text", :placeholder => "User name", :id => "siginin-page-user-name-text" %></p>
+          <p><%= f.password_field :password, :class => "icon-password", :title => "Password", :type => "password", :placeholder => "Password",:id => "siginin-page-password-text"  %></p>
           <%= link_to "Forgot your password?", new_password_path(resource_name), :class => "fright" %>
           <p>Remember me <%= f.check_box :remember_me, :title =>"Remember me", :alt =>"Remember me", :src => "/assets/icon-checkbox.png" %></p>
           <%= f.submit "Sign In", :class => "btn-signin" %>
@@ -87,6 +87,15 @@
     font-size:11px;
   }
   */
+
+  #siginin-page-user-name-text {
+    font-size: 20px;
+    color: white;
+  }
+  #siginin-page-password-text{
+    font-size: 20px;
+    color: white;
+  }
 
   .jquery-notify-bar.error,.jquery-notify-bar.alert {
     color: red;

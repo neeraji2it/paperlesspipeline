@@ -12,6 +12,17 @@
  *= require_tree .
  */
 
+ .email-text {
+    font-size: 20px;
+    color: white;
+  }
+
+  .password-text{
+    font-size: 20px;
+    color: white;
+  }
+
+
 #user_register{
     color: white;
     display: block;

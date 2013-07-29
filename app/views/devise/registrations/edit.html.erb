@@ -1,37 +1,156 @@
-<div id="rightColumn">
-  <div class="contentbox">
-    <h1>Profile</h1>
-    <div class="box">
-      <div class="bt">
-        <div class="br">
-          <div class="bb">
-            <div class="bl">
-              <div class="con">
-                <div class="page-transaction">
-                  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-                  <h3>Your Login Information</h3>
-                  <p>Your Email Address</p>
-                  <p><%= f.email_field :email, :autofocus => true, :title => "Your Email Address", :type => "text" %></p>
-                  <p>Old Password</p>
-                  <p><%= f.password_field :current_password %></p>
-                  <p>New Password</p>
-                  <p><%= f.password_field :password, :title => "New Password", :type => "text" %></p>
-                  <p>New Password Confirmation</p>
-                  <p><%= f.password_field :password_confirmation, :title => "New Password Confirmation", :type => "text" %></p>
-                  <p>Your Settings</p>
-                  <p><img title="Send me new document notifications" alt="Send me new document notifications" src="/assets/icon-checkbox-unselected.png" /> Send me new document notifications</p>
-                  <p><img title="Show customer support widget" alt="Show customer support widget" src="/assets/icon-checkbox-selected.png" /> Show customer support widget</p>
-                  <%= f.submit "Save Settings" %>
-                  <input class="btn-cancel" title="Cancel" value="Cancel" type="submit" />
-                  <div class="clearFix"></div>
-                  <% end %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" href="css/default.css" rel="stylesheet" media="all" />
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application","jquery.notifyBar", "jquery_002.js" %>
+    <%= csrf_meta_tags %>
+    <title>Profile</title>
+  </head>
+
+  <body>
+    <div id="maindiv">
+      <div id="header">
+        <div class="cr">
+          <div class="topleftbox">
+            <a title="Cloud 9 Transaction Management" href="#"><img id="logo" title="Cloud 9 Transaction Management" alt="Cloud 9 Transaction Management" src="/assets/logo.png" /></a>
+            <input class="input-search" type="text" title="Search Transaction by Address, Agents or MLS" placeholder="Search Transaction by Address, Agents or MLS" /><input class="btn-search" type="submit" title="Search" value="Search" />
+          </div>
+          <div class="toprighbox">
+            <ul id="topmenu">
+              <li><span>|</span><a title="Admin" href="#">Admin</a></li>
+              <li><span>|</span><a title="Profile" href="#">Profile</a></li>
+              <li class="icon-logout"><span>|</span><a title="Logout" href="#">Logout</a></li>
+            </ul>
+            <p><a title="Nate B is signed in (Not you?)" href="#">Nate B is signed in (Not you?)</a></p>
+            <div class="newTransaction">New Transaction</div>
+          </div>
+          <div class="clearFix"></div>
+        </div>
+        <div id="navigation">
+          <ul>
+            <li><a title="Dashboard" href="#"><span>Dashboard</span></a></li>
+            <li><a title="Transactions" href="#"><span>Transactions</span></a></li>
+            <li><a title="Tasks" href="#"><span>Tasks</span></a></li>
+            <li><a title="Working" href="#"><span>Working</span></a></li>
+            <li><a title="Unreviewed" href="#"><span>Unreviewed</span></a></li>
+            <li><a title="Office" href="#"><span>Office</span></a></li>
+          </ul>
+        </div>
+        <div class="clearFix"></div>
+      </div>
+      <div id="content">
+        <div id="leftColumnShow">Menu</div>
+        <div id="leftColumn">
+          <div id="closeBox">Close</div>
+          <ul class="leftmenu">
+            <li class="icon-help single"><a title="Help" href="#">Help</a></li>
+          </ul>
+          <div class="contentbox">
+            <h1>Recently Updated</h1>
+            <div class="box">
+              <div class="bt">
+                <div class="br">
+                  <div class="bb">
+                    <div class="bl">
+                      <div class="con">
+                        <ul class="list-admin">
+                          <li><%= current_user.location.name %></li>
+                        </ul>
+                        <a class="link-viewall" title="View All" href="#">View All</a>
+                        <div class="clearFix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="contentbox">
+            <h1>Recently Updated</h1>
+            <div class="box">
+              <div class="bt">
+                <div class="br">
+                  <div class="bb">
+                    <div class="bl">
+                      <div class="con">
+                        <ul class="list-admin">
+                          <li><a title="Elite Real estate" href="#">Elite Real estate</a></li>
+                          <li><a title="Elite Real estate" href="#">Elite Real estate</a></li>
+                          <li><a title="Elite Real estate" href="#">Elite Real estate</a></li>
+                        </ul>
+                        <a class="link-viewall" title="View All" href="#">View All</a>
+                        <div class="clearFix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="rightColumn">
+          <div class="contentbox">
+            <h1>Profile</h1>
+            <div class="box">
+              <div class="bt">
+                <div class="br">
+                  <div class="bb">
+                    <div class="bl">
+                      <div class="con">
+                        <div class="page-transaction">
+                          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+                            <h3>Your Login Information</h3>
+                            <p>Your Email Address</p>
+                            <p><%= f.email_field :email, :autofocus => true, :title => "Your Email Address", :type => "text" %></p>
+                            <p>Old Password</p>
+                            <p><%= f.password_field :current_password %></p>
+                            <p>New Password</p>
+                            <p><%= f.password_field :password, :title => "New Password", :type => "text" %></p>
+                            <p>New Password Confirmation</p>
+                            <p><%= f.password_field :password_confirmation, :title => "New Password Confirmation", :type => "text" %></p>
+                            <p>Your Settings</p>
+                            <p><%= f.check_box :first_name, :title => "Send me new document notifications" %>Send me new document notifications</p>
+                            <p><%= f.check_box :first_name, :title => "Send me new document notifications" %> Show customer support widget</p>
+                            <%= f.submit "Save Settings", :class => "btn-saveSettings" %>
+                            <%= link_to "Cancel", dashboard_index_path, :class => "btn-cancel", :title => "Cancel", :value => "Cancel", :type => "submit" %>
+                            <div class="clearFix"></div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div id="footer">
+        <div class="footerMenu">
+          <ul>
+            <li><a title="What's New" href="#">What's New</a></li>
+            <li><a title="System Status" href="#">System Status</a></li>
+            <li><a title="Live Help" href="#">Live Help</a></li>
+            <li><a title="Privacy Policy" href="#">Privacy Policy</a></li>
+            <li><a title="Terms of Service" href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <p>Having problems? Contact the office admin.</p>
+        <div class="clearFix"></div>
+      </div>
     </div>
-  </div>
-</div>
-<div class="clearFix"></div>
+    <script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>
+    <script type="text/javascript" language="javascript">
+      jQuery(document).ready(function () {
+        jQuery('#leftColumnShow').click(function () {
+          jQuery('#leftColumn').slideToggle('slow', function () {})
+        });
+        jQuery('#closeBox').click(function () {
+          jQuery('#leftColumn').slideToggle('slow', function () {})
+        });
+      });
+    </script>
+  </body>
+</html>

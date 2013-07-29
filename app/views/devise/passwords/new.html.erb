@@ -1,12 +1,32 @@
-<h2 style="margin:45px 0px;">Forgot your password?</h2>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link type="text/css" href="css/default.css" rel="stylesheet" media="all" />
+      <%= stylesheet_link_tag    "application", :media => "all" %>
+      <%= javascript_include_tag "application" %>
+      <%= csrf_meta_tags %>
+      <title>Reset Password</title>
+  </head>
+  <body class="page-login">
+    <div id="loginbox">
+      <h5>Reset Password</h5>
+      <div class="loginContent">
+        <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+          <%= devise_error_messages! %>
+          <%= f.email_field :email, :autofocus => true, :title => "Email Address", :type => "text", :placeholder => "Email Address", :id => "email-text" %>
+          <%#= f.submit class="btn-cancel" title="Cancel" type="submit" value="Cancel" %>
+          <%= f.submit "Reset", :class => "btn-reset", :type => "submit", :value =>"Reset" %>
+          <% end %>
+        </div>
+      </div>
+    </body>
+  </html>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<style>
+   #email-text {
+    font-size: 20px;
+    color: white;
+  }
+</style>

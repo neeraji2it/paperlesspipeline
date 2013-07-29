@@ -94,25 +94,12 @@
                   </div>
                   <div class="commonrowt">
                     <h3>Assigned Agents <span>Search by agent name or select by location</span></h3>
-                    <p><input class="icon-search" type="text" title="Search by name" placeholder="Search by name" /></p>
+                    <p>
+                      <input class="icon-search" type="text" title="Search by name" placeholder="Search by name" id="agents_seller" />
+                    </p>
                   </div>
-                  <div class="transactionBox">
-                    <h3>Elite Real Estate</h3>
-                    <div class="tableTransactionN">
-                      <div class="row">
-                        <div>Listing</div>
-                        <div>Selling</div>
-                        <div>Agents</div>
-                      </div>
-                      <% @assigning_users.each do |user| %>
-                        <div class="row" id="assigning-agents_<%= user.id %>">
-                          <div><%= check_box_tag :li_id,'1',false,:onclick => "select_listing('#{user.id}','#{user.first_name}')",:id => "li_#{user.id}" %></div>
-                          <div><%= check_box_tag :se_id,'1',false,:onclick => "select_selling('#{user.id}','#{user.first_name}')",:id => "se_#{user.id}" %></div>
-                          <div><%= user.first_name %></div>
-                        </div>
-                      <% end %>
-
-                    </div>
+                  <div class="transactionBox" id="agent_sellers">
+                    <%= render :partial => "transactions/transaction_agents" %>
                   </div>
                   <div class="transactionBox">
                     <h3>Asigned Agents</h3>
@@ -156,6 +143,19 @@
     });
     jQuery('#transactionI').hover(function () {
       jQuery('#transactionBoxN').slideToggle('slow', function () {})
+    });
+
+    $("#agents_seller").keyup(function(){
+      var agents = $(this).val();
+      $.ajax({
+        url:"/transactions/agents_search",
+        data:{
+          agent_name:agents
+        },
+        type:'GET',
+        dataType:'script',
+        success:function(data){}
+      });
     });
 
   });

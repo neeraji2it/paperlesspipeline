@@ -156,8 +156,13 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
 
-
+  def agents_search
+    @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' and first_name LIKE '#{params[:agent_name]}%'")
+    respond_to do |format|
+      format.js
+    end
   end
 
 end
