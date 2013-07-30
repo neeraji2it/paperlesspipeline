@@ -64,6 +64,7 @@ Paperlesspipeline::Application.routes.draw do
       get :export_transactions
       post :add_note
       get :agents_search
+      post :add_comment
     end
   end
 

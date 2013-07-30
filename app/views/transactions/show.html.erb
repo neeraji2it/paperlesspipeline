@@ -94,56 +94,44 @@
                     <div class="column last">Actions</div>
                   </h1>
                   <div class="box">
-                    <div class="tableTransaction">
-                      <div class="transactionrow">
-                        <div class="column"><div class="icon-pdf"></div></div>
-                        <div class="column w30">Listing Packet</div>
-                        <div class="column w12"><div class="icon-comment"></div></div>
-                        <div class="column w13">Aug 21, 12</div>
-                        <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
-                        <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
-                        <div class="column last">
-                          <span class="btn-action transaction">
-                            <em class="tooltip-container"><span>Action</span>
-                              <strong class="tooltip">
-                                <ul class="list-tooltip">
-                                  <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
-                                  <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
-                                </ul>
-                                <i class="top-arrow"></i>
-                              </strong>
-                            </em>
-                          </span>
+                    <% @transaction_documents.each do |document| %>
+                      <div class="tableTransaction">
+                        <div class="transactionrow">
+                          <div class="column"><div class="icon-pdf"></div></div>
+                          <div class="column w30"><%= document.document_file_name %></div>
+
+                          <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
+                          <div class="column w13"><%= document.created_at.to_date %></div>
+                          <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
+                          <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
+                          <div class="column last">
+                            <span class="btn-action transaction">
+                              <em class="tooltip-container"><span>Action</span>
+                                <strong class="tooltip">
+                                  <ul class="list-tooltip">
+                                    <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
+                                    <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
+                                  </ul>
+                                  <i class="top-arrow"></i>
+                                </strong>
+                              </em>
+                            </span>
+                          </div>
                         </div>
                       </div>
-                      <div class="transactionrow">
-                        <div class="column"><div class="icon-pdf"></div></div>
-                        <div class="column w30">Listing Packet</div>
-                        <div class="column w12"><div class="icon-comment"></div></div>
-                        <div class="column w13">Aug 21, 12</div>
-                        <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
-                        <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
-                        <div class="column last">
-                          <span class="btn-action transaction">
-                            <em class="tooltip-container"><span>Action</span>
-                              <strong class="tooltip">
-                                <ul class="list-tooltip">
-                                  <li><a title="Email Doc" href="#">Email Doc</a></li>
-                                  <li><a title="Download" href="#">Download</a></li>
-                                  <li><a title="Edit Doc" href="#">Edit Doc</a></li>
-                                  <li><a title="Rotate Right" href="#">Rotate Right</a></li>
-                                  <li><a title="Rotate Left" href="#">Rotate Left</a></li>
-                                  <li><a title="Break Apart" href="#">Break Apart</a></li>
-                                  <li><a title="Unassign Doc" href="#">Unassign Doc</a></li>
-                                  <li><a title="Delete" href="#">Delete</a></li>
-                                </ul>
-                                <i class="top-arrow"></i>
-                              </strong>
-                            </em>
-                          </span>
+                      <div class="commentBox" id="commentBox_<%= document.id %>" style="display:none">
+                        <%= form_for :comment, :url => add_comment_transactions_path, :method => 'POST', :remote => true do |f| %>
+                          <%= f.text_field :comment, :title => "Comments", :type =>"text" %>
+                          <%= f.hidden_field :document_id, :value => document.id %>
+                          <%= f.hidden_field :user_id, :value => current_user.id %>
+                          <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
+                          <%= link_to "Cancel", transaction_path(@transaction) %>
+                        <% end %>
+                        <div id="document_comments_<%= document.id %>">
+                          <%= render :partial => "transactions/comment",:locals => {:document => document} %>
                         </div>
                       </div>
-                    </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -214,3 +202,24 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript" language="javascript">
+  jQuery(document).ready(function () {
+    jQuery('#comment').click(function () {
+      jQuery('#commentBox').slideToggle('slow', function () {})
+    });
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+  });
+
+  function show_commentbox(doc_id) {
+    jQuery('#commentBox_' + doc_id).slideToggle('slow', function() {
+    })
+  }
+
+</script>
