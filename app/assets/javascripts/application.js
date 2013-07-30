@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-datepicker
 
 
 function remove_fields(link) {
@@ -30,6 +29,7 @@ function add_fields(link, association, content) {
 
 $(document).ready(function() {
     $('#transaction_automatic_expire_date').datepicker();
+    $('#transaction_close_date').datepicker();
     jQuery('#leftColumnShow').click(function() {
         jQuery('#leftColumn').slideToggle('slow', function() {
         });
@@ -152,6 +152,84 @@ jQuery(document).ready(function() {
         jQuery('#leftColumn').slideToggle('slow', function() {
         })
     });
+
+    jQuery('#locationI').hover(function() {
+        jQuery('#locationBoxN').slideToggle('slow', function() {
+        })
+    });
+    jQuery('#transactionI').hover(function() {
+        jQuery('#transactionBoxN').slideToggle('slow', function() {
+        })
+    });
+
+    jQuery('#transaction_transaction_name').hover(function() {
+        jQuery('#transactionName').slideToggle('slow', function() {
+        })
+    });
+
+    jQuery('#transaction_status').hover(function() {
+        jQuery('#transactionStatus').slideToggle('slow', function() {
+        })
+    });
+
+    jQuery('#transaction_close_date').hover(function() {
+        jQuery('#transactionClose').slideToggle('slow', function() {
+        })
+    });
+
+
+    jQuery('#transaction_more_info').hover(function() {
+        jQuery('#transactionMore').slideToggle('slow', function() {
+        })
+    });
+
+    jQuery('#transaction_automatic_expire_date').hover(function() {
+        jQuery('#transactionAuto').slideToggle('slow', function() {
+        })
+    });
+
+    jQuery('#transaction_buyer_name').hover(function() {
+        jQuery('#transactionBuyer').slideToggle('slow', function() {
+        })
+    });
+
+    jQuery('#transaction_seller_name').hover(function() {
+        jQuery('#transactionSeller').slideToggle('slow', function() {
+        })
+    });
+
+    jQuery('#transaction_list_price').hover(function() {
+        jQuery('#transactionList').slideToggle('slow', function() {
+        })
+    });
+
+    jQuery('#transaction_sale_price').hover(function() {
+        jQuery('#transactionSale').slideToggle('slow', function() {
+        })
+    });
+
+    jQuery('#transaction_total_commission').hover(function() {
+        jQuery('#transactionTotal').slideToggle('slow', function() {
+        })
+    });
+    jQuery('#transaction_commission_summary').hover(function() {
+        jQuery('#transactionSum').slideToggle('slow', function() {
+        })
+    });
+    $("#agents_seller").keyup(function() {
+        var agents = $(this).val();
+        $.ajax({
+            url: "/transactions/agents_search",
+            data: {
+                agent_name: agents
+            },
+            type: 'GET',
+            dataType: 'script',
+            success: function(data) {
+            }
+        });
+    });
+
 });
 function edit_comment(comment_id) {
     $('#hide-comment_' + comment_id).hide();

@@ -21,7 +21,11 @@ class DocumentsController < ApplicationController
     @document.transaction_id = params[:document][:transaction_id]
     @document.doc_type = params[:document][:doc_type]
     if @document.save
-      redirect_to dashboard_index_path
+      if @document.doc_type == "office"
+        redirect_to office_documents_path
+      else
+        redirect_to dashboard_path
+      end
     end
   end
 
@@ -70,7 +74,7 @@ class DocumentsController < ApplicationController
     #@users = User.search "*#{params[:search]}*"
     #    @documents = Document.search "*#{params[:search]}*"
     @transactions = Transaction.search "*#{params[:search]}*"
-    @docs = Document.where("user_id = '#{current_user.id}'")
+    @docs = Document.where("user_id = '#{current_user.id}' and doc_type = 'office'")
     @documents = Document.search "*#{params[:query]}*"
     if request.xhr?
       respond_to do |format|

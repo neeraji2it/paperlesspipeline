@@ -12,11 +12,11 @@
                 <div class="page-transaction">
                   <div class="commonrowt">
                     <h3>Transaction Information</h3>
-                    <p>Location</p>
+                    <p>Location<span class="star">*</span></p>
                     <p>
                       <%= validation_error(@transaction.errors["location_id"]) %>
-                      <%= f.select :location_id, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.name, c.id]}, params[:locations]), :id => "locationI", :title => "Location" %>
-                    </p><br /><br /><br />
+                      <%= f.select :location_id, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.name, c.id]}, params[:locations]),{}, :id => "locationI", :title => "Location" %>
+                    </p>
                     <div class="bposi">
                       <div id="locationBoxN" class="popup" style="display:none;">
                         <strong>Enter the Location associated with this Transaction.</strong>
@@ -25,11 +25,15 @@
                           has been created</p>
                       </div>
                     </div>
-                    <p>Transaction Name or Address</p>
+                    <p>Transaction Name or Address<span class="star">*</span></p>
                     <p><%= validation_error(@transaction.errors["transaction_name"]) %></p>
                     <p><%= f.text_field :transaction_name, :title => "Transaction Name or Address", :type => "text"  %></p>
-
-                    <p>MLS or Transaction Number</p>
+                    <div class="bposi">
+                      <div id="transactionName" class="popup" style="display:none;">
+                        <strong>Enter a descriptive name for this transaction </strong>
+                      </div>
+                    </div>
+                    <p>MLS or Transaction Number<span class="star">*</span></p>
                     <p><%= validation_error(@transaction.errors["transaction_number"]) %></p>
                     <p><%= f.text_field :transaction_number, :id => "transactionI", :title => "MLS or Transaction Number", :type => "text" %></p>
                     <div class="bposi">
@@ -38,48 +42,92 @@
                         <p>For example: 12345</p>
                       </div>
                     </div>
-                    <p>Status</p>
+                    <p>Status<span class="star">*</span></p>
                     <p>
                       <%= f.text_field :status, :title => "Status" %>
                       <%= validation_error(@transaction.errors["status"]) %>
                     </p>
-                    <p>Close Date</p>
+                    <div class="bposi">
+                      <div id="transactionStatus" class="popup" style="display:none;">
+                        <strong>Enter the transaction status </strong>
+                      </div>
+                    </div>
+                    <p>Close Date<span class="star">*</span></p>
                     <p>
-                      <%= f.text_field :close_date, :id => 'datepicker' %>
+                      <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%m/%d/%Y") : ""), :readonly => true %>
                       <%= validation_error(@transaction.errors["close_date"]) %>
                     </p>
+                    <div class="bposi">
+                      <div id="transactionClose" class="popup" style="display:none;">
+                        <strong>Enter the expected close date for this transaction in the format m/d/yyyy. </strong>
+                      </div>
+                    </div>
                   </div>
                   <div class="commonrowt">
-                    <h3>Optional Information <span>Click to show/hide</span></h3>
-                    <p>More Info</p>
+                    <h3>Optional Information </h3>
+                    <p>More Info<span class="star">*</span></p>
                     <p><%= validation_error(@transaction.errors["more_info"]) %></p>
                     <p><%= f.text_area :more_info, :rows => "5" %></p>
-                    <p>Automatic Expiration Date</p>
-                    <p><%= f.text_field :automatic_expire_date, :class => "icon-closedate", :title => "Automatic Expiration Date", :type => "text" %></p>
-                    <p>Buyer Name</p>
+                    <div class="bposi">
+                      <div id="transactionMore" class="popup" style="display:none;">
+                        <strong>Enter information about this transaction not covered by other fields. For example, escrow #, referral source, etc. </strong>
+                      </div>
+                    </div>
+                    <p>Automatic Expiration Date<span class="star">*</span></p>
+                    <p><%= f.text_field :automatic_expire_date, :class => "icon-closedate", :title => "Automatic Expiration Date", :type => "text", :value => (@transaction.automatic_expire_date ? @transaction.automatic_expire_date.strftime("%m/%d/%Y") : ""), :readonly => true %></p>
+                    <div class="bposi">
+                      <div id="transactionAuto" class="popup" style="display:none;">
+                        <strong>Enter an expiration date in the format m/d/yyyy. If this transaction's status remains "Listing" after this date, it will automatically change to "Expired/Withdrawn" </strong>
+                      </div>
+                    </div>
+                    <p>Buyer Name<span class="star">*</span></p>
                     <p><%= validation_error(@transaction.errors["buyer_name"]) %></p>
                     <p><%= f.text_field :buyer_name %></p>
-                    <p>Seller Name</p>
+                    <div class="bposi">
+                      <div id="transactionBuyer" class="popup" style="display:none;">
+                        <strong>Enter the name of the home buyer. </strong>
+                      </div>
+                    </div>
+                    <p>Seller Name<span class="star">*</span></p>
                     <p><%= validation_error(@transaction.errors["seller_name"]) %></p>
                     <p><%= f.text_field :seller_name %></p>
-                    <p>List Price</p>
+                    <div class="bposi">
+                      <div id="transactionSeller" class="popup" style="display:none;">
+                        <strong>Enter the name of the home seller </strong>
+                      </div>
+                    </div>
+                    <p>List Price<span class="star">*</span></p>
                     <p><%= validation_error(@transaction.errors["list_price"]) %></p>
                     <p><%= f.text_field :list_price %></p>
-                    <p>Currency</p>
-                    <p><input title="Currency" type="text" /></p>
-                    <p>Sale Price</p>
+                    <div class="bposi">
+                      <div id="transactionList" class="popup" style="display:none;">
+                        <strong>Enter the current list price of this house </strong>
+                      </div>
+                    </div>
+                    <p>Sale Price<span class="star">*</span></p>
                     <p><%= validation_error(@transaction.errors["sale_price"]) %></p>
                     <p><%= f.text_field :sale_price %></p>
-                    <p>Currency</p>
-                    <p><input title="Currency" type="text" /></p>
-                    <p>Total Commission</p>
+                    <div class="bposi">
+                      <div id="transactionSale" class="popup" style="display:none;">
+                        <strong>If this home is already under contract, enter the sale price here. </strong>
+                      </div>
+                    </div>
+                    <p>Total Commission<span class="star">*</span></p>
                     <p><%= validation_error(@transaction.errors["total_commission"]) %></p>
                     <p><%= f.text_field :total_commission %></p>
-                    <p>Currency</p>
-                    <p><input title="Currency" type="text" /></p>
-                    <p>Commission Summary</p>
+                    <div class="bposi">
+                      <div id="transactionTotal" class="popup" style="display:none;">
+                        <strong>Enter the estimated commission here to help track revenue. </strong>
+                      </div>
+                    </div>
+                    <p>Commission Summary<span class="star">*</span></p>
                     <p><%= validation_error(@transaction.errors["commission_summary"]) %></p>
                     <p><%= f.text_field :commission_summary %></p>
+                    <div class="bposi">
+                      <div id="transactionSum" class="popup" style="display:none;">
+                        <strong>Elaborate on the commission here, if necessary. </strong>
+                      </div>
+                    </div>
                   </div>
                   <div class="commonrowt">
                     <h3>Assigned Agents <span>Search by agent name or select by location</span></h3>
@@ -119,42 +167,5 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
-  jQuery(document).ready(function() {
-    jQuery('#leftColumnShow').click(function() {
-      jQuery('#leftColumn').slideToggle('slow', function() {
-      })
-    });
-    jQuery('#closeBox').click(function() {
-      jQuery('#leftColumn').slideToggle('slow', function() {
-      })
-    });
-    jQuery('#locationI').hover(function() {
-      jQuery('#locationBoxN').slideToggle('slow', function() {
-      })
-    });
-    jQuery('#transactionI').hover(function() {
-      jQuery('#transactionBoxN').slideToggle('slow', function() {
-      })
-    });
-
-    $("#agents_seller").keyup(function() {
-      var agents = $(this).val();
-      $.ajax({
-        url: "/transactions/agents_search",
-        data: {
-          agent_name: agents
-        },
-        type: 'GET',
-        dataType: 'script',
-        success: function(data) {
-        }
-      });
-    });
-
-  });
-
-
-</script>
 
 
