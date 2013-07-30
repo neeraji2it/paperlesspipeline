@@ -4,8 +4,9 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to manage_locations_user_path(current_user), :notice => 'Location was successfully updated.' }
+#        format.html { redirect_to manage_locations_user_path(current_user), :notice => 'Location was successfully updated.' }
         format.js
+        @locations = Location.all
       else
         format.html { render :action => "edit" }
         format.json { render :json => @location.errors, :status => :unprocessable_entity }

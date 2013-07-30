@@ -24,7 +24,7 @@ class DocumentsController < ApplicationController
       if @document.doc_type == "office"
         redirect_to office_documents_path
       else
-        redirect_to dashboard_path
+        redirect_to office_documents_path
       end
     end
   end

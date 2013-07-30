@@ -28,28 +28,11 @@
                   <div class="column w20">Working Docs</div>
                   <div class="column last">Actions</div>
                 </div>
-                <% @locations.each do |location| %>
-                  <div class="transactionrow">
-                    <div class="column w30"><%= location.name %></div>
-                    <div class="column w20"><%= Location.where("user_id = '#{location.user_id}' and name = '#{location.name}'").count %></div>
-                    <div class="column w20"><%= Transaction.where("location_id = '#{location.id}'").count %> </div>
-                    <div class="column"><%= Document.where("location_id = '#{location.id}'").count %></div>
-                    <div class="column last">
-                      <span class="btn-action">
-                        <em class="tooltip-container"><span>Action</span>
-                          <strong class="tooltip">
-                            <ul class="list-tooltip">
-                              <li class="icon-edit"><%= link_to "Edit", edit_location_path %></li>
-                              <li class="icon-delete"><%= link_to "Delete",location_path(location), :method => "DELETE" %></li>
-                            </ul>
-                            <i class="top-arrow"></i>
-                          </strong>
-                        </em>
-                      </span>
-                    </div>
-                  </div>
-                <% end %>
+                <div id="locations-show">
+                  <%= render :partial => "users/manage_locations" %>
+                </div>
               </div>
+
               <div class="clearFix"></div>
             </div>
           </div>

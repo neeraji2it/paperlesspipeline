@@ -18,6 +18,7 @@ p { margin:0px; padding-bottom:7px; }
 input, textarea, a { outline:none; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
 input[type=file] { margin-right:5px; }
 input[type=text], input[type=password], input[type=pass] { width:600px; line-height:16px; margin-right:5px; }
+input[type=text2] { width:147px; line-height:16px; height:27px;}
 input[type=checkbox] { height:13px; width:13px; margin-right:5px; position:relative; top:2px; }
 input[type=submit], input[type=button], input[type=reset], a, button { cursor:pointer; }
 input[type=submit], input[type=button], input[type=reset] { overflow:visible; margin-right:5px; }
@@ -139,7 +140,7 @@ ul.leftmenu li.icon-upload-docsbyemail a { background:url(/assets/icon-upload-do
 .tableTransaction { line-height:30px; }
 .tableTransaction div.transactionrow { width:98%; padding:0% 1%; display:inline-block; border-top:solid 1px #FFF; border-bottom:solid 1px #d7d7d7; }
 .tableTransaction div.transactionrow.active { background-color:#f3eb7b; }
-.tableTransaction div.transactionrow:first-child, .transactionrow.first { color:#125687; font-weight:bold; background-color:#FFF; }
+.transactionrow.first { color:#125687; font-weight:bold; background-color:#FFF; }
 .tableTransaction a { color:#125687; }
 .column { float:left; width:10.3%; }
 .column.last { float:right; width:7%; text-align:center; }

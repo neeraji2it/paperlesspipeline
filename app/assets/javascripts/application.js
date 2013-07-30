@@ -238,6 +238,11 @@ function edit_comment(comment_id) {
     $('#edit-comment_' + comment_id).show();
 }
 
+function edit_location(location_id) {
+    $('#hide-location_' + location_id).hide();
+    $('#locationShow_' + location_id).show();
+}
+
 $(document).ajaxStart(function() {
     $('#ajax_loader_big_div').show();
 });

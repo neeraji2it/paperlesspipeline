@@ -94,6 +94,7 @@ class TransactionsController < ApplicationController
     @listing_agents = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' and role = '#{Agent}' ")
     @staff_agents = User.all
 
+    @transaction_documents = Document.where("transaction_id = '#{@transaction.id}'")
   end
 
   def search
@@ -152,9 +153,6 @@ class TransactionsController < ApplicationController
   end
 
   def add_note
-    puts "======================="
-    puts params.inspect
-    puts "======================="
     @note = Note.new(params[:note])
     @transaction = Transaction.find(params[:note][:transaction_id])
     @note.transaction_id = @transaction.id
@@ -168,6 +166,15 @@ class TransactionsController < ApplicationController
   def agents_search
     @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' and first_name LIKE '#{params[:agent_name]}%'")
     respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_comment
+    @comment = Comment.new(params[:comment])
+    @comment.save
+    respond_to do |format|
+      @document = Document.find(@comment.document_id)
       format.js
     end
   end

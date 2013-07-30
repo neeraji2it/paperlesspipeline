@@ -1,0 +1,2 @@
+$('#document_comments_<%= @document.id %>').html("<%= escape_javascript render :partial => '/transactions/comment',:locals => {:doc => @document}%>");
+
