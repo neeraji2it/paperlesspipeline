@@ -36,6 +36,7 @@ class UsersController < ApplicationController
   
   def add_user
     @user = User.new
+    @roles = Role.all
   end
 
   def user_create
@@ -67,7 +68,10 @@ class UsersController < ApplicationController
   end
 
   def add_role
-    raise params.inspect
+    @role = Role.new(params[:role])
+    @user = User.new
+    if @role.save
+     render
+    end
   end
-
 end

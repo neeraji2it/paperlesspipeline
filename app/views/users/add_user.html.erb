@@ -1,78 +1,36 @@
 <div class="contentbox">
   <h2>Add New User</h2>
   <div style="background-color:white;padding-left:30px;">
-    <table>
-      <%= form_for(@user, :url => user_create_users_path(@user),:html => {:id => "commentForm", :method => "POST"}) do |f| %>
-        <tr>
-          <td><%= f.hidden_field :create_id, :value => current_user.id %></td>
-        </tr>
-        <tr><td>&nbsp</td></tr>
-        <tr>
-          <td><%= f.label :first_name,"First Name" %></td>
-          <td><%= f.text_field :first_name, :autofocus => true %></td>
-          <td><%= validation_error(@user.errors["first_name"]) %></td>
-        </tr>
-        <tr><td>&nbsp</td></tr>
-        <tr>
-          <td><%= f.label :last_name %></td>
-          <td><%= f.text_field :last_name, :autofocus => true %></td>
-          <td><%= validation_error(@user.errors["last_name"]) %></td>
-        </tr>
-        <tr><td>&nbsp</td></tr>
-        <tr>
-          <td><%= f.label :email %></td>
-          <td><%= f.email_field :email, :autofocus => true %></td>
-          <td><%= validation_error(@user.errors["email"]) %></td>
-        </tr>
-        <tr><td>&nbsp</td></tr>
-        <tr>
-          <td><%= f.label :Location %></td>
-          <td><%= f.select :location, options_for_select(Location.all.collect{|l| [l.name, l.id]}), :class => "micro-input" %></td>
-          <td><%= validation_error(@user.errors["location_id"]) %></td>
-        </tr>
-        <tr><td>&nbsp</td></tr>
-        <tr>
-          <td><%= f.label :Role %></td>
-          <td><%= f.select :role, %w(Admin Agent User Staff), :title => "Add a Role" %></td>
-          <td><%= validation_error(@user.errors["role"]) %></td>
-          <td><%= link_to "add role", :id => "add-role" %></td>
-        </tr>
-        
-
-        <tr><td>&nbsp</td></tr>
-        <tr>
-          <td><%= f.label :password %></td>
-          <td><%= f.password_field :password %></td>
-          <td><%= validation_error(@user.errors["password"]) %></td>
-        </tr>
-        <tr><td>&nbsp</td></tr>
-        <tr>
-          <td> <%= f.label :password_confirmation %></td>
-          <td><%= f.password_field :password_confirmation %></td>
-          <td><%= validation_error(@user.errors["password_confirmation"]) %></td>
-        </tr>
-        <tr><td>&nbsp</td></tr>
-
-        <tr><td>&nbsp</td></tr>
-        <tr><td>&nbsp</td></tr>
-        <tr><td>&nbsp</td></tr>
-        <tr>
-          <td><%= f.submit "Sign up" %></td>
-        </tr>
+    <div id="form_div">
+      <%= render :partial =>"form" %>
+    </div>
+    <div id="role-text-box">
+      <%= form_for :role, :url => add_role_users_path(current_user), :method => 'POST', :remote => true do |f| %>
+        <%= f.text_field :role, :type => "text2" %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
+        <%= link_to "Cancel", add_user_users_path(current_user) %>
       <% end %>
-    </table>
+    </div>
 
-    <div id="role-text-box">fsad</div>
-    
   </div>
 </div>
 <div class="clearFix"></div>
 
+<style>
+  #role-text-box{
+    margin-left: 461px;
+    margin-top: -234px;
+    position: absolute;
+  }
+</style>
+
 <script>
-  jQuery(document).ready(function () {
-    $('#role-text-box').hide();
-    $('#add-role').click(function(){
-      $('#role-text-box').show
-      });
+  $(document).ready(function(){
+    $("#role-text-box").hide();
+    $("#add-role").click(function(){
+      $("#role-text-box").show();
+      $(this).hide();
+    });
   });
 </script>

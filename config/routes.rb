@@ -32,6 +32,7 @@ Paperlesspipeline::Application.routes.draw do
     collection do
       post :user_create
       get :add_user
+      post :add_role
     end
   end 
   resources :dashboard
