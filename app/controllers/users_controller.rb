@@ -21,6 +21,8 @@ class UsersController < ApplicationController
   
   def manage_locations
     @locations = Location.all
+    if request.xhr?
+    end
   end
   
   def manage_users

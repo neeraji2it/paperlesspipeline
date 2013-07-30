@@ -2,10 +2,16 @@
 
   <div class="field">
     <%= f.label :location %><br />
-    <%= f.text_field :location %>
+    <%= f.text_field :location, :type => "text"  %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save", :class => "btn-save" %>
   </div>
 <% end %>
+
+<style>
+  #edit-location{
+    font-size: 20px;
+}
+</style>

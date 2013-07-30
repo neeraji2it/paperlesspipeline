@@ -30,7 +30,17 @@
                 </div>
                 <% @locations.each do |location| %>
                   <div class="transactionrow">
-                    <div class="column w30"><%= location.name %></div>
+                    <div class="column w30" id="hide-location_<%= location.id %>"><%= location.name %></div>
+
+                    <div class="commentBox" id="locationShow_<%= location.id %>" style="display:none">
+                      <%= form_for :location, :url => manage_locations_user_path(location), :method => "PUT", :remote => true do |f| %>
+                        <%= f.text_field :name, :value => location.name, :rows => 10 %>
+                        <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
+                        <%= link_to "Cancel", manage_locations_user_path %>
+                      <% end %>
+                    </div>
+
+
                     <div class="column w20"><%= Location.where("user_id = '#{location.user_id}' and name = '#{location.name}'").count %></div>
                     <div class="column w20"><%= Transaction.where("location_id = '#{location.id}'").count %> </div>
                     <div class="column"><%= Document.where("location_id = '#{location.id}'").count %></div>
@@ -39,7 +49,7 @@
                         <em class="tooltip-container"><span>Action</span>
                           <strong class="tooltip">
                             <ul class="list-tooltip">
-                              <li class="icon-edit"><%= link_to "Edit", edit_location_path %></li>
+                              <li class="icon-edit"><%= link_to_function "Edit", "edit_location(#{location.id})" %></li>
                               <li class="icon-delete"><%= link_to "Delete",location_path(location), :method => "DELETE" %></li>
                             </ul>
                             <i class="top-arrow"></i>
