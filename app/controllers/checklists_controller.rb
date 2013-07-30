@@ -31,8 +31,8 @@ class ChecklistsController < ApplicationController
     @checklist = Checklist.find(params[:id])
     @checklist.destroy
 
-    respond_to do |format|
-      format.html { redirect_to checklists_url }
+    render :update do |page|
+      page.reload
     end
   end
 end
