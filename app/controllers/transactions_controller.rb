@@ -43,13 +43,13 @@ class TransactionsController < ApplicationController
     @transaction.location_id = params[:transaction][:location_id]
     @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ")
     if @transaction.save
-      if !params[:listing].empty?
+      if !params[:listing].nil?
         params[:listing].each do |list|
           Agent.create(:user_id => list,:transaction_id => @transaction.id,:listing => true,:selling => false)
         end
       end
 
-      if !params[:selling].empty?
+      if !params[:selling].nil?
         params[:selling].each do |sell|
           @agent = Agent.find_by_transaction_id_and_user_id(@transaction.id,sell)
           if @agent
@@ -108,6 +108,9 @@ class TransactionsController < ApplicationController
     @transactions = Transaction.where("user_id = '#{current_user.id}'")
     if request.xhr?
       @transactions = Transaction.where("close_date = '#{params[:close_date]}' or status = '#{params[:status]}'")
+      puts"============================================================"
+      puts @transactions.inspect
+      puts"============================================================"
       respond_to do |format|
         format.js
       end
