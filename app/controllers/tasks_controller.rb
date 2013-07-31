@@ -35,6 +35,10 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
+    @transaction = Transaction.find(params[:transaction_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /tasks
@@ -56,15 +60,12 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
-
+    @task.update_attributes(params[:task])
+    @checklist = Checklist.find(@task.checklist_id)
+    @tasks = @checklist.tasks
+    @transaction = Transaction.find(params[:transaction_id])
     respond_to do |format|
-      if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+      format.js
     end
   end
 
