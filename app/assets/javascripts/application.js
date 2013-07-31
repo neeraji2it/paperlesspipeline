@@ -241,6 +241,9 @@ function edit_comment(comment_id) {
 function edit_location(location_id) {
     $('#hide-location_' + location_id).hide();
     $('#locationShow_' + location_id).show();
+
+    
+
 }
 
 $(document).ajaxStart(function() {

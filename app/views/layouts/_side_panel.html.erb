@@ -25,7 +25,7 @@
                       <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
                     </ul>
                   <% end %>
-                  <a class="link-viewall" title="View All" href="#">View All</a>
+                  <%= link_to "<span>Transaction</span>".html_safe, transactions_path %>
                   <div class="clearFix"></div>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                       <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
                     </ul>
                   <% end %>
-                  <a class="link-viewall" title="View All" href="#">View All</a>
+                  <%= link_to "<span>Transaction</span>".html_safe, transactions_path %>
                   <div class="clearFix"></div>
                 </div>
               </div>
@@ -81,7 +81,7 @@
                       <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
                     </ul>
                   <% end %>
-                  <a class="link-viewall" title="View All" href="#">View All</a>
+                  <%= link_to "<span>Transaction</span>".html_safe, transactions_path %>
                   <div class="clearFix"></div>
                 </div>
               </div>
@@ -233,27 +233,7 @@
         </div>
       </div>
     </div>
-    <div class="contentbox">
-      <h1>Monthly Stats</h1>
-      <div class="box">
-        <div class="bt">
-          <div class="br">
-            <div class="bb">
-              <div class="bl">
-                <div class="con">
-                  <ul class="list-admin">
-                    <li><span class="fright"><%= current_user.transactions.count %></span><a title="Transaction Created" href="#">Transaction Created</a></li>
-                    <li><span class="fright">5</span><a title="Transaction Quota" href="#">Transaction Quota</a></li>
-                  </ul>
-                  <p class="f11">Your monthly limit will reset back to 5 new transactions on March 28, 2013</p>
-                  <div class="clearFix"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     <div class="contentbox">
       <h1>Your Permissions</h1>
       <div class="box">
