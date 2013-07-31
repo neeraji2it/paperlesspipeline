@@ -216,6 +216,8 @@ jQuery(document).ready(function() {
         jQuery('#transactionSum').slideToggle('slow', function() {
         })
     });
+
+
     $("#agents_seller").keyup(function() {
         var agents = $(this).val();
         $.ajax({

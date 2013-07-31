@@ -1,6 +1,6 @@
 <% checklists.each do |check| %>
   <div class="contentbox">
-    <h1><%= check.name %></h1>
+    <h1 onmouseover="javascript:$('#chck_<%= check.id %>').show();" onmouseout="javascript:$('#chck_<%= check.id %>').hide();"><%= check.name %> <span id='chck_<%= check.id %>' style="display: none;"><%= link_to "delete", checklist_path(check), :method => "delete", :confirm => "Are you sure?", :remote => true  %></span></h1>
     <div class="box">
       <div class="bt">
         <div class="br">

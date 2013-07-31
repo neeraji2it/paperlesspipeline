@@ -74,9 +74,8 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
 
-    respond_to do |format|
-      format.html { redirect_to tasks_url }
-      format.json { head :no_content }
+    render :update do |page|
+      page.reload
     end
   end
 
