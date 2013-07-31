@@ -1,8 +1,5 @@
 <div class="contentbox">
-  <% @cs = @transaction.checklists.count  %>
-  <% @ts = @transaction.tasks.count %>
-  <% if @ts > 0 %><% @ctp = (@cs/@ts)*100 %><% end %>
-  <h1><em><span><%= @ctp %> </span></em>120 Tyler Ave, Cape Canaveral, 32920<span>(Last updated Jun 5, 2013 by Dawn Long)</span></h1>
+  <h1><em><span><%= "#{@per_completed_tasks.to_i}%" %> </span></em>120 Tyler Ave, Cape Canaveral, 32920<span>(Last updated Jun 5, 2013 by Dawn Long)</span></h1>
   <div class="box">
     <div class="bt">
       <div class="br">
