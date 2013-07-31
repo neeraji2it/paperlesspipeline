@@ -101,6 +101,16 @@ class DocumentsController < ApplicationController
       format.js
     end
   end
-  
+
+  def download_document
+    puts "==========================================================="
+    puts params.inspect
+    puts "==========================================================="
+    document = Document.find(params[:id])
+    send_data document.document.path,
+      :filename => document.document_file_name,
+      :type => document.document_content_type,
+      :disposition => 'attachment'
+  end
 
 end

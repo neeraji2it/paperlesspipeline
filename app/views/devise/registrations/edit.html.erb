@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link type="text/css" href="css/default.css" rel="stylesheet" media="all" />
+<%#*<link type="text/css" href="css/default.css" rel="stylesheet" media="all" />%>
     <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application","jquery.notifyBar", "jquery_002.js" %>
+    <%= javascript_include_tag "application","jquery.notifyBar" %>
     <%= csrf_meta_tags %>
     <title>Profile</title>
   </head>
@@ -15,27 +15,36 @@
         <div class="cr">
           <div class="topleftbox">
             <a title="Cloud 9 Transaction Management" href="#"><img id="logo" title="Cloud 9 Transaction Management" alt="Cloud 9 Transaction Management" src="/assets/logo.png" /></a>
-            <input class="input-search" type="text" title="Search Transaction by Address, Agents or MLS" placeholder="Search Transaction by Address, Agents or MLS" /><input class="btn-search" type="submit" title="Search" value="Search" />
+            <%#*<input class="input-search" type="text" title="Search Transaction by Address, Agents or MLS" placeholder="Search Transaction by Address, Agents or MLS" /><input class="btn-search" type="submit" title="Search" value="Search" />%>
           </div>
           <div class="toprighbox">
             <ul id="topmenu">
-              <li><span>|</span><a title="Admin" href="#">Admin</a></li>
-              <li><span>|</span><a title="Profile" href="#">Profile</a></li>
-              <li class="icon-logout"><span>|</span><a title="Logout" href="#">Logout</a></li>
+              <li><span>|</span><%= current_user ? (link_to "Admin", admin_user_path(current_user)) : "" %></li>
+              <li><span>|</span><%= current_user ? (link_to "Profile", profile_user_path(current_user)) : "" %></li>
+              <li class="icon-logout"><span>|</span><%= current_user ? (link_to "Logout", destroy_user_session_path,:method => 'DELETE') : (link_to "Login", new_user_session_path) %> </li>
             </ul>
-            <p><a title="Nate B is signed in (Not you?)" href="#">Nate B is signed in (Not you?)</a></p>
-            <div class="newTransaction">New Transaction</div>
+            <p><% if current_user %><a title="Nate B is signed in (Not you?)" href="#"><%= current_user.first_name %> is signed in</a></p> <% end %>
+            <div class="newTransaction"><%= current_user ? (link_to "New Transaction", new_transaction_path) : "" %></div>
           </div>
           <div class="clearFix"></div>
         </div>
         <div id="navigation">
           <ul>
-            <li><a title="Dashboard" href="#"><span>Dashboard</span></a></li>
-            <li><a title="Transactions" href="#"><span>Transactions</span></a></li>
-            <li><a title="Tasks" href="#"><span>Tasks</span></a></li>
-            <li><a title="Working" href="#"><span>Working</span></a></li>
-            <li><a title="Unreviewed" href="#"><span>Unreviewed</span></a></li>
-            <li><a title="Office" href="#"><span>Office</span></a></li>
+            <% if current_user %>
+              <li class=<%= (params[:controller] == "dashboard" ? "active" : "") %>><%= link_to "<span>Dashboard</span>".html_safe, dashboard_index_path %></li>
+              <li class=<%= (params[:controller] == "transactions" ? "active" : "") %>><%= link_to "<span>Transaction</span>".html_safe, transactions_path %></li>
+              <li class=<%= (params[:controller] == "tasks" ? "active" : "") %>><%= link_to "<span>Tasks</span>".html_safe, tasks_path %></li>
+              <li class=<%= (params[:controller] == "documents" && params[:action] == "working" ? "active" : "") %>><%= link_to "<span>Working</span>".html_safe, working_documents_path %></li>
+              <li class=<%= (params[:controller] == "documents" && params[:action] == "unreviewed" ? "active" : "") %>><%= link_to "<span>Unreviewed</span>".html_safe, unreviewed_documents_path %></li>
+              <li class=<%= (params[:controller] == "documents" && params[:action] == "office" ? "active" : "") %>><%= link_to "<span>Office</span>".html_safe, office_documents_path %></li>
+            <% else %>
+              <li class="active"></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            <% end %>
           </ul>
         </div>
         <div class="clearFix"></div>
@@ -141,7 +150,7 @@
         <div class="clearFix"></div>
       </div>
     </div>
-    <script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>
+<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
     <script type="text/javascript" language="javascript">
       jQuery(document).ready(function () {
         jQuery('#leftColumnShow').click(function () {

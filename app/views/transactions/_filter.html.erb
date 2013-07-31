@@ -2,7 +2,7 @@
   <div class="tableTransaction">
     <div class="transactionrow">
       <% @transactions.each do |transaction| %>
-        <div class="column w30"><%= transaction.transaction_name %></div>
+        <div class="column w30"><%= link_to  transaction.transaction_name %></div>
         <div class="column"><%= transaction.status %></div>
         <div class="column w11">
           <div class="completebox"><abbr>7/8</abbr></div>

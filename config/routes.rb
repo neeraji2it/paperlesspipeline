@@ -46,6 +46,7 @@ Paperlesspipeline::Application.routes.draw do
       get :office
       get :unreviewed
       post :comment
+      get :download_document
     end
     resources :comments
   end
@@ -68,6 +69,8 @@ Paperlesspipeline::Application.routes.draw do
       post :add_comment
     end
   end
+
+  match "/documents/download_document" => 'documents#download_document',:as => 'download'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

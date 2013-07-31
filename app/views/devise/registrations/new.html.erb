@@ -75,7 +75,7 @@
               </div>
               <div class="signupRow">
                 <%= validation_error(resource.errors["password_confirmation"]) %>
-                <%= f.password_field :password_confirmation, :title => "Confirm Password", :placeholder => "Comfirm Password", :type => "password" %><span style="color:red;">*</span>
+                <%= f.password_field :password_confirmation, :title => "Confirm Password", :placeholder => "Confirm Password", :type => "password" %><span style="color:red;">*</span>
               </div>
               <div class="signupRow">
                 <%= f.submit "Sign up", :class => "btn-createAccount", :type => "submit", :value => "Create Account", :title => "Create Account" %>
