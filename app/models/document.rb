@@ -1,6 +1,7 @@
 class Document < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
+  belongs_to :transactions
   attr_accessible :user_id, :document,:location_id,:document_type, :document_file_name, :transaction_id, :doc_type
   has_attached_file :document, :styles => {:medium => "300x300>", :thumb => "100x100>"}
   has_many :comments, :dependent => :destroy

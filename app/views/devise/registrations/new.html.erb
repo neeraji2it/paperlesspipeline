@@ -44,37 +44,29 @@
               <%= params[:message].to_s.html_safe %>
               <%= devise_error_messages! %>
               <div class="signupRow">
-                <%= validation_error(resource.errors["first_name"]) %>
                 <%= f.text_field :first_name, :class => "min-input", :title => "First Name", :placeholder => "First Name", :type => "text" %><span style="color:red;">*</span>
-                <%= validation_error(resource.errors["last_name"]) %>
                 <%= f.text_field :last_name, :class => "min-input", :title => "Last Name", :placeholder => "Last Name", :type => "text" %><span style="color:red;">*</span>
               </div>
               <div class="signupRow">
-                <%= validation_error(resource.errors["company_name"]) %>
                 <%= f.text_field :company_name, :title => "Company Name", :placeholder => "Company Name", :type => "text" %><span style="color:red;">*</span>
                 <span>We'll use this to brand your Cloud9 system. You can change this later.</span>
               </div>
               <div class="signupRow">
-                <%= validation_error(resource.errors["phone_number"]) %>
                 <%= f.text_field :phone_number, :title => "Phone Number", :placeholder => "Phone Number", :type => "text" %><span style="color:red;">*</span>
               </div>
 
               <div class="signupRow">
-                <%= validation_error(resource.errors["location_id"]) %>
                 <%= f.select :location, options_for_select([["Any Location ->", ""]]+Location.all.collect{|c| [c.name, c.id]}, params[:locations]), :id => "locationI", :title => "Location" %><span style="color:red;">*</span>
               </div>
 
               <div class="signupRow">
-                <%= validation_error(resource.errors["email"]) %>
                 <%= f.email_field :email, :title => "Email Address", :placeholder => "Email Address", :type => "text" %><span style="color:red;">*</span>
                 <span>You'll use this address to log in to your Cloud9 system</span>
               </div>
               <div class="signupRow">
-                <%= validation_error(resource.errors["password"]) %>
                 <%= f.password_field :password, :title => "Password", :placeholder => "Password", :type => "password" %><span style="color:red;">*</span>
               </div>
               <div class="signupRow">
-                <%= validation_error(resource.errors["password_confirmation"]) %>
                 <%= f.password_field :password_confirmation, :title => "Confirm Password", :placeholder => "Confirm Password", :type => "password" %><span style="color:red;">*</span>
               </div>
               <div class="signupRow">

@@ -412,3 +412,7 @@ ul.list-emailnote li span{ padding:1px 5px 3px 4px; border-radius:3px; font-weig
 @media (max-width: 480px) {
 	html body #navigation { padding-left:0px; width:100%; }
 	}
+
+        #error_explanation ul li{
+            color:red;
+}

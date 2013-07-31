@@ -2,7 +2,7 @@
 <div id="leftColumn">
   <div id="closeBox">Close</div>
 
-  <% if (params[:controller] == "transactions" && params[:action] == "index")  %>
+  <% if (params[:controller] == "transactions" && params[:action] == "index" || params[:action] == "advance_search" || params[:action] == "filter")  %>
     <ul class="leftmenu">
       <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
       <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
@@ -19,11 +19,12 @@
             <div class="bb">
               <div class="bl">
                 <div class="con">
-                  <ul class="list-admin">
-                    <li><a title="3740 Ocean Beach Blvd #204 MLS #: 643682" href="#">3740 Ocean Beach Blvd #204 <br />MLS #: 643682</a></li>
-                    <li><a title="17 Greenwood MLS #: 657388" href="#">17 Greenwood <br />MLS #: 657388</a></li>
-                    <li><a title="1441 Paragon Rd, Plam Bay MLS #: 333162" href="#">1441 Paragon Rd, Plam Bay <br />MLS #: 333162</a></li>
-                  </ul>
+                  <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
+                  <% @transactions.each do |transaction| %>
+                    <ul class="list-admin">
+                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
+                    </ul>
+                  <% end %>
                   <a class="link-viewall" title="View All" href="#">View All</a>
                   <div class="clearFix"></div>
                 </div>
@@ -45,11 +46,12 @@
             <div class="bb">
               <div class="bl">
                 <div class="con">
-                  <ul class="list-admin">
-                    <li><a title="3740 Ocean Beach Blvd #204 MLS #: 643682" href="#">3740 Ocean Beach Blvd #204 <br />MLS #: 643682</a></li>
-                    <li><a title="17 Greenwood MLS #: 657388" href="#">17 Greenwood <br />MLS #: 657388</a></li>
-                    <li><a title="1441 Paragon Rd, Plam Bay MLS #: 333162" href="#">1441 Paragon Rd, Plam Bay <br />MLS #: 333162</a></li>
-                  </ul>
+                  <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
+                  <% @transactions.each do |transaction| %>
+                    <ul class="list-admin">
+                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
+                    </ul>
+                  <% end %>
                   <a class="link-viewall" title="View All" href="#">View All</a>
                   <div class="clearFix"></div>
                 </div>
@@ -73,11 +75,12 @@
             <div class="bb">
               <div class="bl">
                 <div class="con">
-                  <ul class="list-admin">
-                    <li><a title="3740 Ocean Beach Blvd #204 MLS #: 643682" href="#">3740 Ocean Beach Blvd #204 <br />MLS #: 643682</a></li>
-                    <li><a title="17 Greenwood MLS #: 657388" href="#">17 Greenwood <br />MLS #: 657388</a></li>
-                    <li><a title="1441 Paragon Rd, Plam Bay MLS #: 333162" href="#">1441 Paragon Rd, Plam Bay <br />MLS #: 333162</a></li>
-                  </ul>
+                  <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
+                  <% @transactions.each do |transaction| %>
+                    <ul class="list-admin">
+                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
+                    </ul>
+                  <% end %>
                   <a class="link-viewall" title="View All" href="#">View All</a>
                   <div class="clearFix"></div>
                 </div>
@@ -101,11 +104,12 @@
             <div class="bb">
               <div class="bl">
                 <div class="con">
-                  <ul class="list-admin">
-                    <li><a title="3740 Ocean Beach Blvd #204 MLS #: 643682" href="#">3740 Ocean Beach Blvd #204 <br />MLS #: 643682</a></li>
-                    <li><a title="17 Greenwood MLS #: 657388" href="#">17 Greenwood <br />MLS #: 657388</a></li>
-                    <li><a title="1441 Paragon Rd, Plam Bay MLS #: 333162" href="#">1441 Paragon Rd, Plam Bay <br />MLS #: 333162</a></li>
-                  </ul>
+                  <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
+                  <% @transactions.each do |transaction| %>
+                    <ul class="list-admin">
+                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
+                    </ul>
+                  <% end %>
                   <a class="link-viewall" title="View All" href="#">View All</a>
                   <div class="clearFix"></div>
                 </div>
@@ -128,11 +132,12 @@
             <div class="bb">
               <div class="bl">
                 <div class="con">
-                  <ul class="list-admin">
-                    <li><a title="3740 Ocean Beach Blvd #204 MLS #: 643682" href="#">3740 Ocean Beach Blvd #204 <br />MLS #: 643682</a></li>
-                    <li><a title="17 Greenwood MLS #: 657388" href="#">17 Greenwood <br />MLS #: 657388</a></li>
-                    <li><a title="1441 Paragon Rd, Plam Bay MLS #: 333162" href="#">1441 Paragon Rd, Plam Bay <br />MLS #: 333162</a></li>
-                  </ul>
+                  <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
+                  <% @transactions.each do |transaction| %>
+                    <ul class="list-admin">
+                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
+                    </ul>
+                  <% end %>
                   <a class="link-viewall" title="View All" href="#">View All</a>
                   <div class="clearFix"></div>
                 </div>

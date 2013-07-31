@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   def layout
     # only turn it off for login pages:
-    if request.post?
+    if request.post? and params[:controller] != 'devise/registrations'
       "application"
     else
       (is_a?(Devise::SessionsController) || is_a?(Devise::RegistrationsController) || is_a?(Devise::PasswordsController)) ? false : "application"
