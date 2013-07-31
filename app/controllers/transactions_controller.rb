@@ -90,7 +90,9 @@ class TransactionsController < ApplicationController
   def show
     @transaction = Transaction.find(params[:id])
     @contacts = @transaction.contacts
-
+    @total_tran_tasks = @transaction.tasks
+    @completed_tasks = @transaction.tasks.where("status = ?", true)
+    @per_completed_tasks = (@completed_tasks.count.to_f/@total_tran_tasks.count.to_f)*100
     @listing_agents = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' and role = '#{Agent}' ")
     @staff_agents = User.all
 
