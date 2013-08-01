@@ -97,7 +97,7 @@
     </div>
   </div>
   <div class="contentbox">
-    <h1><em></em><%= @transactions.count %> Recent Transactions with Incomplete Checklists</h1>
+    <h1><em><%= link_to "", transactions_path, :class=>"btn-viewall"  %></em><%= @transactions.count %> Recent Transactions with Incomplete Checklists</h1>
     <div class="box">
       <div class="bt">
         <div class="br">
@@ -123,7 +123,7 @@
                         <% @cs = i.checklists.count  %>
                         <% @ts = i.tasks.count %>
 
-                        <div class="completebox">
+                        <div class="completebox" onclick="transaction_show(<%=  i.id %>)">
                           <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
                             <strong class="tooltip">
                               <h6><%= i.transaction_name %></h6>
@@ -138,7 +138,6 @@
                             </strong>
                           </em>
                         </div>
-
                         <img alt="" title="" src="/assets/spacer.png" /></div>
                       <div class="column">
                         <span class="icon-agent">
@@ -210,7 +209,7 @@
                         <% @cs = i.checklists.count  %>
                         <% @ts = i.tasks.count %>
 
-                        <div class="completebox">
+                        <div class="completebox"onclick="transaction_show(<%=  i.id %>)">
                           <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
                             <strong class="tooltip">
                               <h6><%= i.transaction_name %></h6>
@@ -296,7 +295,7 @@
                         <% @cs = i.checklists.count  %>
                         <% @ts = i.tasks.count %>
 
-                        <div class="completebox">
+                        <div class="completebox"onclick="transaction_show(<%=  i.id %>)">
                           <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
                             <strong class="tooltip">
                               <h6><%= i.transaction_name %></h6>
@@ -386,7 +385,7 @@
                             <% @ts = i.tasks.count %>
 
 
-                            <div class="completebox">
+                            <div class="completebox" onclick="transaction_show(<%=  i.id %>)">
                               <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
                                 <strong class="tooltip">
                                   <h6><%= i.transaction_name %></h6>
@@ -464,4 +463,5 @@
       jQuery('#leftColumn').slideToggle('slow', function () {})
     });
   });
+
 </script>

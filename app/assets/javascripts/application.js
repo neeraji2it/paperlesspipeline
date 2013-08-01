@@ -32,31 +32,31 @@ $(document).ready(function() {
     $('#transaction_close_date').datepicker();
     jQuery('#leftColumnShow').click(function() {
         jQuery('#leftColumn').slideToggle('slow', function() {
-        });
+            });
     });
     jQuery('#closeBox').click(function() {
         jQuery('#leftColumn').slideToggle('slow', function() {
-        })
+            })
     });
     jQuery('#addContact').click(function() {
         jQuery('#addContactContent').slideToggle('slow', function() {
-        })
+            })
     });
     jQuery('#addContactClose').click(function() {
         jQuery('#addContactContent').slideToggle('slow', function() {
-        })
+            })
     });
     jQuery('#addNote').click(function() {
         jQuery('#addNoteContent').slideToggle('slow', function() {
-        })
+            })
     });
     jQuery('#addNoteClose').click(function() {
         jQuery('#addNoteContent').slideToggle('slow', function() {
-        })
+            })
     });
     jQuery('#newList').click(function() {
         jQuery('#newListContent').slideToggle('slow', function() {
-        })
+            })
     });
 });
 function show_flash_messages(message) {
@@ -140,81 +140,81 @@ function select_selling(user_id, u_name) {
 
 function show_commentbox(doc_id) {
     jQuery('#commentBox_' + doc_id).slideToggle('slow', function() {
-    })
+        })
 }
 
 jQuery(document).ready(function() {
     jQuery('#leftColumnShow').click(function() {
         jQuery('#leftColumn').slideToggle('slow', function() {
-        })
+            })
     });
     jQuery('#closeBox').click(function() {
         jQuery('#leftColumn').slideToggle('slow', function() {
-        })
+            })
     });
 
     jQuery('#locationI').hover(function() {
         jQuery('#locationBoxN').slideToggle('slow', function() {
-        })
+            })
     });
     jQuery('#transactionI').hover(function() {
         jQuery('#transactionBoxN').slideToggle('slow', function() {
-        })
+            })
     });
 
     jQuery('#transaction_transaction_name').hover(function() {
         jQuery('#transactionName').slideToggle('slow', function() {
-        })
+            })
     });
 
     jQuery('#transaction_status').hover(function() {
         jQuery('#transactionStatus').slideToggle('slow', function() {
-        })
+            })
     });
 
     jQuery('#transaction_close_date').hover(function() {
         jQuery('#transactionClose').slideToggle('slow', function() {
-        })
+            })
     });
 
 
     jQuery('#transaction_more_info').hover(function() {
         jQuery('#transactionMore').slideToggle('slow', function() {
-        })
+            })
     });
 
     jQuery('#transaction_automatic_expire_date').hover(function() {
         jQuery('#transactionAuto').slideToggle('slow', function() {
-        })
+            })
     });
 
     jQuery('#transaction_buyer_name').hover(function() {
         jQuery('#transactionBuyer').slideToggle('slow', function() {
-        })
+            })
     });
 
     jQuery('#transaction_seller_name').hover(function() {
         jQuery('#transactionSeller').slideToggle('slow', function() {
-        })
+            })
     });
 
     jQuery('#transaction_list_price').hover(function() {
         jQuery('#transactionList').slideToggle('slow', function() {
-        })
+            })
     });
 
     jQuery('#transaction_sale_price').hover(function() {
         jQuery('#transactionSale').slideToggle('slow', function() {
-        })
+            })
     });
 
     jQuery('#transaction_total_commission').hover(function() {
         jQuery('#transactionTotal').slideToggle('slow', function() {
-        })
+            })
     });
     jQuery('#transaction_commission_summary').hover(function() {
         jQuery('#transactionSum').slideToggle('slow', function() {
-        })
+            })
     });
 
 
@@ -252,3 +252,8 @@ $(document).ajaxStart(function() {
 $(document).ajaxStop(function() {
     $('#ajax_loader_big_div').hide();
 });
+
+
+function transaction_show(id){
+    window.location.href="/transactions/"+id
+}

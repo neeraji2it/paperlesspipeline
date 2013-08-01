@@ -2,12 +2,12 @@
   <div class="tableTransaction">
     <div class="transactionrow">
       <% @transactions.each do |transaction| %>
-        <div class="column w30"><%= transaction.transaction_name %></div>
+        <div class="column w30"><%= link_to transaction.transaction_name, transaction_path(transaction) %></div>
         <div class="column"><%= transaction.status %></div>
         <div class="column w11">
           <% @cs = transaction.checklists.count  %>
           <% @ts = transaction.tasks.count %>
-          <div class="completebox">
+          <div class="completebox"  onclick="transaction_show(<%=  transaction.id %>)">
             <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
               <strong class="tooltip">
                 <h6><%= transaction.transaction_name %></h6>

@@ -1,5 +1,6 @@
 <div class="contentbox">
-  <h1><em><span><%= "#{@per_completed_tasks.to_f}%" %> </span></em>120 Tyler Ave, Cape Canaveral, 32920<span>(Last updated Jun 5, 2013 by Dawn Long)</span></h1>
+  <% @transact = Transaction.last %>
+  <h1><em><span><%= "#{@per_completed_tasks}%" %> </span></em><%= @transact.user.first_name %>, <%= @transact.user.last_name  %>, <%= @transact.transaction_number %><span>(Last updated <%= @transact.created_at.to_date %> by <%= @transact.user.first_name %>)</span></h1>
   <div class="box">
     <div class="bt">
       <div class="br">
@@ -10,31 +11,31 @@
               <div class="transactionDetailBox">
                 <div class="frow">
                   <div>MLS #:</div>
-                  <div>533963</div>
+                  <div><%= @transact.transaction_number %></div>
                 </div>
                 <div class="frow">
                   <div>Status:</div>
-                  <div>Active</div>
+                  <div><%= @transact.status %></div>
                 </div>
                 <div class="frow">
                   <div>List Price:</div>
-                  <div>$169,900</div>
+                  <div>$<%= @transact.list_price %></div>
                 </div>
                 <div class="frow">
                   <div>Seller:</div>
-                  <div>Rosemarie Meoni Trust / Dawn Clukey</div>
+                  <div><%= @transact.seller_name %></div>
                 </div>
                 <div class="frow">
                   <div>Location:</div>
-                  <div>Elite Real Estate</div>
+                  <div><% if @transact.location.present? %><%= @transact.location.name %><% end %></div>
                 </div>
                 <div class="frow">
                   <div>Added On:</div>
-                  <div>Aug 21, 12</div>
+                  <div><%= @transact.created_at.to_date %></div>
                 </div>
                 <div class="frow">
                   <div>Added By:</div>
-                  <div>Sally Ballew</div>
+                  <div><%= @transact.user.first_name %></div>
                 </div>
               </div>
               <div class="contentbox">
