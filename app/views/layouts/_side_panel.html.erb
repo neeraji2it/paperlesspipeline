@@ -21,9 +21,11 @@
                 <div class="con">
                   <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
                   <% @transactions.each do |transaction| %>
-                    <ul class="list-admin">
-                      <li><% if transaction.documents.present? %><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %><% end %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
-                    </ul>
+                    <% if transaction.documents.present? %>
+                      <ul class="list-admin">
+                        <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></li>
+                      </ul>
+                    <% end %>
                   <% end %>
                   <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
                   <div class="clearFix"></div>
@@ -233,7 +235,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="contentbox">
       <h1>Your Permissions</h1>
       <div class="box">
