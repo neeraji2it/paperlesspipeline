@@ -257,3 +257,7 @@ $(document).ajaxStop(function() {
 function transaction_show(id){
     window.location.href="/transactions/"+id
 }
+
+$("#cancel_<%= doc.id %>").click(function(){
+    $("#commentBox_<%= doc.id%>").fadeOut('slow');
+})

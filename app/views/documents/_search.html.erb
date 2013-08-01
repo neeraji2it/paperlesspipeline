@@ -15,7 +15,7 @@
           <div class="transactionrow">
             <div class="column w5"><div class="icon-pdf"></div></div>
             <div class="column w30"><%= document.document_file_name %></div>
-            <div class="column w12"><div class="icon-comment"></div></div>
+            <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= document.id %>')"></div></div>
             <div class="column w20"><%= current_user.email %></div>
             <div class="column w20"><%= document.created_at.to_date %></div>
             <div class="column last">

@@ -1,4 +1,4 @@
-<% if document.comments.present? %>
+<% if doc.comments.present? %>
   <table>
     <tr>
       <th>Comment</th>
@@ -6,18 +6,18 @@
       <th>||</th>
       <th>Delete</th>
     </tr>
-    <% document.comments.last(5).each do |comment| %>
+    <% doc.comments.last(5).each do |comment| %>
       <tr>
         <td id="hide-comment_<%= comment.id %>"><%= comment.comment  %><b>-</b>&nbsp<b><%= current_user.first_name %>.</b></td>
         <td id="edit-comment_<%= comment.id %>" style="display: none;">
-          <%= form_for :comment, :url => document_comment_path(document,comment), :method => "PUT", :remote => true do |f| %>
+          <%= form_for :comment, :url => document_comment_path(doc,comment), :method => "PUT", :remote => true do |f| %>
             <%= f.text_field :comment, :value => comment.comment,:title => "Comments", :type =>"text" %>
             <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
           <% end %>
         </td>
         <td><%= link_to_function "Edit", "edit_comment(#{comment.id})" %></td>
         <td>||</td>
-        <td> <%= link_to "Delete", document_comment_path(:document_id => document.id,:id => comment.id),:method => "DELETE",:remote => true %></td>
+        <td> <%= link_to "Delete", document_comment_path(:document_id => doc.id,:id => comment.id),:method => "DELETE",:remote => true %></td>
       </tr>
     <% end %>
   </table>
