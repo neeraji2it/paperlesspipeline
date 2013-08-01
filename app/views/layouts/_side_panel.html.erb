@@ -22,7 +22,7 @@
                   <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
                   <% @transactions.each do |transaction| %>
                     <ul class="list-admin">
-                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
+                      <li><% if transaction.documents.present? %><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %><% end %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
                     </ul>
                   <% end %>
                   <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
