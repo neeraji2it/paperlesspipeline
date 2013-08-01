@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801050234) do
+ActiveRecord::Schema.define(:version => 20130801111144) do
 
   create_table "agents", :force => true do |t|
     t.integer  "transaction_id"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20130801050234) do
   end
 
   create_table "checklists", :force => true do |t|
-    t.integer  "location_id"
     t.string   "name"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
@@ -65,6 +64,14 @@ ActiveRecord::Schema.define(:version => 20130801050234) do
     t.boolean  "review"
   end
 
+  create_table "drag_drops", :force => true do |t|
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -73,7 +80,7 @@ ActiveRecord::Schema.define(:version => 20130801050234) do
   end
 
   create_table "notes", :force => true do |t|
-    t.text     "description"
+    t.string   "note"
     t.integer  "transaction_id"
     t.integer  "user_id"
     t.datetime "created_at",     :null => false

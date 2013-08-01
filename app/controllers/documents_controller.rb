@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-
+  before_filter :parse_raw_upload, :only => :drag_drop
   def index
     #    @documents = Document.where("user_id = #{current_user.id}")
     @documents = Document.search "*#{params[:query]}*"
@@ -11,21 +11,67 @@ class DocumentsController < ApplicationController
   def new
     @user = current_user
     @document = Document.new
+    @doc = DragDrop.new
     @locations = Location.all
   end
 
   def create
-    @document = Document.new(params[:document])
-    @document.user_id = current_user.id
-    @document.location_id = params[:document][:location_id]
-    @document.transaction_id = params[:document][:transaction_id]
-    @document.doc_type = params[:document][:doc_type]
-    if @document.save
-      if @document.doc_type == "office"
+    @locations = Location.all
+    @doc = DragDrop.new
+    if params[:document][:document].blank? and session[:doc_ids] != nil
+      session[:doc_ids].each do |doc_id|
+        @drag_drop = DragDrop.find(doc_id)
+        @document = Document.new(:document => @drag_drop.document)
+        @document.user_id = current_user.id
+        @document.location_id = params[:document][:location_id]
+        @document.transaction_id = params[:document][:transaction_id]
+        @document.doc_type = params[:document][:doc_type]
+        @document.save
+        @drag_drop.destroy
+      end
+      session[:doc_ids] = nil
+      if params[:document][:doc_type] == "office"
         redirect_to office_documents_path
       else
-        redirect_to office_documents_path
+        redirect_to params[:document][:transaction_id].present? ? transaction_path(params[:document][:transaction_id]) : dashboards_path
       end
+    else
+      @document = Document.new(params[:document])
+      @document.user_id = current_user.id
+      @document.location_id = params[:document][:location_id]
+      @document.transaction_id = params[:document][:transaction_id]
+      @document.doc_type = params[:document][:doc_type]
+      if @document.save
+        if session[:doc_ids] != nil
+          session[:doc_ids].each do |doc_id|
+            @drag_drop = DragDrop.find(doc_id)
+            @document = Document.new(:document => @drag_drop.document)
+            @document.user_id = current_user.id
+            @document.location_id = params[:document][:location_id]
+            @document.transaction_id = params[:document][:transaction_id]
+            @document.doc_type = params[:document][:doc_type]
+            @document.save
+            @drag_drop.destroy
+          end
+        end
+        session[:doc_ids] = nil
+        if @document.doc_type == "office"
+          redirect_to office_documents_path
+        else
+          redirect_to params[:document][:transaction_id].present? ? transaction_path(params[:document][:transaction_id]) : dashboards_path
+        end
+      else
+        render :action => :new
+      end
+    end
+  end
+  
+  def drag_drop
+    @document = DragDrop.new(:document => @raw_file)
+    @document.save
+    (session[:doc_ids] ||= []) << @document.id
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -110,4 +156,13 @@ class DocumentsController < ApplicationController
       :disposition => 'attachment'
   end
 
+  private
+  def parse_raw_upload
+    if env['HTTP_X_FILE_UPLOAD'] == 'true'
+      @raw_file = env['rack.input']
+      @raw_file.class.class_eval { attr_accessor :original_filename, :content_type }
+      @raw_file.original_filename = env['HTTP_X_FILE_NAME']
+      @raw_file.content_type = env['HTTP_X_MIME_TYPE']
+    end
+  end
 end
