@@ -47,6 +47,7 @@ Paperlesspipeline::Application.routes.draw do
       get :unreviewed
       post :comment
       get :download_document
+      post :drag_drop
     end
     resources :comments
   end

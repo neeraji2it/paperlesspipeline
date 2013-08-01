@@ -1,5 +1,6 @@
 <div class="contentbox">
   <%= form_for @document do |f| %>
+    <%= hidden_field_tag "doc_ids[]" %>
     <h1>Upload <%= params[:type] == "transaction" ? "Transaction" : "Office" %> Documents</h1>
     <div class="box">
       <div class="bt">
@@ -7,13 +8,13 @@
           <div class="bb">
             <div class="bl">
               <div class="con">
-                 <% unless params[:type] != "transaction" %>
-                    <%= f.select :transaction_id, options_for_select(current_user.transactions.map{|trn| [trn.transaction_name,trn.id]}) %>
-                  <% end %>
+                <% unless params[:type] != "transaction" %>
+                  <%= f.select :transaction_id, options_for_select(current_user.transactions.map{|trn| [trn.transaction_name,trn.id]}) %>
+                <% end %>
                 <div class="officerow">
                   <p style="float: left;"><%= f.file_field :document, :class => "input-chosen", :title => "Choose a File" %><strong>No File Chosen</strong></p>
                   <div id="droparea">drag here</div>
-                  <%= f.hidden_field :doc_type, :value => params[:type]  %>
+                  <%= f.hidden_field :doc_type, :value => params[:type] != nil ? params[:type] : @document.doc_type  %>
                 </div>
                 <div class="contentbox">
                   <h1>
@@ -55,70 +56,11 @@
   <div class="clearFix"></div>
 </div>
 
-<script type="text/javascript" >
-  var dropArea = document.getElementById("droparea")
-
-  dropArea.addEventListener("drop", function(evt) {
-    evt.preventDefault();
-    evt.stopPropagation();
-
-    uploadFiles(evt.dataTransfer.files);
-
-    return false;
-  }, false);
-
-
-  function uploadFiles(files) {
-    var formdata = new FormData();
-    var position = 0;
-    var max = files.length;
-    if (typeof formdata != "undefined") {
-      function queue() {
-        if (max >= 1 && position <= max - 1) {
-          formdata.append("document[document]", files[position]);
-          upload();
-        }
-      }
-
-      function upload() {
-        $.ajax({
-          url: '/documents/',
-          data: formdata,
-          processData: true,
-          contentType: false,
-          type: 'POST',
-          success: function(data) {
-            position = position + 1;
-            queue();
-          }
-        });
-      }
-      queue();
-    }
-  }
-
-  dropArea.addEventListener("dragenter", function(evt) {
-    if (evt) {
-      this.className = "drag-enter";
-    }
-    endFn(evt);
-  }, false);
-
-  dropArea.addEventListener("dragleave", function(evt) {
-    this.className = "";
-    endFn(evt);
-  }, false);
-
-  dropArea.addEventListener("dragover", function(evt) {
-    endFn(evt);
-    evt.dataTransfer.dropEffect = 'move';
-
-    return false;
-  }, false);
-
-  function endFn(evt) {
-    evt.preventDefault();
-    evt.stopProp
-  }
+<script type="text/javascript">
+  var uploader = new qq.FileUploader({
+    element: document.getElementById('droparea'),
+    action: '<%= drag_drop_documents_path(@doc) %>',
+    params: {"authenticity_token": "<%= form_authenticity_token %>"},
+    customHeaders: {"X-File-Upload": "true"}
+  });
 </script>
-
