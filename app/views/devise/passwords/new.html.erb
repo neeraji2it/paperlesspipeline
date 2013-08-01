@@ -218,14 +218,5 @@
 
     })(jQuery) };
 
-  $("#user_sign_in").bind("ajax:complete", function(a,b){
-    $("#login-error-message").html();
-
-    if(b.status == "401") {
-      $("#login-error-message").html(b.responseText);
-
-    } else{
-      window.location.href = jQuery.parseJSON(b.responseText).redirectUrl;
-    }
-  });
+  
 </script>
