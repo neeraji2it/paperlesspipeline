@@ -19,7 +19,9 @@
                     <% end %>
                 </div>
               </div>
-              <div id="searched-documents"></div>
+              <div id="searched-documents">
+                <%= render :partial => "documents/unreviewed",:locals => {:@docs => @documents} %>
+              </div>
             </div>
           </div>
         </div>

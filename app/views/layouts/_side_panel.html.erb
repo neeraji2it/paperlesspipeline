@@ -25,7 +25,7 @@
                       <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
                     </ul>
                   <% end %>
-                  <%= link_to "<span>Transaction</span>".html_safe, transactions_path %>
+                  <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
                   <div class="clearFix"></div>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                       <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
                     </ul>
                   <% end %>
-                  <%= link_to "<span>Transaction</span>".html_safe, transactions_path %>
+                  <%= link_to "<span>View all</span>".html_safe, transactions_path %>
                   <div class="clearFix"></div>
                 </div>
               </div>
@@ -81,7 +81,7 @@
                       <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
                     </ul>
                   <% end %>
-                  <%= link_to "<span>Transaction</span>".html_safe, transactions_path %>
+                  <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
                   <div class="clearFix"></div>
                 </div>
               </div>
@@ -110,7 +110,7 @@
                       <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
                     </ul>
                   <% end %>
-                  <a class="link-viewall" title="View All" href="#">View All</a>
+                  <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
                   <div class="clearFix"></div>
                 </div>
               </div>
@@ -138,7 +138,7 @@
                       <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
                     </ul>
                   <% end %>
-                  <a class="link-viewall" title="View All" href="#">View All</a>
+                  <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
                   <div class="clearFix"></div>
                 </div>
               </div>

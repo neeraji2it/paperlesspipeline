@@ -11,29 +11,47 @@
   </h1>
 
   <div class="box">
-    <div class="tableTransaction">
-      <div class="transactionrow">
-        <div class="column w5"><div class="icon-pdf"></div></div>
-        <div class="column w30"><%= @document.document_file_name %></div>
-        <div class="column w12"><div class="icon-comment"></div></div>
-        <div class="column w20"><%= current_user.email %> </div>
-        <div class="column w20"><%= current_user.created_at %></div>
-        <div class="column last">
-          <span class="btn-action admin">
-            <em class="tooltip-container"><span>Action</span>
-              <strong class="tooltip">
-                <ul class="list-tooltip">
-                  <%#*<li class="icon-download"><a title="Download" href="#">Download</a></li>%>
-                  <%#*<li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>%>
-                  <%#*<li class="icon-delete"><a title="Delete" href="#">Delete</a></li>%>
-                </ul>
-                <i class="top-arrow"></i>
-              </strong>
-            </em>
-          </span>
+    <% @docs.each do |doc| %>
+      <div class="tableTransaction">
+        <div class="transactionrow">
+          <div class="column w5"><div class="icon-pdf"></div></div>
+          <div class="column w30"><% if doc.document_file_name.present? %><%= doc.document_file_name %><% else %><%= doc.id %><% end %> </div>
+          <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= doc.id %>')"></div></div>
+          <div class="column w20"><%= current_user.email %></div>
+          <div class="column w20">Dec 19, 12</div>
+          <div class="column last">
+            <span class="btn-action admin">
+              <em class="tooltip-container"><span>Action</span>
+                <strong class="tooltip">
+                  <ul class="list-tooltip">
+                    <li class="icon-download"><%= link_to "Download", download_path(:id => doc.id) %></li>
+                    <li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>
+                    <li class="icon-delete"><%= link_to "Delete", document_path(doc), :method => "DELETE" %></li>
+                  </ul>
+                  <i class="top-arrow"></i>
+                </strong>
+              </em>
+            </span>
+          </div>
+
+          <div class="commentBox" id="commentBox_<%= doc.id %>" style="display:none">
+            <div id="comment-new-and-show">
+
+              <%= form_for :comment, :url => comment_documents_path, :method => 'POST', :remote => true do |f| %>
+                <%= f.text_field :comment, :title => "Comments", :type =>"text" %>
+                <%= f.hidden_field :document_id, :value => doc.id %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
+                <%= link_to "Cancel", office_documents_path %>
+              <% end %>
+              <div id="document_comments_<%= doc.id %>">
+                <%= render :partial => "documents/comment",:locals => {:doc => doc} %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729115248) do
+ActiveRecord::Schema.define(:version => 20130801050234) do
 
   create_table "agents", :force => true do |t|
     t.integer  "transaction_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20130729115248) do
     t.string   "doc_type"
     t.boolean  "reviewed",              :default => false
     t.integer  "transaction_id"
+    t.boolean  "review"
   end
 
   create_table "locations", :force => true do |t|
@@ -72,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20130729115248) do
   end
 
   create_table "notes", :force => true do |t|
-    t.string   "note"
+    t.text     "description"
     t.integer  "transaction_id"
     t.integer  "user_id"
     t.datetime "created_at",     :null => false

@@ -39,7 +39,7 @@ class DocumentsController < ApplicationController
 
   def working
     #    @documents = Document.search "*#{params[:query]}*"
-    @documents = Document.where("user_id = '#{current_user.id}'")
+    @documents = Document.where("user_id = '#{current_user.id}' or review = 'true' ")
     if request.xhr?
       respond_to do |format|
         format.js
@@ -86,7 +86,7 @@ class DocumentsController < ApplicationController
   def unreviewed
     @documents = Document.where("user_id = '#{current_user.id}'")
     if request.xhr?
-      @document = Document.where("document_file_name = '#{params[:document_file_name]}'").first
+      @documents = Document.where("document_file_name = '#{params[:document_file_name]}' or review = 'nil' ").first
       respond_to do |format|
         format.js
       end
@@ -103,9 +103,6 @@ class DocumentsController < ApplicationController
   end
 
   def download_document
-    puts "==========================================================="
-    puts params.inspect
-    puts "==========================================================="
     document = Document.find(params[:id])
     send_data document.document.path,
       :filename => document.document_file_name,
