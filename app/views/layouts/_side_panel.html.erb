@@ -2,7 +2,7 @@
 <div id="leftColumn">
   <div id="closeBox">Close</div>
 
-  <% if (params[:controller] == "transactions" && params[:action] == "index" || params[:action] == "advance_search" || params[:action] == "filter")  %>
+  <% if (params[:controller] == "transactions" && params[:action] == "index" || params[:action] == "advance_search" || params[:action] == "filter" || params[:action] == "edit") %>
     <ul class="leftmenu">
       <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
       <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
@@ -21,9 +21,11 @@
                 <div class="con">
                   <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
                   <% @transactions.each do |transaction| %>
-                    <ul class="list-admin">
-                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
-                    </ul>
+                    <% if transaction.documents.present? %>
+                      <ul class="list-admin">
+                        <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></li>
+                      </ul>
+                    <% end %>
                   <% end %>
                   <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
                   <div class="clearFix"></div>
@@ -48,11 +50,13 @@
                 <div class="con">
                   <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
                   <% @transactions.each do |transaction| %>
-                    <ul class="list-admin">
-                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
-                    </ul>
+                    <% if transaction.documents.present? %>
+                      <ul class="list-admin">
+                        <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></li>
+                      </ul>
+                    <% end %>
                   <% end %>
-                  <%= link_to "<span>View all</span>".html_safe, transactions_path %>
+                  <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
                   <div class="clearFix"></div>
                 </div>
               </div>
@@ -77,9 +81,11 @@
                 <div class="con">
                   <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
                   <% @transactions.each do |transaction| %>
-                    <ul class="list-admin">
-                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
-                    </ul>
+                    <% if transaction.documents.present? %>
+                      <ul class="list-admin">
+                        <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></li>
+                      </ul>
+                    <% end %>
                   <% end %>
                   <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
                   <div class="clearFix"></div>
@@ -106,9 +112,11 @@
                 <div class="con">
                   <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
                   <% @transactions.each do |transaction| %>
-                    <ul class="list-admin">
-                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
-                    </ul>
+                    <% if transaction.documents.present? %>
+                      <ul class="list-admin">
+                        <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></li>
+                      </ul>
+                    <% end %>
                   <% end %>
                   <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
                   <div class="clearFix"></div>
@@ -134,9 +142,11 @@
                 <div class="con">
                   <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
                   <% @transactions.each do |transaction| %>
-                    <ul class="list-admin">
-                      <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></a></li>
-                    </ul>
+                    <% if transaction.documents.present? %>
+                      <ul class="list-admin">
+                        <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></li>
+                      </ul>
+                    <% end %>
                   <% end %>
                   <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
                   <div class="clearFix"></div>
@@ -233,7 +243,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="contentbox">
       <h1>Your Permissions</h1>
       <div class="box">

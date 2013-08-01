@@ -38,7 +38,7 @@
                   <% end %>
                 </div>
               </div>
-              <div class="officerow">Only active transactions are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></div>
+              <div class="officerow">Only active transactions are shown below. <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %></div>
               <div class="contentbox">
                 <h1>
                   <div class="column w30">Transaction</div>
@@ -63,7 +63,7 @@
                                 <% @cs = i.checklists.count  %>
                                 <% @ts = i.tasks.count %>
 
-                                <div class="completebox">
+                                <div class="completebox"  onclick="transaction_show(<%=  i.id %>)">
                                   <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
                                     <strong class="tooltip">
                                       <h6><%= i.transaction_name %></h6>
@@ -73,7 +73,7 @@
                                           <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
                                       <h4<% @cs = i.checklists.count  %>
                                         <% @ts = i.tasks.count %>>Recent Notes:</h4>
-                                      <p><span><% if i.notes.present? %><%= i.notes.last.note %><% end %></span></p>
+                                      <p><span><% if i.notes.present? %><%= i.notes.last.description %><% end %></span></p>
                                       <i class="top-arrow"></i>
                                     </strong>
                                   </em>
@@ -88,7 +88,8 @@
                                   <em class="tooltip-container"><span>Action</span>
                                     <strong class="tooltip">
                                       <ul class="list-tooltip">
-                                        <li class="icon-zoomin"><%= link_to "View Transaction", transaction_path(i)  %> </li>
+                                        <li class="icon-zoomin"><%= link_to "View", transaction_path(i)  %> </li>
+                                        <li class="icon-edit"><%= link_to "Edit", edit_transaction_path(i) %></li>
                                       </ul>
                                       <i class="top-arrow"></i>
                                     </strong>

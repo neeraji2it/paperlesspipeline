@@ -51,7 +51,11 @@ class TasksController < ApplicationController
     @transaction = Transaction.find(params[:transaction_id])
     @total_tran_tasks = @transaction.tasks
     @completed_tasks = @transaction.tasks.where("status = ?", true)
-    @per_completed_tasks = (@completed_tasks.count.to_f/@total_tran_tasks.count.to_f)*100
+    if @completed_tasks.count.to_f > 0 && @total_tran_tasks.count.to_f > 0
+      @per_completed_tasks = (@completed_tasks.count.to_f/@total_tran_tasks.count.to_f)*100
+    else
+      @per_completed_tasks = 0
+    end
     respond_to do |format|
       format.js
     end
@@ -87,7 +91,11 @@ class TasksController < ApplicationController
     @transaction = Transaction.find(params[:transaction_id])
     @total_tran_tasks = @transaction.tasks
     @completed_tasks = @transaction.tasks.where("status = ?", true)
-    @per_completed_tasks = (@completed_tasks.count.to_f/@total_tran_tasks.count.to_f)*100
+    if @completed_tasks.count.to_f > 0 && @total_tran_tasks.count.to_f > 0
+      @per_completed_tasks = (@completed_tasks.count.to_f/@total_tran_tasks.count.to_f)*100
+    else
+      @per_completed_tasks = 0
+    end
     respond_to do |format|
       format.js
     end
