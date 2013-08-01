@@ -133,7 +133,7 @@
                                   <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
                               <h4<% @cs = i.checklists.count  %>
                                 <% @ts = i.tasks.count %>>Recent Notes:</h4>
-                              <p><span><% if i.notes.present? %><%= i.notes.last.note %><% end %></span></p>
+                              <p><span><% if i.notes.present? %><%= i.notes.last.description %><% end %></span></p>
                               <i class="top-arrow"></i>
                             </strong>
                           </em>
