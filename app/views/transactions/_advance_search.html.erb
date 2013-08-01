@@ -17,7 +17,7 @@
                     <% if transaction.tasks.present? %> <%= transaction.tasks.last.name %><% end %></span></p>
                 <h4<% @cs = transaction.checklists.count  %>
                   <% @ts = transaction.tasks.count %>>Recent Notes:</h4>
-                <p><span><% if transaction.notes.present? %><%= transaction.notes.last.note %><% end %></span></p>
+                <p><span><% if transaction.notes.present? %><%= transaction.notes.last.description %><% end %></span></p>
                 <i class="top-arrow"></i>
               </strong>
             </em>

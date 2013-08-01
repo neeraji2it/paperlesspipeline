@@ -84,9 +84,9 @@ class DocumentsController < ApplicationController
   end
 
   def unreviewed
-    @documents = Document.where("user_id = '#{current_user.id}'")
+    @documents = Document.where("user_id = '#{current_user.id}' and review IS NULL ")
     if request.xhr?
-      @documents = Document.where("document_file_name = '#{params[:document_file_name]}' or review = 'nil' ").first
+      @documents = Document.where("document_file_name = '#{params[:document_file_name]}' ")
       respond_to do |format|
         format.js
       end
