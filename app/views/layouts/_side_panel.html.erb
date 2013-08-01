@@ -2,7 +2,7 @@
 <div id="leftColumn">
   <div id="closeBox">Close</div>
 
-  <% if (params[:controller] == "transactions" && params[:action] == "index" || params[:action] == "advance_search" || params[:action] == "filter")  %>
+  <% if (params[:controller] == "transactions" && params[:action] == "index" || params[:action] == "advance_search" || params[:action] == "filter" || params[:action] == "edit") %>
     <ul class="leftmenu">
       <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
       <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
