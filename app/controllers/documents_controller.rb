@@ -15,6 +15,16 @@ class DocumentsController < ApplicationController
     @locations = Location.all
   end
 
+  def update
+    @document = Document.find(params[:id])
+    if @document.update_attributes(:document_type => params[:document_type] )
+      respond_to do |format|
+        format.js
+      end
+    end
+   
+  end
+
   def create
     @locations = Location.all
     @doc = DragDrop.new
@@ -27,6 +37,7 @@ class DocumentsController < ApplicationController
         @document.transaction_id = params[:document][:transaction_id]
         @document.doc_type = params[:document][:doc_type]
         @document.save
+        flash[:notice] = "Document Successfully uploaded."
         @drag_drop.destroy
       end
       session[:doc_ids] = nil
@@ -42,6 +53,7 @@ class DocumentsController < ApplicationController
       @document.transaction_id = params[:document][:transaction_id]
       @document.doc_type = params[:document][:doc_type]
       if @document.save
+        flash[:notice] = "Document Successfully uploaded."
         if session[:doc_ids] != nil
           session[:doc_ids].each do |doc_id|
             @drag_drop = DragDrop.find(doc_id)
@@ -51,6 +63,7 @@ class DocumentsController < ApplicationController
             @document.transaction_id = params[:document][:transaction_id]
             @document.doc_type = params[:document][:doc_type]
             @document.save
+            flash[:notice] = "Document Successfully uploaded."
             @drag_drop.destroy
           end
         end
@@ -69,6 +82,7 @@ class DocumentsController < ApplicationController
   def drag_drop
     @document = DragDrop.new(:document => @raw_file)
     @document.save
+    flash[:notice] = "Document Successfully uploaded."
     (session[:doc_ids] ||= []) << @document.id
     respond_to do |format|
       format.html

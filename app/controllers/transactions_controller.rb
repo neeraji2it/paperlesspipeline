@@ -43,6 +43,7 @@ class TransactionsController < ApplicationController
     @transaction.location_id = params[:transaction][:location_id]
     @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ")
     if @transaction.save
+      flash[:notice] = "Transaction created Successfully."
       if !params[:listing].nil?
         params[:listing].each do |list|
           Agent.create(:user_id => list,:transaction_id => @transaction.id,:listing => true,:selling => false)
@@ -60,14 +61,15 @@ class TransactionsController < ApplicationController
           end
         end
       end
-      csv_string = CSV.generate do |csv|
-        csv << ["Address", "MLS Number", "Status","Close Date","More Info","Buyer","Seller","List price","Sale price","Commission Amount","Commission Summary"]
-        csv << [@transaction.transaction_name, @transaction.transaction_number, @transaction.status, @transaction.close_date,@transaction.more_info,@transaction.buyer_name,@transaction.seller_name,@transaction.list_price,@transaction.sale_price,@transaction.total_commission,@transaction.commission_summary]
-      end
-
-      send_data csv_string,
-        :type => 'text/csv; charset=iso-8859-1; header=present',
-        :disposition => "attachment; filename=trasactions.csv"
+      redirect_to dashboard_index_path
+      #      csv_string = CSV.generate do |csv|
+      #        csv << ["Address", "MLS Number", "Status","Close Date","More Info","Buyer","Seller","List price","Sale price","Commission Amount","Commission Summary"]
+      #        csv << [@transaction.transaction_name, @transaction.transaction_number, @transaction.status, @transaction.close_date,@transaction.more_info,@transaction.buyer_name,@transaction.seller_name,@transaction.list_price,@transaction.sale_price,@transaction.total_commission,@transaction.commission_summary]
+      #      end
+      #
+      #      send_data csv_string,
+      #        :type => 'text/csv; charset=iso-8859-1; header=present',
+      #        :disposition => "attachment; filename=trasactions.csv"
     else
       render :action => 'new'
     end

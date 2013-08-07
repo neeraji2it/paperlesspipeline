@@ -40,6 +40,7 @@
                     <div class="column w20">Added On</div>
                     <div class="column last">Actions</div>
                   </h1>
+
                   <div class="box">
                     <% @docs.each do |doc| %>
                       <div class="tableTransaction">
@@ -49,13 +50,16 @@
                           <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= doc.id %>')"></div></div>
                           <div class="column w20"><%= current_user.email %></div>
                           <div class="column w20">Dec 19, 12</div>
+                          <div class="column w20">
+
+                          </div>
                           <div class="column last">
                             <span class="btn-action admin">
                               <em class="tooltip-container"><span>Action</span>
                                 <strong class="tooltip">
                                   <ul class="list-tooltip">
                                     <li class="icon-download"><%= link_to "Download", download_path(:id => doc.id) %></li>
-                                    <li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>
+                                    <li class="icon-edit_<%= doc.id %>" onclick = "show_doc_edit('<%= doc.id %>')"><a title="Edit Doc" href="#">Edit Doc</a></li>
                                     <li class="icon-delete"><%= link_to "Delete", document_path(doc), :method => "DELETE" %></li>
                                   </ul>
                                   <i class="top-arrow"></i>
@@ -64,9 +68,31 @@
                             </span>
                           </div>
 
+
+
+                          <script>
+                            function show_doc_edit(doc_id){
+                              $('.doc-edit_<%= doc.id %>').show();
+                            }
+                            function save_editted_document(doc_type, doc_id){
+                              $(".doc-edit_<%= doc.id %>").hide();
+                              var document_type = doc_type;
+                              var document_id = doc_id;
+                              $.ajax({
+                                url: "/documents/"+document_id,
+                                data: {
+                                  document_type: document_type
+                                },
+                                type: 'PUT',
+                                dataType: 'script',
+                                success: function(data) {
+                                }
+                              });
+                            }
+                          </script>
+
                           <div class="commentBox" id="commentBox_<%= doc.id %>" style="display:none">
                             <div id="comment-new-and-show">
-
                               <%= form_for :comment, :url => comment_documents_path, :method => 'POST', :remote => true do |f| %>
                                 <%= f.text_field :comment, :title => "Comments", :type =>"text" %>
                                 <%= f.hidden_field :document_id, :value => doc.id %>
@@ -90,18 +116,11 @@
                   </div>
                 </div>
               </div>
-              <div class="clearFix"></div>
             </div>
+            <div class="clearFix"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<script>
-  function cancel(id){
-    alert('fdslkf');
-  }
-</script>

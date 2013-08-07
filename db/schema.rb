@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20130801111144) do
   end
 
   create_table "checklists", :force => true do |t|
+    t.integer  "location_id"
     t.string   "name"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
@@ -80,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20130801111144) do
   end
 
   create_table "notes", :force => true do |t|
-    t.string   "note"
+    t.text     "description"
     t.integer  "transaction_id"
     t.integer  "user_id"
     t.datetime "created_at",     :null => false
