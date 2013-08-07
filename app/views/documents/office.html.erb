@@ -70,26 +70,6 @@
 
 
 
-                          <script>
-                            function show_doc_edit(doc_id){
-                              $('.doc-edit_<%= doc.id %>').show();
-                            }
-                            function save_editted_document(doc_type, doc_id){
-                              $(".doc-edit_<%= doc.id %>").hide();
-                              var document_type = doc_type;
-                              var document_id = doc_id;
-                              $.ajax({
-                                url: "/documents/"+document_id,
-                                data: {
-                                  document_type: document_type
-                                },
-                                type: 'PUT',
-                                dataType: 'script',
-                                success: function(data) {
-                                }
-                              });
-                            }
-                          </script>
 
                           <div class="commentBox" id="commentBox_<%= doc.id %>" style="display:none">
                             <div id="comment-new-and-show">
