@@ -1,6 +1,5 @@
 <div class="contentbox">
-  <% @transact = Transaction.last %>
-  <h1><em><span><%= "#{@per_completed_tasks}%" %> </span></em><%= @transact.user.first_name %>, <%= @transact.user.last_name  %>, <%= @transact.transaction_number %><span>(Last updated <%= @transact.created_at.to_date %> by <%= @transact.user.first_name %>)</span></h1>
+  <h1><em><span><%= "#{@per_completed_tasks}%" %> </span></em><%= @transaction.user.first_name %>, <%= @transaction.user.last_name  %>, <%= @transaction.transaction_number %><span>(Last updated <%= @transaction.created_at.to_date %> by <%= @transaction.user.first_name %>)</span></h1>
   <div class="box">
     <div class="bt">
       <div class="br">
@@ -11,31 +10,31 @@
               <div class="transactionDetailBox">
                 <div class="frow">
                   <div>MLS #:</div>
-                  <div><%= @transact.transaction_number %></div>
+                  <div><%= @transaction.transaction_number %></div>
                 </div>
                 <div class="frow">
                   <div>Status:</div>
-                  <div><%= @transact.status %></div>
+                  <div><%= @transaction.status %></div>
                 </div>
                 <div class="frow">
                   <div>List Price:</div>
-                  <div>$<%= @transact.list_price %></div>
+                  <div>$<%= @transaction.list_price %></div>
                 </div>
                 <div class="frow">
                   <div>Seller:</div>
-                  <div><%= @transact.seller_name %></div>
+                  <div><%= @transaction.seller_name %></div>
                 </div>
                 <div class="frow">
                   <div>Location:</div>
-                  <div><% if @transact.location.present? %><%= @transact.location.name %><% end %></div>
+                  <div><% if @transaction.location.present? %><%= @transaction.location.name %><% end %></div>
                 </div>
                 <div class="frow">
                   <div>Added On:</div>
-                  <div><%= @transact.created_at.to_date %></div>
+                  <div><%= @transaction.created_at.to_date %></div>
                 </div>
                 <div class="frow">
                   <div>Added By:</div>
-                  <div><%= @transact.user.first_name %></div>
+                  <div><%= @transaction.user.first_name %></div>
                 </div>
               </div>
               <div class="contentbox">
