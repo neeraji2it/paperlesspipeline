@@ -145,7 +145,7 @@
                     <div class="tableTransaction transactionDetail">
                       <div class="con">
                         <h3>New note for 120 Tyler Ave, Cape Canaveral, 32920</h3>
-                        <p><%= f.text_area :description, :placeholder => "Type your note here. When you're finished, select the agents or staff who should receive your note by email." %></p>
+                        <p><%= f.text_area :description,:rows => 5, :placeholder => "Type your note here. When you're finished, select the agents or staff who should receive your note by email." %></p>
                         <%= f.hidden_field :transaction_id, :value => @transaction.id %>
                         <h3>Email this note to the agents or staff selected below:</h3>
                         <ul class="list-emailnote">
