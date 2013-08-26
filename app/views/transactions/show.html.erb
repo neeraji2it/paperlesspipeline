@@ -138,23 +138,21 @@
                 </div>
               </div>
 
-
-
               <div class="contentbox" id="addNoteContent" style="display:none;">
-                <%= form_for :note, :url => add_note_transactions_path, :method => 'POST', :remote => true do |f| %>
+                <%= form_for @note, :url => add_note_transactions_path, :method => 'POST', :remote => true do |f| %>
                   <h1>Add Note</h1>
                   <div class="box">
                     <div class="tableTransaction transactionDetail">
                       <div class="con">
                         <h3>New note for 120 Tyler Ave, Cape Canaveral, 32920</h3>
-                        <p><%= f.text_area :description, :rows => 5, :placeholder => "Type your note here. When you're finished, select the agents or staff who should receive your note by email." %></p>
+                        <p><%= f.text_area :description, :placeholder => "Type your note here. When you're finished, select the agents or staff who should receive your note by email." %></p>
                         <%= f.hidden_field :transaction_id, :value => @transaction.id %>
                         <h3>Email this note to the agents or staff selected below:</h3>
                         <ul class="list-emailnote">
                           <li><span><input title="Listing agents" type="checkbox" />Listing agents</span></li>
                           <% if @listing_agents.present? %>
                             <% @listing_agents.each do |user| %>
-                              <%= f.check_box :description %><%= user.first_name %>
+                              <%#= f.check_box :descript/ion %><%= user.first_name %>
                             <% end %>
                           <% end %>
                         </ul>
@@ -163,7 +161,7 @@
                           <% if @staff_agents.present? %>
                             <% @staff_agents.each do |s| %>
                               <% if s.first_name.present? %>
-                                <%= f.check_box :description %><%= s.first_name %>
+                                <%#= f.check_box :description %><%= s.first_name %>
                               <% end %>
                             <% end %>
                           <% end %>

@@ -90,6 +90,7 @@ class TransactionsController < ApplicationController
   end
 
   def show
+    @note = Note.new
     @transaction = Transaction.find(params[:id])
     @contacts = @transaction.contacts
     @total_tran_tasks = @transaction.tasks
