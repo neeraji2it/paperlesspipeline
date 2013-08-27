@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801111144) do
+ActiveRecord::Schema.define(:version => 20130827064910) do
 
   create_table "agents", :force => true do |t|
     t.integer  "transaction_id"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20130801111144) do
     t.datetime "updated_at",                 :null => false
     t.integer  "location_id"
     t.date     "expiration_date"
+    t.string   "email"
   end
 
   create_table "users", :force => true do |t|
