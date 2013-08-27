@@ -49,6 +49,9 @@ Paperlesspipeline::Application.routes.draw do
       get :download_document
       post :drag_drop
     end
+    member do
+      post :update_reviewed
+    end
     resources :comments
   end
   

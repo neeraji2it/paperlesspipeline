@@ -99,7 +99,11 @@
 
                           <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
                           <div class="column w13"><%= document.created_at.to_date %></div>
-                          <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
+                          <% if document.reviewed == false %>
+                            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' id="document-reviewed_<%= document.id %>" onclick="update_document_reviewed('<%= document.id %>')" /></div>
+                          <% else %>
+                            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' id="document-reviewed_<%= document.id %>" onclick="update_document_reviewed('<%= document.id %>')" checked="checked" /></div>
+                          <% end %>
                           <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
                           <div class="column last">
                             <span class="btn-action transaction">
@@ -152,7 +156,7 @@
                           <li><span><input title="Listing agents" type="checkbox" />Listing agents</span></li>
                           <% if @listing_agents.present? %>
                             <% @listing_agents.each do |user| %>
-                              <%#= f.check_box :descript/ion %><%= user.first_name %>
+      <%#= f.check_box :descript/ion %><%= user.first_name %>
                             <% end %>
                           <% end %>
                         </ul>
@@ -161,7 +165,7 @@
                           <% if @staff_agents.present? %>
                             <% @staff_agents.each do |s| %>
                               <% if s.first_name.present? %>
-                                <%#= f.check_box :description %><%= s.first_name %>
+        <%#= f.check_box :description %><%= s.first_name %>
                               <% end %>
                             <% end %>
                           <% end %>
@@ -222,6 +226,30 @@
   function show_commentbox(doc_id) {
     jQuery('#commentBox_' + doc_id).slideToggle('slow', function() {
     })
+  }
+
+
+  function update_document_reviewed(document_id){
+    if ($("#document-reviewed_" + document_id).is(':checked'))
+    {
+      var reviewed = true;
+    }
+    else{
+      var reviewed = false;
+    }
+
+    $.ajax({
+      url: "/documents/"+document_id+"/update_reviewed",
+      data: {
+        "reviewed": reviewed,
+        "id": document_id
+      },
+      type: "POST",
+      dataType: "script",
+      success: function(data){
+      }
+    })
+
   }
 
 </script>

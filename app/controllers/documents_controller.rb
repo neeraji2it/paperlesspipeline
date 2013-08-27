@@ -22,7 +22,15 @@ class DocumentsController < ApplicationController
         format.js
       end
     end
-   
+  end
+
+  def update_reviewed
+    @document = Document.find(params[:id])
+    if @document.update_attributes(:reviewed => params[:reviewed])
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 
   def create
@@ -36,6 +44,7 @@ class DocumentsController < ApplicationController
         @document.location_id = params[:document][:location_id]
         @document.transaction_id = params[:document][:transaction_id]
         @document.doc_type = params[:document][:doc_type]
+        @document.reviewed="false"
         @document.save
         flash[:notice] = "Document Successfully uploaded."
         @drag_drop.destroy
@@ -144,7 +153,7 @@ class DocumentsController < ApplicationController
   end
 
   def unreviewed
-    @documents = Document.where("user_id = '#{current_user.id}' and review IS NULL ")
+    @documents = Document.where("user_id = '#{current_user.id}' and reviewed = false ")
     if request.xhr?
       @documents = Document.where("document_file_name = '#{params[:document_file_name]}' ")
       respond_to do |format|
