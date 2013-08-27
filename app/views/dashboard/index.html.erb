@@ -113,7 +113,7 @@
                   <div class="column">Close Date</div>
                   <div class="column last">Actions</div>
                 </div>
-                <% @transactions.each do |i| %>
+                <% @transactions.first(3).each do |i| %>
                   <div class="transactionrow">
                     <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column"><%= i.status %> <img alt="" title="" src="/assets/spacer.png" /></div>
@@ -197,7 +197,7 @@
                   <div class="column">Close Date</div>
                   <div class="column last">Actions</div>
                 </div>
-                <% @passed_transactions.each do |i| %>
+                <% @passed_transactions.first(3).each do |i| %>
                   <div class="transactionrow">
                     <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column"><%= i.status %>
@@ -285,7 +285,7 @@
                   <div class="column">Close Date</div>
                   <div class="column last">Actions</div>
                 </div>
-                <% @closing_transactions.each do |i| %>
+                <% @closing_transactions.first(3).each do |i| %>
                   <div class="transactionrow">
                     <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
