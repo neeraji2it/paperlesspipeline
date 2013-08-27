@@ -5,17 +5,17 @@
         <div class="column w30"><%= link_to transaction.transaction_name, transaction_path(transaction) %></div>
         <div class="column"><%= transaction.status %></div>
         <div class="column w11">
-          <% @cs = transaction.checklists.count  %>
-          <% @ts = i.tasks.where("status = ?", true) %>
+          <% @completed_tasks = transaction.tasks.where("status = ?", true) %>
+          <% @tasks = transaction.tasks  %>
           <div class="completebox"  onclick="transaction_show(<%=  transaction.id %>)">
-            <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts.count %></abbr>
+            <em class="tooltip-container"><abbr><%= @completed_tasks.count %>/<%= @tasks.count %></abbr>
               <strong class="tooltip">
-                <h6><%= i.transaction_name.first(15) %></h6>
-                <p>List Price <%= i.list_price %></p>
+                <h6><%= transaction.transaction_name.first(15) %></h6>
+                <p>List Price <%= transaction.list_price %></p>
                 <h4>Incomplete Task</h4>
                 <p><span>
-                    <% if i.checklists.present? %>
-                      <% i.checklists.each do |c|  %>
+                    <% if transaction.checklists.present? %>
+                      <% transaction.checklists.each do |c|  %>
                         <b><%= c.name %>:</b>
                         <% if c.tasks.present? %>
                           <% c.tasks.each do |t| %>
@@ -25,10 +25,10 @@
                       <% end %>
                     <% end %><br />
 
-                    <h4<% @cs = i.checklists.count  %>
-                      <% @ts = i.tasks.count %>>Recent Notes:</h4>
+                    <h4<% @cs = transaction.checklists.count  %>
+                      <% @ts = transaction.tasks.count %>>Recent Notes:</h4>
                     <p><span><% if i.notes.present? %>
-                          <% i.notes.last(2).each do |n| %>
+                          <% transaction.notes.last(2).each do |n| %>
                             <%= n.description %><br />
                           <% end %>
                         <% end %></span></p>
