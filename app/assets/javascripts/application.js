@@ -217,6 +217,20 @@ jQuery(document).ready(function() {
             })
     });
 
+    jQuery(document).ready(function () {
+        jQuery('#comment').click(function () {
+            jQuery('#commentBox').slideToggle('slow', function () {})
+        });
+        jQuery('#leftColumnShow').click(function () {
+            jQuery('#leftColumn').slideToggle('slow', function () {})
+        });
+        jQuery('#closeBox').click(function () {
+            jQuery('#leftColumn').slideToggle('slow', function () {})
+        });
+    });
+
+
+
 
     $("#agents_seller").keyup(function() {
         var agents = $(this).val();
@@ -261,3 +275,31 @@ function transaction_show(id){
 $("#cancel_<%= doc.id %>").click(function(){
     $("#commentBox_<%= doc.id%>").fadeOut('slow');
 })
+
+
+function show_commentbox(doc_id) {
+    jQuery('#commentBox_' + doc_id).slideToggle('slow', function() {
+        })
+}
+
+
+function update_document_reviewed(document_id){
+    if ($("#document-reviewed_" + document_id).is(':checked'))
+    {
+        var reviewed = true;
+    }
+    else{
+        var reviewed = false;
+    }
+    $.ajax({
+        url: "/documents/"+document_id+"/update_reviewed",
+        data: {
+            "reviewed": reviewed,
+            "id": document_id
+        },
+        type: "POST",
+        dataType: "script",
+        success: function(data){
+        }
+    })
+}

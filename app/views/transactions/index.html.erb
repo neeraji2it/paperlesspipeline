@@ -47,20 +47,34 @@
                         <div class="column w11">
 
                           <% @cs = i.checklists.count  %>
-                          <% @ts = i.tasks.count %>
+                          <% @ts = i.tasks.where("status = ?", true) %>
 
                           <div class="completebox"  onclick="transaction_show(<%=  i.id %>)">
-                            <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts %></abbr>
+                            <em class="tooltip-container"><abbr><%= @cs %>/<%= @ts.count %></abbr>
                               <strong class="tooltip">
-                                <h6><%= i.transaction_name %></h6>
+                                <h6><%= i.transaction_name.first(15) %></h6>
                                 <p>List Price <%= i.list_price %></p>
                                 <h4>Incomplete Task</h4>
-                                <p><span><% if i.checklists.present? %><%= i.checklists.last.name  %><% end %><br />
-                                    <% if i.tasks.present? %> <%= i.tasks.last.name %><% end %></span></p>
-                                <h4<% @cs = i.checklists.count  %>
-                                  <% @ts = i.tasks.count %>>Recent Notes:</h4>
-                                <p><span><% if i.notes.present? %><%= i.notes.last.description %><% end %></span></p>
-                                <i class="top-arrow"></i>
+                                <p><span>
+                                    <% if i.checklists.present? %>
+                                      <% i.checklists.each do |c|  %>
+                                        <b><%= c.name %>:</b>
+                                        <% if c.tasks.present? %>
+                                          <% c.tasks.each do |t| %>
+                                            <%= t.name %><br />
+                                          <% end %>
+                                        <% end %>
+                                      <% end %>
+                                    <% end %><br />
+
+                                    <h4<% @cs = i.checklists.count  %>
+                                      <% @ts = i.tasks.count %>>Recent Notes:</h4>
+                                    <p><span><% if i.notes.present? %>
+                                          <% i.notes.last(2).each do |n| %>
+                                            <%= n.description %><br />
+                                          <% end %>
+                                        <% end %></span></p>
+                                    <i class="top-arrow"></i>
                               </strong>
                             </em>
                           </div>
