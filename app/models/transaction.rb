@@ -27,7 +27,7 @@ class Transaction < ActiveRecord::Base
   private
   def generate_email
     @user = User.find(self.user_id)
-    self.email = @user.first_name+self.transaction_name+'@ec2-54-245-14-77.us-west-2.compute.amazonaws.com'
+    self.email = @user.email+'@ec2-54-245-14-77.us-west-2.compute.amazonaws.com'
   end
   
 end
