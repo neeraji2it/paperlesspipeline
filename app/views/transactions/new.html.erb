@@ -44,7 +44,14 @@
                     </div>
                     <p>Status<span class="star">*</span></p>
                     <p>
-                      <%= f.text_field :status, :title => "Status" %>
+                      <%#= f.text_field :status, :title => "Status" %>
+                      <%= f.select :status, options_for_select(["Active ", "Active", "Agencey Agreement", "Buyer Agreement", "Prospective", "Working",
+                                                                "Listing ", "Listing", "Listing for Review", "Listing -Short sale",
+                                                                "Pending ", "Contingent", "Contigent-Escrow Cancelling","Escrow", "In Contract", "Lease for Review", "Offer Pending", "Pending", "Pending for Review", "Pending Reviewed", "Pending-Short Sale", "Rental Pending", "Under Contract",
+                                                                "Other ", "Agent_exit","Agent File", "Attorny Review", "Backup Offer", "Bank Owned","Commercial Property","CREST","Duplicate","Excess","Firm","Lawyer Info","Lease Contract","Lease Option", "Lease / Purchase","MLS","Office Use","Off Market","Property Management","Referral","Short Sale","Showing Desk","Subject","Temporarily Off Market",
+                                                                "Closed " "Closed","Closed-Need Requirements","Leased","Payout","Payout/Follow-up","Payout/Pre-Process","Payout to Review",
+                                                                "Fell Through ","Cancelled","Deal Fell Through","Fell Through","Rejected","Terminated",
+                                                                "Auto Expiry ", "Expired/Withdrawn"],:disabled => ["Active ", "Listing ","Pending ","Other ","Closed ","Fell Through ","Auto Expiry "]) %>
                       <%= validation_error(@transaction.errors["status"]) %>
                     </p>
                     <div class="bposi">
