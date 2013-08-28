@@ -1,6 +1,6 @@
 Paperlesspipeline::Application.routes.draw do
 
-
+  post '/email_processor' => 'griddler/emails#create'
   devise_for :users
 
   resources :tasks do
