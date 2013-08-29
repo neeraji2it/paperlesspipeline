@@ -76,7 +76,7 @@ Paperlesspipeline::Application.routes.draw do
 
   resources :welcome do
     collection do
-      get :email_update
+      post :email_update
     end
   end
 
