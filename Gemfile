@@ -35,4 +35,5 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
   gem 'mailman'
+  gem 'griddler'
 end
