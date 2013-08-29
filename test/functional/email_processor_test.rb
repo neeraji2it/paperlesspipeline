@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EmailProcessorTest < ActiveSupport::TestCase
+class EmailProcessorTest < ActionMailer::TestCase
   # test "the truth" do
   #   assert true
   # end
