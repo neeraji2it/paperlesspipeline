@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :after_sign_in_path_for
   layout :layout
-  
+  skip_before_filter  :verify_authenticity_token
+
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.sign_in_count <= 1
       new_transaction_path
