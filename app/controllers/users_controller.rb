@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_filter :protect_from_forgery
   def admin
     @user = current_user
   end
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     @role = Role.new(params[:role])
     @user = User.new
     if @role.save
-     render
+      render
     end
   end
 end
