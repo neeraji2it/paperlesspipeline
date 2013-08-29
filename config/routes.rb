@@ -82,7 +82,7 @@ Paperlesspipeline::Application.routes.draw do
 
   match "/documents/download_document" => 'documents#download_document',:as => 'download'
 
-  #  match "/welcome/email_update" => 'welcome#email_update', :as => 'email'
+  match "/email" => 'welcome#email_update'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -133,11 +133,11 @@ Paperlesspipeline::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'welcome#email_update'
+  #  root :to => 'welcome#email_update'
   # This is root for cloud9 app==============================================================
-  #  devise_scope :user do
-  #    root :to => "devise/sessions#new"
-  #  end
+  devise_scope :user do
+    root :to => "devise/sessions#new"
+  end
 
   # See how all your routes lay out with "rake routes"
 
