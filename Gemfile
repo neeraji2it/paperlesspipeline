@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.12'
 
-gem 'griddler'
-gem 'mailman'
 gem 'premailer-rails3'
 gem 'twitter-bootstrap-rails' , '>= 2.1.6'
 gem 'best_in_place'
@@ -36,4 +34,5 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
+  gem 'mailman'
 end

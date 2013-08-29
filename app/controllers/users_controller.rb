@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
   skip_before_filter  :verify_authenticity_token
+  require 'mailman'
+
+  Mailman::Application.run do
+    to 'cloud9ppp@gmail.com' do
+       User.find_by_email(From).update_attribute(:company_name, message.body)
+    end
+  end
+
   def admin
     @user = current_user
   end

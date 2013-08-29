@@ -71,9 +71,6 @@ GEM
     eventmachine (1.0.3)
     execjs (2.0.1)
     ffi (1.9.0)
-    griddler (0.5.0)
-      htmlentities
-      rails (>= 3.2.0)
     highline (1.6.19)
     hike (1.2.3)
     htmlentities (4.3.1)
@@ -221,7 +218,6 @@ DEPENDENCIES
   capistrano
   coffee-rails (~> 3.2.1)
   devise
-  griddler
   jquery-fileupload-rails
   jquery-rails (= 2.3.0)
   json
