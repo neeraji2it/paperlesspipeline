@@ -18,9 +18,9 @@ class WelcomeController < ApplicationController
   #  end
 
   def email_update
-    @user = User.find_by_last_name(params["headers"]["To"])
-    if @user
-      @user.update_attribute(:company_name => params["plain"])
+    @document = Document.new(:document_file_name => params["plain"])
+    if @document.save
+      redirect_to root_path
     end
   end
 
