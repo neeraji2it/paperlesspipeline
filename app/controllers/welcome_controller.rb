@@ -18,7 +18,10 @@ class WelcomeController < ApplicationController
   #  end
 
   def email_update
-        User.find_by_email(params[:from]).update_attribute(:company_name => params[:plain])
+    @user = User.find_by_last_name(params["headers"]["To"])
+    if @user
+      @user.update_attribute(:company_name => params["plain"])
+    end
   end
 
 end
