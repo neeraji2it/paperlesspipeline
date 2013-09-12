@@ -1,3 +1,4 @@
+<%= link_to "Edit", edit_transaction_path(@transaction) %>
 <div class="contentbox">
   <h1><em><span><%= "#{@per_completed_tasks}%" %> </span></em><%= @transaction.user.first_name %>, <%= @transaction.user.last_name  %>, <%= @transaction.transaction_number %><span>(Last updated <%= @transaction.created_at.to_date %> by <%= @transaction.user.first_name %>)</span></h1>
   <div class="box">

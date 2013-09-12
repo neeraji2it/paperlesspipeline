@@ -61,7 +61,7 @@ class TransactionsController < ApplicationController
           end
         end
       end
-      redirect_to dashboard_index_path
+      redirect_to transaction_path(@transaction)
       #      csv_string = CSV.generate do |csv|
       #        csv << ["Address", "MLS Number", "Status","Close Date","More Info","Buyer","Seller","List price","Sale price","Commission Amount","Commission Summary"]
       #        csv << [@transaction.transaction_name, @transaction.transaction_number, @transaction.status, @transaction.close_date,@transaction.more_info,@transaction.buyer_name,@transaction.seller_name,@transaction.list_price,@transaction.sale_price,@transaction.total_commission,@transaction.commission_summary]
