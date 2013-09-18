@@ -1,9 +1,43 @@
 <div id="leftColumnShow">Menu</div>
 <div id="leftColumn">
   <div id="closeBox">Close</div>
-
   <% if (params[:controller] == "transactions" && params[:action] == "index" || params[:action] == 'assign_document' || params[:action] == 'assign_document_to_transaction' || params[:action] == "advance_search" || params[:action] == "filter" || params[:action] == "edit") %>
     <ul class="leftmenu">
+      <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
+      <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
+      <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
+      <li class="icon-admin"><%= link_to "admin", admin_user_path(current_user) %></li>
+      <li class="icon-monthly-backup"><a title="Monthly Backup" href="#">Monthly Backup</a></li>
+      <li class="icon-help"><a title="Help" href="#">Help</a></li>
+    </ul>
+    <div class="contentbox">
+      <h1>Recently Updated</h1>
+      <div class="box">
+        <div class="bt">
+          <div class="br">
+            <div class="bb">
+              <div class="bl">
+                <div class="con">
+                  <% @transactions = Transaction.where("user_id = '#{current_user.id}'") %>
+                  <% @transactions.each do |transaction| %>
+                    <% if transaction.documents.present? %>
+                      <ul class="list-admin">
+                        <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></li>
+                      </ul>
+                    <% end %>
+                  <% end %>
+                  <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %>
+                  <div class="clearFix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% elsif  (params[:controller] == "transactions" && params[:action] == 'show')  %>
+    <ul class="leftmenu">
+      <li class="icon-help"><%= link_to "Edit", edit_transaction_path(@transaction) %></li>
       <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
       <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
       <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
