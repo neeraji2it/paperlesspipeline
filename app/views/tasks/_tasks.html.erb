@@ -1,7 +1,0 @@
-<% unless tasks.nil? %>
-  <ul class="list-checklist">
-    <% tasks.each do |task| %>
-    <li onmouseover="javascript:$('#task_<%= task.id %>').show();" onmouseout="javascript:$('#task_<%= task.id %>').hide();" id="task_li_<%= task.id %>"><%= check_box_tag :task, "",task.status, :title => "#{task.name}", :onclick => "TaskStatusUpdate(this, #{task.id}, #{@transaction.id})" %><%= task.name %><span id='task_<%= task.id %>' style="display: none; padding-left: 10px;"><%= link_to "Edit", edit_task_path(task, :transaction_id => "#{@transaction.id}"), :remote => true %> | <%= link_to "Delete", task_path(task), :method => "delete", :confirm => "Are you sure?", :remote => true %></span></li>
-    <% end %>
-  </ul>
-<% end %>
