@@ -6,7 +6,7 @@ gem 'twitter-bootstrap-rails' , '>= 2.1.6'
 gem 'best_in_place'
 gem 'capistrano'
 gem 'rvm-capistrano'
-gem 'thin' 
+gem 'thin'
 gem 'sqlite3'
 gem 'bootstrap-sass'
 gem 'json'
@@ -19,9 +19,6 @@ gem 'thinking-sphinx', '2.0.10'
 gem 'jquery-rails',  "2.3.0"
 gem "prototype-rails","~> 3.2.1"
 gem "jquery-fileupload-rails"
-
-gem 'omniauth'
-gem 'httparty'
 
 
 # Gems used only for assets and not required
@@ -40,3 +37,4 @@ group :assets do
   gem 'mailman'
   gem 'griddler'
 end
+
