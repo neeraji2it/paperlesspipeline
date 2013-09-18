@@ -1,0 +1,69 @@
+
+<h1>
+  <div class="column w30">Transaction</div>
+  <div class="column">Status</div>
+  <div class="column w11">Complete</div>
+  <div class="column w9">Agents</div>
+  <div class="column w20">Location</div>
+  <div class="column">Close Date</div>
+  <div class="column last">Actions</div>
+</h1>
+<div class="box">
+  <% @transactions.each do |transaction| %>
+    <div class="tableTransaction">
+      <div class="transactionrow">
+        <div class="column w30"><%= link_to transaction.transaction_name, transaction_path(transaction) %></div>
+        <div class="column"><%= transaction.status %></div>
+        <div class="column w11">
+          <% @completed_tasks = transaction.tasks.where("status = ?", true) %>
+          <% @tasks = transaction.tasks  %>
+          <div class="completebox"  onclick="transaction_show(<%=  transaction.id %>)">
+            <em class="tooltip-container"><abbr><%= @completed_tasks.count %>/<%= @tasks.count %></abbr>
+              <strong class="tooltip">
+                <h6><%= transaction.transaction_name %></h6>
+                <p>List Price <%= transaction.list_price %></p>
+                <h4>Incomplete Task</h4>
+                <p><span><% if transaction.checklists.present? %><%= transaction.checklists.last.name  %><% end %><br />
+                    <% if transaction.tasks.present? %> <%= transaction.tasks.last.name %><% end %></span></p>
+                <h4<% @cs = transaction.checklists.count  %>
+                  <% @ts = transaction.tasks.count %>>Recent Notes:</h4>
+                <p><span><% if transaction.notes.present? %><%= transaction.notes.last.description %><% end %></span></p>
+                <i class="top-arrow"></i>
+              </strong>
+            </em>
+          </div>
+          <img alt="" title="" src="/assets/spacer.png" />
+        </div>
+        <div class="column w9"><div class="icon-agent"></div></div>
+        <div class="column w20"><% if transaction.location.present? %><%= transaction.location.name %><% end %></div>
+        <div class="column"><%= transaction.close_date %></div>
+        <div class="column last">
+          <span class="btn-action">
+            <em class="tooltip-container"><span>Action</span>
+              <strong class="tooltip">
+                <ul class="list-tooltip">
+                  <li class="icon-zoomin"><%= link_to "View", transaction_path(transaction)  %> </li>
+                  <li class="icon-edit"><%= link_to "Edit", edit_transaction_path(transaction) %></li>
+                </ul>
+                <i class="top-arrow"></i>
+              </strong>
+            </em>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  <% end %>
+</div>
+
+<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+<script type="text/javascript" language="javascript">
+  jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+  });
+</script>

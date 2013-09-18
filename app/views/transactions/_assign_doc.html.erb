@@ -1,0 +1,151 @@
+<div id="assign-document">
+  <% @transactions = Transaction.all %>
+  <b>Step 1:</b><br />  <b>Assign your document to transaction</b>
+  <div class="officerow">Recently updated transactions.</div>
+  <div class="contentbox search_results">
+    <h1>
+      <div class="column w30">Transaction</div>
+      <div class="column">Status</div>
+      <div class="column w11">Complete</div>
+      <div class="column w9">Agents</div>
+      <div class="column w20">Location</div>
+      <div class="column">Close Date</div>
+      <div class="column last">Actions</div>
+    </h1>
+    <div class="box">
+      <% @transactions.first(5).each do |i|  %>
+        <div class="tableTransaction">
+          <div class="transactionrow">
+            <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %></div>
+            <div class="column"><%= i.status %> </div>
+            <div class="column w11">
+
+              <% @completed_tasks = i.tasks.where("status = ?", true) %>
+              <% @tasks = i.tasks  %>
+
+              <div class="completebox"  onclick="transaction_show(<%=  i.id %>)">
+                <em class="tooltip-container"><abbr><%= @completed_tasks.count %>/<%= @tasks.count %></abbr>
+                  <strong class="tooltip">
+                    <h6><%= i.transaction_name.first(15) %></h6>
+                    <p>List Price <%= i.list_price %></p>
+                    <h4>Incomplete Task</h4>
+                    <p><span>
+                        <% if i.checklists.present? %>
+                          <% i.checklists.each do |c|  %>
+                            <b><%= c.name %>:</b>
+                            <% if c.tasks.present? %>
+                              <% c.tasks.each do |t| %>
+                                <%= t.name %><br />
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                        <% end %><br />
+
+                        <h4<% @cs = i.checklists.count  %>
+                          <% @ts = i.tasks.count %>>Recent Notes:</h4>
+                        <p><span><% if i.notes.present? %>
+                              <% i.notes.last(2).each do |n| %>
+                                <%= n.description %><br />
+                              <% end %>
+                            <% end %></span></p>
+                        <i class="top-arrow"></i>
+                  </strong>
+                </em>
+              </div>
+              <img alt="" title="" src="/assets/spacer.png" />
+            </div>
+            <div class="column w9"><div class="icon-agent"></div></div>
+            <div class="column w20"><% if i.location.present? %><%= i.location.name %><% end %></div>
+            <div class="column"><%= i.close_date %> </div>
+            <div class="column last">
+              <span class="btn-action">
+                <em class="tooltip-container" onclick="AssignDocumentToTransaction('<%= i.id %>', '<%= document.id %>')"><span>Assign</span>
+                </em>
+              </span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="clearFix"></div>
+    </div>
+  </div>
+
+  <b>Step 2:</b><br /><b>View Name and Categorize your document </b>
+  <div class="contentbox">
+    <h1>
+      <div class="column w5">Info</div>
+      <div class="column w30">Contract Forms</div>
+      <div class="column w12">Comments</div>
+      <div class="column w20">Added By</div>
+      <div class="column w20">Added On</div>
+      <div class="column last">Actions</div>
+    </h1>
+    <div class="box">
+      <div id="searched-documents">
+        <div class="tableTransaction">
+          <div class="transactionrow">
+            <div class="column w5"><div class="icon-pdf"></div></div>
+            <div class="column w30"><% if document.document_file_name.present? %><%= document.document_file_name %><% else %><%= document.id %><% end %></div>
+            <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= document.id %>')"></div></div>
+            <div class="column w20"><%= current_user.email %></div>
+            <div class="column w20"><%= document.created_at.to_date %></div>
+            <div class="column last">
+              <span class="btn-action admin">
+                <em class="tooltip-container"><span>Action</span>
+                  <strong class="tooltip">
+                    <ul class="list-tooltip">
+                      <li class="icon-download"><%= link_to "Download", download_path(:id => document.id) %></li>
+                      <li class="icon-download"><%= link_to "Assign", assign_document_transactions_path(:id => document.id) %></li>
+                      <li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>
+                      <li class="icon-delete"><%= link_to "Delete", document_path(document), :method => "DELETE" %></li>
+                    </ul>
+                    <i class="top-arrow"></i>
+                  </strong>
+                </em>
+              </span>
+            </div>
+            <div class="commentBox" id="commentBox_<%= document.id %>" style="display:none">
+              <div id="comment-new-and-show">
+
+                <%= form_for :comment, :url => comment_documents_path, :method => 'POST', :remote => true do |f| %>
+                  <%= f.text_field :comment, :title => "Comments", :type =>"text" %>
+                  <%= f.hidden_field :document_id, :value => document.id %>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
+                  <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
+                  <span id="cancel_<%= document.id %>" style="cursor: pointer;color: blue;">Cancel</span>
+                <% end %>
+                <div id="document_comments_<%= document.id %>">
+                  <%= render :partial => "documents/comment",:locals => {:doc => document} %>
+                </div>
+                <script>
+                  $("#cancel_<%= document.id %>").click(function(){
+                  $("#commentBox_<%= document.id%>").fadeOut('slow');
+                  })
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function AssignDocumentToTransaction(id,id2){
+  var transaction_id = id;
+  var document_id = id2;
+  $.ajax({
+  url: "/transactions/assign_document_to_transaction",
+  data: {
+  "transaction_id": transaction_id,
+  "document_id": document_id
+  },
+  type: "POST",
+  success: function(data) {
+  }
+  })
+
+  }
+</script>

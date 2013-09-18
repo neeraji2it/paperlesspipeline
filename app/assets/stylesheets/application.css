@@ -1,0 +1,84 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+.email-text {
+    font-size: 20px;
+    color: white;
+}
+
+.password-text{
+    font-size: 20px;
+    color: white;
+}
+
+
+#user_register{
+    color: white;
+    display: block;
+    left: -40px;
+    position: relative;
+}
+
+#links{
+    color: black;
+    background: white;
+    border: 2px;
+}
+
+
+#droparea{
+    border: 1px dotted grey;
+    height: 65px;
+    padding-top: 40px;
+    text-align: center;
+    width: 705px;
+    float: right;
+}
+
+.buttons:hover{
+    background-color:yellow;
+    width: 15%;
+}
+
+
+#small-container{
+    width: 100%;
+    height: auto;
+    background: #D4D4D4;
+    left: -30px;
+    position: relative;
+    min-height: 100px;
+    margin-top:33px;
+}
+
+.dashboard-content {
+    border-radius: 11px 11px 11px 11px;
+    margin-top: 313px;
+    position: relative;  
+}
+
+#ttttt, #doces, #upcomingdocs, #transactions-closing-dates{
+    background-color: white;height: auto;min-height: 80px;border-radius: 2px;text-shadow: 3px;margin-right:28px;
+}
+
+#log{ margin:0; padding:0; width:500px;}
+#log li{ list-style-position:inside; margin:2px; border:1px solid #ccc; padding:10px; font-size:12px;
+         font-family:Arial, Helvetica, sans-serif; color:#333; background:#fff; position:relative;}
+#log li .progressbar{ border:1px solid #333; height:5px; background:#fff; }
+#log li .progress{ background:#999; width:0%; height:5px; }
+#log li p{ margin:0; line-height:18px; }
+#log li.success{ border:1px solid #339933; background:#ccf9b9; }
+#log li span.cancel{ position:absolute; top:5px; right:5px; width:20px; height:20px;
+                     background:url('/assets/cancel.png') no-repeat; cursor:pointer; }
+

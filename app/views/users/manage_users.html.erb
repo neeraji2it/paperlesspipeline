@@ -1,0 +1,69 @@
+<div class="contentbox">
+  <div class="right-location">
+    <ul class="menu-checklist">
+      <li class="icon-managelocations"><%= link_to "Manage Locations", manage_locations_user_path(current_user.id) %></li>
+      <li class="icon-manageusers active"><a title="Manage Users" href="#">Manage Users</a></li>
+      <li class="icon-checklisttemplates"><%= link_to "Checklist Templates", checklists_path %></li>
+    </ul>
+  </div>
+  <h1><em><%= link_to "AddUser", add_user_users_path %></em>Manage Users</h1>
+  <div class="box">
+    <div class="bt">
+      <div class="br">
+        <div class="bb">
+          <div class="bl">
+            <div class="con">
+              <div class="tableTransaction">
+                <div class="transactionrow">
+                  <div class="column w30">User</div>
+                  <div class="column w20">Email</div>
+                  <div class="column">Role</div>
+                  <div class="column w20">Location</div>
+                  <div class="column w5">Active</div>
+                  <div class="column last">Actions</div>
+                </div>
+                <% @users.each do |user| %>
+                  <div class="transactionrow">
+                    <div class="column w30"><%= user.email %> </div>
+                    <div class="column w20"><%= user.email %> </div>
+                    <div class="column"><%= user.role %> </div>
+                    <div class="column w20"><%= user.role %> </div>
+                    <div class="column w5"><div class="icon-de-active"></div></div>
+                    <div class="column last">
+                      <span class="btn-action">
+                        <em class="tooltip-container"><span>Action</span>
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="icon-edit"><a title="Edit User" href="#">Edit User</a></li>
+                              <li class="icon-delete"><a title="Deactivate User" href="#">Deactivate User</a></li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="clearFix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearFix"></div>
+</div>
+<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+<script type="text/javascript" language="javascript">
+  jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+  });
+</script>
+</body>

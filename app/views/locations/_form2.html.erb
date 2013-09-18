@@ -1,0 +1,17 @@
+<%= form_for :location, :url => location_path(current_user), :method => 'PUT', :remote => true do |f| %>
+
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location, :type => "text"  %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save", :class => "btn-save" %>
+  </div>
+<% end %>
+
+<style>
+  #edit-location{
+    font-size: 20px;
+}
+</style>

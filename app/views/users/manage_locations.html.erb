@@ -1,0 +1,54 @@
+<div class="contentbox">
+  <div class="right-location">
+    <ul class="menu-checklist">
+      <li class="icon-managelocations active"><a title="Manage Locations" href="#">Manage Locations</a></li>
+      <li class="icon-manageusers"><%= link_to "Manage Users", manage_users_user_path(current_user.id) %></li>
+      <li class="icon-checklisttemplates"><%= link_to "Checklist Templates", checklists_path %></li>
+    </ul>
+  </div>
+  <h1><em>
+    </em>Manage Locations</h1>
+  <div class="box">
+    <div class="bt">
+      <div class="br">
+        <div class="bb">
+          <div class="bl">
+            <div class="con">
+              <div class="tableTransaction">
+                <p class="alcent">
+                  <%= form_for :location, :url => location_path(current_user), :method => 'PUT', :remote => true do |f| %>
+                    <%= f.text_field :name, :class => "input-locationName", :placeholder => "Location Name" %>
+                    <%= f.submit "Add Location", :class => "btn-add" %>
+                  <% end %>
+                </p>
+                <div class="transactionrow first">
+                  <div class="column w30">Location</div>
+                  <div class="column w20">Users</div>
+                  <div class="column w20">Transactions</div>
+                  <div class="column w20">Working Docs</div>
+                  <div class="column last">Actions</div>
+                </div>
+                <div id="locations-show">
+                  <%= render :partial => "users/manage_locations" %>
+                </div>
+              </div>
+
+              <div class="clearFix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
+<script type="text/javascript" language="javascript">
+  jQuery(document).ready(function () {
+    jQuery('#leftColumnShow').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+    jQuery('#closeBox').click(function () {
+      jQuery('#leftColumn').slideToggle('slow', function () {})
+    });
+  });
+</script>

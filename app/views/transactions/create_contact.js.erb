@@ -1,0 +1,14 @@
+<% if @contact.new_record? %>
+  <%  errors = [] %>
+  <% @contact.errors.each do |field, error| %>
+    <% errors  << "#{field}"+' '+"#{error}" %>
+  <%  end %>
+  $("#error_explanation").html("<ul><li style='list-style: none;'><%=  "#{errors.join('<br/>')}".html_safe %></li></ul>")
+<% else %>
+  $("#contacts").html("<%= escape_javascript(render :partial => "contacts", :locals => {:contacts => @contacts}) %>")
+  $("#contact_name").val(" ");
+  $("#contact_role").val(" ");
+  $("#contact_phone").val(" ");
+  $("#contact_fax").val(" ");
+  $("#contact_email").val(" ");
+<% end %>

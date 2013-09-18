@@ -1,0 +1,1 @@
+$("#tasks_<%= @task.checklist_id %>").html("<%= escape_javascript(render :partial => "tasks", :locals => {:tasks => @tasks}) %>")

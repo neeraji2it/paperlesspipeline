@@ -1,0 +1,106 @@
+<div class="contentbox">
+  <h1>Office Docs</h1>
+  <div class="box">
+    <div class="bt">
+      <div class="br">
+        <div class="bb">
+          <div class="bl">
+            <div class="con">
+              <h3><em>Forms, disclosures, and listing presentations available to the entire company.</em></h3>
+              <div class="unreviewedBox page-transactionsN">
+                <div class="unreviewedBoxContent">
+                  <input class="btn-quickSearch active" title="Quick Search" value="Quick Search" type="submit" />
+                  <p>
+<%#*<input class="input-searchTransactions" title="Search by Document name" placeholder="Search by Document name" type="text" />%>
+<%#*<input class="btn-searchDocs" title="Search Docs" value="Search Docs" type="submit" />%>
+                    <%= form_tag office_documents_path, :method => :get, :remote => true do  %>
+                    <p>
+                      <%= text_field_tag :query  %>
+                    </p>
+                    <p class="button">
+                      <%= submit_tag "Search", :class => "btn-searchDocs", :title => "Search Docs", :value => "Search Docs", :type => "submit"%>
+                    </p>
+                  <% end %>
+                  </p>
+                </div>
+              </div>
+              <div id="documents-search">
+                <p>Only active Documents are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></p>
+                <% if @comment.errors.any? %>
+                  <% @comment.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                <% end %>
+                <div class="contentbox">
+                  <h1>
+                    <div class="column w5">Info</div>
+                    <div class="column w30">Contract Forms</div>
+                    <div class="column w12">Comments</div>
+                    <div class="column w20">Added By</div>
+                    <div class="column w20">Added On</div>
+                    <div class="column last">Actions</div>
+                  </h1>
+
+                  <div class="box">
+                    <% @docs.each do |doc| %>
+                      <div class="tableTransaction">
+                        <div class="transactionrow">
+                          <div class="column w5"><div class="icon-pdf"></div></div>
+                          <div class="column w30"><% if doc.document_file_name.present? %><%= doc.document_file_name %><% else %><%= doc.id %><% end %> </div>
+                          <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= doc.id %>')"></div></div>
+                          <div class="column w20"><%= current_user.email %></div>
+                          <div class="column w20">Dec 19, 12</div>
+                          <div class="column w20">
+
+                          </div>
+                          <div class="column last">
+                            <span class="btn-action admin">
+                              <em class="tooltip-container"><span>Action</span>
+                                <strong class="tooltip">
+                                  <ul class="list-tooltip">
+                                    <li class="icon-download"><%= link_to "Download", download_path(:id => doc.id) %></li>
+                                    <li class="icon-edit_<%= doc.id %>" onclick = "show_doc_edit('<%= doc.id %>')"><a title="Edit Doc" href="#">Edit Doc</a></li>
+                                    <li class="icon-delete"><%= link_to "Delete", document_path(doc), :method => "DELETE" %></li>
+                                  </ul>
+                                  <i class="top-arrow"></i>
+                                </strong>
+                              </em>
+                            </span>
+                          </div>
+
+
+
+
+                          <div class="commentBox" id="commentBox_<%= doc.id %>" style="display:none">
+                            <div id="comment-new-and-show">
+                              <%= form_for :comment, :url => comment_documents_path, :method => 'POST', :remote => true do |f| %>
+                                <%= f.text_field :comment, :title => "Comments", :type =>"text" %>
+                                <%= f.hidden_field :document_id, :value => doc.id %>
+                                <%= f.hidden_field :user_id, :value => current_user.id %>
+                                <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
+                                <span id="cancel_<%= doc.id %>" style="cursor: pointer;color: blue;">Cancel</span>
+                              <% end %>
+                              <div id="document_comments_<%= doc.id %>">
+                                <%= render :partial => "documents/comment",:locals => {:doc => doc} %>
+                              </div>
+                              <script>
+                                $("#cancel_<%= doc.id %>").click(function(){
+                                  $("#commentBox_<%= doc.id%>").fadeOut('slow');
+                                })
+                              </script>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearFix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

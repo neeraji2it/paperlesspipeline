@@ -1,0 +1,16 @@
+<h3>Elite Real Estate</h3>
+<div class="tableTransactionN">
+  <div class="row">
+    <div>Listing</div>
+    <div>Selling</div>
+    <div>Agents</div>
+  </div>
+  <% @assigning_users.each do |user| %>
+    <div class="row" id="assigning-agents_<%= user.id %>">
+      <div><%= check_box_tag :li_id,'1',false,:onclick => "select_listing('#{user.id}','#{user.first_name}')",:id => "li_#{user.id}" %></div>
+      <div><%= check_box_tag :se_id,'1',false,:onclick => "select_selling('#{user.id}','#{user.first_name}')",:id => "se_#{user.id}" %></div>
+      <div><%= user.first_name %></div>
+    </div>
+  <% end %>
+
+</div>
