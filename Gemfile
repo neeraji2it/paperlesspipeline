@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'bootstrap-sass'
 gem 'json'
 gem 'devise'
+gem 'omniauth'
 gem 'mysql2'
 gem 'quiet_assets'
 gem "paperclip", "~> 2.3"
