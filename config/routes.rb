@@ -72,6 +72,7 @@ Paperlesspipeline::Application.routes.draw do
       get :agents_search
       post :add_comment
       get :assign_document
+      post :assign_document_to_transaction
     end
   end
 
