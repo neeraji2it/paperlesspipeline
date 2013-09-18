@@ -71,6 +71,7 @@ Paperlesspipeline::Application.routes.draw do
       post :add_note
       get :agents_search
       post :add_comment
+      get :assign_document
     end
   end
 

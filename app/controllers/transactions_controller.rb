@@ -2,7 +2,7 @@ require 'csv'
 class TransactionsController < ApplicationController
   respond_to :html, :json
 
-  before_filter :is_valid_account?, :except => ['index']
+  #  before_filter :is_valid_account?, :except => ['index']
 
   def index
     #@transactions = Transaction.where("user_id = #{current_user.id}")
@@ -77,6 +77,7 @@ class TransactionsController < ApplicationController
 
   def edit
     @transaction = Transaction.find(params[:id])
+    @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ")
   end
 
   def update
@@ -117,9 +118,6 @@ class TransactionsController < ApplicationController
     @transactions = Transaction.where("user_id = '#{current_user.id}'")
     if request.xhr?
       @transactions = Transaction.where("close_date = '#{params[:close_date]}' or status = '#{params[:status]}'")
-      puts"============================================================"
-      puts @transactions.inspect
-      puts"============================================================"
       respond_to do |format|
         format.js
       end
@@ -165,9 +163,6 @@ class TransactionsController < ApplicationController
   end
 
   def add_note
-    puts "===================================================="
-    puts params.inspect
-    puts "===================================================="
     @note = Note.new(params[:note])
     @transaction = Transaction.find(params[:note][:transaction_id])
     @note.transaction_id = @transaction.id
@@ -191,6 +186,30 @@ class TransactionsController < ApplicationController
     @comment.save
     respond_to do |format|
       @document = Document.find(@comment.document_id)
+      format.js
+    end
+  end
+
+  def assign_document
+    @document = Document.find(params[:id])
+    @transactions = Transaction.where("user_id = '#{current_user.id}'")
+    @recently_updated_transactions = []
+    @transactions.each do |i|
+      if i.present? and i.close_date.present?
+        if i.close_date.strftime("%m") == Date.today.strftime("%m") and i.close_date.strftime("%y") == Date.today.strftime("%y")
+          @recently_updated_transactions << i
+        end
+      end
+    end
+  end
+  
+  def assign_document_to_transaction
+    @transaction = Transaction.find(params[:transaction_id])
+    @document = Document.find(params[:document_id])
+    @document.update_attributes(:transaction_id => @document.id)
+    respond_to do |format|
+      @transaction = Transaction.find(params[:transaction_id])
+      @document = Document.find(params[:document_id])
       format.js
     end
   end

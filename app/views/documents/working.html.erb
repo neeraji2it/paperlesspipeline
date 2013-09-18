@@ -50,6 +50,7 @@
                                   <strong class="tooltip">
                                     <ul class="list-tooltip">
                                       <li class="icon-download"><%= link_to "Download", download_path(:id => document.id) %></li>
+                                      <li class="icon-download"><%= link_to "Assign", assign_document_transactions_path(:id => document.id) %></li>
                                       <li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>
                                       <li class="icon-delete"><%= link_to "Delete", document_path(document), :method => "DELETE" %></li>
                                     </ul>
