@@ -7,8 +7,15 @@
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
 
-Location.create(:name => 'Bangalore',:user_id => 'current_user.id')
-Location.create(:name => 'Tumkur',:user_id => 'current_user.id')
-Location.create(:name => 'Mysore',:user_id => 'current_user.id')
-Location.create(:name => 'India',:user_id => 'current_user.id')
-Location.create(:name => 'China',:user_id => 'current_user.id')
+Location.create(:name => 'Cocoa',:user_id => 'current_user.id')
+Location.create(:name => 'Cocoa Beach',:user_id => 'current_user.id')
+Location.create(:name => 'Indialantic',:user_id => 'current_user.id')
+Location.create(:name => 'Melbourne',:user_id => 'current_user.id')
+Location.create(:name => 'Melbourne Beach',:user_id => 'current_user.id')
+Location.create(:name => 'Merritt Island',:user_id => 'current_user.id')
+Location.create(:name => 'Palm Bay',:user_id => 'current_user.id')
+Location.create(:name => 'Rockledge',:user_id => 'current_user.id')
+Location.create(:name => 'Satellite Beach',:user_id => 'current_user.id')
+Location.create(:name => 'Titusville',:user_id => 'current_user.id')
+Location.create(:name => 'Viera',:user_id => 'current_user.id')
+

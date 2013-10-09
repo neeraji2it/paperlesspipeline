@@ -61,7 +61,7 @@
                     </div>
                     <p>Close Date<span class="star">*</span></p>
                     <p>
-                      <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%m/%d/%Y") : "") %>
+                      <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%Y/%m/%d") : "") %>
                       <%= validation_error(@transaction.errors["close_date"]) %>
                     </p>
                     <div class="bposi">
@@ -81,7 +81,7 @@
                       </div>
                     </div>
                     <p>Automatic Expiration Date<span class="star">*</span></p>
-                    <p><%= f.text_field :automatic_expire_date, :class => "icon-closedate", :title => "Automatic Expiration Date", :type => "text", :value => (@transaction.automatic_expire_date ? @transaction.automatic_expire_date.strftime("%m/%d/%Y") : ""), :readonly => true %></p>
+                    <p><%= f.text_field :automatic_expire_date, :class => "icon-closedate", :title => "Automatic Expiration Date", :type => "text", :value => (@transaction.automatic_expire_date ? @transaction.automatic_expire_date.strftime("%Y/%m/%d") : ""), :readonly => true %></p>
                     <div class="bposi">
                       <div id="transactionAuto" class="popup" style="display:none;">
                         <strong>Enter an expiration date in the format m/d/yyyy. If this transaction's status remains "Listing" after this date, it will automatically change to "Expired/Withdrawn" </strong>
