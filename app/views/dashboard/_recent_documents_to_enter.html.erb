@@ -33,8 +33,9 @@
               <em class="tooltip-container"><span>Action</span>
                 <strong class="tooltip">
                   <ul class="list-tooltip">
-                    <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
-                    <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
+                    <li class="icon-download"><%= link_to "Download", download_path(:id => document.id) %></li>
+                    <li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>
+                    <li class="icon-delete"><%= link_to "Delete", document_path(document), :method => "DELETE" %></li>
                   </ul>
                   <i class="top-arrow"></i>
                 </strong>
