@@ -1,0 +1,68 @@
+<div class="tableTransaction">
+  <% if @recent_documents_to_assign.present? %>
+    <b>Document to Assign</b>
+  <% else %>
+    <b>There is no docs to assign</b>
+  <% end %>
+  <h1>
+    <div class="column">Info</div>
+    <div class="column w30">Listing Docs</div>
+    <div class="column w12">Comments</div>
+    <div class="column w13">Added On</div>
+    <div class="column w13">Reviewed</div>
+    <div class="column w13">Assign</div>
+    <div class="column last">Actions</div>
+  </h1>
+  <div class="box">
+    <% documents.each do |document| %>
+      <div class="tableTransaction">
+        <div class="transactionrow">
+          <div class="column"><div class="icon-pdf"></div></div>
+          <div class="column w30"><%= document.document_file_name %></div>
+
+          <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
+          <div class="column w13"><%= document.created_at.to_date %></div>
+          <% if document.reviewed == false %>
+            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' id="document-reviewed_<%= document.id %>" onclick="update_document_reviewed('<%= document.id %>')" /></div>
+          <% else %>
+            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' id="document-reviewed_<%= document.id %>" onclick="update_document_reviewed('<%= document.id %>')" checked="checked" /></div>
+          <% end %>
+          <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
+          <div class="column last">
+            <span class="btn-action transaction">
+              <em class="tooltip-container"><span>Action</span>
+                <strong class="tooltip">
+                  <ul class="list-tooltip">
+                    <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
+                    <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
+                  </ul>
+                  <i class="top-arrow"></i>
+                </strong>
+              </em>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="commentBox" id="commentBox_<%= document.id %>" style="display:none">
+        <%= form_for :comment, :url => add_comment_transactions_path, :method => 'POST', :remote => true do |f| %>
+          <%= f.text_field :comment, :title => "Comments", :type =>"text" %>
+          <%= f.hidden_field :document_id, :value => document.id %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
+          <span id="cancel_<%= document.id %>" style="cursor: pointer;color: blue;">Cancel</span>
+        <% end %>
+        <div id="document_comments_<%= document.id %>">
+          <%= render :partial => "transactions/comment",:locals => {:doc => document} %>
+        </div>
+        <script>
+            $("#cancel_<%= document.id %>").click(function() {
+              $("#commentBox_<%= document.id%>").fadeOut('slow');
+            })
+        </script>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br />
+<hr />
+<hr />

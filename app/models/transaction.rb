@@ -8,8 +8,8 @@ class Transaction < ActiveRecord::Base
   has_many :documents, :dependent => :destroy
   attr_accessible :user_id,:location_id, :transaction_name,:transaction_number,:status,:close_date,:more_info,:automatic_expire_date,:buyer_name,:seller_name,:list_price,:sale_price,:total_commission,:commission_summary,:listing,:selling,:outside_listing_agent_name,:outside_selling_agent_name
   validates :transaction_name,:transaction_number,:status,:more_info,:buyer_name,:seller_name,:total_commission,:commission_summary, :presence => true
-  validates :list_price, :presence => true
-  validates :sale_price, :presence => true
+  validates :list_price, :numericality => { :greater_than_or_equal_to => 10000 }, :presence => true
+  validates :sale_price, :numericality => { :greater_than_or_equal_to => 10000 }, :presence => true
 
   before_save :generate_email
 

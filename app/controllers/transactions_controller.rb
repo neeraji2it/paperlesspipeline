@@ -214,4 +214,11 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def search_by_transaction_details
+    respond_to do |format|
+      @transactions = Transaction.where("transaction_name = '#{params[:search][:name]}' or transaction_number = '#{params[:search][:name]}' ")
+      format.js
+    end
+  end
+  
 end

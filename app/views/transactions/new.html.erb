@@ -61,7 +61,7 @@
                     </div>
                     <p>Close Date<span class="star">*</span></p>
                     <p>
-                      <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%Y/%m/%d") : "") %>
+                      <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%Y-%m-%d") : "") %>
                       <%= validation_error(@transaction.errors["close_date"]) %>
                     </p>
                     <div class="bposi">

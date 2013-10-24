@@ -26,10 +26,13 @@
     <div id="maindiv">
       <div id="header">
         <div class="cr">
-          <div class="topleftbox">
-            <a title="Cloud 9 Transaction Management" href="#"><img id="logo" title="Cloud 9 Transaction Management" alt="Cloud 9 Transaction Management" src="/assets/logo.png" /></a>
-<%#*<input class="input-search" type="text" title="Search Transaction by Address, Agents or MLS" placeholder="Search Transaction by Address, Agents or MLS" /><input class="btn-search" type="submit" title="Search" value="Search" />%>
-          </div>
+          <%= form_for :search,:url=>search_by_transaction_details_transactions_path,:method=>"GET",:remote => true do |f| %>
+            <div class="topleftbox">
+              <a title="Cloud 9 Transaction Management" href="#"><img id="logo" title="Cloud 9 Transaction Management" alt="Cloud 9 Transaction Management" src="/assets/logo.png" /></a>
+              <%= f.text_field :name,:class=>"input-search",:placeholder=>"Search Transaction by Address, Agents or MLS"  %>
+              <%= f.submit "Search",:class=>"btn-search" %>
+            </div>
+          <% end %>
           <div class="toprighbox">
             <ul id="topmenu">
               <li><span>|</span><%= current_user ? (link_to "Admin", admin_user_path(current_user)) : "" %></li>
