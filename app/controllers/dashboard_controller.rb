@@ -3,8 +3,8 @@ class DashboardController < ApplicationController
 
   layout 'application'
   def index
-    @recent_documents_to_assign = Document.where("reviewed = 'false'")
-    @recent_documents_to_review = Document.where("reviewed = 'false'")
+    @recent_documents_to_assign = Document.last(5).where("reviewed = 'false'")
+    @recent_documents_to_review = Document..last(5).where("reviewed = 'false'")
     @recent_documents_to_enter = Document.last(5)
     required_document_types = ["private","sale","listing"]
     uploaded_document_types = current_user.documents.collect{|d| d.document_type.to_s.downcase}.uniq

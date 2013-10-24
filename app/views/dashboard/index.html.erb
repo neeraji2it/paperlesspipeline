@@ -101,7 +101,6 @@
 
   <%= render :partial => "/dashboard/recent_documents_to_review",:locals=>{:documents=>@recent_documents_to_review} %>
   
-  <% @recent_documents_to_enter = Document.last(5) %>
   <%= render :partial => "/dashboard/recent_documents_to_enter",:locals=>{:documents=>@recent_documents_to_enter} %>
 
   <h1><em><%= link_to "", transactions_path, :class=>"btn-viewall"  %></em><%= @transactions.count %> Recent Transactions with Incomplete Checklists</h1>
