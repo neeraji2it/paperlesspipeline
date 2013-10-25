@@ -143,7 +143,7 @@
                     </p>
                   </div>
                   <div class="transactionBox" id="agent_sellers">
-                    <%= render :partial => "transactions/transaction_agents" %>
+                    <%= render :partial => "transactions/transaction_agents",:locals=>{:assigning_users=>@assigning_users} %>
                   </div>
                   <div class="transactionBox">
                     <h3>Asigned Agents</h3>

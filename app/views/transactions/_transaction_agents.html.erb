@@ -5,6 +5,7 @@
     <div>Selling</div>
     <div>Agents</div>
   </div>
+  <% @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ") %>
   <% @assigning_users.each do |user| %>
     <div class="row" id="assigning-agents_<%= user.id %>">
       <div><%= check_box_tag :li_id,'1',false,:onclick => "select_listing('#{user.id}','#{user.first_name}')",:id => "li_#{user.id}" %></div>

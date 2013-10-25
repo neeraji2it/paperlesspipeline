@@ -84,6 +84,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
     @transaction.update_attributes(params[:transaction])
     if @transaction.save
+      flash[:notice] = "Transaction updated Successfully."
       redirect_to dashboard_index_path
     else
       render :action => 'edit'
