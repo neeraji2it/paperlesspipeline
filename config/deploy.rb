@@ -33,5 +33,5 @@ end
 
   desc "restart external services"
   task :db_migrations do
-    run "cd #{current_release} && rake db:migrate Rails.env=staging && rake db:seed Rails.env=staging"
+    run "cd #{current_release} && bundle exec rake db:migrate --trace Rails.env=staging && rake db:seed Rails.env=staging"
   end
