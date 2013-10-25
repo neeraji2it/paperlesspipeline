@@ -17,7 +17,7 @@ task :symlink_shared, :roles => [:app, :db] do
   run "ln -s #{shared_path}/system #{latest_release}/system"
 end
 
-after 'deploy:finalize_update', :symlink_shared
+after 'deploy:finalize_update', :symlink_shared, 'services:run'
 
 namespace :deploy do
   desc "Restart Application"
@@ -28,5 +28,12 @@ namespace :deploy do
   [:start, :stop].each do |t|
     desc "#{t} task is a no-op with mod_rails"
     task t, :roles => :app do ; end
+  end
+end
+
+namespace :services do
+  desc "restart external services"
+  task :restart do
+    run "cd #{current_release} && rake db:migrate && rake db:seed"
   end
 end
