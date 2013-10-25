@@ -17,7 +17,7 @@ task :symlink_shared, :roles => [:app, :db] do
   run "ln -s #{shared_path}/system #{latest_release}/system"
 end
 
-after 'deploy:finalize_update', :symlink_shared, :db_migrations
+after 'deploy:finalize_update', :symlink_shared
 
 namespace :deploy do
   desc "Restart Application"
@@ -33,5 +33,5 @@ end
 
   desc "restart external services"
   task :db_migrations do
-    run "cd #{current_release} && bundle exec rake db:migrate --trace Rails.env=staging && rake db:seed Rails.env=staging"
+    run "cd #{current_release} && rake db:migrate Rails.env=staging && rake db:seed Rails.env=staging"
   end
