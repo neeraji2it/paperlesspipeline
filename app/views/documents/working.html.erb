@@ -40,7 +40,7 @@
                         <div class="tableTransaction">
                           <div class="transactionrow">
                             <div class="column w5"><div class="icon-pdf"></div></div>
-                            <div class="column w30"><% if document.document_file_name.present? %><%= document.document_file_name %><% else %><%= document.id %><% end %></div>
+                            <div class="column w30"><% if document.document_file_name.present? %><%= document.document_file_name[0..24] %><% else %><%= document.id %><% end %></div>
                             <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= document.id %>')"></div></div>
                             <div class="column w20"><%= current_user.email %></div>
                             <div class="column w20"><%= document.created_at.to_date %></div>

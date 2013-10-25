@@ -122,7 +122,7 @@
                 </div>
                 <% @transactions.first(3).each do |i| %>
                   <div class="transactionrow">
-                    <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
+                    <div class="column w30"><%= link_to i.transaction_name[0..24], transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column"><%= i.status %> <img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column w8">
                       <% @completed_tasks = i.tasks.where("status = ?", true) %>
@@ -218,7 +218,7 @@
                 </div>
                 <% @passed_transactions.first(3).each do |i| %>
                   <div class="transactionrow">
-                    <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
+                    <div class="column w30"><%= link_to i.transaction_name[0..24], transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column"><%= i.status %>
                       <img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column w8">
@@ -317,7 +317,7 @@
                 </div>
                 <% @closing_transactions.first(3).each do |i| %>
                   <div class="transactionrow">
-                    <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
+                    <div class="column w30"><%= link_to i.transaction_name[0..24], transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column w8">
 
@@ -420,7 +420,7 @@
                     <% if i.close_date.strftime("%m") == Date.today.strftime("%m") and i.close_date.strftime("%y") == Date.today.strftime("%y") %>
                       <% @count << 1 %>
                       <div class="transactionrow">
-                        <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
+                        <div class="column w30"><%= link_to i.transaction_name[0..24], transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
                         <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
                         <div class="column w8">
                           <% @completed_tasks = i.tasks.where("status = ?", true) %>

@@ -15,7 +15,7 @@
       <div class="tableTransaction">
         <div class="transactionrow">
           <div class="column w5"><div class="icon-pdf"></div></div>
-          <div class="column w30"><% if i.document_file_name.present? %><%= i.document_file_name %><% else %><%= i.id %><% end %> </div>
+          <div class="column w30"><% if i.document_file_name.present? %><%= i.document_file_name[0..24] %><% else %><%= i.id %><% end %> </div>
           <div class="column w12"><div class="icon-comment"></div></div>
           <div class="column w20"><%= current_user.email %> </div>
           <div class="column w20"><%= current_user.created_at %></div>

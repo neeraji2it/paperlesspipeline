@@ -46,7 +46,7 @@
                       <div class="tableTransaction">
                         <div class="transactionrow">
                           <div class="column w5"><div class="icon-pdf"></div></div>
-                          <div class="column w30"><% if doc.document_file_name.present? %><%= doc.document_file_name %><% else %><%= doc.id %><% end %> </div>
+                          <div class="column w30"><% if doc.document_file_name.present? %><%= doc.document_file_name[0..24] %><% else %><%= doc.id %><% end %> </div>
                           <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= doc.id %>')"></div></div>
                           <div class="column w20"><%= current_user.email %></div>
                           <div class="column w20">Dec 19, 12</div>
