@@ -22,7 +22,7 @@
                   <% @transactions.each do |transaction| %>
                     <% if transaction.documents.present? %>
                       <ul class="list-admin">
-                        <li><%= link_to "#{transaction.documents.last.document_file_name}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></li>
+                        <li><%= link_to "#{transaction.documents.last.document_file_name[0..15]}", transaction_path(transaction) %> <br />MLS #: <%= transaction.transaction_number  %></li>
                       </ul>
                     <% end %>
                   <% end %>
