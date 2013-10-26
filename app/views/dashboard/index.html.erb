@@ -100,10 +100,10 @@
   <%= render :partial => "/dashboard/recent_documents_to_assign",:locals=>{:documents=>@recent_documents_to_assign} %>
 
   <%= render :partial => "/dashboard/recent_documents_to_review",:locals=>{:documents=>@recent_documents_to_review} %>
-  
+
   <%= render :partial => "/dashboard/recent_documents_to_enter",:locals=>{:documents=>@recent_documents_to_enter} %>
 
-  <h1><em><%= link_to "", transactions_path, :class=>"btn-viewall"  %></em><%= @transactions.count %> Recent Transactions with Incomplete Checklists</h1>
+  <h1><em><%= link_to "", transactions_path, :class=>"btn-viewall"  %></em><%= @incomplete_checklist_transactions.count %> Recent Transactions with Incomplete Checklists</h1>
   <div class="box">
     <div class="bt">
       <div class="br">
@@ -120,9 +120,9 @@
                   <div class="column">Close Date</div>
                   <div class="column last">Actions</div>
                 </div>
-                <% @transactions.first(3).each do |i| %>
+                <% @incomplete_checklist_transactions.each do |i| %>
                   <div class="transactionrow">
-                    <div class="column w30"><%= link_to i.transaction_name[0..24], transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
+                    <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column"><%= i.status %> <img alt="" title="" src="/assets/spacer.png" /></div>
                     <div class="column w8">
                       <% @completed_tasks = i.tasks.where("status = ?", true) %>
@@ -415,76 +415,72 @@
                   <div class="column">Close Date</div>
                   <div class="column last">Actions</div>
                 </div>
-                <% @transactions.each do |i| %>
-                  <% if i.close_date.present? %>
-                    <% if i.close_date.strftime("%m") == Date.today.strftime("%m") and i.close_date.strftime("%y") == Date.today.strftime("%y") %>
-                      <% @count << 1 %>
-                      <div class="transactionrow">
-                        <div class="column w30"><%= link_to i.transaction_name[0..24], transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column w8">
-                          <% @completed_tasks = i.tasks.where("status = ?", true) %>
-                          <% @tasks = i.tasks  %>
-                          <div class="completebox" onclick="transaction_show(<%=  i.id %>)">
-                            <em class="tooltip-container"><abbr><%= @completed_tasks.count %>/<%= @tasks.count %></abbr>
-                              <strong class="tooltip">
-                                <h6><%= i.transaction_name.first(15) %></h6>
-                                <p>List Price <%= i.list_price %></p>
-                                <h4>Incomplete Task</h4>
-                                <p><span>
-                                    <% if i.checklists.present? %>
-                                      <% i.checklists.each do |c|  %>
-                                        <b><%= c.name %>:</b>
-                                        <% if c.tasks.present? %>
-                                          <% c.tasks.each do |t| %>
-                                            <%= t.name %><br />
-                                          <% end %>
-                                        <% end %>
+                <% @this_month_transactions.each do |i| %>
+                  <% @count << 1 %>
+                  <div class="transactionrow">
+                    <div class="column w30"><%= link_to i.transaction_name[0..24], transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
+                    <div class="column"><%= best_in_place i, :status %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                    <div class="column w8">
+                      <% @completed_tasks = i.tasks.where("status = ?", true) %>
+                      <% @tasks = i.tasks  %>
+                      <div class="completebox" onclick="transaction_show(<%=  i.id %>)">
+                        <em class="tooltip-container"><abbr><%= @completed_tasks.count %>/<%= @tasks.count %></abbr>
+                          <strong class="tooltip">
+                            <h6><%= i.transaction_name.first(15) %></h6>
+                            <p>List Price <%= i.list_price %></p>
+                            <h4>Incomplete Task</h4>
+                            <p><span>
+                                <% if i.checklists.present? %>
+                                  <% i.checklists.each do |c|  %>
+                                    <b><%= c.name %>:</b>
+                                    <% if c.tasks.present? %>
+                                      <% c.tasks.each do |t| %>
+                                        <%= t.name %><br />
                                       <% end %>
-                                    <% end %><br />
-                                    <h4<% @cs = i.checklists.count  %>
-                                      <% @ts = i.tasks.count %>>Recent Notes:</h4>
-                                    <p><span><% if i.notes.present? %>
-                                          <% i.notes.last(2).each do |n| %>
-                                            <%= n.description %><br />
-                                          <% end %>
-                                        <% end %></span></p>
-                                    <i class="top-arrow"></i>
-                              </strong>
-                            </em>
-                          </div>
-                          <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column">
-                          <span class="icon-agent">
-                            <em class="tooltip-container">
-                              <strong class="tooltip">
-                                <ul class="list-tooltip">
-                                  <% @agent = Agent.find_by_transaction_id(i.id) %>
-                                  <% if @agent.present? %><% @user = User.find_by_id(@agent.user_id) %><% end %>
-                                  <li class="alcent"><% if @user.present? %><%= @user.first_name %><% end  %></li>
-                                </ul>
+                                    <% end %>
+                                  <% end %>
+                                <% end %><br />
+                                <h4<% @cs = i.checklists.count  %>
+                                  <% @ts = i.tasks.count %>>Recent Notes:</h4>
+                                <p><span><% if i.notes.present? %>
+                                      <% i.notes.last(2).each do |n| %>
+                                        <%= n.description %><br />
+                                      <% end %>
+                                    <% end %></span></p>
                                 <i class="top-arrow"></i>
-                              </strong>
-                            </em>
-                          </span>
-                          <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column w20"><% if i.location.present? %><%= i.location.name %><% end %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column"><%= i.close_date %> <img alt="" title="" src="/assets/spacer.png" /></div>
-                        <div class="column last">
-                          <span class="btn-action">
-                            <em class="tooltip-container"><span>Action</span>
-                              <strong class="tooltip">
-                                <ul class="list-tooltip">
-                                  <li class="icon-zoomin"><%= link_to "View Transaction", transaction_path(i)  %> </li>
-                                </ul>
-                                <i class="top-arrow"></i>
-                              </strong>
-                            </em>
-                          </span>
-                        </div>
+                          </strong>
+                        </em>
                       </div>
-                    <% end %>
-                  <% end %>
+                      <img alt="" title="" src="/assets/spacer.png" /></div>
+                    <div class="column">
+                      <span class="icon-agent">
+                        <em class="tooltip-container">
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <% @agent = Agent.find_by_transaction_id(i.id) %>
+                              <% if @agent.present? %><% @user = User.find_by_id(@agent.user_id) %><% end %>
+                              <li class="alcent"><% if @user.present? %><%= @user.first_name %><% end  %></li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                      <img alt="" title="" src="/assets/spacer.png" /></div>
+                    <div class="column w20"><% if i.location.present? %><%= i.location.name %><% end %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                    <div class="column"><%= i.close_date %> <img alt="" title="" src="/assets/spacer.png" /></div>
+                    <div class="column last">
+                      <span class="btn-action">
+                        <em class="tooltip-container"><span>Action</span>
+                          <strong class="tooltip">
+                            <ul class="list-tooltip">
+                              <li class="icon-zoomin"><%= link_to "View Transaction", transaction_path(i)  %> </li>
+                            </ul>
+                            <i class="top-arrow"></i>
+                          </strong>
+                        </em>
+                      </span>
+                    </div>
+                  </div>
                 <% end %>
               </div>
               <div class="clearFix"></div>

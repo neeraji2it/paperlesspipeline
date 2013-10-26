@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
     @passed_transactions = Transaction.where("user_id = '#{current_user.id}' and close_date < '#{Date.today}'")
     @previous_month_closed_transaction_total_commission = []
     @previous_month_listing_transactions_total_commission = []
-    @passed_transactions = Transaction.where("user_id = '#{current_user.id}' and close_date < '#{Date.today}'")
+    #@passed_transactions = Transaction.where("user_id = '#{current_user.id}' and close_date < '#{Date.today}'")
     @passed_transactions.each do |i|
       @previous_month_listing_transactions_total_commission << i.total_commission
     end
@@ -48,8 +48,15 @@ class DashboardController < ApplicationController
     @transactions.each do  |i|
       @closed_total_commission << i.total_commission
     end
-    @closing_transactions = Transaction.where("user_id = '#{current_user.id}' and '#{Date.today}' < close_date < '#{Date.today+1.month}'")
-
+    
+    #Incomplete checklists Transations ==========================================
+    @incomplete_checklist_transactions = Transaction.includes(:checklists).where(:checklists=>{:id=>nil})
+    #passed transaction =========================================================
+    @passed_transactins = Transaction.where('user_id =? and close_date <= ?',current_user.id,Date.today)
+    # transaction closes in 30 days==============================================
+    @closing_transactions = Transaction.where("user_id =? and close_date BETWEEN ? and ?",current_user.id,Date.today,Date.today+1.month)
+    #this month transactions=====================================================
+    @this_month_transactions = Transaction.where('user_id =? and created_at BETWEEN ? AND ?', current_user.id,Time.now.beginning_of_month, DateTime.now.end_of_month)
   end
 
 end
