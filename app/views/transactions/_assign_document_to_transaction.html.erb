@@ -84,7 +84,7 @@
       <div class="tableTransaction">
         <div class="transactionrow">
           <div class="column"><div class="icon-pdf"></div></div>
-          <div class="column w30"><%= document.document_file_name %></div>
+          <div class="column w30"><%= document.document_file_name[0..25] %></div>
 
           <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
           <div class="column w13"><%= document.created_at.to_date %></div>
