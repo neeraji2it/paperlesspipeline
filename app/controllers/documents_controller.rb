@@ -147,13 +147,7 @@ class DocumentsController < ApplicationController
     @documents = Document.search "*#{params[:query]}*"
     if request.xhr?
       respond_to do |format|
-        puts "==============================================================="
-        puts params.inspect
-        puts "==============================================================="
         @documents = Document.where("document_file_name = '#{params[:query]}'")
-        puts "==============================================================="
-        puts @documents.inspect
-        puts "==============================================================="
         format.js
       end
     end

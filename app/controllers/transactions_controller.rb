@@ -192,22 +192,19 @@ class TransactionsController < ApplicationController
   end
 
   def assign_document
+    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    puts params.inspect
+    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     @document = Document.find(params[:id])
     @transactions = Transaction.where("user_id = '#{current_user.id}'")
     @recently_updated_transactions = []
-    @transactions.each do |i|
-      if i.present? and i.close_date.present?
-        if i.close_date.strftime("%m") == Date.today.strftime("%m") and i.close_date.strftime("%y") == Date.today.strftime("%y")
-          @recently_updated_transactions << i
-        end
-      end
-    end
+    @recently_updated_transactions = Transaction.where('user_id =? and created_at BETWEEN ? AND ?', current_user.id,Time.now.beginning_of_month, DateTime.now.end_of_month)
   end
   
   def assign_document_to_transaction
-    @transaction = Transaction.find(params[:transaction_id])
+    #@transaction = Transaction.find(params[:transaction_id])
     @document = Document.find(params[:document_id])
-    @document.update_attributes(:transaction_id => @document.id)
+    @document.update_attributes(:transaction_id => params[:transaction_id])
     respond_to do |format|
       @transaction = Transaction.find(params[:transaction_id])
       @document = Document.find(params[:document_id])

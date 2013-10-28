@@ -43,7 +43,8 @@
                             <div class="column w30"><% if document.document_file_name.present? %><%= document.document_file_name[0..24] %><% else %><%= document.id %><% end %></div>
                             <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= document.id %>')"></div></div>
                             <div class="column w20"><%= current_user.email %></div>
-                            <div class="column w20"><%= document.created_at.to_date %></div>
+                          <div class="column w20"><%= document.created_at.to_date %></div>
+                          <%= link_to "Assign", assign_document_transactions_path(:id => document.id) %>
                             <div class="column last">
                               <span class="btn-action admin">
                                 <em class="tooltip-container"><span>Action</span>
@@ -73,9 +74,9 @@
                                   <%= render :partial => "documents/comment",:locals => {:doc => document} %>
                                 </div>
                                 <script>
-                                  $("#cancel_<%= document.id %>").click(function(){
-                                    $("#commentBox_<%= document.id%>").fadeOut('slow');
-                                  })
+                              $("#cancel_<%= document.id %>").click(function() {
+                                $("#commentBox_<%= document.id%>").fadeOut('slow');
+                              })
                                 </script>
                               </div>
                             </div>
@@ -98,15 +99,18 @@
 <div class="clearFix"></div>
 <script type="text/javascript" language="javascript" src="/assets/jquery_002.js"></script>
 <script type="text/javascript" language="javascript">
-  jQuery(document).ready(function () {
-    jQuery('#comment').click(function () {
-      jQuery('#commentBox').slideToggle('slow', function () {})
+  jQuery(document).ready(function() {
+    jQuery('#comment').click(function() {
+      jQuery('#commentBox').slideToggle('slow', function() {
+      })
     });
-    jQuery('#leftColumnShow').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
+    jQuery('#leftColumnShow').click(function() {
+      jQuery('#leftColumn').slideToggle('slow', function() {
+      })
     });
-    jQuery('#closeBox').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
+    jQuery('#closeBox').click(function() {
+      jQuery('#leftColumn').slideToggle('slow', function() {
+      })
     });
   });
 </script>

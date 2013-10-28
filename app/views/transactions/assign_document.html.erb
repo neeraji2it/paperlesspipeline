@@ -27,10 +27,15 @@
                   <% end %>
                 </div>
               </div>
-              
+
             </div>
           </div>
         </div>
+      </div>
+      <div id="assign-document">
+        <% if (params[:controller] == "transactions" && params[:action] == "assign_document" ) %>
+          <%= render :partial => "transactions/assign_doc", :locals => {:document => @document} %>
+        <% end %>
       </div>
       <div class="clearFix"></div>
     </div>
@@ -38,20 +43,19 @@
   <div class="clearFix"></div>
 </div>
 
-<% if (params[:controller] == "transactions" && params[:action] == "assign_document" ) %>
-<%= render :partial => "transactions/assign_doc", :locals => {:document => @document} %>
-<% end %>
 
 
 <%#*<script type="text/javascript" language="javascript" src="/assets/jquery_002.js"></script>%>
 <script type="text/javascript" language="javascript">
-  jQuery(document).ready(function () {
-  jQuery('#leftColumnShow').click(function () {
-  jQuery('#leftColumn').slideToggle('slow', function () {})
-  });
-  jQuery('#closeBox').click(function () {
-  jQuery('#leftColumn').slideToggle('slow', function () {})
-  });
+  jQuery(document).ready(function() {
+    jQuery('#leftColumnShow').click(function() {
+      jQuery('#leftColumn').slideToggle('slow', function() {
+      })
+    });
+    jQuery('#closeBox').click(function() {
+      jQuery('#leftColumn').slideToggle('slow', function() {
+      })
+    });
   });
 
 
