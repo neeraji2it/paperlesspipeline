@@ -22,10 +22,10 @@
 
           <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
           <div class="column w13"><%= document.created_at.to_date %></div>
-          <% if document.reviewed == false %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" /></div>
+          <% if document.reviewed == true %>
+            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" checked="checked" /></div>
           <% else %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" checked="checked" /></div>
+            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')"  /></div>
           <% end %>
           <% if document.entered == false %>
             <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this, '<%= document.id %>')" /></div>

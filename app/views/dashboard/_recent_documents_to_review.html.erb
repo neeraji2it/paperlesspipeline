@@ -1,8 +1,8 @@
 <div class="tableTransaction">
   <% if @recent_documents_to_review.present? %>
-  <b>Documents to review</b>
+    <b>Documents to review</b>
   <% else %>
-  <b>There is no docs to Review</b>
+    <b>There is no docs to Review</b>
   <% end %>
   <h1>
     <div class="column">Info</div>
@@ -22,15 +22,11 @@
 
           <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
           <div class="column w13"><%= document.created_at.to_date %></div>
-          <% if document.reviewed == false %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this,'<%= document.id %>')" /></div>
-          <% else %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this,'<%= document.id %>')" checked="checked" /></div>
-          <% end %>
+            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" /></div>
           <% if document.entered == false %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this,'<%= document.id %>')" /></div>
+            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this, '<%= document.id %>')" /></div>
           <% else %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this,'<%= document.id %>')" checked="checked" /></div>
+            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this, '<%= document.id %>')" checked="checked" /></div>
           <% end %>
           <div class="column last">
             <span class="btn-action transaction">
