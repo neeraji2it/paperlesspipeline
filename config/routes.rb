@@ -51,6 +51,7 @@ Paperlesspipeline::Application.routes.draw do
     end
     member do
       post :update_reviewed
+      post :update_entered
     end
     resources :comments
   end

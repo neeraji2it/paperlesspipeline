@@ -25,9 +25,25 @@ class DocumentsController < ApplicationController
   end
 
   def update_reviewed
+    puts "=========================================================================="
+    puts params.inspect
+    puts "=========================================================================="
     @document = Document.find(params[:id])
-    if @document.update_attributes(:reviewed => params[:reviewed])
+    if @document.update_attributes(:review => params[:reviewed])
+      puts "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
+      puts @document.inspect
+      puts "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
       respond_to do |format|
+        format.js
+      end
+    end
+  end
+  
+  def update_entered
+    @document = Document.find(params[:id])
+    if @document.update_attributes(:entered => params[:entered])
+      respond_to do |format|
+        @document = Document.find(params[:id])
         format.js
       end
     end

@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20130827064910) do
     t.boolean  "reviewed",              :default => false
     t.integer  "transaction_id"
     t.boolean  "review"
+    t.boolean  "entered"
   end
 
   create_table "drag_drops", :force => true do |t|
