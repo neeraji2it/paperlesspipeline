@@ -8,9 +8,9 @@
           <div class="bb">
             <div class="bl">
               <div class="con">
-                <% unless params[:type] != "transaction" %>
-                  <%= f.select :transaction_id, options_for_select(current_user.transactions.map{|trn| [trn.transaction_name,trn.id]}) %>
-                <% end %>
+                <%# unless params[:type] != "transaction" %>
+                  <%#= f.select :transaction_id, options_for_select(current_user.transactions.map{|trn| [trn.transaction_name,trn.id]}) %>
+                <%# end %>
                 <div class="officerow">
                   <p style="float: left;"><%= f.file_field :document, :class => "input-chosen", :title => "Choose a File" %><strong>No File Chosen</strong></p>
                   <div id="droparea">drag here</div>

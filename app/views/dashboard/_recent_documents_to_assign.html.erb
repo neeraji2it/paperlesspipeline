@@ -23,22 +23,18 @@
           <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
           <div class="column w13"><%= document.created_at.to_date %></div>
           <% if document.reviewed == false %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this,'<%= document.id %>')" /></div>
+            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" /></div>
           <% else %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this,'<%= document.id %>')" checked="checked" /></div>
+            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" checked="checked" /></div>
           <% end %>
-          <% if document.entered == false %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this,'<%= document.id %>')" /></div>
-          <% else %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this,'<%= document.id %>')" checked="checked" /></div>
-          <% end %>
+          <%= link_to "Assign", assign_document_transactions_path(:id => document.id),:style=>"margin-left:50px;" %>
           <div class="column last">
             <span class="btn-action transaction">
               <em class="tooltip-container"><span>Action</span>
                 <strong class="tooltip">
                   <ul class="list-tooltip">
                     <li class="icon-download"><%= link_to "Download", download_path(:id => document.id) %></li>
-                    <li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>
+                    <li class="icon-edit"><%= link_to "Assign", assign_document_transactions_path(:id => document.id) %></li>
                     <li class="icon-delete"><%= link_to "Delete", document_path(document), :method => "DELETE" %></li>
                   </ul>
                   <i class="top-arrow"></i>

@@ -1,4 +1,4 @@
-class DocumentsController < ApplicationController
+  class DocumentsController < ApplicationController
   before_filter :parse_raw_upload, :only => :drag_drop
   def index
     #    @documents = Document.where("user_id = #{current_user.id}")
@@ -69,7 +69,7 @@ class DocumentsController < ApplicationController
       if params[:document][:doc_type] == "office"
         redirect_to office_documents_path
       else
-        redirect_to params[:document][:transaction_id].present? ? transaction_path(params[:document][:transaction_id]) : dashboards_path
+        redirect_to working_documents_path
       end
     else
       @document = Document.new(params[:document])
@@ -96,7 +96,7 @@ class DocumentsController < ApplicationController
         if @document.doc_type == "office"
           redirect_to office_documents_path
         else
-          redirect_to params[:document][:transaction_id].present? ? transaction_path(params[:document][:transaction_id]) : dashboards_path
+          redirect_to working_documents_path
         end
       else
         render :action => :new
@@ -124,7 +124,8 @@ class DocumentsController < ApplicationController
 
   def working
     #    @documents = Document.search "*#{params[:query]}*"
-    @documents = Document.where("user_id = '#{current_user.id}' or review = 'true' ")
+    Transaction.where('user_id =? and created_at BETWEEN ? AND ?', current_user.id,Time.now.beginning_of_month, DateTime.now.end_of_month)
+    @documents = Document.where('user_id=? and transaction_id IS NULL ',current_user.id)
     if request.xhr?
       respond_to do |format|
         format.js
