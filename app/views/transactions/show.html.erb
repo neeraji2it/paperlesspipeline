@@ -133,9 +133,9 @@
                           <%= render :partial => "transactions/comment",:locals => {:doc => document} %>
                         </div>
                         <script>
-                          $("#cancel_<%= document.id %>").click(function(){
-                            $("#commentBox_<%= document.id%>").fadeOut('slow');
-                          })
+                            $("#cancel_<%= document.id %>").click(function() {
+                              $("#commentBox_<%= document.id%>").fadeOut('slow');
+                            })
                         </script>
                       </div>
                     <% end %>
@@ -185,15 +185,18 @@
                           <li>
                             <h5>heading</h5>
                             <p><abbr>Jun 5, 13</abbr></p>
-                            <p>We are missing your initials on the bottom of all page of the listing agreement and the fully executed lead base paint addendum, could you please upload the documents to the paperless pipeline for our records and FREC. Thank You DL</p>
-                            <em>Sally Ballew</em>
-                          </li>
-                          <li>
-                            <h5>heading</h5>
-                            <p><abbr>Jun 5, 13</abbr></p>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting of industry. Lorem Ipsum has been the industry's <br/> standard dummytext ever since the 1500s, Lorem Ipsum is simply dummy text of the printing and typesetting<br/> industry. in the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.typesetting industry. </p>
                             <em>Lorem Ipsum</em>
                           </li>
+                          <% @notes = Note.all.first(3) %>
+                          <% @notes.each do |note| %>
+                            <li>
+                              <h5>heading</h5>
+                              <p><abbr>Jun 5, 13</abbr></p>
+                              <p><%= note.description %></p>
+                              <em>Sally Ballew</em>
+                            </li>
+                          <% end %>
                         </ul>
                       </div>
                     </div>
