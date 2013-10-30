@@ -1,9 +1,11 @@
 <div class="tableTransaction">
-  <% if @recent_documents_to_enter.present? %>
-    <b>Documents to Enter</b>
-  <% else %>
-    There is no documents to enter
-  <% end %>
+  <h1>
+    <% if @recent_documents_to_enter.present? %>
+      <b><%= @recent_documents_to_enter.count %> &nbsp&nbsp&nbsp Documents to Enter</b>
+    <% else %>
+      There is no documents to enter
+    <% end %>
+  </h1>
   <h1>
     <div class="column">Info</div>
     <div class="column w30">Listing Docs</div>

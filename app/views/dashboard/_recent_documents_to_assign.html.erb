@@ -1,9 +1,11 @@
 <div class="tableTransaction">
-  <% if @recent_documents_to_assign.present? %>
-    <b>Document to Assign</b>
-  <% else %>
-    <b>There is no docs to assign</b>
-  <% end %>
+  <h1>
+    <% if @recent_documents_to_assign.present? %>
+      <b><%= @recent_documents_to_assign.count %> &nbsp&nbsp&nbsp Document to Assign</b>
+    <% else %>
+      <b>There is no docs to assign</b>
+    <% end %>
+  </h1>
   <h1>
     <div class="column">Info</div>
     <div class="column w30">Listing Docs</div>

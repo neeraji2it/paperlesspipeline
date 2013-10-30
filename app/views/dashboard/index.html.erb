@@ -111,15 +111,19 @@
           <div class="bl">
             <div class="con">
               <div class="tableTransaction">
-                <div class="transactionrow">
-                  <div class="column w30">Transaction</div>
-                  <div class="column">Status</div>
-                  <div class="column w8">Complete</div>
-                  <div class="column">Agents</div>
-                  <div class="column w20">Location</div>
-                  <div class="column">Close Date</div>
-                  <div class="column last">Actions</div>
-                </div>
+                <% if @incomplete_checklist_transactions.present? %>
+                  <h1>
+                    <div class="transactionrow">
+                      <div class="column w30">Transaction</div>
+                      <div class="column">Status</div>
+                      <div class="column w8">Complete</div>
+                      <div class="column">Agents</div>
+                      <div class="column w20">Location</div>
+                      <div class="column">Close Date</div>
+                      <div class="column last">Actions</div>
+                    </div>
+                  </h1>
+                <% end %>
                 <% @incomplete_checklist_transactions.each do |i| %>
                   <div class="transactionrow">
                     <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
@@ -207,15 +211,19 @@
           <div class="bl">
             <div class="con">
               <div class="tableTransaction">
-                <div class="transactionrow">
-                  <div class="column w30">Transaction</div>
-                  <div class="column">Status</div>
-                  <div class="column w8">Complete</div>
-                  <div class="column">Agents</div>
-                  <div class="column w20">Location</div>
-                  <div class="column">Close Date</div>
-                  <div class="column last">Actions</div>
-                </div>
+                <% if @passed_transactions.present? %>
+                  <h1>
+                    <div class="transactionrow">
+                      <div class="column w30">Transaction</div>
+                      <div class="column">Status</div>
+                      <div class="column w8">Complete</div>
+                      <div class="column">Agents</div>
+                      <div class="column w20">Location</div>
+                      <div class="column">Close Date</div>
+                      <div class="column last">Actions</div>
+                    </div>
+                  </h1>
+                <% end %>
                 <% @passed_transactions.first(3).each do |i| %>
                   <div class="transactionrow">
                     <div class="column w30"><%= link_to i.transaction_name[0..24], transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
@@ -306,15 +314,19 @@
           <div class="bl">
             <div class="con">
               <div class="tableTransaction">
-                <div class="transactionrow">
-                  <div class="column w30">Transaction</div>
-                  <div class="column">Status</div>
-                  <div class="column w8">Complete</div>
-                  <div class="column">Agents</div>
-                  <div class="column w20">Location</div>
-                  <div class="column">Close Date</div>
-                  <div class="column last">Actions</div>
-                </div>
+                <% if @closing_transactions.present? %>
+                  <h1>
+                    <div class="transactionrow">
+                      <div class="column w30">Transaction</div>
+                      <div class="column">Status</div>
+                      <div class="column w8">Complete</div>
+                      <div class="column">Agents</div>
+                      <div class="column w20">Location</div>
+                      <div class="column">Close Date</div>
+                      <div class="column last">Actions</div>
+                    </div>
+                  </h1>
+                <% end %>
                 <% @closing_transactions.first(3).each do |i| %>
                   <div class="transactionrow">
                     <div class="column w30"><%= link_to i.transaction_name[0..24], transaction_path(i) %><img alt="" title="" src="/assets/spacer.png" /></div>
@@ -406,15 +418,19 @@
           <div class="bl">
             <div class="con">
               <div class="tableTransaction">
-                <div class="transactionrow">
-                  <div class="column w30">Transaction</div>
-                  <div class="column">Status</div>
-                  <div class="column w8">Complete</div>
-                  <div class="column">Agents</div>
-                  <div class="column w20">Location</div>
-                  <div class="column">Close Date</div>
-                  <div class="column last">Actions</div>
-                </div>
+                <% if @this_month_transactions.present? %>
+                  <h1>
+                    <div class="transactionrow">
+                      <div class="column w30">Transaction</div>
+                      <div class="column">Status</div>
+                      <div class="column w8">Complete</div>
+                      <div class="column">Agents</div>
+                      <div class="column w20">Location</div>
+                      <div class="column">Close Date</div>
+                      <div class="column last">Actions</div>
+                    </div>
+                  </h1>
+                <% end %>
                 <% @this_month_transactions.each do |i| %>
                   <% @count << 1 %>
                   <div class="transactionrow">
@@ -496,15 +512,15 @@
 
 <%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
 <script type="text/javascript" language="javascript">
-                      jQuery(document).ready(function() {
-                        jQuery('#leftColumnShow').click(function() {
-                          jQuery('#leftColumn').slideToggle('slow', function() {
-                          })
+                        jQuery(document).ready(function() {
+                          jQuery('#leftColumnShow').click(function() {
+                            jQuery('#leftColumn').slideToggle('slow', function() {
+                            })
+                          });
+                          jQuery('#closeBox').click(function() {
+                            jQuery('#leftColumn').slideToggle('slow', function() {
+                            })
+                          });
                         });
-                        jQuery('#closeBox').click(function() {
-                          jQuery('#leftColumn').slideToggle('slow', function() {
-                          })
-                        });
-                      });
 
 </script>
