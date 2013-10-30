@@ -188,7 +188,7 @@
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting of industry. Lorem Ipsum has been the industry's <br/> standard dummytext ever since the 1500s, Lorem Ipsum is simply dummy text of the printing and typesetting<br/> industry. in the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.typesetting industry. </p>
                             <em>Lorem Ipsum</em>
                           </li>
-                          <% @notes = Note.last(3) %>
+                          <% @notes = current_user.notes.last(4) %>
                           <% @notes.each do |note| %>
                             <li>
                               <h5>heading</h5>
