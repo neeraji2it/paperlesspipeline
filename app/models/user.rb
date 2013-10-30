@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
   has_many :docuemts, :dependent => :destroy
   has_many :documents, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  has_many :notes,:dependent => :destroy
   belongs_to :locations
-  belongs_to :note
   has_attached_file :avatar, :styles => { :thumb=> "100x100#", :small  => "400x400>" } if (Rails.env == 'development')
   
   has_attached_file :avatar,

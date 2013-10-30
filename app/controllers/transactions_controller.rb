@@ -167,7 +167,7 @@ class TransactionsController < ApplicationController
     @note = Note.new(params[:note])
     @transaction = Transaction.find(params[:note][:transaction_id])
     @note.transaction_id = @transaction.id
-    @user = current_user.id
+    @note.user_id = current_user.id
     @note.save
     flash[:notice]='Note added successfully.'
     respond_to do |format|
@@ -192,9 +192,6 @@ class TransactionsController < ApplicationController
   end
 
   def assign_document
-    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    puts params.inspect
-    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     @document = Document.find(params[:id])
     @transactions = Transaction.where("user_id = '#{current_user.id}'")
     @recently_updated_transactions = []
