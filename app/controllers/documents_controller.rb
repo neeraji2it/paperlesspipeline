@@ -63,7 +63,7 @@
       if params[:document][:doc_type] == "office"
         redirect_to office_documents_path
       else
-        redirect_to working_documents_path
+        redirect_to params[:document][:transaction_id].present? ? transaction_path(params[:document][:transaction_id]) : dashboards_path
       end
     else
       @document = Document.new(params[:document])
@@ -90,7 +90,7 @@
         if @document.doc_type == "office"
           redirect_to office_documents_path
         else
-          redirect_to working_documents_path
+          redirect_to params[:document][:transaction_id].present? ? transaction_path(params[:document][:transaction_id]) : dashboards_path
         end
       else
         render :action => :new
