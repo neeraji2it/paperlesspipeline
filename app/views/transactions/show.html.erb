@@ -106,19 +106,7 @@
                             <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' id="document-reviewed_<%= document.id %>" onclick="update_document_reviewed('<%= document.id %>')" checked="checked" /></div>
                           <% end %>
                           <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
-                          <div class="column last">
-                            <span class="btn-action transaction">
-                              <em class="tooltip-container"><span>Action</span>
-                                <strong class="tooltip">
-                                  <ul class="list-tooltip">
-                                    <li class="icon-zoomin"><a title="View Trasaction" href="#">View Trasaction</a></li>
-                                    <li class="icon-edit"><a title="Edit Trasaction" href="#">Edit Trasaction</a></li>
-                                  </ul>
-                                  <i class="top-arrow"></i>
-                                </strong>
-                              </em>
-                            </span>
-                          </div>
+                          <%= link_to "Assign", assign_document_transactions_path(:id => document.id),:style=>"margin-left:20px;" %>
                         </div>
                       </div>
                       <div class="commentBox" id="commentBox_<%= document.id %>" style="display:none">

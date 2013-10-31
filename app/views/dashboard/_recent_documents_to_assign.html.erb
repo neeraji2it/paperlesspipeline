@@ -24,11 +24,7 @@
 
           <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
           <div class="column w13"><%= document.created_at.to_date %></div>
-          <% if document.reviewed == false %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" /></div>
-          <% else %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" checked="checked" /></div>
-          <% end %>
+            <div class="column w13"><input title="Reviewed" type='checkbox' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" <%= document.review == true ? 'checked="true"' : '' %> /></div>
           <%= link_to "Assign", assign_document_transactions_path(:id => document.id),:style=>"margin-left:50px;" %>
           <div class="column last">
             <span class="btn-action transaction">

@@ -201,7 +201,7 @@ class TransactionsController < ApplicationController
   def assign_document_to_transaction
     #@transaction = Transaction.find(params[:transaction_id])
     @document = Document.find(params[:document_id])
-    @document.update_attributes(:transaction_id => params[:transaction_id])
+    @document.update_attributes(:transaction_id => params[:transaction_id],:assigned=>true)
     respond_to do |format|
       @transaction = Transaction.find(params[:transaction_id])
       @document = Document.find(params[:document_id])

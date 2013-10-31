@@ -24,12 +24,8 @@
 
           <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
           <div class="column w13"><%= document.created_at.to_date %></div>
-          <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" /></div>
-          <% if document.entered == false %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this, '<%= document.id %>')" /></div>
-          <% else %>
-            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this, '<%= document.id %>')" checked="checked" /></div>
-          <% end %>
+          <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')"  /></div>
+          <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this, '<%= document.id %>')" <%= document.entered == true ? 'checked="true"' : '' %> /></div>
           <div class="column last">
             <span class="btn-action transaction">
               <em class="tooltip-container"><span>Action</span>

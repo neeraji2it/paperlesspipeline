@@ -1,0 +1,12 @@
+<% ["Engages","Married","Separated","Widowed"].each do |s| %>
+  <input id="checkbox_box_1" type="checkbox" name="intake_form[status][]" value="<%= s %>" /><label for="checkbox_box_1" class="cssLabel"><span></span>Engages</label>
+<% end %>
+
+<% ["Engages","Married","Widowed"].each do |s| %>
+  <input type="checkbox" name="intake_form[status][]" value="<%= s %>"/><%= s %>
+<% end %>
+              
+              
+              
+              
+              

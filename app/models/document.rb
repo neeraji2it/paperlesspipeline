@@ -3,7 +3,7 @@ class Document < ActiveRecord::Base
   belongs_to :location
   belongs_to :transaction
   attr_accessible :user_id, :document,:location_id,:document_type, :document_file_name,
-    :review, :transaction_id, :doc_type, :entered
+    :review, :transaction_id, :doc_type, :entered,:assigned
   has_attached_file :document, :styles => {:medium => "300x300>", :thumb => "100x100>"}
   has_many :comments, :dependent => :destroy
 

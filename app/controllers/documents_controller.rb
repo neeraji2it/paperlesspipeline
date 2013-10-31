@@ -118,8 +118,7 @@
 
   def working
     #    @documents = Document.search "*#{params[:query]}*"
-    Transaction.where('user_id =? and created_at BETWEEN ? AND ?', current_user.id,Time.now.beginning_of_month, DateTime.now.end_of_month)
-    @documents = Document.where('user_id=? and transaction_id IS NULL ',current_user.id)
+    @documents = Document.where('user_id=?',current_user.id)
     if request.xhr?
       respond_to do |format|
         format.js

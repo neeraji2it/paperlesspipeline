@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130827064910) do
+ActiveRecord::Schema.define(:version => 20131031074141) do
 
   create_table "agents", :force => true do |t|
     t.integer  "transaction_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130827064910) do
     t.integer  "transaction_id"
     t.boolean  "review"
     t.boolean  "entered"
+    t.boolean  "assigned"
   end
 
   create_table "drag_drops", :force => true do |t|

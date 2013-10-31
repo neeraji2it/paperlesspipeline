@@ -31,7 +31,7 @@ namespace :deploy do
   end
 end
 
-  desc "restart external services"
-  task :db_migrations do
-    run "cd #{current_release} && rake db:migrate Rails.env=staging && rake db:seed Rails.env=staging"
-  end
+#  desc "restart external services"
+#  task :db_migrations do
+#    run "cd #{current_release} && rake db:migrate Rails.env=staging && rake db:seed Rails.env=staging"
+#  end
