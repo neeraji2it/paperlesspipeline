@@ -44,15 +44,15 @@
   end
 
   def create
-    @locations = Location.all
+#    @locations = Location.all
     @doc = DragDrop.new
     if params[:document][:document].blank? and session[:doc_ids] != nil
       session[:doc_ids].each do |doc_id|
         @drag_drop = DragDrop.find(doc_id)
         @document = Document.new(:document => @drag_drop.document)
         @document.user_id = current_user.id
-        @document.location_id = params[:document][:location_id]
-        @document.transaction_id = params[:document][:transaction_id]
+#        @document.location_id = params[:document][:location_id]
+#        @document.transaction_id = params[:document][:transaction_id]
         @document.doc_type = params[:document][:doc_type]
         @document.reviewed="false"
         @document.save
@@ -63,13 +63,13 @@
       if params[:document][:doc_type] == "office"
         redirect_to office_documents_path
       else
-        redirect_to params[:document][:transaction_id].present? ? transaction_path(params[:document][:transaction_id]) : dashboards_path
+        redirect_to working_documents_path
       end
     else
       @document = Document.new(params[:document])
       @document.user_id = current_user.id
-      @document.location_id = params[:document][:location_id]
-      @document.transaction_id = params[:document][:transaction_id]
+#      @document.location_id = params[:document][:location_id]
+#      @document.transaction_id = params[:document][:transaction_id]
       @document.doc_type = params[:document][:doc_type]
       if @document.save
         flash[:notice] = "Document Successfully uploaded."
@@ -78,8 +78,8 @@
             @drag_drop = DragDrop.find(doc_id)
             @document = Document.new(:document => @drag_drop.document)
             @document.user_id = current_user.id
-            @document.location_id = params[:document][:location_id]
-            @document.transaction_id = params[:document][:transaction_id]
+#            @document.location_id = params[:document][:location_id]
+#            @document.transaction_id = params[:document][:transaction_id]
             @document.doc_type = params[:document][:doc_type]
             @document.save
             flash[:notice] = "Document Successfully uploaded."
@@ -90,7 +90,7 @@
         if @document.doc_type == "office"
           redirect_to office_documents_path
         else
-          redirect_to params[:document][:transaction_id].present? ? transaction_path(params[:document][:transaction_id]) : dashboards_path
+          redirect_to working_documents_path
         end
       else
         render :action => :new
@@ -118,7 +118,7 @@
 
   def working
     #    @documents = Document.search "*#{params[:query]}*"
-    @documents = Document.where('user_id=?',current_user.id)
+    @documents = Document.where('user_id=? && doc_type=?',current_user.id, 'transaction')
     if request.xhr?
       respond_to do |format|
         format.js

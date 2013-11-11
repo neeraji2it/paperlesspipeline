@@ -6,7 +6,7 @@ class Document < ActiveRecord::Base
     :review, :transaction_id, :doc_type, :entered,:assigned
   has_attached_file :document, :styles => {:medium => "300x300>", :thumb => "100x100>"}
   has_many :comments, :dependent => :destroy
-
+  validates_attachment_presence :document
   before_post_process :resize_images
   
   # Helper method to determine whether or not an attachment is an image.

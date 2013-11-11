@@ -9,45 +9,43 @@
   <%= current_user.photo_file_name %>
 </div>
 <div style="margin-left:145px;">
-     <h3><b> Admin & Tech Support </b></h3>
-     <%= current_user.name %><br />
-     <%= current_user.email %>
+  <h3><b> Admin & Tech Support </b></h3>
+  <%= current_user.name %>
 </div>
 
 <div style="margin-left:145px;">
-     <h3><b> Your Info  </b></h3>
-       <%= current_user.name %><br />
-       <%= current_user.email %>
+  <h3><b> Your Info  </b></h3>
+  <%= current_user.name %>
 </div>
 
 
 
 <div style="margin-left:145px;">
-     <h3><b>Statistics</b></h3>
-     <table cellpadding="5px">
-       <tr>
-         <td>Transactions</td>
-         <td><%= current_user.transactions.count %></td>
-       </tr>
-       <tr>
-         <td>Documents</td>
-         <td><%= current_user.documents.count %></td>
-       </tr>
-       <tr>
-         <td>Working Docs</td>
-         <td><%= current_user.documents.count %></td>
-       </tr>
-       <tr>
-         <td>Office Docs</td>
-         <td><%= current_user.documents.count %></td>
-       </tr>
-       <tr>
-         <td>Users</td>
-         <td><%= 1 %></td>
-       </tr>
-       <tr>
-         <td>Locations</td>
-         <td><%= current_user.locations.count %></td>
-       </tr>
-     </table>
+  <h3><b>Statistics</b></h3>
+  <table cellpadding="5px">
+    <tr>
+      <td>Transactions</td>
+      <td><%= current_user.transactions.count %></td>
+    </tr>
+    <tr>
+      <td>Documents</td>
+      <td><%= current_user.documents.count %></td>
+    </tr>
+    <tr>
+      <td>Working Docs</td>
+      <td><%= current_user.documents.count %></td>
+    </tr>
+    <tr>
+      <td>Office Docs</td>
+      <td><%= current_user.documents.count %></td>
+    </tr>
+    <tr>
+      <td>Users</td>
+      <td><%= 1 %></td>
+    </tr>
+    <tr>
+      <td>Locations</td>
+      <td><%= current_user.locations.count %></td>
+    </tr>
+  </table>
 </div>

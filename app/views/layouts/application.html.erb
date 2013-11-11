@@ -50,7 +50,7 @@
               <li class=<%= (params[:controller] == "dashboard" ? "active" : "") %>><%= link_to "<span>Dashboard</span>".html_safe, dashboard_index_path %></li>
               <li class=<%= (params[:controller] == "transactions" ? "active" : "") %>><%= link_to "<span>Transaction</span>".html_safe, transactions_path %></li>
               <li class=<%= (params[:controller] == "tasks" ? "active" : "") %>><%= link_to "<span>Tasks</span>".html_safe, tasks_path %></li>
-              <li class=<%= (params[:controller] == "documents" && params[:action] == "working" ? "active" : "") %>><%= link_to "<span>Working</span>".html_safe, working_documents_path %></li>
+              <li class=<%= ((params[:controller] == "documents" && params[:action] == "working") || params[:type] == 'transaction' ? "active" : "") %>><%= link_to "<span>Working</span>".html_safe, working_documents_path %></li>
               <li class=<%= (params[:controller] == "documents" && params[:action] == "unreviewed" ? "active" : "") %>><%= link_to "<span>Unreviewed</span>".html_safe, unreviewed_documents_path %></li>
               <li class=<%= (params[:controller] == "documents" && params[:action] == "office" ? "active" : "") %>><%= link_to "<span>Office</span>".html_safe, office_documents_path %></li>
             <% else %>

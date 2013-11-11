@@ -1,51 +1,21 @@
 <div class="contentbox">
   <%= form_for @document do |f| %>
     <%= hidden_field_tag "doc_ids[]" %>
-    <h1>Upload <%= params[:type] == "transaction" ? "Transaction" : "Office" %> Documents</h1>
+    <h1>Upload <%= params[:type] == "transaction" ? "" : "Office" %> Documents</h1>
     <div class="box">
       <div class="bt">
         <div class="br">
           <div class="bb">
             <div class="bl">
               <div class="con">
-                <% unless params[:type] != "transaction" %>
-                  <%= f.select :transaction_id, options_for_select(current_user.transactions.map{|trn| [trn.transaction_name,trn.id]}) %>
-                <% end %>
                 <div class="officerow">
-                  <p style="float: left;"><%= f.file_field :document, :class => "input-chosen", :title => "Choose a File" %><strong>No File Chosen</strong></p>
+                  <p style="float: left;"><%= f.file_field :document, :class => "input-chosen", :title => "Choose a File" %><%= validation_error(@document.errors["document"]) %></p>
                   <div id="droparea">drag here</div>
                   <%= f.hidden_field :doc_type, :value => params[:type] != nil ? params[:type] : @document.doc_type  %>
                 </div>
-                <div class="contentbox">
-                  <h1>
-                    <div class="column w40"> Name</div>
-                    <div class="column w40">Category</div>
-                    <div class="column columnDisplay">Location</div>
-                  </h1>
-                  <div class="box">
-                    <div class="bt">
-                      <div class="br">
-                        <div class="bb">
-                          <div class="bl">
-                            <div class="con">
-                              <div class="officerow">
-                                <div class="column w40"><%= f.text_field :document_file_name, :class => "min-input", :type => "text", :title => "Document Name" %></div>
-                                <div class="column w40">
-                                  <%= f.select :document_type, %w(sale private listing), :title => "Choose a Category" %>
-                                </div>
-                                <div class="column columnDisplay2"><%= f.select :location_id, options_for_select(@locations.collect{|l| [l.name, l.id]}), :class => "micro-input" %></div>
-                              </div>
-                              <p>
-                                <%= f.submit "Document", :class => "btn-upload" %>
-                              </p>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <p>
+                  <%= f.submit "Document", :class => "btn-upload" %>
+                </p>
               </div>
             </div>
           </div>

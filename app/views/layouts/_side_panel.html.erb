@@ -3,7 +3,7 @@
   <div id="closeBox">Close</div>
   <% if (params[:controller] == "transactions" && params[:action] == "index" || params[:action] == 'assign_document' || params[:action] == 'assign_document_to_transaction' || params[:action] == "advance_search" || params[:action] == "filter" || params[:action] == "edit") %>
     <ul class="leftmenu">
-      <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
+      <li class="icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
       <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
       <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
       <li class="icon-admin"><%= link_to "admin", admin_user_path(current_user) %></li>
@@ -65,10 +65,10 @@
         </div>
       </div>
     </div>
-  <% elsif (params[:controller] == "documents" && params[:action] == "working")  %>
+  <% elsif (params[:controller] == "documents" && params[:action] == "working") || (params[:type] == "transaction" )  %>
     <ul class="leftmenu">
-      <li class="icon-upload-documents"><%= link_to "Upload Documents", new_document_path(:type => "transaction") %></li>
-      <li class="icon-upload-docs-by-email active"><a title="Upload Docs by Email" href="#">Upload Docs by Email</a></li>
+      <li class="icon-upload-documents <%= (params[:controller] == "documents" && params[:action] == 'new') ? 'active' : '' %>"><%= link_to "Upload Documents", new_document_path(:type => "transaction") %></li>
+      <li class="icon-upload-docs-by-email"><a title="Upload Docs by Email" href="#">Upload Docs by Email</a></li>
       <li class="icon-help"><a title="Help" href="#">Help</a></li>
     </ul>
     <div class="contentbox">
@@ -159,7 +159,7 @@
     </div>
   <% elsif params[:controller] == "transactions" && (params[:action] == "show") %>
     <ul class="leftmenu">
-      <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
+      <li class="icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
       <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
       <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
       <li class="icon-admin"><%= link_to "admin", admin_user_path(current_user) %></li>
@@ -222,7 +222,7 @@
   
   <% elsif params[:controller] == "dashboard" || params[:controller] == "documents" || (params[:controller] == "users" && (params[:action] == "admin" || params[:action] == "manage_users" || params[:action] == "manage_locations" )) || params[:controller] == "checklists" %>
     <ul class="leftmenu">
-      <li class="active icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
+      <li class="icon-new-transactions"><%= link_to "New Transaction", new_transaction_path %></li>
       <li class="icon-upload-documents"><%= link_to "Upload Docs", new_document_path(:type => "transaction") %></li>
       <li class="icon-profile"><%= link_to "Profile", edit_user_registration_path(current_user) %></li>
       <li class="icon-admin"><%= link_to "admin", manage_locations_user_path(current_user.id) %></li>
@@ -238,7 +238,6 @@
               <div class="bl">
                 <div class="con">
                   <ul class="list-admin">
-                    <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
                     <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
                   </ul>
                   <div class="clearFix"></div>
@@ -258,7 +257,6 @@
               <div class="bl">
                 <div class="con">
                   <ul class="list-admin">
-                    <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
                     <li><a title="<%= current_user.email %>" href="#"><%= current_user.email %></a></li>
                     <li><a title="<%= current_user.role %>" href="#"><%= current_user.role %></a></li>
                   </ul>
