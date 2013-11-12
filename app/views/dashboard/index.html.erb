@@ -98,11 +98,12 @@
 <div class="contentbox">
 
   <%= render :partial => "/dashboard/recent_documents_to_assign",:locals=>{:documents=>@recent_documents_to_assign} %>
-
-  <%= render :partial => "/dashboard/recent_documents_to_review",:locals=>{:documents=>@recent_documents_to_review} %>
-
-  <%= render :partial => "/dashboard/recent_documents_to_enter",:locals=>{:documents=>@recent_documents_to_enter} %>
-
+  <% unless !@recent_documents_to_review.present? %>
+    <%= render :partial => "/dashboard/recent_documents_to_review",:locals=>{:documents=>@recent_documents_to_review} %>
+  <% end %>
+  <% unless !@recent_documents_to_enter.present? %>
+    <%= render :partial => "/dashboard/recent_documents_to_enter",:locals=>{:documents=>@recent_documents_to_enter} %>
+  <% end %>
   <h1><em><%= link_to "", transactions_path, :class=>"btn-viewall"  %></em><%= @incomplete_checklist_transactions.count %> Recent Transactions with Incomplete Checklists</h1>
   <div class="box">
     <div class="bt">

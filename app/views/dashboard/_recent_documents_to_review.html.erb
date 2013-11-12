@@ -20,8 +20,7 @@
       <div class="tableTransaction">
         <div class="transactionrow">
           <div class="column"><div class="icon-pdf"></div></div>
-          <div class="column w30"><%= document.document_file_name[0..24] %></div>
-
+          <div class="column w30"><%= link_to_function document.document_file_name[0..24], "Pdfshow(#{document.id})" %></div>
           <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
           <div class="column w13"><%= document.created_at.to_date %></div>
           <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')"  /></div>
@@ -41,6 +40,9 @@
             </span>
           </div>
         </div>
+      </div>
+      <div id="pdf_show_<%= document.id %>" style="display:none">
+        <iframe src="http://docs.google.com/gview?url=<%= BASE_URL + document.document.url %>&embedded=true" style="width:980px; height:500px;" frameborder="0"></iframe>
       </div>
       <div class="commentBox" id="commentBox_<%= document.id %>" style="display:none">
         <%= form_for :comment, :url => add_comment_transactions_path, :method => 'POST', :remote => true do |f| %>

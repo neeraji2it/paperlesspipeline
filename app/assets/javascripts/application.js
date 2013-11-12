@@ -143,6 +143,11 @@ function show_commentbox(doc_id) {
     })
 }
 
+function Pdfshow(doc_id){
+    jQuery('#pdf_show_' + doc_id).slideToggle('slow', function() {
+    })
+}
+
 jQuery(document).ready(function() {
     jQuery('#leftColumnShow').click(function() {
         jQuery('#leftColumn').slideToggle('slow', function() {
