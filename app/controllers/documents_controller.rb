@@ -118,7 +118,7 @@
 
   def working
     #    @documents = Document.search "*#{params[:query]}*"
-    @documents = Document.where('user_id=? && doc_type=?',current_user.id, 'transaction')
+    @documents = Document.where("user_id=? && doc_type=? && (assigned IS NULL or assigned = #{false})",current_user.id, 'transaction')
     if request.xhr?
       respond_to do |format|
         format.js
@@ -153,7 +153,7 @@
     #@users = User.search "*#{params[:search]}*"
     #    @documents = Document.search "*#{params[:search]}*"
     @transactions = Transaction.search "*#{params[:search]}*"
-    @docs = Document.where("user_id = '#{current_user.id}'")
+    @docs = Document.where("user_id = '#{current_user.id}' && doc_type='office'")
     @documents = Document.search "*#{params[:query]}*"
     if request.xhr?
       respond_to do |format|
@@ -164,7 +164,7 @@
   end
 
   def unreviewed
-    @documents = Document.where("user_id = '#{current_user.id}' and reviewed = false ")
+    @documents = Document.where("(review IS NULL or review = #{false}) and assigned = #{true} and user_id=#{current_user.id}")
     if request.xhr?
       @documents = Document.where("document_file_name = '#{params[:document_file_name]}' ")
       respond_to do |format|

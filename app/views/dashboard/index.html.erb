@@ -96,8 +96,9 @@
   </div>
 </div>
 <div class="contentbox">
-
-  <%= render :partial => "/dashboard/recent_documents_to_assign",:locals=>{:documents=>@recent_documents_to_assign} %>
+  <% unless !@recent_documents_to_assign.present? %>
+    <%= render :partial => "/dashboard/recent_documents_to_assign",:locals=>{:documents=>@recent_documents_to_assign} %>
+  <% end %>
   <% unless !@recent_documents_to_review.present? %>
     <%= render :partial => "/dashboard/recent_documents_to_review",:locals=>{:documents=>@recent_documents_to_review} %>
   <% end %>

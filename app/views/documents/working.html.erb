@@ -23,9 +23,7 @@
                 </div>
               </div>
               <div id="searched-documents">
-                <p>Only active Documents are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></p>
                 <div class="contentbox">
-
                   <h1>
                     <div class="column w5">Info</div>
                     <div class="column w30">Contract Forms</div>
@@ -40,11 +38,11 @@
                         <div class="tableTransaction">
                           <div class="transactionrow">
                             <div class="column w5"><div class="icon-pdf"></div></div>
-                            <div class="column w30"><% if document.document_file_name.present? %><%= document.document_file_name[0..24] %><% else %><%= document.id %><% end %></div>
+                            <div class="column w30"><% if document.document_file_name.present? %><%= link_to_function document.document_file_name[0..24], "Pdfshow(#{document.id})" %><% else %><%= document.id %><% end %></div>
                             <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= document.id %>')"></div></div>
                             <div class="column w20"><%= current_user.email %></div>
-                          <div class="column w20"><%= document.created_at.to_date %></div>
-                          <%= link_to "Assign", assign_document_transactions_path(:id => document.id) %>
+                            <div class="column w20"><%= document.created_at.to_date %></div>
+                            <%= link_to "Assign", assign_document_transactions_path(:id => document.id) %>
                             <div class="column last">
                               <span class="btn-action admin">
                                 <em class="tooltip-container"><span>Action</span>
@@ -59,6 +57,9 @@
                                   </strong>
                                 </em>
                               </span>
+                            </div>
+                            <div id="pdf_show_<%= document.id %>" style="display:none">
+                              <iframe src="http://docs.google.com/gview?url=<%= BASE_URL + document.document.url %>&embedded=true" style="width:950px; height:500px;" frameborder="0"></iframe>
                             </div>
                             <div class="commentBox" id="commentBox_<%= document.id %>" style="display:none">
                               <div id="comment-new-and-show">

@@ -96,18 +96,30 @@
                       <div class="tableTransaction">
                         <div class="transactionrow">
                           <div class="column"><div class="icon-pdf"></div></div>
-                          <div class="column w30"><%= document.document_file_name[0..24] %></div>
+                          <div class="column w30"><%= link_to_function document.document_file_name[0..24], "Pdfshow(#{document.id})" %></div>
 
                           <div class="column w12"><div id="comment" class="icon-comment" onclick ="show_commentbox('<%= document.id %>')"></div></div>
                           <div class="column w13"><%= document.created_at.to_date %></div>
-                          <% if document.reviewed == false %>
-                            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' id="document-reviewed_<%= document.id %>" onclick="update_document_reviewed('<%= document.id %>')" /></div>
-                          <% else %>
-                            <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' id="document-reviewed_<%= document.id %>" onclick="update_document_reviewed('<%= document.id %>')" checked="checked" /></div>
-                          <% end %>
-                          <div class="column w13"><input title="Reviewed" type="checkbox" /></div>
-                          <%= link_to "Assign", assign_document_transactions_path(:id => document.id),:style=>"margin-left:20px;" %>
+                          <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.reviewed %>' onclick="update_document_reviewed(this, '<%= document.id %>')" <%= document.review == true ? 'checked="true"' : '' %> /></div>
+                          <div class="column w13"><input title="Reviewed" type='checkbox' name='checkbox[]' value='<%= document.entered %>' onclick="update_document_entered(this, '<%= document.id %>')" <%= document.entered == true ? 'checked="true"' : '' %> /></div>
+                          <div class="column last">
+                            <span class="btn-action transaction">
+                              <em class="tooltip-container"><span>Action</span>
+                                <strong class="tooltip">
+                                  <ul class="list-tooltip">
+                                    <li class="icon-download"><%= link_to "Download", download_path(:id => document.id) %></li>
+                                    <li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>
+                                    <li class="icon-delete"><%= link_to "Delete", document_path(document), :method => "DELETE" %></li>
+                                  </ul>
+                                  <i class="top-arrow"></i>
+                                </strong>
+                              </em>
+                            </span>
+                          </div>
                         </div>
+                      </div>
+                      <div id="pdf_show_<%= document.id %>" style="display:none">
+                        <iframe src="http://docs.google.com/gview?url=<%= BASE_URL + document.document.url %>&embedded=true" style="width:950px; height:500px;" frameborder="0"></iframe>
                       </div>
                       <div class="commentBox" id="commentBox_<%= document.id %>" style="display:none">
                         <%= form_for :comment, :url => add_comment_transactions_path, :method => 'POST', :remote => true do |f| %>
@@ -170,16 +182,9 @@
                     <div class="tableTransaction transactionDetail">
                       <div class="con">
                         <ul class="list-comment">
-                          <li>
-                            <h5>heading</h5>
-                            <p><abbr>Jun 5, 13</abbr></p>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting of industry. Lorem Ipsum has been the industry's <br/> standard dummytext ever since the 1500s, Lorem Ipsum is simply dummy text of the printing and typesetting<br/> industry. in the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.typesetting industry. </p>
-                            <em>Lorem Ipsum</em>
-                          </li>
                           <% @notes = current_user.notes.last(4) %>
                           <% @notes.each do |note| %>
                             <li>
-                              <h5>heading</h5>
                               <p><abbr><%= note.created_at.strftime("%b %e,%Y") %></abbr></p>
                               <p><%= note.description %></p>
                               <em><%if note.user.present? %><%= note.user.email %><% end %></em>

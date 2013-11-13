@@ -25,7 +25,6 @@
                 </div>
               </div>
               <div id="documents-search">
-                <p>Only active Documents are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></p>
                 <% if @comment.errors.any? %>
                   <% @comment.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
@@ -46,7 +45,7 @@
                       <div class="tableTransaction">
                         <div class="transactionrow">
                           <div class="column w5"><div class="icon-pdf"></div></div>
-                          <div class="column w30"><% if doc.document_file_name.present? %><%= doc.document_file_name[0..24] %><% else %><%= doc.id %><% end %> </div>
+                          <div class="column w30"><% if doc.document_file_name.present? %><%= link_to_function doc.document_file_name[0..24], "Pdfshow(#{doc.id})" %><% else %><%= doc.id %><% end %> </div>
                           <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= doc.id %>')"></div></div>
                           <div class="column w20"><%= current_user.email %></div>
                           <div class="column w20">Dec 19, 12</div>
@@ -68,7 +67,9 @@
                             </span>
                           </div>
 
-
+                          <div id="pdf_show_<%= doc.id %>" style="display:none">
+                            <iframe src="http://docs.google.com/gview?url=<%= BASE_URL + doc.document.url %>&embedded=true" style="width:950px; height:500px;" frameborder="0"></iframe>
+                          </div>
 
 
                           <div class="commentBox" id="commentBox_<%= doc.id %>" style="display:none">
@@ -84,9 +85,9 @@
                                 <%= render :partial => "documents/comment",:locals => {:doc => doc} %>
                               </div>
                               <script>
-                                $("#cancel_<%= doc.id %>").click(function(){
-                                  $("#commentBox_<%= doc.id%>").fadeOut('slow');
-                                })
+                            $("#cancel_<%= doc.id %>").click(function() {
+                              $("#commentBox_<%= doc.id%>").fadeOut('slow');
+                            })
                               </script>
                             </div>
                           </div>
