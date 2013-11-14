@@ -27,7 +27,11 @@
                   <% end %>
                 </div>
               </div>
-              <div class="officerow">Only active transactions are shown below. <a class="link-viewall" title="View all &rarr;" href="#">View all &rarr;</a></div>
+              <% if params[:sort] == "all" %>
+                <div class="officerow">Showing all transactions. <%= link_to "View active transactions &rarr;".html_safe, transactions_path, :class=>"link-viewall", :title => "View active transactions &rarr;".html_safe  %></div>
+              <% else %>
+                <div class="officerow">Only active transactions are shown below. <%= link_to "View all &rarr;".html_safe, transactions_path(:sort => 'all'), :class=>"link-viewall", :title => "View all &rarr;".html_safe  %></div>
+              <% end %>
               <div class="contentbox search_results">
                 <h1>
                   <div class="column w30">Transaction</div>
@@ -115,14 +119,16 @@
 
 <%#*<script type="text/javascript" language="javascript" src="/assets/jquery_002.js"></script>%>
 <script type="text/javascript" language="javascript">
-  jQuery(document).ready(function () {
-    jQuery('#leftColumnShow').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
-    });
-    jQuery('#closeBox').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
-    });
-  });
+                            jQuery(document).ready(function() {
+                              jQuery('#leftColumnShow').click(function() {
+                                jQuery('#leftColumn').slideToggle('slow', function() {
+                                })
+                              });
+                              jQuery('#closeBox').click(function() {
+                                jQuery('#leftColumn').slideToggle('slow', function() {
+                                })
+                              });
+                            });
 
 
 </script>
