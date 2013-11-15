@@ -98,6 +98,7 @@ class TransactionsController < ApplicationController
       def show
         @note = Note.new
         @transaction = Transaction.find(params[:id])
+        @notes = @transaction.notes.order("created_at DESC") 
         @contacts = @transaction.contacts
         @total_tran_tasks = @transaction.tasks
         @completed_tasks = @transaction.tasks.where("status = ?", true)

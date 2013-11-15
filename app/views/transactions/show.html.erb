@@ -182,7 +182,6 @@
                     <div class="tableTransaction transactionDetail">
                       <div class="con">
                         <ul class="list-comment">
-                          <% @notes = current_user.notes.last(4) %>
                           <% @notes.each do |note| %>
                             <li>
                               <p><abbr><%= note.created_at.strftime("%b %e,%Y") %></abbr></p>
