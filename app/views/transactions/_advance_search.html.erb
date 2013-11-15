@@ -1,7 +1,8 @@
 <div class="box">
   <div class="tableTransaction">
-    <div class="transactionrow">
-      <% @transactions.each do |transaction| %>
+    <% @transactions.each do |transaction| %>
+      <div class="transactionrow">
+
         <div class="column w30"><%= link_to transaction.transaction_name, transaction_path(transaction) %></div>
         <div class="column"><%= transaction.status %></div>
         <div class="column w11">
@@ -25,9 +26,9 @@
                       <% end %>
                     <% end %><br />
 
-                    <h4<% @cs = transaction.checklists.count  %>
+                    <h4><% @cs = transaction.checklists.count  %>
                       <% @ts = transaction.tasks.count %>>Recent Notes:</h4>
-                    <p><span><% if i.notes.present? %>
+                    <p><span><% if transaction.notes.present? %>
                           <% transaction.notes.last(2).each do |n| %>
                             <%= n.description %><br />
                           <% end %>
@@ -54,9 +55,7 @@
             </em>
           </span>
         </div>
-      <% end %>
-    </div>
-
-
+      </div>
+    <% end %>
   </div>
 </div>

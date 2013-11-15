@@ -15,10 +15,8 @@
                   <%= link_to "Filter", filter_transactions_path, :class => "btn-filter", :title => "Filter", :value => "Filter", :type => "submit" %>
                   <ul class="list-advanceSearch">
                     <%= form_for '', :url => advance_search_transactions_path, :method => "GET", :remote => true do |f| %>
-
                       <p>Advance Search</p>
-                      <input title="Advance Search" placeholder="Search by Address, Agents or MLS" type="text" />
-
+                      <%= f.text_field :name, :placeholder => "Search by Address, Agents or MLS", :title => "Advance Search" %>
                       <br />
                       <li>
                         <p>Close date start (m/d/yyyy)</p>
@@ -30,7 +28,14 @@
                       </li>
                       <li>
                         <p>Status</p>
-                        <%= f.text_field :status, :title => "Any Status", :placeholder => "Any Status", :type => "text" %>
+                        <%= f.select :status, options_for_select(["Any status", "Active ", "Active", "Agencey Agreement", "Buyer Agreement", "Prospective", "Working",
+                            "Listing ", "Listing", "Listing for Review", "Listing -Short sale",
+                            "Pending ", "Contingent", "Contigent-Escrow Cancelling","Escrow", "In Contract", "Lease for Review", "Offer Pending", "Pending", "Pending for Review", "Pending Reviewed", "Pending-Short Sale", "Rental Pending", "Under Contract",
+                            "Other ", "Agent_exit","Agent File", "Attorny Review", "Backup Offer", "Bank Owned","Commercial Property","CREST","Duplicate","Excess","Firm","Lawyer Info","Lease Contract","Lease Option", "Lease / Purchase","MLS","Office Use","Off Market","Property Management","Referral","Short Sale","Showing Desk","Subject","Temporarily Off Market",
+                            "Closed " "Closed","Closed-Need Requirements","Leased","Payout","Payout/Follow-up","Payout/Pre-Process","Payout to Review",
+                            "Fell Through ","Cancelled","Deal Fell Through","Fell Through","Rejected","Terminated",
+                            "Auto Expiry ", "Expired/Withdrawn"],:disabled => ["Active ", "Listing ","Pending ","Other ","Closed ","Fell Through ","Auto Expiry "]) %>
+  <%#= f.text_field :status, :title => "Any Status", :placeholder => "Any Status", :type => "text" %>
                       </li>
                     </ul>
                     <%= f.submit "search", :class => "btn-searchTransactions btn-advancesearch" %>
@@ -38,7 +43,6 @@
                   <% end %>
                 </div>
               </div>
-              <div class="officerow">Only active transactions are shown below. <%= link_to "<span>View all</span>".html_safe, transactions_path, :class=>"link-viewall" %></div>
               <div class="contentbox">
                 <h1>
                   <div class="column w30">Transaction</div>
@@ -136,14 +140,16 @@
 </div>
 <%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
 <script type="text/javascript" language="javascript">
-  jQuery(document).ready(function () {
-    jQuery('#leftColumnShow').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
-    });
-    jQuery('#closeBox').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
-    });
-  });
+                                jQuery(document).ready(function() {
+                                  jQuery('#leftColumnShow').click(function() {
+                                    jQuery('#leftColumn').slideToggle('slow', function() {
+                                    })
+                                  });
+                                  jQuery('#closeBox').click(function() {
+                                    jQuery('#leftColumn').slideToggle('slow', function() {
+                                    })
+                                  });
+                                });
 </script>
 </body>
 </html>

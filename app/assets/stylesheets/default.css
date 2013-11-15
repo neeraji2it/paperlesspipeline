@@ -142,16 +142,16 @@ ul.leftmenu li.icon-upload-docsbyemail a { background:url(/assets/icon-upload-do
 .tableTransaction div.transactionrow.active { background-color:#f3eb7b; }
 .transactionrow.first { color:#125687; font-weight:bold; background-color:#FFF; }
 .tableTransaction a { color:#125687; }
-.column { float:left; width:10.3%; }
+.column { float:left; width:11.3%; }
 .column.last { float:right; width:7%; text-align:center; }
 .column.last.alcent { text-align:center; }
 .w5 { width:5%; }
-.w8 { width:7%; padding-right:1%; }
+.w8 { width:11%; padding-right:1%; }
 .w9 { width:5%; padding-right:3%; }
 .w11 { width:7%; padding-right:3%; }
 .w13 { width:13.5%; text-align:center; }
 .w13 input[type=checkbox]{ margin-top:5px; }
-.w30 { width:30%; }
+.w30 { width:25%; }
 .w20 { width:20%; }
 .w12 { width:7%; padding-right:5%; }
 .w40 { width:40%; }

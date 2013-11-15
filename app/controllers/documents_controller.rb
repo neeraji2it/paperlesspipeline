@@ -1,4 +1,4 @@
-  class DocumentsController < ApplicationController
+class DocumentsController < ApplicationController
   before_filter :parse_raw_upload, :only => :drag_drop
   def index
     #    @documents = Document.where("user_id = #{current_user.id}")
@@ -44,15 +44,15 @@
   end
 
   def create
-#    @locations = Location.all
+    #    @locations = Location.all
     @doc = DragDrop.new
     if params[:document][:document].blank? and session[:doc_ids] != nil
       session[:doc_ids].each do |doc_id|
         @drag_drop = DragDrop.find(doc_id)
         @document = Document.new(:document => @drag_drop.document)
         @document.user_id = current_user.id
-#        @document.location_id = params[:document][:location_id]
-#        @document.transaction_id = params[:document][:transaction_id]
+        #        @document.location_id = params[:document][:location_id]
+        #        @document.transaction_id = params[:document][:transaction_id]
         @document.doc_type = params[:document][:doc_type]
         @document.reviewed="false"
         @document.save
@@ -68,8 +68,8 @@
     else
       @document = Document.new(params[:document])
       @document.user_id = current_user.id
-#      @document.location_id = params[:document][:location_id]
-#      @document.transaction_id = params[:document][:transaction_id]
+      #      @document.location_id = params[:document][:location_id]
+      #      @document.transaction_id = params[:document][:transaction_id]
       @document.doc_type = params[:document][:doc_type]
       if @document.save
         flash[:notice] = "Document Successfully uploaded."
@@ -78,8 +78,8 @@
             @drag_drop = DragDrop.find(doc_id)
             @document = Document.new(:document => @drag_drop.document)
             @document.user_id = current_user.id
-#            @document.location_id = params[:document][:location_id]
-#            @document.transaction_id = params[:document][:transaction_id]
+            #            @document.location_id = params[:document][:location_id]
+            #            @document.transaction_id = params[:document][:transaction_id]
             @document.doc_type = params[:document][:doc_type]
             @document.save
             flash[:notice] = "Document Successfully uploaded."
@@ -112,7 +112,11 @@
     @documents = Document.where("user_id = #{current_user.id}")
     @document = Document.find(params[:id])
     if @document.destroy
-      redirect_to office_documents_path(current_user), :notice => 'Document deleted successfully deleted.'
+      if params[:controller] == "office"
+        redirect_to office_documents_path(current_user), :notice => 'Document deleted successfully deleted.'
+      else
+        redirect_to dashboard_path, :notice => 'Document deleted successfully deleted.'
+      end
     end
   end
 

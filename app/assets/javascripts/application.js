@@ -30,6 +30,11 @@ function add_fields(link, association, content) {
 $(document).ready(function() {
     $('#transaction_automatic_expire_date').datepicker();
     $('#transaction_close_date').datepicker();
+    $('.icon-closedate').datepicker({
+    dateFormat: "yy-dd-mm"    
+    })
+        
+    
     jQuery('#leftColumnShow').click(function() {
         jQuery('#leftColumn').slideToggle('slow', function() {
         });
@@ -143,7 +148,7 @@ function show_commentbox(doc_id) {
     })
 }
 
-function Pdfshow(doc_id){
+function Pdfshow(doc_id) {
     jQuery('#pdf_show_' + doc_id).slideToggle('slow', function() {
     })
 }
