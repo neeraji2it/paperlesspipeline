@@ -26,8 +26,8 @@
                   <div class="transactionrow">
                     <div class="column w30"><%= user.email %> </div>
                     <div class="column w20"><%= user.email %> </div>
-                    <div class="column"><%= user.role %> </div>
-                    <div class="column w20"><%= user.role %> </div>
+                    <div class="column"><%= !user.role.blank? ? Role.find(user.role).role : "-" %>  </div>
+                    <div class="column w20"><%= !user.location.blank? ? Location.find(user.location).name : "-" %> </div>
                     <div class="column w5"><div class="icon-de-active"></div></div>
                     <div class="column last">
                       <span class="btn-action">
@@ -57,12 +57,14 @@
 </div>
 <%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
 <script type="text/javascript" language="javascript">
-  jQuery(document).ready(function () {
-    jQuery('#leftColumnShow').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
+  jQuery(document).ready(function() {
+    jQuery('#leftColumnShow').click(function() {
+      jQuery('#leftColumn').slideToggle('slow', function() {
+      })
     });
-    jQuery('#closeBox').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
+    jQuery('#closeBox').click(function() {
+      jQuery('#leftColumn').slideToggle('slow', function() {
+      })
     });
   });
 </script>

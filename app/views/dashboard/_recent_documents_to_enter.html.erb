@@ -51,16 +51,11 @@
           <%= f.hidden_field :document_id, :value => document.id %>
           <%= f.hidden_field :user_id, :value => current_user.id %>
           <%= f.submit "Save", :class => "btn-save",  :title => "Save", :type => "submit", :value => "Save" %>
-          <span id="cancel_<%= document.id %>" style="cursor: pointer;color: blue;">Cancel</span>
+          <span onclick="Cancle(<%= document.id %>)" style="cursor: pointer;color: blue;">Cancel</span>
         <% end %>
         <div id="document_comments_<%= document.id %>">
           <%= render :partial => "transactions/comment",:locals => {:doc => document} %>
         </div>
-        <script>
-            $("#cancel_<%= document.id %>").click(function() {
-              $("#commentBox_<%= document.id%>").fadeOut('slow');
-            })
-        </script>
       </div>
     <% end %>
   </div>

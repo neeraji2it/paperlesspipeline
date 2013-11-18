@@ -31,10 +31,10 @@ $(document).ready(function() {
     $('#transaction_automatic_expire_date').datepicker();
     $('#transaction_close_date').datepicker();
     $('.icon-closedate').datepicker({
-    dateFormat: "yy-dd-mm"    
+        dateFormat: "yy-dd-mm"
     })
-        
-    
+
+
     jQuery('#leftColumnShow').click(function() {
         jQuery('#leftColumn').slideToggle('slow', function() {
         });
@@ -285,9 +285,6 @@ function transaction_show(id) {
     window.location.href = "/transactions/" + id
 }
 
-$("#cancel_<%= doc.id %>").click(function() {
-    $("#commentBox_<%= doc.id%>").fadeOut('slow');
-})
 
 
 function show_commentbox(doc_id) {
@@ -323,4 +320,8 @@ function update_document_entered(th, document_id) {
         success: function(data) {
         }
     })
+}
+
+function Cancle(doc_id) {
+    $("#commentBox_" + doc_id).fadeOut('slow');
 }
