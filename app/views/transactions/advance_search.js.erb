@@ -1,1 +1,6 @@
 $('#advance_search').html('<%= escape_javascript render :partial => 'transactions/advance_search'%>');
+<% if @transactions.count == 0 %>
+  $(".contentbox h1 span").html('')
+<% else %>
+  $(".contentbox h1 span").html('Showing <%= @transactions.count == 1 ? "#{@transactions.count} transaction" : "all #{@transactions.count} transactions" %>  <%= params[:name].present? ? "matching '#{params[:name]}'" : "" %>')
+<% end %>

@@ -8,7 +8,7 @@
         <%= link_to "Cancel", manage_locations_user_path %>
       <% end %>
     </div>
-    <div class="column w20"><%= Location.where("user_id = '#{location.user_id}' and name = '#{location.name}'").count %></div>
+    <div class="column w20"><%= User.where("location = '#{location.id}'").count %></div>
     <div class="column w20"><%= Transaction.where("location_id = '#{location.id}'").count %> </div>
     <div class="column"><%= Document.where("location_id = '#{location.id}'").count %></div>
     <div class="column last">

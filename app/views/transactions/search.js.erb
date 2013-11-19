@@ -1,1 +1,6 @@
 $('.search_results').html('<%= escape_javascript render :partial => 'search' %>');
+<% if @transactions.count == 0 %>
+  $(".contentbox h1 span").html('')
+<% else %>
+  $(".contentbox h1 span").html('Showing <%= @transactions.count == 1 ? "#{@transactions.count} transaction" : "all #{@transactions.count} transactions" %> matching "<%= params[:search] %>"')
+<% end %>
