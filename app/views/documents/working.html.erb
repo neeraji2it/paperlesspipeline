@@ -42,7 +42,6 @@
                             <div class="column w12"><div id="comment" class="icon-comment" onclick = "show_commentbox('<%= document.id %>')"></div></div>
                             <div class="column w20"><%= current_user.email %></div>
                             <div class="column w20"><%= document.created_at.to_date %></div>
-                            <%= link_to "Assign", assign_document_transactions_path(:id => document.id) %>
                             <div class="column last">
                               <span class="btn-action admin">
                                 <em class="tooltip-container"><span>Action</span>
@@ -50,7 +49,6 @@
                                     <ul class="list-tooltip">
                                       <li class="icon-download"><%= link_to "Download", download_path(:id => document.id) %></li>
                                       <li class="icon-download"><%= link_to "Assign", assign_document_transactions_path(:id => document.id) %></li>
-                                      <li class="icon-edit"><a title="Edit Doc" href="#">Edit Doc</a></li>
                                       <li class="icon-delete"><%= link_to "Delete", document_path(document), :method => "DELETE" %></li>
                                     </ul>
                                     <i class="top-arrow"></i>
