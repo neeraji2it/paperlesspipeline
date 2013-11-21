@@ -43,6 +43,10 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(params[:transaction])
+    puts @transaction.close_date
+    str = params[:transaction][:close_date]
+    @transaction.close_date = Date.strptime(str,"%Y-%m-%d")
+    puts @transaction.close_date
     @transaction.user_id = current_user.id
     @transaction.location_id = params[:transaction][:location_id]
     @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ").order("created_at DESC")

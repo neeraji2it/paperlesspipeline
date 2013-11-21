@@ -61,12 +61,12 @@
                     </div>
                     <p>Close Date<span class="star">*</span></p>
                     <p>
-                      <%= f.text_field :close_date, :value => (@transaction.close_date ? @transaction.close_date.strftime("%Y-%m-%d") : "") %>
+                      <%= f.text_field :close_date %>
                       <%= validation_error(@transaction.errors["close_date"]) %>
                     </p>
                     <div class="bposi">
                       <div id="transactionClose" class="popup" style="display:none;">
-                        <strong>Enter the expected close date for this transaction in the format m/d/yyyy. </strong>
+                        <strong>Enter the expected close date for this transaction in the format yyyy-mm-dd. </strong>
                       </div>
                     </div>
                   </div>
@@ -84,7 +84,7 @@
                     <p><%= f.text_field :automatic_expire_date, :class => "icon-closedate", :title => "Automatic Expiration Date", :type => "text", :value => (@transaction.automatic_expire_date ? @transaction.automatic_expire_date.strftime("%Y/%m/%d") : ""), :readonly => true %></p>
                     <div class="bposi">
                       <div id="transactionAuto" class="popup" style="display:none;">
-                        <strong>Enter an expiration date in the format m/d/yyyy. If this transaction's status remains "Listing" after this date, it will automatically change to "Expired/Withdrawn" </strong>
+                        <strong>Enter an expiration date in the format yyyy-mm-dd. If this transaction's status remains "Listing" after this date, it will automatically change to "Expired/Withdrawn" </strong>
                       </div>
                     </div>
                     <p>Buyer Name<span class="star">*</span></p>

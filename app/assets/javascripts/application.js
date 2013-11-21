@@ -28,12 +28,19 @@ function add_fields(link, association, content) {
 
 
 $(document).ready(function() {
-    $('#transaction_automatic_expire_date').datepicker();
-    $('#transaction_close_date').datepicker();
+    $('#transaction_automatic_expire_date').datepicker({
+        showTimepicker: false,
+        minDate: 0,
+        dateFormat: "yy-mm-dd"
+    });
+    $('#transaction_close_date').datepicker({
+        showTimepicker: false,
+        minDate: 0,
+        dateFormat: "yy-mm-dd"
+    });
     $('.icon-closedate').datepicker({
-        dateFormat: "yy-dd-mm"
+        dateFormat: "yy-mm-dd"
     })
-
 
     jQuery('#leftColumnShow').click(function() {
         jQuery('#leftColumn').slideToggle('slow', function() {
