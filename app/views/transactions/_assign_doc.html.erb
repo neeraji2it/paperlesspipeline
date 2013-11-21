@@ -13,7 +13,7 @@
       <div class="column last">Actions</div>
     </h1>
     <div class="box">
-      <% @transactions.first(5).each do |i|  %>
+      <%  @recently_updated_transactions.each do |i|  %>
         <div class="tableTransaction">
           <div class="transactionrow">
             <div class="column w30"><%= link_to i.transaction_name, transaction_path(i) %></div>

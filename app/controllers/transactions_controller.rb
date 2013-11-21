@@ -237,8 +237,7 @@ class TransactionsController < ApplicationController
   def assign_document
     @document = Document.find(params[:id])
     @transactions = Transaction.where("user_id = '#{current_user.id}'")
-    @recently_updated_transactions = []
-    @recently_updated_transactions = Transaction.where('user_id =? and updated_at BETWEEN ? AND ?', current_user.id,Time.now.beginning_of_month, DateTime.now.end_of_month)
+    @recently_updated_transactions = Transaction.where('user_id =? and updated_at BETWEEN ? AND ?', current_user.id,Time.now.beginning_of_month, Time.now.end_of_month)
   end
   
   def assign_document_to_transaction
