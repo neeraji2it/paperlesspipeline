@@ -15,7 +15,7 @@
                   <%= link_to "Filter", filter_transactions_path, :class => "btn-filter", :title => "Filter", :value => "Filter", :type => "submit" %>
                   <% if @transactions.present? %>
                     <p>
-                      <%= form_tag search_transactions_path, :method => :get, :remote => true do %>
+                      <%= form_tag search_transactions_path(:assign => "assign", :doc_id => params[:id]), :method => :get, :remote => true do %>
                       <p>
                         <%= text_field_tag :search,'', :class => "input-searchTransactions"  %>
                       </p>

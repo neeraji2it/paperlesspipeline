@@ -39,15 +39,20 @@
         <div class="column"><%= transaction.close_date %></div>
         <div class="column last">
           <span class="btn-action">
-            <em class="tooltip-container"><span>Action</span>
-              <strong class="tooltip">
-                <ul class="list-tooltip">
-                  <li class="icon-zoomin"><%= link_to "View", transaction_path(transaction)  %> </li>
-                  <li class="icon-edit"><%= link_to "Edit", edit_transaction_path(transaction) %></li>
-                </ul>
-                <i class="top-arrow"></i>
-              </strong>
-            </em>
+            <% if params[:assign] == "assign"  %>
+              <em class="tooltip-container" onclick="AssignDocumentToTransaction('<%= transaction.id %>', '<%= params[:doc_id] %>')"><span>Assign</span>
+              </em>
+            <% else %>
+              <em class="tooltip-container"><span>Action</span>
+                <strong class="tooltip">
+                  <ul class="list-tooltip">
+                    <li class="icon-zoomin"><%= link_to "View", transaction_path(transaction)  %> </li>
+                    <li class="icon-edit"><%= link_to "Edit", edit_transaction_path(transaction) %></li>
+                  </ul>
+                  <i class="top-arrow"></i>
+                </strong>
+              </em>
+            <% end %>
           </span>
         </div>
       </div>
@@ -58,12 +63,14 @@
 
 <%#*<script type="text/javascript" language="javascript" src="js/jquery_002.js"></script>%>
 <script type="text/javascript" language="javascript">
-  jQuery(document).ready(function () {
-    jQuery('#leftColumnShow').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
-    });
-    jQuery('#closeBox').click(function () {
-      jQuery('#leftColumn').slideToggle('slow', function () {})
-    });
-  });
+            jQuery(document).ready(function() {
+              jQuery('#leftColumnShow').click(function() {
+                jQuery('#leftColumn').slideToggle('slow', function() {
+                })
+              });
+              jQuery('#closeBox').click(function() {
+                jQuery('#leftColumn').slideToggle('slow', function() {
+                })
+              });
+            });
 </script>
