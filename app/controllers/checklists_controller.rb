@@ -5,7 +5,7 @@ class ChecklistsController < ApplicationController
   def create
     Checklist.create(:name => params[:checklist], :transaction_id => params[:transaction_id])
     @transaction = Transaction.find(params[:transaction_id])
-    @checklists = @transaction.checklists
+    @checklists = @transaction.checklists.order("created_at DESC")
     respond_to do |format|
       format.js
     end

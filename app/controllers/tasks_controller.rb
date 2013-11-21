@@ -47,7 +47,7 @@ class TasksController < ApplicationController
     @task = Task.new(:checklist_id => params[:checklist_id], :transaction_id => params[:transaction_id], :name => params[:task][:name])
     @task.save
     @checklist = Checklist.find(params[:checklist_id])
-    @tasks = @checklist.tasks
+    @tasks = @checklist.tasks.order("created_at DESC")
     @transaction = Transaction.find(params[:transaction_id])
     @total_tran_tasks = @transaction.tasks
     @completed_tasks = @transaction.tasks.where("status = ?", true)
@@ -67,7 +67,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.update_attributes(params[:task])
     @checklist = Checklist.find(@task.checklist_id)
-    @tasks = @checklist.tasks
+    @tasks = @checklist.tasks.order("created_at DESC")
     @transaction = Transaction.find(params[:transaction_id])
     respond_to do |format|
       format.js

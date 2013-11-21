@@ -7,9 +7,9 @@ class TransactionsController < ApplicationController
   def index
     #@transactions = Transaction.where("user_id = #{current_user.id}")
     if params[:sort] == "all"
-      @transactions = Transaction.where("user_id = '#{current_user.id}'")
+      @transactions = Transaction.where("user_id = '#{current_user.id}'").order("created_at DESC")
     else
-      @transactions = Transaction.where("user_id = '#{current_user.id}' and status = 'Active'")
+      @transactions = Transaction.where("user_id = '#{current_user.id}' and status = 'Active'").order("created_at DESC")
     end
     #raise @transactions.inspect
   end
@@ -23,7 +23,7 @@ class TransactionsController < ApplicationController
   end
 
   def export_transactions
-    @transactions = Transaction.where("user_id = #{current_user.id}")
+    @transactions = Transaction.where("user_id = #{current_user.id}").order("created_at DESC")
     csv_string = CSV.generate do |csv|
       csv << ["Address", "MLS Number", "Status","Close Date","More Info","Buyer","Seller","List price","Sale price","Commission Amount","Commission Summary"]
       @transactions.each do |transaction|
@@ -38,14 +38,14 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ")
+    @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ").order("created_at DESC")
   end
 
   def create
     @transaction = Transaction.new(params[:transaction])
     @transaction.user_id = current_user.id
     @transaction.location_id = params[:transaction][:location_id]
-    @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ")
+    @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ").order("created_at DESC")
     if @transaction.save
       flash[:notice] = "Transaction created Successfully."
       if !params[:listing].nil?
@@ -81,7 +81,7 @@ class TransactionsController < ApplicationController
 
   def edit
     @transaction = Transaction.find(params[:id])
-    @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ")
+    @assigning_users = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' ").order("created_at DESC")
   end
 
   def update
@@ -99,7 +99,7 @@ class TransactionsController < ApplicationController
     @note = Note.new
     @transaction = Transaction.find(params[:id])
     @notes = @transaction.notes.order("created_at DESC") 
-    @contacts = @transaction.contacts
+    @contacts = @transaction.contacts.order("created_at DESC")
     @total_tran_tasks = @transaction.tasks
     @completed_tasks = @transaction.tasks.where("status = ?", true)
     if @completed_tasks.count.to_f > 0 && @total_tran_tasks.count.to_f > 0
@@ -110,57 +110,57 @@ class TransactionsController < ApplicationController
     @listing_agents = User.where("location = '#{current_user.location}' and id != '#{current_user.id}' and role = '#{Agent}' ")
     @staff_agents = User.all
 
-    @transaction_documents = Document.where("transaction_id = '#{@transaction.id}'")
+    @transaction_documents = Document.where("transaction_id = '#{@transaction.id}'").order("created_at DESC")
   end
 
   def search
-    @transactions = Transaction.where("user_id = '#{current_user.id}' and transaction_name LIKE '%#{params[:search]}%'")
+    @transactions = Transaction.where("user_id = '#{current_user.id}' and transaction_name LIKE '%#{params[:search]}%'").order("created_at DESC")
     respond_to do |format|
       format.js
     end
   end
 
   def advance_search
-    @transactions = Transaction.where("user_id = '#{current_user.id}'")
+    @transactions = Transaction.where("user_id = '#{current_user.id}'").order("created_at DESC")
     if request.xhr?
       if params[:close_date].present? && params[:automatic_expire_date].present? && params[:status].present? && params[:name].present?
         if params[:status] == "Any status"
-          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && automatic_expire_date = '#{params[:automatic_expire_date]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'")
+          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && automatic_expire_date = '#{params[:automatic_expire_date]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'").order("created_at DESC")
         else
-          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && status = '#{params[:status]}' && automatic_expire_date = '#{params[:automatic_expire_date]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'")
+          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && status = '#{params[:status]}' && automatic_expire_date = '#{params[:automatic_expire_date]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'").order("created_at DESC")
         end
       elsif !params[:close_date].present? && !params[:automatic_expire_date].present? && params[:status].present? && params[:name].present?
         if params[:status] == "Any status"
-          @transactions = Transaction.where("user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'")
+          @transactions = Transaction.where("user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'").order("created_at DESC")
         else
-          @transactions = Transaction.where("status = '#{params[:status]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'")
+          @transactions = Transaction.where("status = '#{params[:status]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'").order("created_at DESC")
         end
       elsif params[:close_date].present? && !params[:automatic_expire_date].present? && params[:status].present? && params[:name].present?
         if params[:status] == "Any status"
-          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'")
+          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'").order("created_at DESC")
         else
-          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && status = '#{params[:status]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'")
+          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && status = '#{params[:status]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'").order("created_at DESC")
         end
       elsif !params[:close_date].present? && params[:automatic_expire_date].present? && params[:status].present? && params[:name].present?
         if params[:status] == "Any status"
-          @transactions = Transaction.where("automatic_expire_date = '#{params[:automatic_expire_date]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'")
+          @transactions = Transaction.where("automatic_expire_date = '#{params[:automatic_expire_date]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'").order("created_at DESC")
         else
-          @transactions = Transaction.where("status = '#{params[:status]}' && automatic_expire_date = '#{params[:automatic_expire_date]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'")
+          @transactions = Transaction.where("status = '#{params[:status]}' && automatic_expire_date = '#{params[:automatic_expire_date]}' && user_id = '#{current_user.id}' && transaction_name LIKE '%#{params[:name]}%'").order("created_at DESC")
         end
       elsif params[:close_date].present? && !params[:automatic_expire_date].present? && params[:status].present? && !params[:name].present?
         if params[:status] == "Any status"
-          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && user_id = '#{current_user.id}'")
+          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && user_id = '#{current_user.id}'").order("created_at DESC")
         else
-          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && status = '#{params[:status]}' && user_id = '#{current_user.id}'")
+          @transactions = Transaction.where("close_date = '#{params[:close_date]}' && status = '#{params[:status]}' && user_id = '#{current_user.id}'").order("created_at DESC")
         end
       elsif !params[:close_date].present? && !params[:automatic_expire_date].present? && params[:status].present? && !params[:name].present?
         if params[:status] == "Any status"
-          @transactions = Transaction.where("user_id = '#{current_user.id}'")
+          @transactions = Transaction.where("user_id = '#{current_user.id}'").order("created_at DESC")
         else
-          @transactions = Transaction.where("status = '#{params[:status]}' && user_id = '#{current_user.id}'")
+          @transactions = Transaction.where("status = '#{params[:status]}' && user_id = '#{current_user.id}'").order("created_at DESC")
         end
       else
-        @transactions = Transaction.where("user_id = '#{current_user.id}'")
+        @transactions = Transaction.where("user_id = '#{current_user.id}'").order("created_at DESC")
       end
       respond_to do |format|
         format.js
@@ -169,16 +169,16 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_advance_search
-    @transactions = Transaction.where("close_date = '#{params[:close_date]}'")
+    @transactions = Transaction.where("close_date = '#{params[:close_date]}'").order("created_at DESC")
     respond_to do |format|
       format.js
     end
   end
 
   def filter
-    @transactions = Transaction.where("user_id = '#{current_user.id}'")
+    @transactions = Transaction.where("user_id = '#{current_user.id}'").order("created_at DESC")
     if request.xhr?
-      @transactions = Transaction.where("user_id = '#{current_user.id}' and transaction_name = '#{params[:transaction_name]}'")
+      @transactions = Transaction.where("user_id = '#{current_user.id}' and transaction_name = '#{params[:transaction_name]}'").order("created_at DESC")
       respond_to do |format|
         format.js
       end
@@ -187,10 +187,10 @@ class TransactionsController < ApplicationController
 
   def location_search
     if params[:location].present?
-      @transactions = Transaction.where("(location_id = #{params[:location]} or status = #{params[:status]}) and user_id = #{current_user.id}")
+      @transactions = Transaction.where("(location_id = #{params[:location]} or status = #{params[:status]}) and user_id = #{current_user.id}").order("created_at DESC")
       render :action => 'index'
     else
-      @transactions = Transaction.where("user_id = #{current_user.id}")
+      @transactions = Transaction.where("user_id = #{current_user.id}").order("created_at DESC")
       render :action => 'index'
     end
   end
@@ -236,8 +236,8 @@ class TransactionsController < ApplicationController
 
   def assign_document
     @document = Document.find(params[:id])
-    @transactions = Transaction.where("user_id = '#{current_user.id}'")
-    @recently_updated_transactions = Transaction.where('user_id =? and updated_at BETWEEN ? AND ?', current_user.id,Time.now.beginning_of_month, Time.now.end_of_month)
+    @transactions = Transaction.where("user_id = '#{current_user.id}'").order("created_at DESC")
+    @recently_updated_transactions = Transaction.where('user_id =? and updated_at BETWEEN ? AND ?', current_user.id,Time.now.beginning_of_month, Time.now.end_of_month).order("created_at DESC")
   end
   
   def assign_document_to_transaction
@@ -253,7 +253,7 @@ class TransactionsController < ApplicationController
 
   def search_by_transaction_details
     respond_to do |format|
-      @transactions = Transaction.where("transaction_name = '#{params[:search][:name]}' or transaction_number = '#{params[:search][:name]}' ")
+      @transactions = Transaction.where("transaction_name = '#{params[:search][:name]}' or transaction_number = '#{params[:search][:name]}' ").order("created_at DESC")
       format.js
     end
   end

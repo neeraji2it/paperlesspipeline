@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   def index
     @document = Document.find(params[:document_id])
-    @comments = @document.comments
+    @comments = @document.comments.order("created_at DESC")
     respond_to do |format|
       format.js
     end
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
   def edit
     @document = Document.find(params[:document_id])
     @comment = @document.comments.find(params[:id])
-    @comments = @document.comments
+    @comments = @document.comments.order("created_at DESC")
     respond_to do |format|
       format.js
     end
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
   def update
     @document = Document.find(params[:document_id])
     @comment = @document.comments.find(params[:id])
-    @comments = @document.comments
+    @comments = @document.comments.order("created_at DESC")
     if @comment.update_attributes(params[:comment])
       respond_to do |format|
         format.js

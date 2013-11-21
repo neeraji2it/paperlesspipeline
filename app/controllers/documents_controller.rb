@@ -109,7 +109,7 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    @documents = Document.where("user_id = #{current_user.id}")
+    @documents = Document.where("user_id = #{current_user.id}").order("created_at DESC")
     @document = Document.find(params[:id])
     if @document.destroy
       if params[:controller] == "office"
@@ -122,7 +122,7 @@ class DocumentsController < ApplicationController
 
   def working
     #    @documents = Document.search "*#{params[:query]}*"
-    @documents = Document.where("user_id=? && doc_type=? && (assigned IS NULL or assigned = #{false})",current_user.id, 'transaction')
+    @documents = Document.where("user_id=? && doc_type=? && (assigned IS NULL or assigned = #{false})",current_user.id, 'transaction').order("created_at DESC")
     if request.xhr?
       respond_to do |format|
         format.js
@@ -135,7 +135,7 @@ class DocumentsController < ApplicationController
   end
 
   def search
-    @documents = Document.where("document_file_name = '#{params[:query]}'")
+    @documents = Document.where("document_file_name = '#{params[:query]}'").order("created_at DESC")
     respond_to do |format|
       format.js
     end
@@ -143,10 +143,10 @@ class DocumentsController < ApplicationController
 
   def location_search
     if params[:location].present?
-      @documents = Document.where("location_id = #{params[:location]} and user_id = #{current_user.id}")
+      @documents = Document.where("location_id = #{params[:location]} and user_id = #{current_user.id}").order("created_at DESC")
       render :action => 'index'
     else
-      @documents = Document.where("user_id = #{current_user.id}")
+      @documents = Document.where("user_id = #{current_user.id}").order("created_at DESC")
       render :action => 'index'
     end
   end
@@ -157,20 +157,20 @@ class DocumentsController < ApplicationController
     #@users = User.search "*#{params[:search]}*"
     #    @documents = Document.search "*#{params[:search]}*"
     @transactions = Transaction.search "*#{params[:search]}*"
-    @docs = Document.where("user_id = '#{current_user.id}' && doc_type='office'")
+    @docs = Document.where("user_id = '#{current_user.id}' && doc_type='office'").order("created_at DESC")
     @documents = Document.search "*#{params[:query]}*"
     if request.xhr?
       respond_to do |format|
-        @documents = Document.where("document_file_name = '#{params[:query]}'")
+        @documents = Document.where("document_file_name = '#{params[:query]}'").order("created_at DESC")
         format.js
       end
     end
   end
 
   def unreviewed
-    @documents = Document.where("(review IS NULL or review = #{false}) and assigned = #{true} and user_id=#{current_user.id}")
+    @documents = Document.where("(review IS NULL or review = #{false}) and assigned = #{true} and user_id=#{current_user.id}").order("created_at DESC")
     if request.xhr?
-      @documents = Document.where("document_file_name = '#{params[:document_file_name]}' ")
+      @documents = Document.where("document_file_name = '#{params[:document_file_name]}' ").order("created_at DESC")
       respond_to do |format|
         format.js
       end
