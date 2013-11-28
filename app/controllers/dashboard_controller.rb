@@ -3,9 +3,9 @@ class DashboardController < ApplicationController
 
   layout 'application'
   def index
-    @recent_documents_to_assign = Document.where('user_id=? and assigned IS NULL ',current_user.id)
-    @recent_documents_to_review = Document.where("(review IS NULL or review = #{false}) and assigned = #{true} and user_id=#{current_user.id}").last(5)
-    @recent_documents_to_enter = Document.where("review = #{true} and  assigned = #{true} and user_id=#{current_user.id}").last(5)
+    @recent_documents_to_assign = Document.where('user_id=? and assigned IS NULL ',current_user.id).order("created_at DESC")
+    @recent_documents_to_review = Document.where("(review IS NULL or review = #{false}) and assigned = #{true} and user_id=#{current_user.id}").order("created_at DESC").last(5)
+    @recent_documents_to_enter = Document.where("review = #{true} and  assigned = #{true} and user_id=#{current_user.id}").order("created_at DESC").last(5)
     required_document_types = ["private","sale","listing"]
     uploaded_document_types = current_user.documents.collect{|d| d.document_type.to_s.downcase}.uniq
     missing_document_types = required_document_types - uploaded_document_types
