@@ -50,7 +50,7 @@ class DashboardController < ApplicationController
     end
     
     #Incomplete checklists Transations ==========================================
-    @incomplete_checklist_transactions = Transaction.includes(:checklists).where(:checklists=>{:id=>nil})
+    @incomplete_checklist_transactions = Transaction.where('user_id = ?', current_user.id ).includes(:checklists).where(:checklists=>{:id=>nil})
     #passed transaction =========================================================
     @passed_transactins = Transaction.where('user_id =? and close_date <= ?',current_user.id,Date.today)
     # transaction closes in 30 days==============================================
