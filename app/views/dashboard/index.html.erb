@@ -14,7 +14,7 @@
                 </div>
                 <div class="frow">
                   <div>Commission</div>
-                  <div><%=  @this_month_listing_total_commission.map(&:to_i).reduce(:+) %></div>
+                  <div><% if @this_month_listing_total_commission.blank? %>$0<%else%>$<%=  @this_month_listing_total_commission.map(&:to_i).reduce(:+) %><% end %></div>
                 </div>
                 <div class="frow">
                   <div>Pending</div>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="frow">
                   <div>Commission</div>
-                  <div><% if @previous_month_listing_transactions_total_commission.present? %><%= @previous_month_listing_transactions_total_commission.map(&:to_i).reduce(:+) %><% end %></div>
+                  <div><% if @previous_month_listing_transactions_total_commission.present? %>$<%= @previous_month_listing_transactions_total_commission.map(&:to_i).reduce(:+) %><%else%>$0<% end %></div>
                 </div>
                 <div class="frow">
                   <div>Pending</div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="frow">
                   <div>Commission</div>
-                  <div><% if @previous_month_closed_transaction_total_commission.present? %><%= @previous_month_closed_transaction_total_commission.map(&:to_i).reduce(:+) %><% end %></div>
+                  <div><% if @previous_month_closed_transaction_total_commission.present? %>$<%= @previous_month_closed_transaction_total_commission.map(&:to_i).reduce(:+) %><%else%>$0<% end %></div>
                 </div>
               </div>
               <div class="transactionbox">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="frow">
                   <div>Commission</div>
-                  <div><%= @total_commission.map(&:to_i).reduce(:+) %></div>
+                  <div>$<%= @total_commission.map(&:to_i).reduce(:+) %></div>
                 </div>
                 <div class="frow">
                   <div>Pending</div>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="frow">
                   <div>Commission</div>
-                  <div><%= @total_commission.map(&:to_i).reduce(:+) %></div>
+                  <div>$<%= @total_commission.map(&:to_i).reduce(:+) %></div>
                 </div>
               </div>
               <div class="clearFix"></div>

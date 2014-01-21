@@ -37,7 +37,12 @@
                   <div>Added By:</div>
                   <div><%= @transaction.user.first_name %></div>
                 </div>
+                <div class="frow">
+                  <strong>More Info</strong>
+                  <div><%= @transaction.more_info %></div>
+                </div>
               </div>
+
               <div class="contentbox">
                 <h1><em><a id="addContact" class="btn-addContact" title="Add Contact" href="javascript:;">Add Contact</a></em>Contact</h1>
                 <div class="box" id="addContactContent" style="display:none;">
